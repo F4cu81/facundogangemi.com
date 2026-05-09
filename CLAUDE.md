@@ -145,6 +145,41 @@ Use these folders as follows:
 - `prompts`: reusable prompts used for content, automation or AI-assisted workflows.
 - `legal`: legal context and compliance source notes. Legal pages should use this information and must never invent missing details.
 
+### Content Collections Structure
+
+The project uses structured Astro content collections.
+
+Primary editorial collections:
+
+/src/content/insights/
+/src/content/case-studies/
+
+Do NOT create alternative editorial folders such as:
+- /blog
+- /posts
+- /articles
+- /thoughts
+
+Purpose:
+- `insights`: executive thought leadership and strategic articles.
+- `case-studies`: practical transformation experiences and implementation stories.
+
+Recommended subcategories:
+
+Insights:
+- ai-strategy
+- operating-models
+- operational-excellence
+- enterprise-transformation
+- banking
+- leadership
+
+Case Studies:
+- financial-services
+- agile-transformations
+- ai-adoption
+- delivery-operations
+
 ---
 
 ## 6. AI Collaboration Workflow
@@ -353,6 +388,15 @@ Avoid:
 
 If brand documentation exists under `/branding`, follow it.
 
+The website should position Facundo Gangemi as:
+
+- AI Strategy & Transformation Leader
+- Enterprise Transformation Advisor
+- Executive Consultant
+- Technology and Operating Model Strategist
+
+The visual and content direction must support high-trust enterprise positioning rather than generic coaching or freelancer branding.
+
 ---
 
 ## 12. Content and Writing Standards
@@ -378,6 +422,11 @@ Preferred themes:
 - enterprise agility
 - leadership in digital change
 - measurable impact
+- operational excellence
+- enterprise execution
+- delivery excellence
+- organizational efficiency
+- AI-enabled operations
 
 Avoid:
 
@@ -399,6 +448,16 @@ When writing content:
 - Prefer active voice.
 - Avoid keyword stuffing.
 
+The website should avoid sounding like:
+- a generic marketing agency
+- a startup landing page
+- a personal lifestyle blog
+- a generic Agile coaching website
+
+The tone should resemble:
+- executive advisory firms
+- enterprise transformation consultancies
+- strategic technology leadership publications
 ---
 
 ## 13. SEO Standards
@@ -444,6 +503,15 @@ Recommended structured data types when appropriate:
 - `ProfessionalService`
 
 Do not add structured data that claims unsupported facts.
+
+Editorial URLs must remain executive-oriented and SEO-friendly.
+
+Preferred examples:
+
+/insights/ai-strategy/why-most-ai-transformations-fail
+/case-studies/financial-services/scaling-enterprise-agility
+
+Avoid generic blog-style URLs.
 
 ---
 
@@ -876,6 +944,14 @@ Design with future needs in mind:
 
 Do not implement these future capabilities unless requested. Just avoid architectural decisions that make them difficult later.
 
+The content architecture should support future expansion into:
+- executive insights hub
+- enterprise case study library
+- AI strategy frameworks
+- downloadable strategic assets
+- research-style publications
+- newsletter integration
+
 ---
 
 ## 28. Multilingual Readiness
@@ -942,6 +1018,9 @@ Never:
 - refactor unrelated files
 - silently suppress errors
 - claim tests passed if they were not run
+- Never create generic SaaS-looking pages that weaken executive positioning.
+- Never generate exaggerated AI hype content.
+- Never position the brand as a low-cost freelancer profile.
 
 ---
 
