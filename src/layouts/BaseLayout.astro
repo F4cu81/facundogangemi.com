@@ -100,10 +100,12 @@ const ogImageURL = ogImage.startsWith('http')
   <meta name="twitter:image" content={ogImageURL} />
 
   <!-- Favicon: use existing SVG to avoid local 404s -->
-  <link rel="icon" href="/assets/favicon/favicon.svg" type="image/svg+xml" />
-
-  <!-- Web App Manifest -->
-  <link rel="manifest" href="/manifest.webmanifest" />
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png" />
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
 
   <!-- Preconnect for Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
