@@ -1,0 +1,169 @@
+---
+/**
+ * MobileMenu — Full-screen mobile navigation drawer
+ * 
+ * Features:
+ * - Full-screen overlay on mobile/tablet
+ * - All main navigation items
+ * - Dropdown support for Advisory
+ * - Primary CTA button
+ * - Language switcher
+ * - Smooth open/close animation
+ * - Body scroll lock when open
+ * - Escape key to close
+ */
+
+import { NAV_ITEMS, NAV_CTA } from '@/data/navigation';
+
+interface Props {
+  locale?: 'en' | 'es';
+  currentPath?: string;
+}
+
+const { locale = 'en', currentPath = '/' } = Astro.props;
+---
+
+<div id="mobile-menu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="mobile-menu-overlay"></div>
+  
+  <div class="mobile-menu-content">
+    <button
+      id="mobile-menu-close"
+      class="mobile-menu-close"
+      aria-label="Close mobile menu"
+    >
+      <span class="close-icon"></span>
+      <span class="close-icon"></span>
+    </button>
+
+    <nav class="mobile-menu-nav">
+      <ul class="mobile-menu-list">
+        {NAV_ITEMS.map(item => (
+          <li class="mobile-menu-item">
+            <button
+              class={`mobile-menu-link ${currentPath === item.href ? 'active' : ''} ${item.hasDropdown ? 'has-dropdown' : ''}`}
+              data-toggle-dropdown={item.href}
+              aria-expanded={item.hasDropdown ? 'false' : undefined}
+            >
+              <span>{item.label}</span>
+              {item.hasDropdown && <span class="dropdown-arrow">▼</span>}
+            </button>
+
+            {item.hasDropdown && item.children && (
+              <ul class="mobile-menu-dropdown" data-dropdown={item.href}>
+                {item.children.map(child => (
+                  <li>
+                    <a
+                      href={child.href}
+                      class={`mobile-menu-dropdown-link ${currentPath === child.href ? 'active' : ''}`}
+                    >
+                      {child.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+
+      <div class="mobile-menu-divider"></div>
+      <div class="mobile-menu-lang">
+        <span class={`mobile-lang-option ${locale === 'en' ? 'active' : ''}`}>EN</span>
+        <span class="mobile-lang-sep">/</span>
+        <span class={`mobile-lang-option ${locale === 'es' ? 'active' : ''}`}>
+          ES <span class="coming-soon">Coming Soon</span>
+        </span>
+      </div>
+    </nav>
+
+    <div class="mobile-menu-cta-section">
+      <a href={NAV_CTA.href} class="mobile-menu-cta">
+        {NAV_CTA.label}
+      </a>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+{
+  let mobileMenuOpen = false;
+
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenuClose = document.getElementById('mobile-menu-close');
+  const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+
+  function openMobileMenu() {
+    mobileMenuOpen = true;
+    mobileMenu?.classList.add('open');
+    mobileMenu?.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileMenu() {
+    mobileMenuOpen = false;
+    mobileMenu?.classList.remove('open');
+    mobileMenu?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  mobileMenuToggle?.addEventListener('click', () => {
+    if (mobileMenuOpen) {
+      closeMobileMenu();
+      mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+    } else {
+      openMobileMenu();
+      mobileMenuToggle?.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  mobileMenuClose?.addEventListener('click', () => {
+    closeMobileMenu();
+    mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+  });
+
+  mobileMenuOverlay?.addEventListener('click', () => {
+    closeMobileMenu();
+    mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenuOpen) {
+      closeMobileMenu();
+      mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.querySelectorAll('[data-toggle-dropdown]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const dropdownId = button.getAttribute('data-toggle-dropdown');
+      const dropdown = document.querySelector(`[data-dropdown="${dropdownId}"]`);
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+      button.setAttribute('aria-expanded', String(!isExpanded));
+
+      if (dropdown) {
+        dropdown.classList.toggle('open');
+      }
+    });
+  });
+
+  document.querySelectorAll('.mobile-menu-link, .mobile-menu-dropdown-link').forEach((link) => {
+    if (!link.hasAttribute('data-toggle-dropdown')) {
+      link.addEventListener('click', () => {
+        closeMobileMenu();
+        mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
+  window.addEventListener('toggle-mobile-menu', (e) => {
+    if (e.detail && e.detail.open) {
+      openMobileMenu();
+    } else {
+      closeMobileMenu();
+    }
+  });
+}
+</script>

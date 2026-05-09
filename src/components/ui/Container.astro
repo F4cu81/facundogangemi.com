@@ -1,0 +1,40 @@
+---
+/**
+ * Container — Standardizes horizontal content width and spacing
+ * 
+ * Provides consistent max-width and padding across all sections.
+ * 
+ * Sizes:
+ * - default: 1200px (most content)
+ * - narrow: 860px (editorial, single-column)
+ * - wide: 1440px (full-width hero sections)
+ * 
+ * Responsive: 
+ * - desktop padding: 48px horizontal
+ * - mobile padding: 24px horizontal
+ */
+
+interface Props {
+  size?: 'default' | 'narrow' | 'wide';
+  class?: string;
+}
+
+const { size = 'default', class: className = '' } = Astro.props;
+
+const sizeClasses = {
+  default: 'max-w-5xl',      // 1200px
+  narrow: 'max-w-2xl',       // 860px
+  wide: 'max-w-7xl',         // 1440px
+};
+
+const containerClass = `
+  mx-auto
+  px-6 md:px-12
+  ${sizeClasses[size]}
+  ${className}
+`;
+---
+
+<div class={containerClass}>
+  <slot />
+</div>

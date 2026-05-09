@@ -1,0 +1,56 @@
+---
+/**
+ * Homepage — Spanish version (placeholder)
+ *
+ * Route: /es/
+ *
+ * This page is a placeholder for the future Spanish translation.
+ * It will be implemented in Phase 2 (3–6 months post-launch).
+ *
+ * See: strategy/DEVELOPMENT_PROMPT.md §16 — i18n Requirements
+ */
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { SITE } from '@/data/site';
+---
+
+<BaseLayout
+  title="Estrategia de IA y Transformación Empresarial"
+  description="Asesoría ejecutiva en Estrategia de IA, Transformación Digital y Modelos Operativos Inteligentes."
+  locale="es"
+  alternateUrl="/"
+  ogImage={SITE.ogImage}
+>
+
+  <header class="bg-navy-800 border-b border-white/[0.06]">
+    <div class="container-site flex items-center justify-between h-[68px]">
+      <a href="/es/" class="font-heading font-semibold text-xl text-white">Facundo Gangemi</a>
+      <div class="flex items-center gap-4">
+        <a href="/" class="text-white/60 hover:text-white text-sm transition-colors" lang="en">English</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="min-h-screen bg-navy-800 flex items-center">
+    <div class="container-site text-center py-24">
+      <span class="eyebrow mb-4 block">Próximamente</span>
+      <h1 class="font-heading text-white text-5xl font-bold mb-6">
+        Versión en español<br />en desarrollo.
+      </h1>
+      <p class="text-white/70 text-lg leading-relaxed max-w-[48ch] mx-auto mb-8">
+        La versión en español de este sitio estará disponible próximamente.
+        Por ahora, te invitamos a explorar el contenido en inglés.
+      </p>
+      <a href="/" class="btn-primary" lang="en">View English Version →</a>
+    </div>
+  </main>
+
+  <footer class="bg-navy-900 border-t border-white/[0.06]">
+    <div class="container-site py-6 text-center">
+      <p class="text-white/30 text-xs">
+        © {new Date().getFullYear()} Facundo Gangemi.
+      </p>
+    </div>
+  </footer>
+
+</BaseLayout>

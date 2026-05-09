@@ -1,0 +1,53 @@
+---
+/**
+ * SectionWrapper — Consistent vertical spacing and background treatment
+ * 
+ * Variants:
+ * - dark: deep navy (#00274C) with white text
+ * - light: light gray (#F2F2F2) with dark text
+ * - white: near-white with dark text
+ * - gradient: navy with subtle radial gradient
+ * 
+ * Spacing:
+ * - compact: 64-80px desktop, 48-56px mobile
+ * - default: 96px desktop, 56-72px mobile
+ * - large: 128px desktop, 72-88px mobile
+ */
+
+interface Props {
+  variant?: 'dark' | 'light' | 'white' | 'gradient';
+  spacing?: 'compact' | 'default' | 'large';
+  id?: string;
+  class?: string;
+}
+
+const { 
+  variant = 'dark',
+  spacing = 'default',
+  id,
+  class: className = ''
+} = Astro.props;
+
+const variantClasses = {
+  dark: 'bg-navy-800 text-white',
+  light: 'bg-gray-200 text-navy-800',
+  white: 'bg-gray-50 text-navy-800',
+  gradient: 'bg-gradient-to-b from-navy-800 to-navy-900 text-white',
+};
+
+const spacingClasses = {
+  compact: 'py-16 md:py-20',     // 64-80px
+  default: 'py-24 md:py-28',      // 96px / 56-72px
+  large: 'py-20 md:py-32',        // 72-88px / 128px
+};
+
+const sectionClass = `
+  ${variantClasses[variant]}
+  ${spacingClasses[spacing]}
+  ${className}
+`;
+---
+
+<section {id} class={sectionClass}>
+  <slot />
+</section>

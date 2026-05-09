@@ -1,0 +1,89 @@
+---
+/**
+ * SectionHeader — Provides consistent heading structure for sections
+ * 
+ * Composed of:
+ * - Eyebrow: small uppercase label with optional icon/accent
+ * - Heading: main section title (h2, h3)
+ * - Subheading: optional body text below heading
+ * 
+ * Supports:
+ * - centered or left-aligned layouts
+ * - size variants for different section importance
+ */
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  subheading?: string;
+  headingLevel?: 'h2' | 'h3' | 'h4';
+  align?: 'left' | 'center';
+  size?: 'default' | 'large';
+  class?: string;
+}
+
+const {
+  eyebrow,
+  heading,
+  subheading,
+  headingLevel = 'h2',
+  align = 'center',
+  size = 'default',
+  class: className = ''
+} = Astro.props;
+
+const alignClasses = {
+  left: 'text-left',
+  center: 'text-center',
+};
+
+const sizeClasses = {
+  default: 'max-w-2xl',
+  large: 'max-w-4xl',
+};
+
+const containerClass = align === 'center' ? `mx-auto ${sizeClasses[size]}` : '';
+const HeadingTag = headingLevel;
+---
+
+<div class={`${containerClass} ${className}`}>
+  {eyebrow && (
+    <p class={`
+      text-2xs
+      font-heading
+      font-semibold
+      text-orange-500
+      uppercase
+      tracking-widest
+      mb-2
+    `}>
+      {eyebrow}
+    </p>
+  )}
+  
+  <HeadingTag class={`
+    ${align === 'center' ? 'text-center' : 'text-left'}
+    font-heading
+    font-bold
+    ${size === 'large' ? 'text-4xl md:text-5xl' : 'text-3xl md:text-4xl'}
+    leading-tight
+    text-navy-800
+    dark:text-white
+    mb-${subheading ? '4' : '0'}
+  `}>
+    {heading}
+  </HeadingTag>
+  
+  {subheading && (
+    <p class={`
+      ${align === 'center' ? 'text-center' : 'text-left'}
+      text-lg
+      leading-relaxed
+      text-gray-600
+      dark:text-gray-300
+      mt-4
+    `}>
+      {subheading}
+    </p>
+  )}
+</div>

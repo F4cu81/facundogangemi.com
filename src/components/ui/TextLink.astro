@@ -1,0 +1,91 @@
+---
+/**
+ * TextLink — Inline text link component
+ * 
+ * Variants:
+ * - default: orange text with underline on hover
+ * - nav: minimal styling for navigation context
+ * - subtle: gray text, minimal emphasis
+ * 
+ * Features:
+ * - smooth color transitions
+ * - focus states for accessibility
+ * - optional external link indication
+ */
+
+interface Props {
+  href: string;
+  variant?: 'default' | 'nav' | 'subtle';
+  external?: boolean;
+  target?: string;
+  rel?: string;
+  class?: string;
+  ariaLabel?: string;
+}
+
+const {
+  href,
+  variant = 'default',
+  external = false,
+  target = external ? '_blank' : undefined,
+  rel = external ? 'noopener noreferrer' : undefined,
+  class: className = '',
+  ariaLabel
+} = Astro.props;
+
+const variantClasses = {
+  default: `
+    text-orange-500
+    hover:text-orange-600
+    hover:underline
+    transition-colors
+    duration-200
+    focus:outline-none
+    focus:ring-2
+    focus:ring-orange-500
+    focus:ring-offset-2
+    rounded
+  `,
+  nav: `
+    text-white
+    hover:text-orange-300
+    transition-colors
+    duration-200
+    focus:outline-none
+    focus:ring-2
+    focus:ring-orange-500
+    rounded
+  `,
+  subtle: `
+    text-gray-600
+    dark:text-gray-400
+    hover:text-navy-800
+    dark:hover:text-white
+    transition-colors
+    duration-200
+    focus:outline-none
+    focus:ring-2
+    focus:ring-orange-500
+    rounded
+  `
+};
+
+const linkClass = `
+  inline
+  ${variantClasses[variant]}
+  ${className}
+`;
+---
+
+<a
+  {href}
+  {target}
+  {rel}
+  aria-label={ariaLabel}
+  class={linkClass}
+>
+  <slot />
+  {external && (
+    <span class="ml-1 text-xs" aria-hidden="true">↗</span>
+  )}
+</a>

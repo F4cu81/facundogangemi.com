@@ -1,0 +1,109 @@
+---
+/**
+ * CTAButton — Primary call-to-action button component
+ * 
+ * Variants:
+ * - primary: orange background (#F57C00), white text
+ * - secondary: navy outline, transparent background
+ * - ghost: text-only with underline on hover
+ * 
+ * Sizes:
+ * - sm: compact button
+ * - md: default button
+ * - lg: large prominent button
+ * 
+ * States:
+ * - enabled: interactive
+ * - disabled: grayed out, no interaction
+ */
+
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  disabled?: boolean;
+  target?: string;
+  rel?: string;
+  class?: string;
+  ariaLabel?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  disabled = false,
+  target,
+  rel,
+  class: className = '',
+  ariaLabel
+} = Astro.props;
+
+const variantClasses = {
+  primary: `
+    bg-orange-500
+    text-white
+    hover:bg-orange-600
+    active:bg-orange-700
+    transition-colors
+    duration-200
+  `,
+  secondary: `
+    border-2
+    border-navy-800
+    text-navy-800
+    hover:bg-navy-50
+    dark:border-white
+    dark:text-white
+    dark:hover:bg-navy-700
+    transition-colors
+    duration-200
+  `,
+  ghost: `
+    text-orange-500
+    hover:text-orange-600
+    underline
+    underline-offset-2
+    transition-colors
+    duration-200
+  `
+};
+
+const sizeClasses = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-6 py-3 text-base',
+  lg: 'px-8 py-4 text-lg',
+};
+
+const disabledClasses = disabled 
+  ? 'opacity-50 cursor-not-allowed pointer-events-none'
+  : 'cursor-pointer';
+
+const buttonClass = `
+  inline-flex
+  items-center
+  justify-center
+  font-heading
+  font-semibold
+  rounded-lg
+  focus:outline-none
+  focus:ring-2
+  focus:ring-offset-2
+  focus:ring-orange-500
+  ${variantClasses[variant]}
+  ${sizeClasses[size]}
+  ${disabledClasses}
+  ${className}
+`;
+---
+
+<a
+  {href}
+  {target}
+  {rel}
+  aria-label={ariaLabel}
+  aria-disabled={disabled}
+  class={buttonClass}
+>
+  <slot />
+</a>

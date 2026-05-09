@@ -1,0 +1,306 @@
+---
+/**
+ * Homepage — facundogangemi.com
+ *
+ * Phase 1 placeholder: validates layout, Tailwind, design tokens.
+ * Phase 3 will replace this with full section components.
+ *
+ * Copy source: strategy/HOMEPAGE_COPY_DECK_EN.md
+ * Visual direction: strategy/HOMEPAGE_UI_DIRECTION.md
+ */
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { SITE } from '@/data/site';
+import { ADVISORY_PILLARS } from '@/data/advisoryPillars';
+import { KPIS } from '@/data/kpis';
+---
+
+<BaseLayout
+  title="AI Strategy & Enterprise Transformation Advisor"
+  description={SITE.description}
+>
+
+  <!-- ── Navbar placeholder ──────────────────────────────────────────────── -->
+  <header
+    class="fixed top-0 inset-x-0 z-[100] bg-navy-800/95 backdrop-blur-sm border-b border-white/[0.06]"
+    role="banner"
+  >
+    <div class="container-site flex items-center justify-between h-[68px]">
+      <!-- Logo -->
+      <a
+        href="/"
+        class="font-heading font-700 text-xl text-white tracking-tight"
+        aria-label="Facundo Gangemi — Home"
+      >
+        Facundo Gangemi
+      </a>
+
+      <!-- Nav placeholder — Phase 2 will replace with Navbar component -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Primary navigation">
+        <a href="/advisory"     class="text-sm font-medium text-white/80 hover:text-white transition-colors">Advisory</a>
+        <a href="/case-studies" class="text-sm font-medium text-white/80 hover:text-white transition-colors">Case Studies</a>
+        <a href="/insights"     class="text-sm font-medium text-white/80 hover:text-white transition-colors">Insights</a>
+        <a href="/about"        class="text-sm font-medium text-white/80 hover:text-white transition-colors">About</a>
+        <a href="/contact"      class="btn-primary text-sm py-2.5 px-5">Book Advisory Call</a>
+      </nav>
+
+      <!-- Mobile menu trigger (Phase 2) -->
+      <button
+        class="md:hidden text-white p-2"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <rect x="2" y="5"  width="18" height="1.5" rx="0.75" fill="currentColor"/>
+          <rect x="2" y="10" width="18" height="1.5" rx="0.75" fill="currentColor"/>
+          <rect x="2" y="15" width="18" height="1.5" rx="0.75" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Main content ─────────────────────────────────────────────────────── -->
+  <main id="main-content">
+
+    <!-- ── 1. Hero ─────────────────────────────────────────────────────────── -->
+    <section
+      class="relative min-h-[100svh] flex items-center bg-hero-gradient pt-[68px]"
+      aria-label="Hero"
+    >
+      <!-- Background AI network pattern placeholder -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div class="absolute inset-0 bg-[url('/assets/backgrounds/hero-ai-network-bg.svg')] bg-cover opacity-[0.04]"></div>
+        <div class="absolute right-0 top-0 w-1/2 h-full bg-orange-glow opacity-40"></div>
+      </div>
+
+      <div class="container-site relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center py-24 lg:py-32">
+
+        <!-- Left: copy -->
+        <div class="reveal">
+          <span class="eyebrow">AI Strategy · Enterprise Transformation</span>
+
+          <h1 class="font-heading text-white mt-2 mb-6">
+            Transforming ambition<br class="hidden sm:block" />
+            into results.
+          </h1>
+
+          <p class="text-white/75 text-lg leading-relaxed max-w-[52ch] mb-8">
+            Executive advisory for AI Strategy, Digital Transformation and Intelligent Operating Models.
+            I help organizations evolve with clarity, structure and measurable impact.
+          </p>
+
+          <!-- Pull quote chip -->
+          <blockquote
+            class="inline-flex items-start gap-3 bg-white/[0.06] border border-white/[0.1] rounded-lg px-4 py-3 mb-8 max-w-[44ch]"
+          >
+            <span class="text-orange-500 text-xl leading-none mt-0.5" aria-hidden="true">"</span>
+            <p class="text-white/80 text-sm leading-snug italic font-medium">
+              The future belongs to organizations that combine intelligence, adaptability and execution.
+            </p>
+          </blockquote>
+
+          <!-- CTAs -->
+          <div class="flex flex-wrap gap-3">
+            <a href="/contact"  class="btn-primary">
+              Book an Advisory Call
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="/advisory" class="btn-secondary">
+              Explore Services
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: portrait placeholder -->
+        <div class="reveal delay-200 hidden lg:flex justify-center items-end">
+          <div
+            class="relative w-[420px] h-[520px] rounded-2xl overflow-hidden bg-navy-900/60 border border-white/[0.08] flex items-end justify-center"
+            aria-label="Executive portrait of Facundo Gangemi (image pending)"
+          >
+            <!-- Portrait image — asset missing at Phase 1 -->
+            <img
+              src="/assets/portraits/facundo-hero-executive.webp"
+              alt="Facundo Gangemi — AI Strategy & Enterprise Transformation Advisor"
+              width="420"
+              height="520"
+              class="w-full h-full object-cover object-top"
+              loading="eager"
+              decoding="async"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <!-- Placeholder shown until portrait is added -->
+            <div class="absolute inset-0 hidden flex-col items-center justify-center text-center p-6">
+              <div class="w-24 h-24 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center mb-4">
+                <span class="font-heading font-bold text-3xl text-orange-400">FG</span>
+              </div>
+              <p class="text-white/40 text-xs">
+                Portrait asset pending<br/>
+                <code class="text-orange-400/60">/assets/portraits/facundo-hero-executive.webp</code>
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── 2. Trust Bar ────────────────────────────────────────────────────── -->
+    <section
+      class="bg-navy-900/80 border-y border-white/[0.06] py-8"
+      aria-label="Trusted organizations"
+    >
+      <div class="container-site">
+        <p class="text-white/40 text-2xs font-semibold uppercase tracking-eyebrow text-center mb-6">
+          Experience across leading organizations
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-60">
+          {['Santander', 'BBVA', 'CaixaBank', 'Kruger', 'Mercantil Andina', 'Telefónica'].map((name) => (
+            <span class="font-heading font-semibold text-white text-sm tracking-wide">{name}</span>
+          ))}
+        </div>
+        <p class="text-white/25 text-xs text-center mt-4">
+          Logo assets pending — see /assets/logos/trusted/
+        </p>
+      </div>
+    </section>
+
+    <!-- ── 3. Advisory Grid ───────────────────────────────────────────────── -->
+    <section
+      class="section-py section-light"
+      aria-labelledby="advisory-heading"
+    >
+      <div class="container-site">
+        <div class="section-header-split">
+          <div>
+            <span class="eyebrow" style="color: var(--color-orange);">Strategic Advisory</span>
+            <h2 id="advisory-heading" class="font-heading font-semibold text-gray-900 mt-1">
+              Strategic advisory for<br class="hidden md:block" />intelligent transformation.
+            </h2>
+          </div>
+          <p class="text-gray-600 leading-relaxed max-w-[38ch] md:pt-10">
+            Four interconnected advisory practices that help organizations move from AI ambition to operating model reality.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+          {ADVISORY_PILLARS.map((pillar, i) => (
+            <a
+              href={pillar.href}
+              class={`card group reveal delay-${i * 100}`}
+              aria-label={`Learn more about ${pillar.title}`}
+            >
+              <!-- Icon placeholder -->
+              <div class="w-11 h-11 rounded-lg bg-orange-50 border border-orange-100 flex items-center justify-center mb-4">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                  <circle cx="11" cy="11" r="7" stroke="#F57C00" stroke-width="1.5"/>
+                  <path d="M8 11h6M11 8v6" stroke="#F57C00" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3 class="font-heading font-semibold text-gray-900 text-lg mb-2">{pillar.title}</h3>
+              <p class="text-sm text-orange-600 font-medium mb-3 italic">{pillar.outcome}</p>
+              <p class="text-gray-600 text-sm leading-relaxed mb-4">{pillar.description}</p>
+              <span class="text-link text-sm">
+                Learn more
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="transition-transform group-hover:translate-x-1">
+                  <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 4. KPI Band ────────────────────────────────────────────────────── -->
+    <section
+      class="section-dark section-py"
+      aria-label="Experience and authority"
+    >
+      <div class="container-site">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.06] rounded-2xl overflow-hidden">
+          {KPIS.map((kpi) => (
+            <div class="bg-navy-800 px-8 py-10 text-center reveal">
+              <div
+                class="font-heading font-bold text-5xl lg:text-6xl text-orange-500 mb-2 leading-none"
+                data-kpi-value={kpi.value}
+                aria-label={`${kpi.value} ${kpi.label}`}
+              >
+                {kpi.value}
+              </div>
+              <p class="text-white font-semibold text-sm mb-1">{kpi.label}</p>
+              {kpi.sublabel && (
+                <p class="text-white/45 text-xs">{kpi.sublabel}</p>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 5–12. Remaining sections — Phase 3 ───────────────────────────── -->
+    <section class="section-py section-white" aria-label="Build notice">
+      <div class="container-site text-center">
+        <span class="eyebrow mb-4 block">Phase 1 Complete</span>
+        <h2 class="font-heading text-gray-900 mb-4">Project setup verified.</h2>
+        <p class="text-gray-600 max-w-[52ch] mx-auto leading-relaxed">
+          Astro + TypeScript + TailwindCSS is running correctly.
+          Design tokens, global styles, content collections, data files and i18n routing are configured.
+          Phase 2 will implement the full global layout (Navbar, Footer, Container, SectionWrapper, CTAButton).
+          Phase 3 will implement all homepage sections with actual copy from HOMEPAGE_COPY_DECK_EN.md.
+        </p>
+
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto text-left">
+          {[
+            { label: 'Astro + TypeScript', status: '✓ Ready' },
+            { label: 'TailwindCSS + Tokens', status: '✓ Ready' },
+            { label: 'Design System', status: '✓ Ready' },
+            { label: 'Content Collections', status: '✓ Configured' },
+            { label: 'i18n Routing (EN/ES)', status: '✓ Ready' },
+            { label: 'Asset Folder Structure', status: '✓ Created' },
+            { label: 'Data Files (nav/KPI/etc)', status: '✓ Ready' },
+            { label: 'GitHub Actions Workflow', status: '✓ Ready' },
+            { label: 'Full Navbar + Footer', status: '→ Phase 2' },
+          ].map(({ label, status }) => (
+            <div class="flex items-center justify-between bg-gray-50 border border-gray-200 rounded-lg px-4 py-3">
+              <span class="text-sm text-gray-700">{label}</span>
+              <span class={`text-xs font-semibold ${status.startsWith('✓') ? 'text-green-600' : 'text-orange-500'}`}>
+                {status}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer placeholder ─────────────────────────────────────────────── -->
+  <footer class="bg-navy-800 border-t border-white/[0.06]" role="contentinfo">
+    <div class="container-site py-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <span class="font-heading font-semibold text-white">Facundo Gangemi</span>
+        <p class="text-white/40 text-sm">
+          AI Strategy & Enterprise Transformation Advisor
+        </p>
+        <div class="flex gap-6">
+          <a href="/advisory"  class="text-white/50 hover:text-white text-sm transition-colors">Advisory</a>
+          <a href="/insights"  class="text-white/50 hover:text-white text-sm transition-colors">Insights</a>
+          <a href="/contact"   class="text-white/50 hover:text-white text-sm transition-colors">Contact</a>
+        </div>
+      </div>
+      <div class="border-t border-white/[0.06] mt-6 pt-6 flex flex-col md:flex-row items-center justify-between gap-2">
+        <p class="text-white/30 text-xs">
+          © {new Date().getFullYear()} Facundo Gangemi. All rights reserved.
+        </p>
+        <div class="flex gap-4">
+          <a href="/legal/privacy" class="text-white/30 hover:text-white/60 text-xs transition-colors">Privacy</a>
+          <a href="/legal/terms"   class="text-white/30 hover:text-white/60 text-xs transition-colors">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</BaseLayout>
