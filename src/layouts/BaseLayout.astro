@@ -5,15 +5,12 @@
  * Foundation layout shared by all pages.
  * Handles: <head> metadata, font loading, global styles, SEO,
  * Open Graph, hreflang, skip-nav, and slot for page content.
- *
- * Usage:
- *   <BaseLayout title="..." description="..." ogImage="...">
- *     <slot />
- *   </BaseLayout>
  */
 
+/* Keep the global stylesheet as the first runtime import so Astro/Vite always bundles Tailwind. */
+import '../styles/global.css';
+
 import { SITE } from '@/data/site';
-import '@/styles/global.css';
 import Navbar from '@/components/global/Navbar.astro';
 import MobileMenu from '@/components/global/MobileMenu.astro';
 import Footer from '@/components/global/Footer.astro';
@@ -61,12 +58,6 @@ const canonicalURL = canonical
 const ogImageURL = ogImage.startsWith('http')
   ? ogImage
   : new URL(ogImage, SITE.url).href;
-
-// hreflang alternate: English at root, Spanish at /es/
-const altLocale = locale === 'en' ? 'es' : 'en';
-const altUrl    = alternateUrl
-  ? new URL(alternateUrl, SITE.url).href
-  : null;
 ---
 
 <!DOCTYPE html>
@@ -90,38 +81,63 @@ const altUrl    = alternateUrl
   <link rel="alternate" hreflang="x-default" href={new URL('/', SITE.url).href} />
 
   <!-- Open Graph -->
-  <meta property="og:type"        content="website" />
-  <meta property="og:url"         content={canonicalURL} />
-  <meta property="og:title"       content={pageTitle} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={pageTitle} />
   <meta property="og:description" content={description} />
-  <meta property="og:image"       content={ogImageURL} />
-  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image" content={ogImageURL} />
+  <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:locale"      content={locale === 'en' ? 'en_US' : 'es_ES'} />
-  <meta property="og:site_name"   content={SITE.name} />
+  <meta property="og:locale" content={locale === 'en' ? 'en_US' : 'es_ES'} />
+  <meta property="og:site_name" content={SITE.name} />
 
   <!-- Twitter Card -->
-  <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:site"        content={SITE.twitterHandle} />
-  <meta name="twitter:creator"     content={SITE.twitterHandle} />
-  <meta name="twitter:title"       content={pageTitle} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content={SITE.twitterHandle} />
+  <meta name="twitter:creator" content={SITE.twitterHandle} />
+  <meta name="twitter:title" content={pageTitle} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image"       content={ogImageURL} />
+  <meta name="twitter:image" content={ogImageURL} />
 
-  <!-- Favicon -->
-  <link rel="icon"             href="/assets/favicon/favicon.ico" sizes="any" />
-  <link rel="icon"             href="/assets/favicon/favicon.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png" />
+  <!-- Favicon: use existing SVG to avoid local 404s -->
+  <link rel="icon" href="/assets/favicon/favicon.svg" type="image/svg+xml" />
 
-  <!-- Web App Manifest (future PWA readiness) -->
+  <!-- Web App Manifest -->
   <link rel="manifest" href="/manifest.webmanifest" />
 
-  <!-- Preconnect for Google Fonts (remove once self-hosted) -->
+  <!-- Preconnect for Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
   <!-- Theme color for mobile browsers -->
   <meta name="theme-color" content="#00274C" />
+
+  <!-- Critical accessibility fallback.
+       This protects the skip link even if Tailwind fails to compile during local debugging. -->
+  <style is:inline>
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+
+    .sr-only:focus,
+    .focus\:not-sr-only:focus {
+      position: fixed;
+      width: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      clip: auto;
+      white-space: normal;
+    }
+  </style>
 
   <!-- Structured Data JSON-LD -->
   {structuredData?.map((schema) => (
@@ -130,18 +146,17 @@ const altUrl    = alternateUrl
 
   <!-- Default Person structured data -->
   <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Facundo Gangemi",
-    "url": SITE.url,
-    "jobTitle": "AI Strategy & Enterprise Transformation Advisor",
-    "description": SITE.description,
-    "sameAs": [SITE.linkedin],
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Facundo Gangemi',
+    url: SITE.url,
+    jobTitle: 'AI Strategy & Enterprise Transformation Advisor',
+    description: SITE.description,
+    sameAs: [SITE.linkedin],
   })} />
 </head>
 
 <body class="bg-white text-gray-900 antialiased">
-
   <!-- Skip navigation — accessibility -->
   <a
     href="#main-content"
@@ -164,7 +179,6 @@ const altUrl    = alternateUrl
 
   <!-- Reveal animation script — lightweight IntersectionObserver -->
   <script>
-    // Fade-up reveal for elements with .reveal class
     if (typeof window !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       const observer = new IntersectionObserver(
         (entries) => {
@@ -180,12 +194,10 @@ const altUrl    = alternateUrl
 
       document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     } else {
-      // No animation: make all reveal elements immediately visible
       document.querySelectorAll('.reveal').forEach((el) => {
         el.classList.add('visible');
       });
     }
   </script>
-
 </body>
 </html>

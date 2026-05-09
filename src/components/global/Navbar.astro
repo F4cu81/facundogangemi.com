@@ -1,20 +1,11 @@
 ---
 /**
- * Navbar — Primary site navigation with sticky positioning
- * 
- * Features:
- * - Sticky positioning at top
- * - Glass blur effect on scroll
- * - Logo/branding left
- * - Desktop navigation with dropdown support for Advisory
- * - Primary CTA button
- * - Language switcher (EN / ES coming soon)
- * - Mobile hamburger menu trigger
- * 
- * States:
- * - On hero: transparent or light background
- * - On scroll: glass blur / solid navy background
- * - Mobile: hamburger menu, CTA in drawer
+ * Navbar — stable corrective version
+ *
+ * Purpose:
+ * - Restore a clean global desktop/mobile navigation.
+ * - Avoid Tailwind @apply and scoped utility dependencies.
+ * - Keep static Astro compatibility.
  */
 
 import { NAV_ITEMS, NAV_CTA } from '@/data/navigation';
@@ -25,37 +16,37 @@ interface Props {
 }
 
 const { currentPath = '/', locale = 'en' } = Astro.props;
-
 const isAdvisoryOpen = currentPath?.startsWith('/advisory');
 ---
 
-<nav class="navbar-root">
-  <div id="navbar" class="navbar-container">
-    {/* Logo */}
+<nav class="navbar-root" aria-label="Primary navigation">
+  <div class="navbar-container">
     <a href="/" class="navbar-logo" aria-label="Facundo Gangemi home">
-      <span class="font-heading font-bold text-xl">Facundo</span>
+      Facundo
     </a>
 
-    {/* Desktop Navigation */}
     <div class="navbar-desktop">
       <ul class="navbar-menu">
-        {NAV_ITEMS.map(item => (
-          <li class={`navbar-menu-item ${item.hasDropdown ? 'has-dropdown' : ''}`}>
-            <a 
+        {NAV_ITEMS.map((item) => (
+          <li class={`navbar-item ${item.hasDropdown ? 'has-dropdown' : ''}`}>
+            <a
               href={item.href}
-              class={`navbar-link ${currentPath === item.href ? 'active' : ''} ${item.hasDropdown ? 'has-arrow' : ''}`}
-              aria-expanded={item.hasDropdown && isAdvisoryOpen}
+              class={`navbar-link ${currentPath === item.href ? 'active' : ''}`}
+              aria-current={currentPath === item.href ? 'page' : undefined}
+              aria-expanded={item.hasDropdown ? isAdvisoryOpen : undefined}
             >
               {item.label}
+              {item.hasDropdown && <span class="navbar-arrow" aria-hidden="true">▾</span>}
             </a>
-            
+
             {item.hasDropdown && item.children && (
-              <ul class="navbar-dropdown">
-                {item.children.map(child => (
+              <ul class="navbar-dropdown" aria-label={`${item.label} submenu`}>
+                {item.children.map((child) => (
                   <li>
-                    <a 
+                    <a
                       href={child.href}
                       class={`navbar-dropdown-link ${currentPath === child.href ? 'active' : ''}`}
+                      aria-current={currentPath === child.href ? 'page' : undefined}
                     >
                       {child.label}
                     </a>
@@ -67,232 +58,245 @@ const isAdvisoryOpen = currentPath?.startsWith('/advisory');
         ))}
       </ul>
 
-      {/* Language Switcher + CTA */}
       <div class="navbar-actions">
-        <div class="language-switcher">
+        <div class="language-switcher" aria-label="Language selector">
           <span class={`lang-option ${locale === 'en' ? 'active' : ''}`}>EN</span>
-          <span class="lang-sep">/</span>
+          <span class="lang-separator">/</span>
           <span class={`lang-option ${locale === 'es' ? 'active' : ''}`}>
-            ES <span class="coming-soon">Coming Soon</span>
+            ES <span class="coming-soon">Soon</span>
           </span>
         </div>
-        <a 
-          href={NAV_CTA.href}
-          class="navbar-cta"
-          aria-label={NAV_CTA.label}
-        >
+
+        <a href={NAV_CTA.href} class="navbar-cta">
           {NAV_CTA.label}
         </a>
       </div>
     </div>
 
-    {/* Mobile Hamburger Button */}
-    <button 
+    <button
       id="mobile-menu-toggle"
       class="navbar-mobile-toggle"
-      aria-label="Toggle mobile menu"
+      type="button"
+      aria-label="Open mobile menu"
       aria-expanded="false"
       aria-controls="mobile-menu"
     >
-      <span class="hamburger"></span>
-      <span class="hamburger"></span>
-      <span class="hamburger"></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
   </div>
 </nav>
 
 <style>
-  /* Root container — sticky positioning */
-  :global(.navbar-root) {
-    @apply sticky top-0 z-40 w-full;
+  .navbar-root {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    background: rgba(0, 39, 76, 0.96);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
   }
 
-  /* Container — flex layout */
-  :global(.navbar-container) {
-    @apply flex items-center justify-between px-6 md:px-12;
+  .navbar-container {
+    width: min(100% - 2rem, 1280px);
     height: 72px;
-    transition: all 0.3s ease-in-out;
-    background: transparent;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  /* Initial state — transparent */
-  :global(.navbar-root.scrolled .navbar-container) {
-    @apply bg-navy-800 bg-opacity-90 backdrop-blur-lg border-b border-white border-opacity-5;
-    height: 64px;
-  }
-
-  /* Logo */
-  :global(.navbar-logo) {
-    @apply flex items-center gap-2 font-heading font-bold text-xl text-white;
+  .navbar-logo {
+    color: #ffffff;
+    font-family: Manrope, Inter, system-ui, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
     text-decoration: none;
-    transition: color 0.2s;
   }
 
-  :global(.navbar-logo:hover) {
-    @apply text-orange-400;
+  .navbar-logo:hover {
+    color: #F57C00;
   }
 
-  /* Desktop Navigation Container */
-  :global(.navbar-desktop) {
-    @apply hidden md:flex items-center gap-8 lg:gap-12;
+  .navbar-desktop {
+    display: none;
+    align-items: center;
+    gap: 2rem;
   }
 
-  /* Navigation Menu */
-  :global(.navbar-menu) {
-    @apply flex items-center gap-6 lg:gap-8 list-none m-0 p-0;
+  .navbar-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
   }
 
-  /* Menu Item */
-  :global(.navbar-menu-item) {
-    @apply relative;
+  .navbar-item {
+    position: relative;
   }
 
-  /* Navigation Link */
-  :global(.navbar-link) {
-    @apply text-white font-body text-sm lg:text-base;
-    @apply transition-colors duration-200;
-    text-decoration: none;
+  .navbar-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-  }
-
-  :global(.navbar-link:hover) {
-    @apply text-orange-300;
-  }
-
-  :global(.navbar-link.active) {
-    @apply text-orange-400;
-  }
-
-  :global(.navbar-link.has-arrow::after) {
-    content: '▼';
-    font-size: 0.625rem;
-    margin-left: 0.25rem;
-    opacity: 0.7;
-    transition: transform 0.2s;
-  }
-
-  :global(.navbar-menu-item.has-dropdown:hover .navbar-link.has-arrow::after) {
-    transform: rotate(180deg);
-  }
-
-  /* Dropdown Menu */
-  :global(.navbar-dropdown) {
-    @apply absolute top-full left-0 mt-2 w-56 bg-navy-900 rounded-lg shadow-xl;
-    @apply list-none m-0 p-2;
-    @apply opacity-0 invisible transition-all duration-200;
-    pointer-events: none;
-  }
-
-  :global(.navbar-menu-item.has-dropdown:hover .navbar-dropdown) {
-    @apply opacity-100 visible pointer-events-auto;
-  }
-
-  /* Dropdown Link */
-  :global(.navbar-dropdown-link) {
-    @apply block px-4 py-2 text-white text-sm rounded;
-    @apply transition-colors duration-200;
+    gap: 0.35rem;
+    color: rgba(255, 255, 255, 0.86);
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
     text-decoration: none;
+    transition: color 180ms ease;
+    white-space: nowrap;
   }
 
-  :global(.navbar-dropdown-link:hover) {
-    @apply bg-navy-800 text-orange-300;
+  .navbar-link:hover,
+  .navbar-link.active {
+    color: #F57C00;
   }
 
-  :global(.navbar-dropdown-link.active) {
-    @apply bg-navy-700 text-orange-400;
+  .navbar-arrow {
+    font-size: 0.72rem;
+    line-height: 1;
   }
 
-  /* Actions Container */
-  :global(.navbar-actions) {
-    @apply flex items-center gap-4 lg:gap-6;
-  }
-
-  /* Language Switcher */
-  :global(.language-switcher) {
-    @apply flex items-center gap-2 text-xs text-gray-300;
-  }
-
-  :global(.lang-option) {
-    @apply cursor-pointer transition-colors;
-  }
-
-  :global(.lang-option.active) {
-    @apply text-white font-semibold;
-  }
-
-  :global(.lang-option:hover) {
-    @apply text-orange-300;
-  }
-
-  :global(.lang-sep) {
-    @apply opacity-50;
-  }
-
-  :global(.coming-soon) {
-    @apply ml-1 text-2xs opacity-60 inline;
-  }
-
-  /* Primary CTA Button */
-  :global(.navbar-cta) {
-    @apply px-5 py-2 bg-orange-500 text-white text-sm font-heading font-semibold;
-    @apply rounded-lg transition-all duration-200;
-    @apply hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-navy-800;
-    text-decoration: none;
-    display: inline-block;
-  }
-
-  /* Mobile Hamburger Button */
-  :global(.navbar-mobile-toggle) {
-    @apply md:hidden flex flex-col gap-1.5 bg-transparent border-0 cursor-pointer p-1;
-    @apply focus:outline-none focus:ring-2 focus:ring-orange-400 rounded;
-  }
-
-  :global(.hamburger) {
-    @apply w-6 h-0.5 bg-white transition-all duration-300;
-    display: block;
-  }
-
-  :global(.navbar-mobile-toggle[aria-expanded="true"] .hamburger:nth-child(1)) {
-    transform: rotate(45deg) translateY(11px);
-  }
-
-  :global(.navbar-mobile-toggle[aria-expanded="true"] .hamburger:nth-child(2)) {
+  .navbar-dropdown {
+    position: absolute;
+    top: calc(100% + 0.85rem);
+    left: 0;
+    min-width: 240px;
+    padding: 0.5rem;
+    margin: 0;
+    list-style: none;
+    background: #001B35;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.85rem;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.28);
     opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
   }
 
-  :global(.navbar-mobile-toggle[aria-expanded="true"] .hamburger:nth-child(3)) {
-    transform: rotate(-45deg) translateY(-11px);
+  .navbar-item.has-dropdown:hover .navbar-dropdown,
+  .navbar-item.has-dropdown:focus-within .navbar-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .navbar-dropdown-link {
+    display: block;
+    padding: 0.7rem 0.85rem;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: 0.55rem;
+    transition: background 160ms ease, color 160ms ease;
+  }
+
+  .navbar-dropdown-link:hover,
+  .navbar-dropdown-link.active {
+    color: #F57C00;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+
+  .lang-option.active {
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .lang-separator {
+    opacity: 0.5;
+  }
+
+  .coming-soon {
+    font-size: 0.65rem;
+    opacity: 0.6;
+  }
+
+  .navbar-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 1.15rem;
+    color: #ffffff;
+    background: #F57C00;
+    border-radius: 999px;
+    font-family: Manrope, Inter, system-ui, sans-serif;
+    font-size: 0.88rem;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(245, 124, 0, 0.28);
+    transition: transform 180ms ease, background 180ms ease;
+  }
+
+  .navbar-cta:hover {
+    background: #EF6C00;
+    transform: translateY(-1px);
+  }
+
+  .navbar-mobile-toggle {
+    display: inline-flex;
+    width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    cursor: pointer;
+  }
+
+  .navbar-mobile-toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 999px;
+  }
+
+  @media (min-width: 768px) {
+    .navbar-desktop {
+      display: flex;
+    }
+
+    .navbar-mobile-toggle {
+      display: none;
+    }
   }
 </style>
 
 <script>
-  // Handle scroll effect
-  const navbar = document.getElementById('navbar');
-  const navbarRoot = document.querySelector('.navbar-root');
-
-  function updateNavbarStyle() {
-    if (window.scrollY > 20) {
-      navbarRoot?.classList.add('scrolled');
-    } else {
-      navbarRoot?.classList.remove('scrolled');
-    }
-  }
-
-  window.addEventListener('scroll', updateNavbarStyle, { passive: true });
-  updateNavbarStyle(); // Initial check
-
-  // Handle mobile menu toggle
   const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-  
-  if (mobileMenuToggle) {
-    mobileMenuToggle.addEventListener('click', () => {
-      const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
-      mobileMenuToggle.setAttribute('aria-expanded', String(!isExpanded));
-      
-      // Dispatch event that MobileMenu component will listen for
-      window.dispatchEvent(new CustomEvent('toggle-mobile-menu', { detail: { open: !isExpanded } }));
-    });
-  }
+
+  mobileMenuToggle?.addEventListener('click', () => {
+    const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+    mobileMenuToggle.setAttribute('aria-expanded', String(!isExpanded));
+    window.dispatchEvent(new CustomEvent('toggle-mobile-menu', { detail: { open: !isExpanded } }));
+  });
 </script>
