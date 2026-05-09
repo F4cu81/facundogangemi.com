@@ -106,12 +106,12 @@ select {
    ========================================================= */
 
 .container-site {
-  width: min(100% - 40px, 1280px);
+  width: min(100% - 48px, 1320px);
   margin-inline: auto;
 }
 
 .section-py {
-  padding-block: 96px;
+  padding-block: 120x;
 }
 
 .section-py-lg {
@@ -124,12 +124,12 @@ select {
 
 @media (max-width: 768px) {
   .container-site {
-    width: min(100% - 32px, 1280px);
+    width: min(100% - 28px, 1320px);
   }
 
   .section-py,
   .section-py-lg {
-    padding-block: 72px;
+    padding-block: 88px;
   }
 
   .section-py-sm {
