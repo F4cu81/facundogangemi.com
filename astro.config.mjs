@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import { fileURLToPath } from 'node:url';
-// import sitemap from '@astrojs/sitemap';
+import sitemap from '@astrojs/sitemap';
 
 /**
  * Astro configuration for facundogangemi.com
@@ -29,7 +29,7 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     mdx(),
-    // sitemap(),
+    sitemap(),
   ],
 
   vite: {

@@ -85,8 +85,8 @@ const altUrl    = alternateUrl
   {noIndex && <meta name="robots" content="noindex, nofollow" />}
 
   <!-- hreflang — i18n readiness -->
-  <link rel="alternate" hreflang={locale} href={canonicalURL} />
-  {altUrl && <link rel="alternate" hreflang={altLocale} href={altUrl} />}
+  <link rel="alternate" hreflang="en" href={locale === 'en' ? canonicalURL : new URL('/', SITE.url).href} />
+  <link rel="alternate" hreflang="es" href={locale === 'es' ? canonicalURL : new URL('/es/', SITE.url).href} />
   <link rel="alternate" hreflang="x-default" href={new URL('/', SITE.url).href} />
 
   <!-- Open Graph -->

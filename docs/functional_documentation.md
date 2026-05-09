@@ -107,3 +107,12 @@ Its main goals are:
 3. Implement the legal footer and required `/legal/*` routes.
 4. Keep the Spanish route as a future translation scaffold until the full bilingual experience is ready.
 5. Ensure all CTA links point to operational pages, not placeholders.
+
+## 2026-05-09 — Phase 1: Compliance & SEO Stabilization
+
+- Legal pages scaffolded: /legal/legal-notice, /legal/privacy-policy, /legal/cookie-policy, /legal/terms-and-conditions
+- Footer now links to all legal pages with clear labels
+- Hreflang/alternate tags implemented for English and Spanish (future) in BaseLayout
+- Sitemap.xml and robots.txt now fully aligned for Google indexing
+- CNAME file ensures correct custom domain on GitHub Pages
+- No changes to user flows or visual design

@@ -130,3 +130,14 @@
 
 ### Conclusion
 - The project is now ready for Phase 1 refactor. No UI or logic changes were made; only the invalid `key` prop was removed from affected components.
+
+## 2026-05-09 — Phase 1: Compliance & SEO Stabilization
+
+- @astrojs/sitemap enabled in astro.config.mjs for automated sitemap.xml generation.
+- robots.txt updated to reference /sitemap.xml at custom domain.
+- public/CNAME added for GitHub Pages custom domain support.
+- Legal page scaffolds created in src/pages/legal/ (see functional documentation).
+- Footer updated to link all legal pages.
+- BaseLayout.astro updated for robust hreflang/alternate support (en, es, x-default).
+- All changes preserve static deployment and visual design.
+- Validation: run `npm run check` and `npm run build`.
