@@ -4,6 +4,50 @@ import { SITE } from '@/data/site';
 import { ADVISORY_PILLARS } from '@/data/advisoryPillars';
 import { KPIS } from '@/data/kpis';
 import StrategicPerspectives from '@/components/sections/StrategicPerspectives.astro';
+
+/*
+ * Advisory card icons — inline SVG strings, one per pillar in ADVISORY_PILLARS order.
+ * 28×28 viewport, stroke="currentColor" — inherits CSS color for hover transitions.
+ * Stroke weights 1.4/1.2 match Insights icon system. Scale factor 28/28 (native).
+ */
+const ADVISORY_ICONS: string[] = [
+  // 01 — AI Strategy: hub-satellite — neural network, 3 satellite nodes + central hub
+  `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+    <circle cx="14"   cy="3.5"  r="2.1" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="23.1" cy="19.6" r="2.1" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="4.9"  cy="19.6" r="2.1" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="14"   cy="14"   r="2.6" stroke="currentColor" stroke-width="1.4"/>
+    <line x1="14"   y1="5.6"  x2="14"   y2="11.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="21.4" y1="18.1" x2="16.3" y2="15.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="6.6"  y1="18.1" x2="11.7" y2="15.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+  </svg>`,
+
+  // 02 — Digital Transformation: stacked diamond layers — operating model evolution
+  `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+    <path d="M14 3L26 9L14 15L2 9Z"   stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+    <path d="M2 14L14 20L26 14"       stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M2 19L14 25L26 19"       stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`,
+
+  // 03 — Enterprise Agility: interlocking squares — adaptive operating structure
+  `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+    <rect x="3"  y="3"  width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+    <rect x="15" y="3"  width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+    <rect x="3"  y="15" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+    <rect x="15" y="15" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+    <line x1="13" y1="8"  x2="15" y2="8"  stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="8"  y1="13" x2="8"  y2="15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="20" y1="13" x2="20" y2="15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="13" y1="20" x2="15" y2="20" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+  </svg>`,
+
+  // 04 — AI Adoption: concentric target — structured progression to embedded AI
+  `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+    <circle cx="14" cy="14" r="11.5" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="14" cy="14" r="6.5"  stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="14" cy="14" r="2.2"  fill="currentColor"/>
+  </svg>`,
+];
 ---
 
 <BaseLayout
@@ -110,22 +154,17 @@ import StrategicPerspectives from '@/components/sections/StrategicPerspectives.a
         {ADVISORY_PILLARS.map((pillar, i) => (
           <a
             href={pillar.href}
-            class={`card-dark group reveal delay-${i * 100}`}
+            class={`card-dark card-adv group reveal delay-${i * 100}`}
             aria-label={`Learn more about ${pillar.title}`}
           >
             <!-- Icon -->
-            <div class="w-11 h-11 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-4">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                <circle cx="11" cy="11" r="7" stroke="#F57C00" stroke-width="1.5"/>
-                <path d="M8 11h6M11 8v6" stroke="#F57C00" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-            </div>
+            <div class="adv-icon" aria-hidden="true" set:html={ADVISORY_ICONS[i]} />
             <h3 class="font-heading font-semibold text-white text-lg mb-2">{pillar.title}</h3>
             <p class="text-sm text-orange-400 font-medium mb-3 italic">{pillar.outcome}</p>
-            <p class="text-white/55 text-sm leading-relaxed mb-4">{pillar.description}</p>
-            <span class="text-link-light text-sm">
+            <p class="text-white/55 text-sm leading-relaxed">{pillar.description}</p>
+            <span class="text-link-light text-sm adv-cta">
               Learn more
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="transition-transform group-hover:translate-x-1">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="adv-cta-arrow">
                 <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
@@ -384,6 +423,107 @@ import StrategicPerspectives from '@/components/sections/StrategicPerspectives.a
 </BaseLayout>
 
 <style>
+  /* ── Advisory card icons ─────────────────────────────────────────────────── */
+  .adv-icon {
+    display: flex;
+    align-items: center;
+    color: rgba(245, 124, 0, 0.70);
+    margin-bottom: 1.25rem;
+    transition: color 240ms ease;
+  }
+
+  /* ── Advisory card interaction ───────────────────────────────────────────── */
+
+  /*
+   * .card-adv overrides the generic .card-dark hover (which uses cyan).
+   * Uses higher-specificity scoped selectors so these win without !important.
+   */
+  .card-adv {
+    position: relative;
+    overflow: hidden;
+    transition:
+      transform 240ms ease,
+      box-shadow 240ms ease,
+      border-color 240ms ease,
+      background-color 240ms ease;
+  }
+
+  /* Top accent line: fades in on interaction */
+  .card-adv::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(245, 124, 0, 0.50), transparent);
+    opacity: 0;
+    transition: opacity 240ms ease;
+  }
+
+  .card-adv:hover,
+  .card-adv:focus-visible {
+    transform: translateY(-3px);
+    border-color: rgba(245, 124, 0, 0.25);
+    background-color: rgba(245, 124, 0, 0.03);
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.52),
+      0 0 0 1px rgba(245, 124, 0, 0.08);
+  }
+
+  .card-adv:hover::before,
+  .card-adv:focus-visible::before {
+    opacity: 1;
+  }
+
+  .card-adv:hover .adv-icon,
+  .card-adv:focus-visible .adv-icon {
+    color: rgba(245, 124, 0, 0.95);
+  }
+
+  /* "Learn more" CTA — pinned to bottom, enhanced on card hover */
+  .adv-cta {
+    margin-top: auto;
+    padding-top: 1rem;
+    transition: color 240ms ease, gap 240ms ease;
+  }
+
+  .card-adv:hover .adv-cta,
+  .card-adv:focus-visible .adv-cta {
+    color: rgba(245, 124, 0, 0.90);
+    gap: 0.55rem;
+  }
+
+  .adv-cta-arrow {
+    transition: transform 240ms ease;
+  }
+
+  .card-adv:hover .adv-cta-arrow,
+  .card-adv:focus-visible .adv-cta-arrow {
+    transform: translateX(3px);
+  }
+
+  /* Reduced motion: remove transforms, keep color transitions */
+  @media (prefers-reduced-motion: reduce) {
+    .card-adv,
+    .card-adv::before,
+    .adv-icon,
+    .adv-cta,
+    .adv-cta-arrow {
+      transition: none;
+    }
+
+    .card-adv:hover,
+    .card-adv:focus-visible {
+      transform: none;
+    }
+
+    .card-adv:hover .adv-cta-arrow,
+    .card-adv:focus-visible .adv-cta-arrow {
+      transform: none;
+    }
+  }
+
   /* ── Final CTA section ───────────────────────────────────────────────────── */
   .cta-section {
     position: relative;

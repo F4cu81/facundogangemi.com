@@ -25,7 +25,6 @@ export const NAV_ITEMS: NavItem[] = [
   },
   { label: 'Case Studies', href: '/case-studies' },
   { label: 'Insights',     href: '/insights' },
-  { label: 'Speaking',     href: '/speaking' },
   { label: 'About',        href: '/about' },
 ];
 

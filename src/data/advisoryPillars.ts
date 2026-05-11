@@ -42,12 +42,12 @@ export const ADVISORY_PILLARS: AdvisoryPillar[] = [
     href: '/advisory/enterprise-agility',
   },
   {
-    id: 'executive-advisory',
-    icon: 'compass',
-    title: 'Executive Advisory',
-    outcome: 'Equipping leaders to lead transformation.',
+    id: 'ai-adoption',
+    icon: 'target',
+    title: 'AI Adoption',
+    outcome: 'From AI awareness to AI-enabled execution.',
     description:
-      'Strategic advisory for C-suite and senior leaders navigating AI adoption, organizational change and intelligent operating models.',
-    href: '/advisory',
+      'Guide your organization through structured AI adoption — from readiness assessment and use-case prioritization to embedded, scalable AI practices.',
+    href: '/advisory/ai-adoption',
   },
 ];

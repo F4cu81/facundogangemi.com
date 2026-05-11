@@ -14,6 +14,7 @@ import { SITE } from '@/data/site';
 import Navbar from '@/components/global/Navbar.astro';
 import MobileMenu from '@/components/global/MobileMenu.astro';
 import Footer from '@/components/global/Footer.astro';
+import BackToTop from '@/components/global/BackToTop.astro';
 
 interface Props {
   /** Page <title> — will be appended with " | Facundo Gangemi" if not full */
@@ -178,6 +179,9 @@ const ogImageURL = ogImage.startsWith('http')
 
   <!-- Global Footer -->
   <Footer />
+
+  <!-- Back to Top -->
+  <BackToTop />
 
   <!-- Reveal animation script — lightweight IntersectionObserver -->
   <script>
