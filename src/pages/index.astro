@@ -135,7 +135,100 @@ import StrategicPerspectives from '@/components/sections/StrategicPerspectives.a
     </div>
   </section>
 
-  <!-- ── 3. Industries Served — Asymmetric editorial grid ─────────────────── -->
+  <!-- ── 3. Metrics & Proof Points ────────────────────────────────────────── -->
+  <section
+    id="metrics-section"
+    class="relative py-16 lg:py-20 bg-[#070B14] overflow-hidden"
+    aria-labelledby="metrics-heading"
+  >
+    <!-- Background: subtle elevation gradient at top -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0D1829]/50 via-[#0A101A]/20 to-transparent pointer-events-none" aria-hidden="true"></div>
+    <!-- Top separator: feathered line -->
+    <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.10] to-transparent pointer-events-none" aria-hidden="true"></div>
+    <!-- Bottom separator: feathered line -->
+    <div class="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none" aria-hidden="true"></div>
+    <!-- Warm orange radial glow — anchors section to brand accent -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-40 bg-[radial-gradient(ellipse_at_top,rgba(245,124,0,0.05)_0%,transparent_70%)] pointer-events-none" aria-hidden="true"></div>
+
+    <div class="container-site relative z-10">
+      <h2 id="metrics-heading" class="sr-only">Experience and authority</h2>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+        {KPIS.map((kpi) => {
+          const isNumeric = /^\d/.test(kpi.value);
+          const num = isNumeric ? parseInt(kpi.value, 10) : null;
+          const suffix = isNumeric ? kpi.value.replace(/^\d+/, '') : undefined;
+          return (
+            <div class="kpi-cell px-6 py-10 text-center reveal">
+              <div
+                class="font-heading font-bold text-5xl lg:text-6xl text-orange-500 mb-3 leading-none tabular-nums"
+                data-kpi-value={kpi.value}
+                data-counter={isNumeric ? String(num) : undefined}
+                data-suffix={suffix}
+                aria-label={`${kpi.value} ${kpi.label}`}
+              >
+                {kpi.value}
+              </div>
+              <p class="text-white font-semibold text-sm mb-1">{kpi.label}</p>
+              {kpi.sublabel && (
+                <p class="text-white/45 text-xs leading-relaxed">{kpi.sublabel}</p>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+<script>
+  // Scroll-triggered count-up animation for numeric metrics.
+  // Runs once when the metrics section enters the viewport.
+  // Respects prefers-reduced-motion: shows final values immediately.
+  (function () {
+    if (typeof window === 'undefined') return;
+
+    const section = document.getElementById('metrics-section');
+    if (!section) return;
+
+    const counters = Array.from(section.querySelectorAll<HTMLElement>('[data-counter]'));
+    if (counters.length === 0) return;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReduced) return; // final values already rendered in HTML
+
+    const DURATION = 1600;
+    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+
+    function runCounter(el: HTMLElement) {
+      const target = parseInt(el.dataset.counter ?? '0', 10);
+      const suffix = el.dataset.suffix ?? '';
+      const start = performance.now();
+
+      function tick(now: number) {
+        const progress = Math.min((now - start) / DURATION, 1);
+        el.textContent = String(Math.round(easeOut(progress) * target)) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.textContent = String(target) + suffix;
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          counters.forEach(runCounter);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(section);
+  })();
+</script>
+
+  <!-- ── 4. Industries Served — Asymmetric editorial grid ─────────────────── -->
   <section
     class="section-py bg-[#070B14]"
     aria-labelledby="industries-heading"
@@ -240,99 +333,159 @@ import StrategicPerspectives from '@/components/sections/StrategicPerspectives.a
     </div>
   </section>
 
-  <!-- ── 4. Metrics & Proof Points ────────────────────────────────────────── -->
-  <section
-    id="metrics-section"
-    class="relative section-py bg-[#070B14] overflow-hidden"
-    aria-labelledby="metrics-heading"
-  >
-    <!-- Background: subtle elevation gradient at top -->
-    <div class="absolute inset-0 bg-gradient-to-b from-[#0D1829]/50 via-[#0A101A]/20 to-transparent pointer-events-none" aria-hidden="true"></div>
-    <!-- Top separator: feathered line -->
-    <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.10] to-transparent pointer-events-none" aria-hidden="true"></div>
-    <!-- Warm orange radial glow — anchors section to brand accent -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-40 bg-[radial-gradient(ellipse_at_top,rgba(245,124,0,0.05)_0%,transparent_70%)] pointer-events-none" aria-hidden="true"></div>
+  <!-- ── 5. Strategic Perspectives ─────────────────────────────────────────── -->
+  <StrategicPerspectives />
 
-    <div class="container-site relative z-10">
-      <h2 id="metrics-heading" class="sr-only">Experience and authority</h2>
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
-        {KPIS.map((kpi) => {
-          const isNumeric = /^\d/.test(kpi.value);
-          const num = isNumeric ? parseInt(kpi.value, 10) : null;
-          const suffix = isNumeric ? kpi.value.replace(/^\d+/, '') : undefined;
-          return (
-            <div class="kpi-cell px-6 py-10 text-center reveal">
-              <div
-                class="font-heading font-bold text-5xl lg:text-6xl text-orange-500 mb-3 leading-none tabular-nums"
-                data-kpi-value={kpi.value}
-                data-counter={isNumeric ? String(num) : undefined}
-                data-suffix={suffix}
-                aria-label={`${kpi.value} ${kpi.label}`}
-              >
-                {kpi.value}
-              </div>
-              <p class="text-white font-semibold text-sm mb-1">{kpi.label}</p>
-              {kpi.sublabel && (
-                <p class="text-white/45 text-xs leading-relaxed">{kpi.sublabel}</p>
-              )}
-            </div>
-          );
-        })}
+  <!-- ── 6. Final CTA ───────────────────────────────────────────────────────── -->
+  <section
+    class="cta-section section-py"
+    aria-labelledby="final-cta-heading"
+  >
+    <!-- Decorative background layer -->
+    <div class="cta-bg" aria-hidden="true">
+      <div class="cta-glow-left"></div>
+      <div class="cta-glow-right"></div>
+      <div class="cta-top-line"></div>
+    </div>
+
+    <div class="container-site cta-inner reveal">
+      <span class="eyebrow cta-eyebrow">Strategic advisory for execution-driven transformation</span>
+
+      <h2
+        id="final-cta-heading"
+        class="cta-headline font-heading font-bold text-white"
+      >
+        Ready to turn AI and digital transformation<br class="hidden lg:block" />
+        into measurable business impact?
+      </h2>
+
+      <p class="cta-body">
+        I help organizations connect strategy, operating models, governance and execution
+        so transformation initiatives move beyond ambition and generate visible outcomes.
+      </p>
+
+      <div class="cta-actions">
+        <a href="/contact" class="btn-primary">
+          Book Advisory Call
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="/contact" class="cta-secondary-link">
+          Contact Me
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="cta-secondary-arrow">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
       </div>
     </div>
   </section>
 
-
-<script>
-  // Scroll-triggered count-up animation for numeric metrics.
-  // Runs once when the metrics section enters the viewport.
-  // Respects prefers-reduced-motion: shows final values immediately.
-  (function () {
-    if (typeof window === 'undefined') return;
-
-    const section = document.getElementById('metrics-section');
-    if (!section) return;
-
-    const counters = Array.from(section.querySelectorAll<HTMLElement>('[data-counter]'));
-    if (counters.length === 0) return;
-
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (prefersReduced) return; // final values already rendered in HTML
-
-    const DURATION = 1600;
-    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
-
-    function runCounter(el: HTMLElement) {
-      const target = parseInt(el.dataset.counter ?? '0', 10);
-      const suffix = el.dataset.suffix ?? '';
-      const start = performance.now();
-
-      function tick(now: number) {
-        const progress = Math.min((now - start) / DURATION, 1);
-        el.textContent = String(Math.round(easeOut(progress) * target)) + suffix;
-        if (progress < 1) requestAnimationFrame(tick);
-        else el.textContent = String(target) + suffix;
-      }
-
-      requestAnimationFrame(tick);
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          counters.forEach(runCounter);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(section);
-  })();
-</script>
-
-  <!-- ── 5. Strategic Perspectives ─────────────────────────────────────────── -->
-  <StrategicPerspectives />
-
 </BaseLayout>
+
+<style>
+  /* ── Final CTA section ───────────────────────────────────────────────────── */
+  .cta-section {
+    position: relative;
+    overflow: hidden;
+    background: #070B14;
+  }
+
+  /* Decorative glows */
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .cta-top-line {
+    position: absolute;
+    top: 0;
+    inset-x: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(245, 124, 0, 0.25) 50%, transparent 100%);
+  }
+
+  .cta-glow-left {
+    position: absolute;
+    top: -40%;
+    left: -10%;
+    width: 55%;
+    height: 200%;
+    background: radial-gradient(ellipse at 20% 50%, rgba(245, 124, 0, 0.06) 0%, transparent 60%);
+  }
+
+  .cta-glow-right {
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 45%;
+    height: 200%;
+    background: radial-gradient(ellipse at 80% 50%, rgba(0, 217, 255, 0.04) 0%, transparent 60%);
+  }
+
+  /* Inner layout */
+  .cta-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 780px;
+    margin-inline: auto;
+  }
+
+  .cta-eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .cta-headline {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    line-height: 1.15;
+    margin: 0 0 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .cta-body {
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    max-width: 58ch;
+    margin: 0 0 2.5rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  /* Secondary ghost link */
+  .cta-secondary-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    transition: color 180ms ease, gap 180ms ease;
+  }
+
+  .cta-secondary-link:hover {
+    color: rgba(255, 255, 255, 0.90);
+    gap: 0.6rem;
+  }
+
+  .cta-secondary-arrow {
+    flex-shrink: 0;
+    transition: transform 180ms ease;
+  }
+
+  .cta-secondary-link:hover .cta-secondary-arrow {
+    transform: translateX(3px);
+  }
+</style>

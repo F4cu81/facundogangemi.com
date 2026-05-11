@@ -172,7 +172,8 @@ select {
 
 .btn-primary,
 .btn-secondary,
-.btn-ghost {
+.btn-ghost,
+.btn-outline {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -219,14 +220,15 @@ select {
 
 /* Outline button for dark backgrounds (hero, dark sections) */
 .btn-outline {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.04);
   color: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .btn-outline:hover {
   transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.50);
   color: #ffffff;
 }
 
