@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="warm-glow" cx="20%" cy="55%" r="60%" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F57C00" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#070B14" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="right-orb" cx="85%" cy="45%" r="30%" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F57C00" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#070B14" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Base background -->
+  <rect width="1200" height="630" fill="#070B14"/>
+
+  <!-- Atmospheric glows -->
+  <rect width="1200" height="630" fill="url(#warm-glow)"/>
+  <rect width="1200" height="630" fill="url(#right-orb)"/>
+
+  <!-- Subtle top border -->
+  <rect x="0" y="0" width="1200" height="1" fill="rgba(255,255,255,0.06)"/>
+
+  <!-- Left orange accent bar -->
+  <rect x="0" y="0" width="4" height="630" fill="#F57C00" opacity="0.75"/>
+
+  <!-- Orange rule above name -->
+  <rect x="80" y="218" width="52" height="2" rx="1" fill="#F57C00"/>
+
+  <!-- Name -->
+  <text
+    x="80" y="308"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+    font-size="64"
+    font-weight="700"
+    fill="#FFFFFF"
+    letter-spacing="-1.5"
+  >Facundo Gangemi</text>
+
+  <!-- Positioning line -->
+  <text
+    x="80" y="372"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+    font-size="27"
+    font-weight="400"
+    fill="rgba(255,255,255,0.58)"
+    letter-spacing="0.2"
+  >AI Strategy &amp; Digital Transformation Advisory</text>
+
+  <!-- Thin separator -->
+  <rect x="80" y="416" width="480" height="1" fill="rgba(255,255,255,0.08)"/>
+
+  <!-- Domain -->
+  <text
+    x="80" y="458"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+    font-size="17"
+    font-weight="400"
+    fill="rgba(255,255,255,0.28)"
+    letter-spacing="1.5"
+  >facundogangemi.com</text>
+
+  <!-- Decorative right-side geometry -->
+  <circle cx="1090" cy="315" r="120" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+  <circle cx="1090" cy="315" r="72" fill="none" stroke="rgba(245,124,0,0.06)" stroke-width="1"/>
+  <circle cx="1090" cy="315" r="28" fill="rgba(245,124,0,0.08)"/>
+</svg>

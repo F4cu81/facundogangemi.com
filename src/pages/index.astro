@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { SITE } from '@/data/site';
 import { ADVISORY_PILLARS } from '@/data/advisoryPillars';
@@ -51,20 +51,42 @@ const ADVISORY_ICONS: string[] = [
 ---
 
 <BaseLayout
-  title="AI Strategy & Enterprise Transformation Advisor"
+  title="AI Strategy &amp; Transformation Advisor"
   description={SITE.description}
+  preloadImage="/assets/portraits/facundo-hero-executive.webp"
+  structuredData={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Facundo Gangemi',
+      url: 'https://facundogangemi.com',
+      description: SITE.description,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      name: 'Facundo Gangemi',
+      url: 'https://facundogangemi.com',
+      description: 'Executive advisory for AI Strategy, Digital Transformation and Operating Models — helping enterprise leaders build clarity, execution and measurable business impact.',
+      areaServed: ['Europe', 'Latin America'],
+      serviceType: [
+        'AI Strategy Advisory',
+        'Digital Transformation Advisory',
+        'Enterprise Agility Advisory',
+        'Operating Model Transformation',
+        'Operational Excellence Advisory',
+      ],
+    },
+  ]}
 >
 
   <!-- ── 1. Hero — Cinematic dark ──────────────────────────────────────────── -->
   <section
-    class="relative min-h-[92svh] flex items-center bg-[#070B14] overflow-hidden"
+    class="relative min-h-[92svh] flex items-center bg-[#05070D] overflow-hidden"
     aria-label="Hero"
   >
     <!-- Background visual layers -->
     <div class="absolute inset-0 pointer-events-none select-none" aria-hidden="true">
-
-      <!-- AI network texture -->
-      <div class="absolute inset-0 bg-[url('/assets/backgrounds/hero-ai-network-bg.svg')] bg-cover opacity-[0.025]"></div>
 
       <!-- Portrait: right-side, bleeds full height, no container border -->
       <div class="absolute inset-y-0 right-0 w-full lg:w-[56%]">
@@ -78,18 +100,18 @@ const ADVISORY_ICONS: string[] = [
           decoding="async"
         />
         <!-- Left: portrait fades into the dark background -->
-        <div class="absolute inset-y-0 left-0 w-3/4 bg-gradient-to-r from-[#070B14] via-[#070B14]/80 to-transparent"></div>
+        <div class="absolute inset-y-0 left-0 w-3/4 bg-gradient-to-r from-[#05070D] via-[#05070D]/80 to-transparent"></div>
         <!-- Bottom: fade out -->
-        <div class="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#070B14] to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#05070D] to-transparent"></div>
         <!-- Top: subtle fade -->
-        <div class="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#070B14]/50 to-transparent"></div>
+        <div class="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#05070D]/50 to-transparent"></div>
       </div>
 
       <!-- Cyan atmospheric glow — AI accent -->
       <div class="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_70%_65%_at_85%_30%,rgba(0,217,255,0.07)_0%,transparent_70%)]"></div>
 
       <!-- Mobile: solid overlay so text remains readable over the portrait -->
-      <div class="absolute inset-0 bg-[#070B14]/65 lg:hidden"></div>
+      <div class="absolute inset-0 bg-[#05070D]/65 lg:hidden"></div>
     </div>
 
     <!-- Content — left-anchored, max 580px -->
@@ -99,8 +121,8 @@ const ADVISORY_ICONS: string[] = [
         <span class="eyebrow reveal">AI Strategy · Enterprise Transformation</span>
 
         <h1 class="text-hero font-heading font-extrabold text-white mt-4 mb-6 reveal">
-          Transforming ambition<br />
-          into results.
+          AI Strategy &amp;<br />
+          Digital Transformation Advisory.
         </h1>
 
         <p class="text-white/65 text-lg leading-relaxed max-w-[46ch] mb-8 reveal delay-100">
@@ -134,7 +156,7 @@ const ADVISORY_ICONS: string[] = [
 
   <!-- ── 2. Advisory Grid — Dark foundation ────────────────────────────────── -->
   <section
-    class="section-py bg-[#070B14]"
+    class="section-py bg-[#05070D]"
     aria-labelledby="advisory-heading"
   >
     <div class="container-site">
@@ -177,11 +199,11 @@ const ADVISORY_ICONS: string[] = [
   <!-- ── 3. Metrics & Proof Points ────────────────────────────────────────── -->
   <section
     id="metrics-section"
-    class="relative py-16 lg:py-20 bg-[#070B14] overflow-hidden"
+    class="relative py-16 lg:py-20 bg-[#05070D] overflow-hidden"
     aria-labelledby="metrics-heading"
   >
     <!-- Background: subtle elevation gradient at top -->
-    <div class="absolute inset-0 bg-gradient-to-b from-[#0D1829]/50 via-[#0A101A]/20 to-transparent pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0C0E13]/18 via-[#08090D]/10 to-transparent pointer-events-none" aria-hidden="true"></div>
     <!-- Top separator: feathered line -->
     <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.10] to-transparent pointer-events-none" aria-hidden="true"></div>
     <!-- Bottom separator: feathered line -->
@@ -269,7 +291,7 @@ const ADVISORY_ICONS: string[] = [
 
   <!-- ── 4. Industries Served — Asymmetric editorial grid ─────────────────── -->
   <section
-    class="section-py bg-[#070B14]"
+    class="section-py bg-[#05070D]"
     aria-labelledby="industries-heading"
   >
     <div class="container-site">
@@ -296,7 +318,7 @@ const ADVISORY_ICONS: string[] = [
             loading="lazy"
             decoding="async"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#070B14]/90 via-[#070B14]/30 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#05070D]/90 via-[#05070D]/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-7 lg:p-8">
             <p class="industries-eyebrow">Financial Services</p>
             <h3 class="font-heading font-bold text-white text-xl lg:text-2xl mb-2 leading-tight">
@@ -316,7 +338,7 @@ const ADVISORY_ICONS: string[] = [
             loading="lazy"
             decoding="async"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#070B14]/90 via-[#070B14]/30 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#05070D]/90 via-[#05070D]/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-6">
             <p class="industries-eyebrow">Tech & Product</p>
             <h3 class="font-heading font-bold text-white text-lg mb-2 leading-tight">
@@ -336,7 +358,7 @@ const ADVISORY_ICONS: string[] = [
             loading="lazy"
             decoding="async"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#070B14]/90 via-[#070B14]/35 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#05070D]/90 via-[#05070D]/35 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-5">
             <p class="industries-eyebrow">Insurance</p>
             <h3 class="font-heading font-semibold text-white text-base mb-1 leading-tight">
@@ -356,7 +378,7 @@ const ADVISORY_ICONS: string[] = [
             loading="lazy"
             decoding="async"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#070B14]/90 via-[#070B14]/35 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#05070D]/90 via-[#05070D]/35 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-5">
             <p class="industries-eyebrow">Operations</p>
             <h3 class="font-heading font-semibold text-white text-base mb-1 leading-tight">
@@ -528,7 +550,7 @@ const ADVISORY_ICONS: string[] = [
   .cta-section {
     position: relative;
     overflow: hidden;
-    background: #070B14;
+    background: #05070D;
   }
 
   /* Decorative glows */

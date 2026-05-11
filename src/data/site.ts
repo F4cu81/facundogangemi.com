@@ -7,13 +7,13 @@ export const SITE = {
   name: 'Facundo Gangemi',
   title: 'Facundo Gangemi — AI Strategy & Enterprise Transformation Advisor',
   description:
-    'Executive advisory for AI Strategy, Digital Transformation and Intelligent Operating Models. Helping organizations transform with clarity, structure and measurable results.',
+    'Executive advisory for AI Strategy, Digital Transformation and Operating Models. Helping enterprise leaders build clarity and measurable business impact.',
   url: 'https://facundogangemi.com',
   locale: 'en',
   twitterHandle: '@facundogangemi',
 
   // Contact — replace with real values before launch
-  email: 'REPLACE_WITH_FACUNDO_EMAIL',
+  email: 'facundo.gangemi@facundogangemi.com',
   linkedin: 'https://linkedin.com/in/facundogangemi',
 
   // Lead capture webhooks — configure in production

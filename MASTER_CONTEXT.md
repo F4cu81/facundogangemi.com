@@ -212,14 +212,29 @@ Avoid:
 
 # 9. Brand Colors
 
-Primary Color:
-- #00274C
+Primary visual background (approved):
+- #05070D — premium near-black (all dark section backgrounds)
+
+Footer background:
+- #02030A — slightly darker than page body for visual separation
+
+Elevated surface:
+- #0A0F1A — cards, modals, secondary surfaces on dark backgrounds
+
+Brand navy (secondary atmospheric tone only):
+- #00274C — used sparingly for depth; must not dominate the interface
 
 Secondary Color:
 - #F2F2F2
 
 Accent Color:
 - #F57C00
+
+Approved visual direction:
+- Premium black executive aesthetic
+- Dark navy (#00274C) may be used as secondary atmospheric tone only
+- Orange (#F57C00) remains the accent color
+- Avoid making the entire interface a blue/dark navy surface
 
 ---
 

@@ -1,0 +1,68 @@
+﻿---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Enterprise Transformation Advisory"
+  description="Enterprise advisory spanning AI Strategy, Digital Transformation, Enterprise Agility and AI Adoption — operating models and measurable business impact."
+>
+
+  <section class="section-py bg-[#05070D]" aria-labelledby="advisory-heading">
+    <div class="container-site">
+
+      <nav class="mb-8" aria-label="Breadcrumb">
+        <a href="/" class="text-white/40 text-sm hover:text-white/65 transition-colors">
+          ← Facundo Gangemi
+        </a>
+      </nav>
+
+      <span class="eyebrow">Advisory</span>
+
+      <h1 id="advisory-heading" class="text-section font-heading font-bold text-white mt-2 mb-6 max-w-[20ch]">
+        Enterprise Transformation Advisory
+      </h1>
+
+      <p class="text-white/65 text-lg leading-relaxed max-w-[56ch] mb-6">
+        Four interconnected advisory practices for enterprise leaders navigating
+        AI Strategy, Digital Transformation, Enterprise Agility and AI Adoption.
+        Each practice is designed to connect strategy, operating models and execution
+        into a coherent transformation approach.
+      </p>
+
+      <p class="text-white/50 leading-relaxed max-w-[56ch] mb-12">
+        The work focuses on building operating structures that scale beyond the pilot,
+        governance models that sustain momentum, and execution disciplines that convert
+        strategic ambition into measurable business impact — across banking, financial
+        services, technology and enterprise organizations.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mb-12">
+        {[
+          { label: 'AI Strategy', href: '/advisory/ai-strategy' },
+          { label: 'Digital Transformation', href: '/advisory/digital-transformation' },
+          { label: 'Enterprise Agility', href: '/advisory/enterprise-agility' },
+          { label: 'AI Adoption', href: '/advisory/ai-adoption' },
+        ].map((item) => (
+          <a
+            href={item.href}
+            class="card-dark group flex items-center justify-between px-5 py-4"
+          >
+            <span class="font-heading font-semibold text-white text-sm">{item.label}</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="text-white/30 transition-transform group-hover:translate-x-1 group-hover:text-orange-500">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        ))}
+      </div>
+
+      <a href="/contact" class="btn-primary">
+        Book Advisory Call
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+    </div>
+  </section>
+
+</BaseLayout>

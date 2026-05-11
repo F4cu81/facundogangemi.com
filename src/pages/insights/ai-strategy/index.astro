@@ -1,9 +1,10 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const CATEGORY_SLUG = 'ai-strategy';
 const CATEGORY_TITLE = 'AI Strategy';
+const SEO_TITLE = 'AI Strategy Insights';
 const CATEGORY_DESCRIPTION =
   'Perspectives on how organizations define, govern and scale AI initiatives with clear business ownership and measurable impact.';
 
@@ -18,13 +19,13 @@ const hasArticles = articles.length > 0;
 ---
 
 <BaseLayout
-  title={CATEGORY_TITLE}
+  title={SEO_TITLE}
   description={CATEGORY_DESCRIPTION}
   canonical={`/insights/${CATEGORY_SLUG}/`}
 >
 
   <!-- ── Category Header ──────────────────────────────────────────────────── -->
-  <section class="section-py bg-[#070B14]" aria-labelledby="category-heading">
+  <section class="section-py bg-[#05070D]" aria-labelledby="category-heading">
     <div class="container-site">
       <a href="/insights/" class="back-link">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -46,7 +47,7 @@ const hasArticles = articles.length > 0;
   </section>
 
   <!-- ── Article Listing ──────────────────────────────────────────────────── -->
-  <section class="section-py bg-[#070B14]" aria-labelledby="articles-heading">
+  <section class="section-py bg-[#05070D]" aria-labelledby="articles-heading">
     <div class="container-site">
       <h2 id="articles-heading" class="sr-only">Articles in {CATEGORY_TITLE}</h2>
 

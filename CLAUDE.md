@@ -35,11 +35,72 @@ Use them as follows:
 
 - `CLAUDE.md`: development rules, coding standards, SEO, deployment, quality gates and workflow.
 - `MASTER_CONTEXT.md`: strategic project context, business positioning, brand direction and high-level decisions.
+- `docs/seo/google-positioning-guardrails.md`: SEO positioning rules, keyword strategy, page-level metadata rules, content tone and internal linking rules.
+- `docs/seo/article-seo-guidelines.md`: article-level SEO rules, content hub structure, search intent, metadata, schema, readability and pre-publish checklist for all Insights and MDX content.
 
 If there is a conflict between files:
 1. Follow `CLAUDE.md` for technical implementation rules.
 2. Follow `MASTER_CONTEXT.md` for business and strategic context.
-3. Ask for clarification before making changes when the conflict affects architecture, branding, legal content or positioning.
+3. Follow `docs/seo/google-positioning-guardrails.md` for site-wide SEO, content and metadata decisions.
+4. Follow `docs/seo/article-seo-guidelines.md` for article-level SEO and editorial decisions.
+5. Ask for clarification before making changes when the conflict affects architecture, branding, legal content or positioning.
+
+---
+
+## SEO Positioning Guardrails
+
+Before creating or modifying any page, route, metadata, heading structure, internal link, CTA or SEO-related content, Claude Code must read and follow:
+
+```
+docs/seo/google-positioning-guardrails.md
+```
+
+This document is the source of truth for Google positioning. It defines:
+- Primary and secondary positioning terms per page
+- Homepage H1 and meta description rules
+- Advisory page positioning map
+- Internal linking strategy and anchor text rules
+- Content tone rules
+- E-E-A-T guidance
+- Anti-patterns to avoid
+
+**Document authority:**
+- `docs/seo/google-positioning-guardrails.md` — source of truth for Google positioning and content strategy
+- `CLAUDE.md` — source of truth for technical development rules
+- `MASTER_CONTEXT.md` — source of truth for strategic brand context
+
+If there is a conflict between the SEO guardrails and `MASTER_CONTEXT.md`, preserve the technical rules in `CLAUDE.md` and align the content strategy with `docs/seo/google-positioning-guardrails.md`.
+
+---
+
+## Article SEO Guidelines
+
+Before creating or modifying any article, insight, MDX/Markdown post, article metadata, article schema, article title, article CTA or article internal links, Claude Code must read and follow:
+
+```
+docs/seo/article-seo-guidelines.md
+```
+
+This document is the source of truth for article-level SEO. It defines:
+- Content hub assignment (eight defined hubs)
+- Search intent classification before writing
+- Keyword planning rules (primary, secondary, long-tail)
+- Article metadata rules (title, description, OG, schema)
+- Article structure and heading rules
+- Introduction rules and first-100-words requirements
+- E-E-A-T guidance and what must never be invented
+- Internal linking requirements per article
+- CTA rules aligned by content hub
+- Article JSON-LD schema requirements
+- Readability standards for executive audiences
+- Anti-patterns to avoid
+- Pre-publish checklist (must be completed before any article goes live)
+
+**Document authority for article work:**
+- `docs/seo/article-seo-guidelines.md` — source of truth for article-level SEO and editorial decisions
+- `docs/seo/google-positioning-guardrails.md` — source of truth for overall Google positioning (read first; article guidelines operate within it)
+- `CLAUDE.md` — source of truth for technical implementation rules
+- `MASTER_CONTEXT.md` — source of truth for strategic brand context
 
 ---
 

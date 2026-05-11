@@ -1,4 +1,4 @@
----
+﻿---
 import { INSIGHT_PILLARS } from '@/data/insightPillars';
 
 /*
@@ -58,7 +58,7 @@ const ICONS: string[] = [
     />
     <!--
       Horizontal gradient:
-        left  → fully opaque #070B14  (intro column stays clean)
+        left  → fully opaque #05070D  (intro column stays clean)
         right → 42% dark             (allows more image atmosphere behind cards)
     -->
     <div class="sp-bg-overlay"></div>
@@ -125,7 +125,7 @@ const ICONS: string[] = [
   .sp-section {
     position: relative;
     overflow: hidden;
-    background: #070B14;
+    background: #05070D;
   }
 
   /* ── Background image layer ─────────────────────────────────────────────── */
@@ -143,8 +143,11 @@ const ICONS: string[] = [
     width: 100%;
     height: 115%;
     object-fit: cover;
-    object-position: center center;
-    opacity: 0.62;
+    /* crop anchor on the open-book detail (lower-right quadrant of source image) */
+    object-position: 78% 72%;
+    opacity: 0.60;
+    /* desaturate blue channel instead of hiding the image — preserves texture, removes cast */
+    filter: saturate(0.40) brightness(0.82) contrast(1.10);
   }
 
   .sp-bg-overlay {
@@ -152,10 +155,10 @@ const ICONS: string[] = [
     inset: 0;
     background: linear-gradient(
       90deg,
-      #070B14 0%,
-      rgba(7, 11, 20, 0.90) 30%,
-      rgba(7, 11, 20, 0.56) 62%,
-      rgba(7, 11, 20, 0.30) 100%
+      #05070D 0%,
+      rgba(5, 7, 13, 0.97) 35%,
+      rgba(5, 7, 13, 0.68) 62%,
+      rgba(5, 7, 13, 0.34) 100%
     );
   }
 
@@ -239,7 +242,7 @@ const ICONS: string[] = [
     border-radius: 1rem;
     border: 1px solid rgba(245, 124, 0, 0.18);
     border-top: 2px solid rgba(245, 124, 0, 0.42);
-    background: rgba(7, 11, 20, 0.52);
+    background: rgba(5, 7, 13, 0.55);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     text-decoration: none;
@@ -252,7 +255,7 @@ const ICONS: string[] = [
   }
 
   .sp-card:hover {
-    background: rgba(7, 11, 20, 0.70);
+    background: rgba(5, 7, 13, 0.72);
     border-color: rgba(245, 124, 0, 0.32);
     border-top-color: rgba(245, 124, 0, 0.85);
     transform: translateY(-3px);
