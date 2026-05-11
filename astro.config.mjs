@@ -33,9 +33,6 @@ export default defineConfig({
   ],
 
   vite: {
-    css: {
-      transformer: 'lightningcss',
-    },
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
