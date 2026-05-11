@@ -26,7 +26,7 @@ import { KPIS } from '@/data/kpis';
 
     <!-- ── 1. Hero ─────────────────────────────────────────────────────────── -->
     <section
-      class="relative min-h-[100svh] flex items-center bg-hero-gradient pt-[68px]"
+      class="relative min-h-[88svh] flex items-center bg-hero-gradient pt-[68px]"
       aria-label="Hero"
     >
       <!-- Background AI network pattern placeholder -->
@@ -35,7 +35,7 @@ import { KPIS } from '@/data/kpis';
         <div class="absolute right-0 top-0 w-1/2 h-full bg-orange-glow opacity-40"></div>
       </div>
 
-      <div class="container-site relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center py-24 lg:py-32">
+      <div class="container-site relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center py-16 lg:py-20">
 
         <!-- Left: copy -->
         <div class="reveal">
@@ -55,7 +55,6 @@ import { KPIS } from '@/data/kpis';
           <blockquote
             class="inline-flex items-start gap-3 bg-white/[0.06] border border-white/[0.1] rounded-lg px-4 py-3 mb-8 max-w-[44ch]"
           >
-            <span class="text-orange-500 text-xl leading-none mt-0.5" aria-hidden="true">"</span>
             <p class="text-white/80 text-sm leading-snug italic font-medium">
               The future belongs to organizations that combine intelligence, adaptability and execution.
             </p>
@@ -75,56 +74,16 @@ import { KPIS } from '@/data/kpis';
           </div>
         </div>
 
-        <!-- Right: portrait placeholder -->
-        <div class="reveal delay-200 hidden lg:flex justify-center items-end">
-          <div
-            class="relative w-[420px] h-[520px] rounded-2xl overflow-hidden bg-navy-900/60 border border-white/[0.08] flex items-end justify-center"
-            aria-label="Executive portrait of Facundo Gangemi (image pending)"
-          >
-            <!-- Portrait image — asset missing at Phase 1 -->
-            <img
-              src="/assets/portraits/facundo-hero-executive.webp"
-              alt="Facundo Gangemi — AI Strategy & Enterprise Transformation Advisor"
-              width="420"
-              height="520"
-              class="w-full h-full object-cover object-top"
-              loading="eager"
-              decoding="async"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-            />
-            <!-- Placeholder shown until portrait is added -->
-            <div class="absolute inset-0 hidden flex-col items-center justify-center text-center p-6">
-              <div class="w-24 h-24 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center mb-4">
-                <span class="font-heading font-bold text-3xl text-orange-400">FG</span>
-              </div>
-              <p class="text-white/40 text-xs">
-                Portrait asset pending<br/>
-                <code class="text-orange-400/60">/assets/portraits/facundo-hero-executive.webp</code>
-              </p>
-            </div>
+        <!-- Right: brand visual — portrait slot, asset pending -->
+        <div class="reveal delay-200 hidden lg:flex justify-center items-center" aria-hidden="true">
+          <div class="relative w-[400px] h-[460px] rounded-2xl overflow-hidden border border-white/[0.08] bg-navy-900/60">
+            <div class="absolute inset-0 bg-orange-glow opacity-30"></div>
+            <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full border border-white/[0.05]"></div>
+            <div class="absolute bottom-10 left-10 w-28 h-28 rounded-full border border-orange-500/[0.15]"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 rounded-full border border-white/[0.06]"></div>
           </div>
         </div>
 
-      </div>
-    </section>
-
-    <!-- ── 2. Trust Bar ────────────────────────────────────────────────────── -->
-    <section
-      class="bg-navy-900/80 border-y border-white/[0.06] py-8"
-      aria-label="Trusted organizations"
-    >
-      <div class="container-site">
-        <p class="text-white/40 text-2xs font-semibold uppercase tracking-eyebrow text-center mb-6">
-          Experience across leading organizations
-        </p>
-        <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-60">
-          {['Santander', 'BBVA', 'CaixaBank', 'Kruger', 'Mercantil Andina', 'Telefónica'].map((name) => (
-            <span class="font-heading font-semibold text-white text-sm tracking-wide">{name}</span>
-          ))}
-        </div>
-        <p class="text-white/25 text-xs text-center mt-4">
-          Logo assets pending — see /assets/logos/trusted/
-        </p>
       </div>
     </section>
 
@@ -134,7 +93,7 @@ import { KPIS } from '@/data/kpis';
       aria-labelledby="advisory-heading"
     >
       <div class="container-site">
-        <div class="section-header-split">
+        <div class="section-header-split mb-10 lg:mb-12">
           <div>
             <span class="eyebrow" style="color: var(--color-orange);">Strategic Advisory</span>
             <h2 id="advisory-heading" class="text-section font-heading font-semibold text-gray-900 mt-1">
@@ -146,7 +105,7 @@ import { KPIS } from '@/data/kpis';
           </p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {ADVISORY_PILLARS.map((pillar, i) => (
             <a
               href={pillar.href}
@@ -177,7 +136,7 @@ import { KPIS } from '@/data/kpis';
 
     <!-- ── 4. KPI Band ────────────────────────────────────────────────────── -->
     <section
-      class="section-dark section-py"
+      class="section-dark py-16 lg:py-20"
       aria-label="Experience and authority"
     >
       <div class="container-site">
@@ -195,41 +154,6 @@ import { KPIS } from '@/data/kpis';
               {kpi.sublabel && (
                 <p class="text-white/45 text-xs">{kpi.sublabel}</p>
               )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- ── 5–12. Remaining sections — Phase 3 ───────────────────────────── -->
-    <section class="section-py section-white" aria-label="Build notice">
-      <div class="container-site text-center">
-        <span class="eyebrow mb-4 block">Phase 1 Complete</span>
-        <h2 class="text-section font-heading text-gray-900 mb-4">Project setup verified.</h2>
-        <p class="text-gray-600 max-w-[52ch] mx-auto leading-relaxed">
-          Astro + TypeScript + TailwindCSS is running correctly.
-          Design tokens, global styles, content collections, data files and i18n routing are configured.
-          Phase 2 will implement the full global layout (Navbar, Footer, Container, SectionWrapper, CTAButton).
-          Phase 3 will implement all homepage sections with actual copy from HOMEPAGE_COPY_DECK_EN.md.
-        </p>
-
-        <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto text-left">
-          {[
-            { label: 'Astro + TypeScript', status: '✓ Ready' },
-            { label: 'TailwindCSS + Tokens', status: '✓ Ready' },
-            { label: 'Design System', status: '✓ Ready' },
-            { label: 'Content Collections', status: '✓ Configured' },
-            { label: 'i18n Routing (EN/ES)', status: '✓ Ready' },
-            { label: 'Asset Folder Structure', status: '✓ Created' },
-            { label: 'Data Files (nav/KPI/etc)', status: '✓ Ready' },
-            { label: 'GitHub Actions Workflow', status: '✓ Ready' },
-            { label: 'Full Navbar + Footer', status: '→ Phase 2' },
-          ].map(({ label, status }) => (
-            <div class="flex items-center justify-between bg-gray-50 border border-gray-200 rounded-lg px-4 py-3">
-              <span class="text-sm text-gray-700">{label}</span>
-              <span class={`text-xs font-semibold ${status.startsWith('✓') ? 'text-green-600' : 'text-orange-500'}`}>
-                {status}
-              </span>
             </div>
           ))}
         </div>
