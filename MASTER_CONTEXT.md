@@ -497,3 +497,30 @@ The long-term vision is to position Facundo Gangemi as a global authority in:
 - Intelligent Organizations
 - Enterprise Transformation
 - AI-enabled Operating Models
+
+---
+
+# 20. Relationship With CEREBRO.md
+
+This project maintains a living memory file called `CEREBRO.md` in the project root.
+
+`CEREBRO.md` is the practical session memory of the project. It records:
+- Approved design and layout decisions
+- Validated visual patterns and component structures
+- Protected choices that must not be reversed without explicit approval
+- Known issues and pending improvements
+
+**How these files relate:**
+
+| File | Role |
+|---|---|
+| `MASTER_CONTEXT.md` | Strategic source of truth — brand identity, positioning, business goals, audience, visual direction |
+| `CLAUDE.md` | Technical source of truth — coding rules, SEO standards, deployment constraints, quality gates |
+| `CEREBRO.md` | Practical session memory — what has been built, approved and learned across sessions |
+
+`CEREBRO.md` does not override `MASTER_CONTEXT.md` or `CLAUDE.md`. It operates within them — translating strategy and rules into concrete, accumulated, session-to-session knowledge.
+
+At the start of every development session:
+1. Read `CEREBRO.md` before reading source files.
+2. Verify that recorded decisions still match the current state of the code.
+3. Update `CEREBRO.md` at the end of the session if new decisions were made or approved.

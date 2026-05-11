@@ -1,0 +1,35 @@
+---
+/**
+ * AboutWorldMap — WebP world map image
+ * Replaces the previous custom SVG implementation.
+ * Orange country markers are embedded in the image asset.
+ * Border, border-radius and overflow are handled by the
+ * parent .international-map wrapper in about.astro.
+ */
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<img
+  src="/images/about/about-world-map.webp"
+  alt="Geometric world map showing Facundo Gangemi's international transformation footprint across Argentina, Chile, Peru, Dominican Republic, United States, Mexico, Spain and Uruguay"
+  class={`about-world-map${className ? ` ${className}` : ''}`}
+  loading="lazy"
+  decoding="async"
+  width="1200"
+  height="580"
+/>
+
+<style>
+  .about-world-map {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Aspect ratio lock prevents layout shift while image loads */
+    aspect-ratio: 1200 / 580;
+  }
+</style>

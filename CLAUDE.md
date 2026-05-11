@@ -47,6 +47,26 @@ If there is a conflict between files:
 
 ---
 
+## Living Project Memory
+
+The project maintains a living memory file:
+
+- `CEREBRO.md`: practical session memory — approved decisions, validated patterns, protected choices, known issues and pending improvements.
+
+**Read `CEREBRO.md` at the start of every session before touching any page, component or style.**
+
+`CEREBRO.md` records what has been built and approved across sessions. It prevents:
+- Accidentally reversing approved design decisions.
+- Re-debating validated patterns.
+- Repeating known mistakes.
+
+**File authority:**
+- `CEREBRO.md` documents practical decisions and approved patterns — update it after sessions where meaningful decisions are made.
+- `CLAUDE.md` and `MASTER_CONTEXT.md` remain the source of truth for rules and strategy — `CEREBRO.md` does not override them.
+- If `CEREBRO.md` conflicts with source code, trust the source code and update `CEREBRO.md`.
+
+---
+
 ## SEO Positioning Guardrails
 
 Before creating or modifying any page, route, metadata, heading structure, internal link, CTA or SEO-related content, Claude Code must read and follow:
