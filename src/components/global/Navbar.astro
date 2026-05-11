@@ -20,7 +20,7 @@ const isAdvisoryOpen = currentPath?.startsWith('/advisory');
 ---
 
 <nav class="navbar-root" aria-label="Primary navigation">
-  <div class="navbar-container">
+  <div class="navbar-container container-site">
     <a href="/" class="navbar-logo" aria-label="Facundo Gangemi home">
       Facundo
     </a>
@@ -100,9 +100,7 @@ const isAdvisoryOpen = currentPath?.startsWith('/advisory');
   }
 
   .navbar-container {
-    width: min(100% - 2rem, 1280px);
     height: 72px;
-    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;

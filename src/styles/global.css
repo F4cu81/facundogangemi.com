@@ -10,7 +10,7 @@
 
 :root {
   --color-navy: #00274c;
-  --color-navy-dark: #001a33;
+  --color-navy-dark: #001B35;
   --color-light-gray: #f2f2f2;
   --color-orange: #f57c00;
   --color-electric-blue: #129bff;
@@ -22,7 +22,7 @@
   --font-heading: "Manrope", sans-serif;
   --font-body: "Inter", sans-serif;
 
-  --radius-card: 24px;
+  --radius-card: 1rem;
   --radius-button: 999px;
 
   --shadow-soft: 0 18px 60px rgba(0, 0, 0, 0.12);
@@ -106,12 +106,12 @@ select {
    ========================================================= */
 
 .container-site {
-  width: min(100% - 48px, 1320px);
+  width: min(100% - 2.5rem, 1280px);
   margin-inline: auto;
 }
 
 .section-py {
-  padding-block: 120x;
+  padding-block: 120px;
 }
 
 .section-py-lg {
@@ -230,6 +230,7 @@ select {
    ========================================================= */
 
 .card {
+  padding: 1.75rem 2rem;
   border: 1px solid rgba(0, 39, 76, 0.12);
   border-radius: var(--radius-card);
   background: #ffffff;
@@ -324,6 +325,56 @@ select {
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================================
+   Section Backgrounds
+   ========================================================= */
+
+.section-dark  { background: var(--color-navy);  color: #ffffff; }
+.section-light { background: #F2F2F2;             color: var(--color-text-on-light); }
+.section-white { background: #ffffff;             color: var(--color-text-on-light); }
+
+/* =========================================================
+   Section Header — Split Layout
+   ========================================================= */
+
+.section-header-split {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .section-header-split {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+/* =========================================================
+   Scroll Reveal
+   ========================================================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+
+/* =========================================================
+   Typography Utilities
+   ========================================================= */
+
+.text-hero    { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 0.97; }
+.text-section { font-size: clamp(1.875rem, 4vw, 3rem);  line-height: 1.05; }
 
 /* =========================================================
    Motion Preferences
