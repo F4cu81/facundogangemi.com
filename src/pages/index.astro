@@ -3,6 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { SITE } from '@/data/site';
 import { ADVISORY_PILLARS } from '@/data/advisoryPillars';
 import { KPIS } from '@/data/kpis';
+import StrategicPerspectives from '@/components/sections/StrategicPerspectives.astro';
 ---
 
 <BaseLayout
@@ -330,5 +331,8 @@ import { KPIS } from '@/data/kpis';
     observer.observe(section);
   })();
 </script>
+
+  <!-- ── 5. Strategic Perspectives ─────────────────────────────────────────── -->
+  <StrategicPerspectives />
 
 </BaseLayout>

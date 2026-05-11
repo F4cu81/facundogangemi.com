@@ -12,22 +12,22 @@ export interface KPI {
 export const KPIS: KPI[] = [
   {
     value: '20+',
-    label: 'Years of experience',
-    sublabel: 'Enterprise transformation & AI advisory',
-  },
-  {
-    value: '50+',
-    label: 'Enterprise engagements',
-    sublabel: 'Across banking, insurance, technology & telco',
+    label: 'Years of Professional Experience',
+    sublabel: 'Across technology, delivery, agile transformation and operating model evolution.',
   },
   {
     value: '10+',
-    label: 'Industries transformed',
-    sublabel: 'From financial services to digital platforms',
+    label: 'Teams Enabled',
+    sublabel: 'Supporting teams and leaders in agile, product-driven and data-informed ways of working.',
   },
   {
-    value: 'AI-First',
-    label: 'Strategic alignment',
-    sublabel: 'Operating models built for the intelligence era',
+    value: '20+',
+    label: 'Enterprise Projects',
+    sublabel: 'Across banking, insurance, technology services and large-scale transformation contexts.',
+  },
+  {
+    value: '€10M',
+    label: 'Estimated Portfolio Scope',
+    sublabel: 'Contributing to portfolio execution, financial governance, QBRs, OKRs and measurable business impact.',
   },
 ];
