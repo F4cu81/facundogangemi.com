@@ -22,7 +22,8 @@ const isAdvisoryOpen = currentPath?.startsWith('/advisory');
 <nav class="navbar-root" aria-label="Primary navigation">
   <div class="navbar-container container-site">
     <a href="/" class="navbar-logo" aria-label="Facundo Gangemi home">
-      Facundo
+      <img src="/favicon/favicon.svg" alt="" aria-hidden="true" width="24" height="24" class="navbar-logo-icon" />
+      Facundo Gangemi
     </a>
 
     <div class="navbar-desktop">
@@ -94,7 +95,7 @@ const isAdvisoryOpen = currentPath?.startsWith('/advisory');
     top: 0;
     z-index: 100;
     width: 100%;
-    background: rgba(0, 39, 76, 0.96);
+    background: rgba(7, 11, 20, 0.96);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(14px);
   }
@@ -107,6 +108,9 @@ const isAdvisoryOpen = currentPath?.startsWith('/advisory');
   }
 
   .navbar-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     color: #ffffff;
     font-family: Manrope, Inter, system-ui, sans-serif;
     font-size: 1.125rem;
@@ -117,6 +121,13 @@ const isAdvisoryOpen = currentPath?.startsWith('/advisory');
 
   .navbar-logo:hover {
     color: #F57C00;
+  }
+
+  .navbar-logo-icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
   }
 
   .navbar-desktop {

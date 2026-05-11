@@ -211,6 +211,19 @@ select {
   border: 1px solid transparent;
 }
 
+/* Outline button for dark backgrounds (hero, dark sections) */
+.btn-outline {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.btn-outline:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.42);
+  color: #ffffff;
+}
+
 .text-link {
   display: inline-flex;
   align-items: center;
@@ -221,6 +234,21 @@ select {
 }
 
 .text-link:hover {
+  color: var(--color-orange);
+  gap: 0.55rem;
+}
+
+/* Light text link — for dark/near-black section backgrounds */
+.text-link-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 700;
+  transition: color var(--transition-fast), gap var(--transition-fast);
+}
+
+.text-link-light:hover {
   color: var(--color-orange);
   gap: 0.55rem;
 }
@@ -247,6 +275,26 @@ select {
   transform: translateY(-4px);
   border-color: rgba(245, 124, 0, 0.45);
   box-shadow: var(--shadow-card);
+}
+
+/* Dark card surface — for dark/near-black section backgrounds */
+.card-dark {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem 2rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-card);
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.card-dark:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 217, 255, 0.2);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* =========================================================

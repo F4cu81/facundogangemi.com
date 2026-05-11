@@ -1,14 +1,4 @@
 ---
-/**
- * Homepage — facundogangemi.com
- *
- * Phase 1 placeholder: validates layout, Tailwind, design tokens.
- * Phase 3 will replace this with full section components.
- *
- * Copy source: strategy/HOMEPAGE_COPY_DECK_EN.md
- * Visual direction: strategy/HOMEPAGE_UI_DIRECTION.md
- */
-
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { SITE } from '@/data/site';
 import { ADVISORY_PILLARS } from '@/data/advisoryPillars';
@@ -20,145 +10,154 @@ import { KPIS } from '@/data/kpis';
   description={SITE.description}
 >
 
+  <!-- ── 1. Hero — Cinematic dark ──────────────────────────────────────────── -->
+  <section
+    class="relative min-h-[92svh] flex items-center bg-[#070B14] overflow-hidden"
+    aria-label="Hero"
+  >
+    <!-- Background visual layers -->
+    <div class="absolute inset-0 pointer-events-none select-none" aria-hidden="true">
 
+      <!-- AI network texture -->
+      <div class="absolute inset-0 bg-[url('/assets/backgrounds/hero-ai-network-bg.svg')] bg-cover opacity-[0.025]"></div>
 
-  <!-- ── Main content ─────────────────────────────────────────────────────── -->
-
-    <!-- ── 1. Hero ─────────────────────────────────────────────────────────── -->
-    <section
-      class="relative min-h-[88svh] flex items-center bg-hero-gradient pt-[68px]"
-      aria-label="Hero"
-    >
-      <!-- Background AI network pattern placeholder -->
-      <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        <div class="absolute inset-0 bg-[url('/assets/backgrounds/hero-ai-network-bg.svg')] bg-cover opacity-[0.04]"></div>
-        <div class="absolute right-0 top-0 w-1/2 h-full bg-orange-glow opacity-40"></div>
+      <!-- Portrait: right-side, bleeds full height, no container border -->
+      <div class="absolute inset-y-0 right-0 w-full lg:w-[56%]">
+        <img
+          src="/assets/portraits/facundo-hero-executive.webp"
+          alt=""
+          width="800"
+          height="1040"
+          class="absolute inset-0 w-full h-full object-cover object-top"
+          loading="eager"
+          decoding="async"
+        />
+        <!-- Left: portrait fades into the dark background -->
+        <div class="absolute inset-y-0 left-0 w-3/4 bg-gradient-to-r from-[#070B14] via-[#070B14]/80 to-transparent"></div>
+        <!-- Bottom: fade out -->
+        <div class="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#070B14] to-transparent"></div>
+        <!-- Top: subtle fade -->
+        <div class="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#070B14]/50 to-transparent"></div>
       </div>
 
-      <div class="container-site relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center py-16 lg:py-20">
+      <!-- Cyan atmospheric glow — AI accent -->
+      <div class="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_70%_65%_at_85%_30%,rgba(0,217,255,0.07)_0%,transparent_70%)]"></div>
 
-        <!-- Left: copy -->
-        <div class="reveal">
-          <span class="eyebrow">AI Strategy · Enterprise Transformation</span>
+      <!-- Mobile: solid overlay so text remains readable over the portrait -->
+      <div class="absolute inset-0 bg-[#070B14]/65 lg:hidden"></div>
+    </div>
 
-          <h1 class="text-hero font-heading text-white mt-2 mb-6">
-            Transforming ambition<br class="hidden sm:block" />
-            into results.
-          </h1>
+    <!-- Content — left-anchored, max 580px -->
+    <div class="container-site relative z-10 py-24 lg:py-28">
+      <div class="max-w-[580px]">
 
-          <p class="text-white/75 text-lg leading-relaxed max-w-[52ch] mb-8">
-            Executive advisory for AI Strategy, Digital Transformation and Intelligent Operating Models.
-            I help organizations evolve with clarity, structure and measurable impact.
+        <span class="eyebrow reveal">AI Strategy · Enterprise Transformation</span>
+
+        <h1 class="text-hero font-heading font-extrabold text-white mt-4 mb-6 reveal">
+          Transforming ambition<br />
+          into results.
+        </h1>
+
+        <p class="text-white/65 text-lg leading-relaxed max-w-[46ch] mb-8 reveal delay-100">
+          Executive advisory for AI Strategy, Digital Transformation and Intelligent Operating Models.
+          I help organizations evolve with clarity, structure and measurable impact.
+        </p>
+
+        <!-- Pull quote -->
+        <blockquote class="border-l-2 border-orange-500/50 pl-5 mb-8 max-w-[44ch] reveal delay-100">
+          <p class="text-white/50 text-sm leading-snug italic">
+            The future belongs to organizations that combine intelligence, adaptability and execution.
           </p>
+        </blockquote>
 
-          <!-- Pull quote chip -->
-          <blockquote
-            class="inline-flex items-start gap-3 bg-white/[0.06] border border-white/[0.1] rounded-lg px-4 py-3 mb-8 max-w-[44ch]"
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-3 reveal delay-200">
+          <a href="/contact" class="btn-primary">
+            Book an Advisory Call
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="/advisory" class="btn-outline">
+            Explore Services
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 2. Advisory Grid — Dark foundation ────────────────────────────────── -->
+  <section
+    class="section-py bg-[#070B14]"
+    aria-labelledby="advisory-heading"
+  >
+    <div class="container-site">
+      <div class="section-header-split mb-10 lg:mb-12">
+        <div>
+          <span class="eyebrow" style="color: var(--color-orange);">Strategic Advisory</span>
+          <h2 id="advisory-heading" class="text-section font-heading font-semibold text-white mt-1">
+            Strategic advisory for<br class="hidden md:block" />intelligent transformation.
+          </h2>
+        </div>
+        <p class="text-white/55 leading-relaxed max-w-[38ch] md:pt-10">
+          Four interconnected advisory practices that help organizations move from AI ambition to operating model reality.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {ADVISORY_PILLARS.map((pillar, i) => (
+          <a
+            href={pillar.href}
+            class={`card-dark group reveal delay-${i * 100}`}
+            aria-label={`Learn more about ${pillar.title}`}
           >
-            <p class="text-white/80 text-sm leading-snug italic font-medium">
-              The future belongs to organizations that combine intelligence, adaptability and execution.
-            </p>
-          </blockquote>
-
-          <!-- CTAs -->
-          <div class="flex flex-wrap gap-3">
-            <a href="/contact"  class="btn-primary">
-              Book an Advisory Call
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Icon -->
+            <div class="w-11 h-11 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-4">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" stroke="#F57C00" stroke-width="1.5"/>
+                <path d="M8 11h6M11 8v6" stroke="#F57C00" stroke-width="1.5" stroke-linecap="round"/>
               </svg>
-            </a>
-            <a href="/advisory" class="btn-secondary">
-              Explore Services
-            </a>
-          </div>
-        </div>
-
-        <!-- Right: brand visual — portrait slot, asset pending -->
-        <div class="reveal delay-200 hidden lg:flex justify-center items-center" aria-hidden="true">
-          <div class="relative w-[400px] h-[460px] rounded-2xl overflow-hidden border border-white/[0.08] bg-navy-900/60">
-            <div class="absolute inset-0 bg-orange-glow opacity-30"></div>
-            <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full border border-white/[0.05]"></div>
-            <div class="absolute bottom-10 left-10 w-28 h-28 rounded-full border border-orange-500/[0.15]"></div>
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 rounded-full border border-white/[0.06]"></div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ── 3. Advisory Grid ───────────────────────────────────────────────── -->
-    <section
-      class="section-py section-light"
-      aria-labelledby="advisory-heading"
-    >
-      <div class="container-site">
-        <div class="section-header-split mb-10 lg:mb-12">
-          <div>
-            <span class="eyebrow" style="color: var(--color-orange);">Strategic Advisory</span>
-            <h2 id="advisory-heading" class="text-section font-heading font-semibold text-gray-900 mt-1">
-              Strategic advisory for<br class="hidden md:block" />intelligent transformation.
-            </h2>
-          </div>
-          <p class="text-gray-600 leading-relaxed max-w-[38ch] md:pt-10">
-            Four interconnected advisory practices that help organizations move from AI ambition to operating model reality.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {ADVISORY_PILLARS.map((pillar, i) => (
-            <a
-              href={pillar.href}
-              class={`card group reveal delay-${i * 100}`}
-              aria-label={`Learn more about ${pillar.title}`}
-            >
-              <!-- Icon placeholder -->
-              <div class="w-11 h-11 rounded-lg bg-orange-50 border border-orange-100 flex items-center justify-center mb-4">
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                  <circle cx="11" cy="11" r="7" stroke="#F57C00" stroke-width="1.5"/>
-                  <path d="M8 11h6M11 8v6" stroke="#F57C00" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <h3 class="font-heading font-semibold text-gray-900 text-lg mb-2">{pillar.title}</h3>
-              <p class="text-sm text-orange-600 font-medium mb-3 italic">{pillar.outcome}</p>
-              <p class="text-gray-600 text-sm leading-relaxed mb-4">{pillar.description}</p>
-              <span class="text-link text-sm">
-                Learn more
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="transition-transform group-hover:translate-x-1">
-                  <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- ── 4. KPI Band ────────────────────────────────────────────────────── -->
-    <section
-      class="section-dark py-16 lg:py-20"
-      aria-label="Experience and authority"
-    >
-      <div class="container-site">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.06] rounded-2xl overflow-hidden">
-          {KPIS.map((kpi) => (
-            <div class="bg-navy-800 px-8 py-10 text-center reveal">
-              <div
-                class="font-heading font-bold text-5xl lg:text-6xl text-orange-500 mb-2 leading-none"
-                data-kpi-value={kpi.value}
-                aria-label={`${kpi.value} ${kpi.label}`}
-              >
-                {kpi.value}
-              </div>
-              <p class="text-white font-semibold text-sm mb-1">{kpi.label}</p>
-              {kpi.sublabel && (
-                <p class="text-white/45 text-xs">{kpi.sublabel}</p>
-              )}
             </div>
-          ))}
-        </div>
+            <h3 class="font-heading font-semibold text-white text-lg mb-2">{pillar.title}</h3>
+            <p class="text-sm text-orange-400 font-medium mb-3 italic">{pillar.outcome}</p>
+            <p class="text-white/55 text-sm leading-relaxed mb-4">{pillar.description}</p>
+            <span class="text-link-light text-sm">
+              Learn more
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="transition-transform group-hover:translate-x-1">
+                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+        ))}
       </div>
-    </section>
+    </div>
+  </section>
 
+  <!-- ── 3. KPI Band — Dark near-black ─────────────────────────────────────── -->
+  <section
+    class="py-16 lg:py-20 bg-[#0A101A]"
+    aria-label="Experience and authority"
+  >
+    <div class="container-site">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.05] rounded-2xl overflow-hidden">
+        {KPIS.map((kpi) => (
+          <div class="bg-[#0D1829] px-8 py-10 text-center reveal">
+            <div
+              class="font-heading font-bold text-5xl lg:text-6xl text-orange-500 mb-2 leading-none"
+              data-kpi-value={kpi.value}
+              aria-label={`${kpi.value} ${kpi.label}`}
+            >
+              {kpi.value}
+            </div>
+            <p class="text-white font-semibold text-sm mb-1">{kpi.label}</p>
+            {kpi.sublabel && (
+              <p class="text-white/45 text-xs">{kpi.sublabel}</p>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
 </BaseLayout>

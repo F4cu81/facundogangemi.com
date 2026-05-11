@@ -173,7 +173,9 @@ export default {
       // ─── Background image ─────────────────────────────────────────────────
       backgroundImage: {
         'hero-gradient':
-          'radial-gradient(ellipse 80% 60% at 60% 50%, rgba(18,155,255,0.06) 0%, transparent 70%), linear-gradient(135deg, #00274C 0%, #001B35 100%)',
+          'linear-gradient(160deg, #070B14 0%, #0D1829 55%, #091520 100%)',
+        'hero-glow-cyan':
+          'radial-gradient(ellipse 65% 70% at 80% 35%, rgba(0,217,255,0.07) 0%, transparent 70%)',
         'cta-gradient':
           'linear-gradient(135deg, #00274C 0%, #001430 100%)',
         'orange-glow':
