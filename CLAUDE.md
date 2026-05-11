@@ -350,6 +350,28 @@ UI rules:
 
 Do not make the website look like a generic SaaS template. It must support a high-trust executive advisory brand.
 
+### Section Spacing System
+
+The project uses three spacing utility classes defined in `src/styles/global.css`:
+
+| Class | Desktop | Tablet (≤1023px) | Mobile (≤639px) |
+|---|---|---|---|
+| `.section-py` | 96px | 80px | 64px |
+| `.section-py-lg` | 120px | 96px | 80px |
+| `.section-py-sm` | 64px | 56px | 48px |
+
+**Spacing rule for consecutive dark-background sections:**
+
+When two or more sections share the same dark background, the total visual gap between their content areas equals the sum of their adjacent padding values. Use `.section-py` (96px/80px/64px) as the default for homepage sections. This produces the following total gaps between consecutive sections:
+
+- Desktop: ~192px
+- Tablet: ~160px
+- Mobile: ~128px
+
+Do not use `.section-py-lg` (120px) for consecutive same-background sections — it produces 240px gaps which feel excessive.
+
+The KPI Band and other accent sections may use explicit Tailwind padding classes (`py-16 lg:py-20`) to break the rhythm intentionally.
+
 ---
 
 ## 11. Branding Guidelines
@@ -1078,4 +1100,112 @@ Do not make changes until I approve the plan.
 This project must remain clean, strategic and technically reliable.
 
 Every implementation should make the website easier to maintain, easier to index, easier to evolve and more credible for an executive consulting audience.
+
+---
+
+## 34. SEO, Accessibility and Content Quality Rules
+
+These rules extend sections 13 and 14. They define per-page and per-component quality checks that must be applied when writing or reviewing any page, section, or content block.
+
+### Technical SEO — Per-Page Checklist
+
+Before marking any new or updated page complete, verify:
+
+- `<title>` is unique, under 60 characters, and includes the primary keyphrase.
+- `<meta name="description">` is unique, under 155 characters, and summarizes the page clearly.
+- `<link rel="canonical">` points to `https://facundogangemi.com/<path>` — never a `github.io` URL.
+- Open Graph tags (`og:title`, `og:description`, `og:image`, `og:url`, `og:type`) are present.
+- `og:image` references a valid, existing file — do not use placeholder paths.
+- The page has exactly one `<h1>` that contains the primary keyphrase.
+- The page uses a logical heading hierarchy: H1 → H2 → H3. No skipped levels.
+- The page renders correctly on mobile.
+- No `noindex` meta tag is present unless explicitly required.
+- Structured data (JSON-LD), if added, is valid and does not claim unsupported facts.
+
+### Keyphrase and Content Rules
+
+When writing or generating page content:
+
+- The primary keyphrase must appear in the `<title>`, `<h1>`, and within the first 100 words of the main body text.
+- Do not repeat the keyphrase more than is natural. Keyword stuffing harms both readability and ranking.
+- Support the primary keyphrase with semantically related terms. Avoid forced repetition.
+- Each page should target one primary topic. Do not try to rank a single page for unrelated keyphrases.
+
+Primary strategic keyphrases for this website:
+
+- AI Strategy Consultant
+- Digital Transformation Advisor
+- Enterprise Transformation
+- AI Adoption
+- Intelligent Operating Models
+- Executive AI Advisory
+- Organizational Transformation
+- Enterprise Agility
+
+Use these themes consistently across pages and editorial content. Do not invent positioning that conflicts with these topics.
+
+### Heading Hierarchy Rules
+
+- Every page must have exactly one `<h1>`. It must be visible to users, not hidden.
+- `<h2>` elements introduce main sections. They must be descriptive, not decorative.
+- `<h3>` elements introduce subsections under an `<h2>`. Do not use them as decorative labels.
+- Do not use headings solely for visual sizing. Use semantic purpose and apply CSS for visual treatment.
+- Eyebrow labels (small uppercase labels above headings) are `<span>` elements, not headings.
+
+### Image SEO Rules
+
+When adding any image:
+
+- Use a descriptive filename that reflects content: `ai-strategy-consulting-meeting.webp`, not `image-01.webp`.
+- Add meaningful `alt` text for all images that convey information or context.
+- Use empty `alt=""` for purely decorative images (backgrounds, abstract textures, atmospheric dividers).
+- Prefer WebP format. Convert PNG or JPEG source files to WebP before committing.
+- Target file sizes below 200 KB for hero images. Use 80–120 KB for card and editorial images where possible.
+- Do not add `loading="eager"` unless the image is above the fold and critical for LCP.
+- All below-the-fold images must use `loading="lazy"`.
+
+### Content Readability Rules
+
+When writing copy for any page or section:
+
+- Use short paragraphs. A paragraph longer than 4 lines on desktop should be split.
+- Use active voice. "We transform organizations" not "Organizations are transformed by us."
+- Use transition words between ideas to improve logical flow.
+- Avoid dense jargon blocks. Every technical term must serve clarity, not signal complexity.
+- Use bullet points or numbered lists when presenting 3 or more parallel items.
+- Avoid walls of text. Visual breathing room improves both readability and perceived quality.
+
+### Internal Link Quality Rules
+
+When adding internal links:
+
+- Use descriptive link text that explains the destination. "Explore AI Strategy Advisory" not "click here" or "learn more" alone.
+- Link to related pages where it adds value for the reader.
+- Do not add links to pages that do not yet exist. Use descriptive text without a link until the target page is ready.
+- Avoid excessive internal links on a single page. Prioritize quality over volume.
+
+### Accessibility Quality Rules
+
+When implementing any UI component, page, or section:
+
+- All interactive elements (buttons, links, form fields) must have an accessible name — visible text or `aria-label`.
+- Color alone must not be the only way to communicate meaning.
+- Text must meet WCAG AA contrast requirements: 4.5:1 for body text, 3:1 for large text (18px+ bold or 24px+ regular).
+- Focus styles must be visible. Do not remove `:focus-visible` outlines without providing a custom equivalent.
+- Respect `prefers-reduced-motion`. Animations triggered by scroll or interaction must be suppressed or reduced when this preference is active.
+- Use ARIA attributes only when native HTML semantics are insufficient. Do not add ARIA roles or attributes that duplicate what semantic HTML already communicates.
+- Every `<img>` must have an `alt` attribute, even if the value is empty (`alt=""`).
+- Form labels must be explicitly associated with their input via `for`/`id` or wrapping.
+
+### Pre-Completion Verification
+
+Before reporting any page or section as complete:
+
+1. Run `npm run build` and confirm zero errors.
+2. Confirm no console errors are introduced at runtime.
+3. Confirm the heading hierarchy is correct.
+4. Confirm `<title>`, `<meta name="description">`, and canonical URL are present and correct.
+5. Confirm mobile layout renders correctly at 375px and 768px viewport widths.
+6. Confirm all images have appropriate `alt` text.
+7. Confirm internal links point to existing routes.
 

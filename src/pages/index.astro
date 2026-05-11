@@ -134,30 +134,201 @@ import { KPIS } from '@/data/kpis';
     </div>
   </section>
 
-  <!-- ── 3. KPI Band — Dark near-black ─────────────────────────────────────── -->
+  <!-- ── 3. Industries Served — Asymmetric editorial grid ─────────────────── -->
   <section
-    class="py-16 lg:py-20 bg-[#0A101A]"
-    aria-label="Experience and authority"
+    class="section-py bg-[#070B14]"
+    aria-labelledby="industries-heading"
   >
     <div class="container-site">
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.05] rounded-2xl overflow-hidden">
-        {KPIS.map((kpi) => (
-          <div class="bg-[#0D1829] px-8 py-10 text-center reveal">
-            <div
-              class="font-heading font-bold text-5xl lg:text-6xl text-orange-500 mb-2 leading-none"
-              data-kpi-value={kpi.value}
-              aria-label={`${kpi.value} ${kpi.label}`}
-            >
-              {kpi.value}
-            </div>
-            <p class="text-white font-semibold text-sm mb-1">{kpi.label}</p>
-            {kpi.sublabel && (
-              <p class="text-white/45 text-xs">{kpi.sublabel}</p>
-            )}
+
+      <!-- Header -->
+      <div class="mb-10 lg:mb-12">
+        <span class="eyebrow">Sectors</span>
+        <h2 id="industries-heading" class="text-section font-heading font-semibold text-white mt-1 mb-4">
+          Industries Served
+        </h2>
+        <p class="text-white/55 leading-relaxed max-w-[56ch]">
+          Deep domain expertise combined with cross-industry transformation experience to connect AI strategy, operating models and execution with measurable business impact.
+        </p>
+      </div>
+
+      <!-- Asymmetric grid -->
+      <div class="industries-grid">
+
+        <!-- Banking & Financial Services — dominant left card -->
+        <article class="industries-card industries-card-banking reveal">
+          <img
+            src="/images/industries/industry-banking-financial-services.webp"
+            alt="AI-powered banking and financial services transformation with executive dashboards and digital finance signals."
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#070B14]/90 via-[#070B14]/30 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-7 lg:p-8">
+            <p class="industries-eyebrow">Financial Services</p>
+            <h3 class="font-heading font-bold text-white text-xl lg:text-2xl mb-2 leading-tight">
+              Banking & Financial Services
+            </h3>
+            <p class="text-white/65 text-sm leading-relaxed max-w-[38ch]">
+              AI strategy, agile operating models, portfolio governance and execution discipline for banking and financial institutions.
+            </p>
           </div>
-        ))}
+        </article>
+
+        <!-- Technology & Product Organizations — wide upper-right card -->
+        <article class="industries-card industries-card-technology reveal delay-100">
+          <img
+            src="/images/industries/industry-technology-product-organizations-transformation.webp"
+            alt="AI-powered technology and product organization transformation with platform analytics and product execution signals."
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#070B14]/90 via-[#070B14]/30 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <p class="industries-eyebrow">Tech & Product</p>
+            <h3 class="font-heading font-bold text-white text-lg mb-2 leading-tight">
+              Technology & Product Organizations
+            </h3>
+            <p class="text-white/65 text-sm leading-relaxed max-w-[52ch]">
+              Product transformation, platform strategy, delivery governance and scalable execution models for technology-driven organizations.
+            </p>
+          </div>
+        </article>
+
+        <!-- Insurance & Risk Management — lower-right, first half -->
+        <article class="industries-card industries-card-insurance reveal delay-200">
+          <img
+            src="/images/industries/industry-insurance-risk-management.webp"
+            alt="AI-powered insurance and risk management command center with predictive analytics and enterprise governance signals."
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#070B14]/90 via-[#070B14]/35 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-5">
+            <p class="industries-eyebrow">Insurance</p>
+            <h3 class="font-heading font-semibold text-white text-base mb-1 leading-tight">
+              Insurance & Risk Management
+            </h3>
+            <p class="text-white/60 text-xs leading-relaxed">
+              Risk intelligence, operational control and transformation governance for insurance organizations.
+            </p>
+          </div>
+        </article>
+
+        <!-- Operational Excellence & Transformation — lower-right, second half -->
+        <article class="industries-card industries-card-operations reveal delay-300">
+          <img
+            src="/images/industries/industry-operational-excellence-transformation.webp"
+            alt="Executive operational excellence meeting with AI-assisted OKR dashboards, QBR metrics and business transformation signals."
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#070B14]/90 via-[#070B14]/35 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-5">
+            <p class="industries-eyebrow">Operations</p>
+            <h3 class="font-heading font-semibold text-white text-base mb-1 leading-tight">
+              Operational Excellence & Transformation
+            </h3>
+            <p class="text-white/60 text-xs leading-relaxed">
+              OKRs, QBRs, process alignment, execution systems and continuous improvement for enterprise transformation.
+            </p>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
+
+  <!-- ── 4. Metrics & Proof Points ────────────────────────────────────────── -->
+  <section
+    id="metrics-section"
+    class="relative section-py bg-[#070B14] overflow-hidden"
+    aria-labelledby="metrics-heading"
+  >
+    <!-- Background: subtle elevation gradient at top -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0D1829]/50 via-[#0A101A]/20 to-transparent pointer-events-none" aria-hidden="true"></div>
+    <!-- Top separator: feathered line -->
+    <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.10] to-transparent pointer-events-none" aria-hidden="true"></div>
+    <!-- Warm orange radial glow — anchors section to brand accent -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-40 bg-[radial-gradient(ellipse_at_top,rgba(245,124,0,0.05)_0%,transparent_70%)] pointer-events-none" aria-hidden="true"></div>
+
+    <div class="container-site relative z-10">
+      <h2 id="metrics-heading" class="sr-only">Experience and authority</h2>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+        {KPIS.map((kpi) => {
+          const isNumeric = /^\d/.test(kpi.value);
+          const num = isNumeric ? parseInt(kpi.value, 10) : null;
+          const suffix = isNumeric ? kpi.value.replace(/^\d+/, '') : undefined;
+          return (
+            <div class="kpi-cell px-6 py-10 text-center reveal">
+              <div
+                class="font-heading font-bold text-5xl lg:text-6xl text-orange-500 mb-3 leading-none tabular-nums"
+                data-kpi-value={kpi.value}
+                data-counter={isNumeric ? String(num) : undefined}
+                data-suffix={suffix}
+                aria-label={`${kpi.value} ${kpi.label}`}
+              >
+                {kpi.value}
+              </div>
+              <p class="text-white font-semibold text-sm mb-1">{kpi.label}</p>
+              {kpi.sublabel && (
+                <p class="text-white/45 text-xs leading-relaxed">{kpi.sublabel}</p>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+
+<script>
+  // Scroll-triggered count-up animation for numeric metrics.
+  // Runs once when the metrics section enters the viewport.
+  // Respects prefers-reduced-motion: shows final values immediately.
+  (function () {
+    if (typeof window === 'undefined') return;
+
+    const section = document.getElementById('metrics-section');
+    if (!section) return;
+
+    const counters = Array.from(section.querySelectorAll<HTMLElement>('[data-counter]'));
+    if (counters.length === 0) return;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReduced) return; // final values already rendered in HTML
+
+    const DURATION = 1600;
+    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+
+    function runCounter(el: HTMLElement) {
+      const target = parseInt(el.dataset.counter ?? '0', 10);
+      const suffix = el.dataset.suffix ?? '';
+      const start = performance.now();
+
+      function tick(now: number) {
+        const progress = Math.min((now - start) / DURATION, 1);
+        el.textContent = String(Math.round(easeOut(progress) * target)) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.textContent = String(target) + suffix;
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          counters.forEach(runCounter);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(section);
+  })();
+</script>
 
 </BaseLayout>

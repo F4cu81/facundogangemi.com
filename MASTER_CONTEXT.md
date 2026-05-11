@@ -330,6 +330,14 @@ SEO strategy must focus on:
 - executive positioning
 - AI business transformation
 
+Implementation notes:
+- Primary keyphrases must appear in `<title>`, `<h1>`, and the opening paragraph of each page.
+- Each page targets one primary topic. Cross-linking connects related pages without diluting focus.
+- Editorial URLs must be clean and descriptive: `/insights/ai-strategy/...`, `/case-studies/financial-services/...`.
+- Do not optimize for volume of keywords. Optimize for relevance, authority and trust signals.
+- Structured data (JSON-LD `Person`, `ProfessionalService`, `Article`) should be used where it adds genuine context.
+- All SEO decisions must support the executive advisory positioning, not generic traffic growth.
+
 ---
 
 # 14. User Experience Goals
