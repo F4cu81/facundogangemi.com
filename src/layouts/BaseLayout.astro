@@ -167,6 +167,9 @@ const ogImageURL = ogImage.startsWith('http')
     description: SITE.description,
     sameAs: [SITE.linkedin],
   })} />
+
+  <!-- Per-page head injections (fonts, third-party widgets, etc.) -->
+  <slot name="head" />
 </head>
 
 <body class="bg-white text-gray-900 antialiased">

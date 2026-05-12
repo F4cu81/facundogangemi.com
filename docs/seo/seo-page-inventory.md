@@ -259,11 +259,13 @@ No structured data is emitted on interior pages beyond what is inherited through
 | Secondary keywords | Digital Transformation Advisor, Operating Models, Enterprise Agility, OKRs and QBRs, Banking & Financial Services |
 | Indexable | Yes |
 | Structured data | Person (BaseLayout), ContactPage (page-level — name, description, url, author) |
+| Primary conversion path | Calendly popup — 30-min strategic conversation (`https://calendly.com/facundo_gangemi/30min`) |
+| Secondary conversion path | Formspree contact form with inline AJAX confirmation (user stays on page when JS is enabled; falls back to normal POST if JS is disabled) |
 | Form backend | Formspree Basic HTML integration |
 | Formspree endpoint | `https://formspree.io/f/xrejjrgj` |
 | Form fields | Name (required), Email (required), Company/Organization, Conversation type (required, select), Message (required), hidden subject |
 | Key internal links | `/about/`, `/insights/`, `/advisory/` |
-| Improvement notes | Phase 6b: full strategic conversion page replacing the single-section placeholder. Sections: Hero, Conversation areas (6 cards), Form with sidebar (what to include + trust note), Final nav CTA. Formspree Basic HTML — no JS, no dependencies. ContactPage JSON-LD added. Background alternation: #05070D → bg-gray-950 → #05070D → bg-gray-950. Phase 6b SEO pass: title refined to 50 chars (was 56), meta description updated to action-oriented copy at 139 chars (was 145), H1 shortened to "Let's shape your next transformation", ContactPage schema name updated to align with advisory positioning. |
+| Improvement notes | Phase 6b: full strategic conversion page replacing the single-section placeholder. Sections: Hero, Conversation areas (6 cards), Form with sidebar (what to include + trust note), Final nav CTA. Formspree Basic HTML — no JS, no dependencies. ContactPage JSON-LD added. Background alternation: #05070D → bg-gray-950 → #05070D → bg-gray-950. Phase 6b SEO pass: title refined to 50 chars (was 56), meta description updated to action-oriented copy at 139 chars (was 145), H1 shortened to "Let's shape your next transformation", ContactPage schema name updated to align with advisory positioning. Calendly popup integration (Phase 6b): primary CTA in hero now opens Calendly 30-min scheduling popup; Formspree form retained as secondary path; fallback href opens Calendly in new tab if JS unavailable. Note: Calendly may set third-party cookies — review and update cookie policy when live analytics/cookie audit is performed. |
 
 ---
 
