@@ -358,19 +358,19 @@ No structured data is emitted on interior pages beyond what is inherited through
 | Route | `/insights/` |
 | Page type | Content hub — editorial index |
 | Language | `en` |
-| Status | **Hub** — no articles published yet |
-| SEO title | `Strategic Insights \| Facundo Gangemi` (37 chars) |
-| Meta description | `Strategic perspectives on AI strategy, digital transformation, operational excellence and execution discipline for enterprise leaders.` (133 chars) |
+| Status | **Phase 6a complete** — full editorial hub layout; no articles published yet |
+| SEO title | `Insights \| AI Strategy & Transformation \| Facundo Gangemi` (57 chars) |
+| Meta description | `Insights on AI strategy, digital transformation, operating models and execution for leaders driving measurable business impact.` (127 chars) |
 | Canonical URL | `https://facundogangemi.com/insights/` |
-| H1 | `Insights` |
-| Main H2s | Editorial categories (sr-only), Latest Insights / Coming Soon |
+| H1 | `Strategic Perspectives on AI, Transformation and Execution` |
+| Main H2s | Explore Insights (Filters), Featured Insight (sr-only), Strategic Perspectives, Latest Insights (sr-only), Strategic Advisory (Final CTA) |
 | Primary search intent | Read strategic perspectives on AI and transformation |
-| Primary keyword | Strategic Insights |
-| Secondary keywords | AI strategy perspectives, Transformation insights, Executive thought leadership |
+| Primary keyword | AI Strategy & Transformation Insights |
+| Secondary keywords | Digital transformation insights, Operating models, Operational excellence, Enterprise agility, Strategy execution |
 | Indexable | Yes |
-| Structured data | Person (inherited) |
-| Key internal links | `/insights/ai-strategy/`, `/insights/digital-transformation/`, `/insights/operational-excellence/`, `/insights/strategy-execution/`, `/about` |
-| Improvement notes | H1 is `Insights` — does not include a primary keyphrase. Title is `Strategic Insights` which is better. Consider aligning H1 to `Strategic Insights` for consistency. No articles published yet; listing shows "Coming Soon" state. |
+| Structured data | Person (BaseLayout), CollectionPage (page-level — name, description, url, author) |
+| Key internal links | `/insights/ai-strategy/`, `/insights/digital-transformation/`, `/insights/operational-excellence/`, `/insights/strategy-execution/`, `/advisory`, `/contact`, `/about` |
+| Improvement notes | Phase 6a: hero with editorial image, filter chips, featured insight card, topic cards, article grid. Title fixed from 87-char overage to 57 chars. Meta description trimmed to 127 chars. Internal /about link added to Final CTA section. CollectionPage JSON-LD added. Static placeholder articles shown until real collection content is published. |
 
 ---
 
@@ -509,7 +509,7 @@ The Insights section has four category hub pages and one main index page, all st
 
 | Hub route | Title | Status |
 |---|---|---|
-| `/insights/` | Strategic Insights | Active hub — no articles yet |
+| `/insights/` | Insights \| AI Strategy & Transformation | Phase 6a — full editorial hub; no articles yet |
 | `/insights/ai-strategy/` | AI Strategy Insights | Active hub — no articles yet |
 | `/insights/digital-transformation/` | Digital Transformation Insights | Active hub — no articles yet |
 | `/insights/operational-excellence/` | Operational Excellence Insights | Active hub — no articles yet |

@@ -108,8 +108,8 @@ const STATIC_ARTICLES: StaticArticle[] = [
   },
 ];
 
-const SEO_TITLE = 'Insights | AI Strategy, Digital Transformation & Business Execution';
-const SEO_DESCRIPTION = 'Strategic insights on AI strategy, digital transformation, operational excellence, enterprise agility and business execution for leaders driving measurable transformation impact.';
+const SEO_TITLE = 'Insights | AI Strategy & Transformation';
+const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operating models and execution for leaders driving measurable business impact.';
 ---
 
 <BaseLayout
@@ -191,10 +191,64 @@ const SEO_DESCRIPTION = 'Strategic insights on AI strategy, digital transformati
     </div>
   </section>
 
+  <!-- INSIGHTS_SECTION_03_FILTERS_AND_SEARCH ──────────────────────────────── -->
+  <section
+    id="insights-filters"
+    class="section-py-sm bg-gray-950"
+    aria-labelledby="filters-section-heading"
+  >
+    <div class="container-site">
+      <span class="eyebrow">Explore Insights</span>
+      <h2 id="filters-section-heading" class="sr-only">Filter and search insights by topic</h2>
+      <p class="filters-sub reveal">Find perspectives by topic, discipline or strategic priority.</p>
+
+      <!-- Search input -->
+      <div class="search-row reveal">
+        <div class="search-wrap">
+          <svg class="search-icon-svg" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <circle cx="7.5" cy="7.5" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M12 12l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <label for="insights-search" class="sr-only">Search insights</label>
+          <input
+            id="insights-search"
+            type="search"
+            name="q"
+            placeholder="Search insights..."
+            class="search-input"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <!-- Filter chips
+           To enable functional filtering: add a JS module that listens to
+           button clicks, updates aria-pressed, and filters visible insight cards
+           by matching data-category attributes. -->
+      <div
+        class="filter-chips reveal delay-100"
+        role="group"
+        aria-label="Filter insights by topic"
+      >
+        {FILTER_CHIPS.map((chip) => (
+          <button
+            type="button"
+            class={`filter-chip${chip.active ? ' filter-chip--active' : ''}`}
+            aria-pressed={chip.active ? 'true' : 'false'}
+          >
+            {chip.label}
+          </button>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
   <!-- INSIGHTS_SECTION_02_FEATURED_INSIGHT ─────────────────────────────────── -->
   <section
     id="featured-insight"
-    class="section-py bg-gray-950"
+    class="section-py-sm"
+    style="background: #05070D;"
     aria-labelledby="featured-insight-heading"
   >
     <div class="container-site">
@@ -250,59 +304,6 @@ const SEO_DESCRIPTION = 'Strategic insights on AI strategy, digital transformati
     </div>
   </section>
 
-  <!-- INSIGHTS_SECTION_03_FILTERS_AND_SEARCH ──────────────────────────────── -->
-  <section
-    id="insights-filters"
-    class="section-py-sm"
-    style="background: #05070D;"
-    aria-labelledby="filters-section-heading"
-  >
-    <div class="container-site">
-      <span class="eyebrow">Explore Insights</span>
-      <h2 id="filters-section-heading" class="sr-only">Filter and search insights by topic</h2>
-
-      <!-- Search input -->
-      <div class="search-row reveal">
-        <div class="search-wrap">
-          <svg class="search-icon-svg" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-            <circle cx="7.5" cy="7.5" r="5.5" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M12 12l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          <label for="insights-search" class="sr-only">Search insights</label>
-          <input
-            id="insights-search"
-            type="search"
-            name="q"
-            placeholder="Search insights..."
-            class="search-input"
-            autocomplete="off"
-          />
-        </div>
-      </div>
-
-      <!-- Filter chips
-           To enable functional filtering: add a JS module that listens to
-           button clicks, updates aria-pressed, and filters visible insight cards
-           by matching data-category attributes. -->
-      <div
-        class="filter-chips reveal delay-100"
-        role="group"
-        aria-label="Filter insights by topic"
-      >
-        {FILTER_CHIPS.map((chip) => (
-          <button
-            type="button"
-            class={`filter-chip${chip.active ? ' filter-chip--active' : ''}`}
-            aria-pressed={chip.active ? 'true' : 'false'}
-          >
-            {chip.label}
-          </button>
-        ))}
-      </div>
-
-    </div>
-  </section>
-
   <!-- INSIGHTS_SECTION_04_EDITORIAL_TOPICS ─────────────────────────────────── -->
   <section
     id="editorial-topics"
@@ -319,12 +320,11 @@ const SEO_DESCRIPTION = 'Strategic insights on AI strategy, digital transformati
             id="topics-heading"
             class="topics-heading font-heading font-bold text-white"
           >
-            Explore selected themes on AI strategy, transformation, operational
-            excellence and execution discipline.
+            Explore selected themes on AI strategy, transformation and execution.
           </h2>
           <p class="topics-sub">
-            Selected perspectives designed to connect strategy, operating models and
-            measurable business impact.
+            Selected perspectives designed to connect strategy, operating models, operational
+            excellence and measurable business impact.
           </p>
           <a href="/insights/" class="topics-view-all">
             View all insights
@@ -374,6 +374,9 @@ const SEO_DESCRIPTION = 'Strategic insights on AI strategy, digital transformati
       >
         Latest Insights
       </h2>
+      <p class="latest-sub reveal delay-100">
+        Recent perspectives on AI strategy, operating models, governance and transformation execution.
+      </p>
 
       <div class="latest-grid">
         {hasArticles ? (
@@ -440,8 +443,7 @@ const SEO_DESCRIPTION = 'Strategic insights on AI strategy, digital transformati
   <!-- INSIGHTS_SECTION_06_FINAL_CTA ───────────────────────────────────────── -->
   <section
     id="insights-final-cta"
-    class="section-py"
-    style="background: #05070D;"
+    class="section-py-sm bg-gray-950"
     aria-labelledby="insights-cta-heading"
   >
     <div class="container-site">
@@ -452,11 +454,14 @@ const SEO_DESCRIPTION = 'Strategic insights on AI strategy, digital transformati
             id="insights-cta-heading"
             class="insights-cta-heading font-heading font-bold text-white"
           >
-            Want strategic insights on AI and transformation?
+            Need to turn AI strategy into measurable execution?
           </h2>
           <p class="insights-cta-body">
-            Explore perspectives designed for leaders working on execution, governance,
+            Explore advisory support designed for leaders working on governance,
             operating models and measurable business impact.
+          </p>
+          <p class="insights-cta-about">
+            Explore the strategic background behind these perspectives on the <a href="/about">About page</a>.
           </p>
           <div class="insights-cta-actions">
             <a href="/contact" class="btn-primary">
@@ -724,6 +729,13 @@ const SEO_DESCRIPTION = 'Strategic insights on AI strategy, digital transformati
 
   /* ── SECTION 03: Filters ──────────────────────────────────────────────── */
 
+  .filters-sub {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.42);
+    line-height: 1.6;
+    margin: 0.5rem 0 0;
+  }
+
   .search-row {
     margin: 1.5rem 0 1.25rem;
   }
@@ -925,7 +937,14 @@ const SEO_DESCRIPTION = 'Strategic insights on AI strategy, digital transformati
 
   .latest-heading {
     font-size: 1.75rem;
-    margin: 0.5rem 0 2.25rem;
+    margin: 0.5rem 0 0.75rem;
+  }
+
+  .latest-sub {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.46);
+    line-height: 1.65;
+    margin: 0 0 2rem;
   }
 
   .latest-grid {
@@ -1039,7 +1058,7 @@ const SEO_DESCRIPTION = 'Strategic insights on AI strategy, digital transformati
   .load-more-row {
     display: flex;
     justify-content: center;
-    margin-top: 3rem;
+    margin-top: 2rem;
   }
 
   .load-more-btn { min-width: 200px; }
@@ -1075,8 +1094,24 @@ const SEO_DESCRIPTION = 'Strategic insights on AI strategy, digital transformati
     font-size: 1rem;
     color: rgba(255, 255, 255, 0.56);
     line-height: 1.70;
+    margin-bottom: 1rem;
+  }
+
+  .insights-cta-about {
+    font-size: 0.825rem;
+    color: rgba(255, 255, 255, 0.32);
+    line-height: 1.6;
     margin-bottom: 2rem;
   }
+
+  .insights-cta-about a {
+    color: rgba(255, 255, 255, 0.48);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 160ms ease;
+  }
+
+  .insights-cta-about a:hover { color: rgba(255, 255, 255, 0.75); }
 
   .insights-cta-actions {
     display: flex;
