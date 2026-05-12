@@ -248,14 +248,14 @@ No structured data is emitted on interior pages beyond what is inherited through
 | Route | `/contact/` |
 | Page type | Contact / Strategic Conversion |
 | Language | `en` |
-| Status | **Phase 6b complete** — full strategic conversion page |
-| SEO title | `Contact \| AI Strategy & Transformation \| Facundo Gangemi` (56 chars) |
-| Meta description | `Connect with Facundo Gangemi to discuss AI strategy, digital transformation, operating models, enterprise agility and measurable business impact.` (145 chars) |
+| Status | **Phase 6b SEO complete** — full strategic conversion page + SEO pass |
+| SEO title | `Contact \| AI Strategy & Advisory \| Facundo Gangemi` (50 chars) |
+| Meta description | `Start a strategic conversation on AI strategy, digital transformation, operating models, enterprise agility and measurable business impact.` (139 chars) |
 | Canonical URL | `https://facundogangemi.com/contact/` |
-| H1 | `Let's discuss transformation with measurable business impact` |
+| H1 | `Let's shape your next transformation` |
 | Main H2s | Strategic conversations I engage with, Start a strategic conversation |
 | Primary search intent | Contact an AI Strategy Advisor; discuss transformation, advisory, speaking or strategic collaboration |
-| Primary keyword | AI Strategy & Transformation |
+| Primary keyword | AI Strategy & Advisory |
 | Secondary keywords | Digital Transformation Advisor, Operating Models, Enterprise Agility, OKRs and QBRs, Banking & Financial Services |
 | Indexable | Yes |
 | Structured data | Person (BaseLayout), ContactPage (page-level — name, description, url, author) |
@@ -263,7 +263,7 @@ No structured data is emitted on interior pages beyond what is inherited through
 | Formspree endpoint | `https://formspree.io/f/xrejjrgj` |
 | Form fields | Name (required), Email (required), Company/Organization, Conversation type (required, select), Message (required), hidden subject |
 | Key internal links | `/about/`, `/insights/`, `/advisory/` |
-| Improvement notes | Phase 6b: full strategic conversion page replacing the single-section placeholder. Sections: Hero, Conversation areas (6 cards), Form with sidebar (what to include + trust note), Final nav CTA. Formspree Basic HTML — no JS, no dependencies. ContactPage JSON-LD added. Background alternation: #05070D → bg-gray-950 → #05070D → bg-gray-950. |
+| Improvement notes | Phase 6b: full strategic conversion page replacing the single-section placeholder. Sections: Hero, Conversation areas (6 cards), Form with sidebar (what to include + trust note), Final nav CTA. Formspree Basic HTML — no JS, no dependencies. ContactPage JSON-LD added. Background alternation: #05070D → bg-gray-950 → #05070D → bg-gray-950. Phase 6b SEO pass: title refined to 50 chars (was 56), meta description updated to action-oriented copy at 139 chars (was 145), H1 shortened to "Let's shape your next transformation", ContactPage schema name updated to align with advisory positioning. |
 
 ---
 
