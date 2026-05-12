@@ -22,6 +22,7 @@ const hasArticles = articles.length > 0;
   title={SEO_TITLE}
   description={CATEGORY_DESCRIPTION}
   canonical={`/insights/${CATEGORY_SLUG}/`}
+  noIndex={!hasArticles}
 >
 
   <section class="section-py bg-[#05070D]" aria-labelledby="category-heading">

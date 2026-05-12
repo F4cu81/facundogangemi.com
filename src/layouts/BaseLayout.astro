@@ -62,8 +62,6 @@ const canonicalURL = canonical
   ? new URL(canonical, SITE.url).href
   : new URL(Astro.url.pathname, SITE.url).href;
 
-const isHomepage = Astro.url.pathname === '/';
-
 const ogImageURL = ogImage.startsWith('http')
   ? ogImage
   : new URL(ogImage, SITE.url).href;
@@ -84,9 +82,8 @@ const ogImageURL = ogImage.startsWith('http')
   <link rel="canonical" href={canonicalURL} />
   {noIndex && <meta name="robots" content="noindex, nofollow" />}
 
-  <!-- hreflang — homepage cross-links en/es; other pages get en + x-default only -->
+  <!-- hreflang — English only until /es/ routes are implemented -->
   <link rel="alternate" hreflang="en" href={canonicalURL} />
-  {isHomepage && <link rel="alternate" hreflang="es" href={new URL('/es/', SITE.url).href} />}
   <link rel="alternate" hreflang="x-default" href={new URL('/', SITE.url).href} />
 
   <!-- Open Graph -->
