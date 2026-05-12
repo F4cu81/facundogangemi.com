@@ -246,20 +246,24 @@ No structured data is emitted on interior pages beyond what is inherited through
 | Property | Value |
 |---|---|
 | Route | `/contact/` |
-| Page type | Contact / Conversion |
+| Page type | Contact / Strategic Conversion |
 | Language | `en` |
-| Status | **Functional** — contains real contact mechanisms |
-| SEO title | `Book an Advisory Call \| Facundo Gangemi` (39 chars) |
-| Meta description | `Book an advisory call with Facundo Gangemi — AI Strategy and Digital Transformation Advisor. Discuss transformation priorities and operating model focus.` (153 chars) |
+| Status | **Phase 6b complete** — full strategic conversion page |
+| SEO title | `Contact \| AI Strategy & Transformation \| Facundo Gangemi` (56 chars) |
+| Meta description | `Connect with Facundo Gangemi to discuss AI strategy, digital transformation, operating models, enterprise agility and measurable business impact.` (145 chars) |
 | Canonical URL | `https://facundogangemi.com/contact/` |
-| H1 | `Book an Advisory Call` |
-| Primary search intent | Contact an AI strategy advisor; book a consulting call |
-| Primary keyword | Book an AI Strategy Advisory Call |
-| Secondary keywords | Contact digital transformation advisor, Executive advisory consultation |
+| H1 | `Let's discuss transformation with measurable business impact` |
+| Main H2s | Strategic conversations I engage with, Start a strategic conversation |
+| Primary search intent | Contact an AI Strategy Advisor; discuss transformation, advisory, speaking or strategic collaboration |
+| Primary keyword | AI Strategy & Transformation |
+| Secondary keywords | Digital Transformation Advisor, Operating Models, Enterprise Agility, OKRs and QBRs, Banking & Financial Services |
 | Indexable | Yes |
-| Structured data | Person (inherited) |
-| Key internal links | `/advisory` |
-| Improvement notes | Meta description fixed in Phase 4d — 153 chars, within the 145–155 target range. |
+| Structured data | Person (BaseLayout), ContactPage (page-level — name, description, url, author) |
+| Form backend | Formspree Basic HTML integration |
+| Formspree endpoint | `https://formspree.io/f/xrejjrgj` |
+| Form fields | Name (required), Email (required), Company/Organization, Conversation type (required, select), Message (required), hidden subject |
+| Key internal links | `/about/`, `/insights/`, `/advisory/` |
+| Improvement notes | Phase 6b: full strategic conversion page replacing the single-section placeholder. Sections: Hero, Conversation areas (6 cards), Form with sidebar (what to include + trust note), Final nav CTA. Formspree Basic HTML — no JS, no dependencies. ContactPage JSON-LD added. Background alternation: #05070D → bg-gray-950 → #05070D → bg-gray-950. |
 
 ---
 

@@ -177,7 +177,55 @@ CTA button style: orange fill (`#F57C00`), white text, hover darkens fill.
 
 ---
 
-## 9. About Page Learnings
+## 9. Contact Page Learnings (Phase 6b)
+
+### Approved Section Order and Backgrounds
+
+| # | Section | Background |
+|---|---|---|
+| 1 | Hero | `#05070D` (inline style) |
+| 2 | Conversation areas (6 cards) | `bg-gray-950` |
+| 3 | Form + sidebar | `#05070D` (inline style) |
+| 4 | Final nav CTA | `bg-gray-950` |
+
+### Form Integration
+
+Contact pages on this site act as strategic conversion pages, not generic form pages. They clarify conversation fit, reduce friction, reinforce executive positioning and guide high-quality inbound messages.
+
+For static GitHub Pages deployments, the Contact page uses **Formspree Basic HTML integration**:
+- Form action: `https://formspree.io/f/xrejjrgj`
+- Method: `method="POST"`
+- Hidden subject field: `name="subject"` (NOT `name="_subject"` — Formspree changed the field name)
+- No React, no AJAX, no `@formspree/react`, no `@formspree/ajax`, no custom JS submission logic
+- Formspree handles the post-submit redirect/confirmation natively
+
+### Layout
+
+Form section uses two-column grid (60fr 40fr desktop, stacked mobile):
+- Left column: form fields and submit button
+- Right column: sidebar with "What to include" bullets + trust note
+
+Card grid (conversation areas): 1 col → 2 col (≥640px) → 3 col (≥1024px).
+
+Cards use the orange top-border accent pattern: `border-top: 2px solid rgba(245, 124, 0, 0.38)`.
+
+### Form Field Styling (dark backgrounds)
+
+```css
+/* Select needs custom arrow — browser default arrow not visible on dark bg */
+.form-select { appearance: none; }
+.form-select-arrow { /* absolutely positioned SVG inside wrapper */ }
+
+/* Options need explicit dark bg for cross-browser consistency */
+.form-select option { background-color: #05070D; color: #ffffff; }
+
+/* Focus uses orange glow */
+:focus { border-color: rgba(245,124,0,0.55); box-shadow: 0 0 0 3px rgba(245,124,0,0.1); }
+```
+
+---
+
+## 10. About Page Learnings
 
 ### Approved Section Order and Backgrounds
 
@@ -367,7 +415,7 @@ Track known issues, deferred improvements and open questions here. Remove items 
 
 | Item | Priority | Notes |
 |---|---|---|
-| Insights listing page — build and validate | High | Content hub structure approved; pages not yet built |
+| ~~Insights listing page — build and validate~~ | ~~High~~ | **Done Phase 6a** — full editorial hub at `/insights/` |
 | Case Studies listing page — build and validate | High | Same |
 | Advisory sub-pages — build and validate | High | Dropdown routes exist in nav; pages may be stubs |
 | Legal pages — review placeholder content | Medium | All four legal pages exist; legal details need owner review |
