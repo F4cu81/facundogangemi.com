@@ -91,6 +91,7 @@ export const INTERNATIONAL_COUNTRIES = [
   'Argentina',
   'Chile',
   'Dominican Republic',
+  'Ecuador',
   'Mexico',
   'Peru',
   'Spain',

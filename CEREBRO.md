@@ -213,12 +213,26 @@ File: `src/components/sections/AboutWorldMap.astro`
 
 - ViewBox: `0 0 1200 580`
 - Projection: equirectangular — `x = (lon+180)/360*1200`, `y = (80-lat)/160*580`
-- **Implementation: WebP image** — the SVG map was replaced with `/images/about/about-world-map.webp`
-- Orange country markers are embedded in the image asset — do **not** add code-level SVG markers on top
+- **Implementation: WebP image** — current asset is `/images/about/about-world-map-transparent-white.webp`
 - `<img>` uses `loading="lazy"` `decoding="async"` `width="1200"` `height="580"` `aspect-ratio: 1200/580` to prevent layout shift
 - Alt text communicates the footprint (not `aria-hidden`) for accessibility
-- Border, border-radius and overflow remain on the `.international-map` parent wrapper in `about.astro` — the component itself is just the `<img>`
+- Border, border-radius and overflow remain on the `.international-map` parent wrapper in `about.astro`
 - **Do not revert to SVG implementation** — the WebP is the approved final asset
+
+**Interactive marker system (approved):**
+- A `.map-container` (`position: relative`) wraps the `<AboutWorldMap />` image
+- An absolutely-positioned `.map-markers` overlay (`aria-hidden="true"`) holds `<button>` hit areas
+- Each button has `data-country`, `type="button"`, and `aria-label`; positioned with `left/top` as % of image
+- Each `.country-chip` has a `data-country` attribute matching the button
+- Vanilla JS (`<script>` module) connects `mouseenter/mouseleave/focus/blur` on buttons to `.active` class on chips
+- `.country-chip.active`: `color:#F57C00`, `border-color:rgba(245,124,0,0.70)`, `background:rgba(245,124,0,0.14)`, `box-shadow:0 0 18px rgba(245,124,0,0.22)`
+- Marker positions are percentage-based relative to the `.map-container` image element (not fixed pixels)
+- Reference cities: BCN (Spain), Miami (US), CDMX (Mexico), Santo Domingo (DR), Lima (Peru), Santiago (Chile), Buenos Aires (Argentina), Montevideo (Uruguay)
+- Normal dot: `8×8px`, `background:#F57C00`, `border:1px solid rgba(255,255,255,0.75)`, `box-shadow:0 0 10px rgba(245,124,0,0.55)`
+- Hover/focus: `scale(1.45)`, `box-shadow:0 0 20px rgba(245,124,0,0.85)`, `outline:2px solid rgba(245,124,0,0.55)`
+- The `.map-markers` container must NOT have `aria-hidden="true"` — buttons need to be keyboard-accessible
+- For decorative WebP maps, interactivity is achievable with absolutely-positioned buttons + data-attribute chip connection — no SVG needed
+- Positions are tuned visually; if the map image changes, positions may need re-calibration
 
 **Approved marker positions:**
 

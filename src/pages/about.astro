@@ -39,6 +39,33 @@ const icons = {
 
 /* Marquee: all companies from both enterprise context categories */
 const MARQUEE_COMPANIES = ENTERPRISE_CONTEXTS.flatMap((c) => c.companies);
+
+/* World map: country keys (display name → data attribute value) */
+const COUNTRY_KEYS: Record<string, string> = {
+  Argentina: 'argentina',
+  Chile: 'chile',
+  'Dominican Republic': 'dominican-republic',
+  Ecuador: 'ecuador',
+  Mexico: 'mexico',
+  Peru: 'peru',
+  Spain: 'spain',
+  'United States': 'united-states',
+  Uruguay: 'uruguay',
+};
+
+/* Interactive marker positions — % relative to map image container
+   Reference cities: BCN, Miami, CDMX, Santo Domingo, Lima, Santiago, Buenos Aires, Montevideo */
+const MAP_MARKERS = [
+  { country: 'spain',              label: 'Highlight Spain',              left: 45.0, top: 40.3 },
+  { country: 'united-states',      label: 'Highlight United States',      left: 20.8, top: 41.2 },
+  { country: 'mexico',             label: 'Highlight Mexico',             left: 21.5, top: 50.8 },
+  { country: 'dominican-republic', label: 'Highlight Dominican Republic', left: 29.6, top: 50.5 },
+  { country: 'ecuador',            label: 'Highlight Ecuador',            left: 27.4, top: 62.3 },
+  { country: 'peru',               label: 'Highlight Peru',               left: 28.5, top: 68.4 },
+  { country: 'chile',              label: 'Highlight Chile',              left: 28.8, top: 80.4 },
+  { country: 'argentina',          label: 'Highlight Argentina',          left: 32.8, top: 79.6 },
+  { country: 'uruguay',            label: 'Highlight Uruguay',            left: 34.0, top: 78.8 },
+];
 ---
 
 <BaseLayout
@@ -275,9 +302,23 @@ const MARQUEE_COMPANIES = ENTERPRISE_CONTEXTS.flatMap((c) => c.companies);
 
       <!-- Map + Countries side-by-side on desktop -->
       <div class="international-map-layout">
-        <!-- World Map (left) -->
+        <!-- World Map (left) — image base + interactive marker overlay -->
         <div class="international-map">
-          <AboutWorldMap />
+          <div class="map-container">
+            <AboutWorldMap />
+            <!-- Orange dot markers — accessible buttons connected to country chips -->
+            <div class="map-markers">
+              {MAP_MARKERS.map((m) => (
+                <button
+                  type="button"
+                  class="map-marker"
+                  data-country={m.country}
+                  aria-label={m.label}
+                  style={`left:${m.left}%;top:${m.top}%`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
 
         <!-- Countries & Regions (right) -->
@@ -287,7 +328,7 @@ const MARQUEE_COMPANIES = ENTERPRISE_CONTEXTS.flatMap((c) => c.companies);
           </h3>
           <div class="countries-chips">
             {INTERNATIONAL_COUNTRIES.map((country) => (
-              <span class="country-chip">{country}</span>
+              <span class="country-chip" data-country={COUNTRY_KEYS[country]}>{country}</span>
             ))}
           </div>
         </div>
@@ -628,8 +669,6 @@ const MARQUEE_COMPANIES = ENTERPRISE_CONTEXTS.flatMap((c) => c.companies);
   }
 
   .international-map {
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 0.75rem;
     overflow: hidden;
   }
 
@@ -658,6 +697,53 @@ const MARQUEE_COMPANIES = ENTERPRISE_CONTEXTS.flatMap((c) => c.companies);
     background: rgba(245, 124, 0, 0.08);
     border-color: rgba(245, 124, 0, 0.28);
     color: rgba(245, 124, 0, 0.9);
+  }
+
+  /* Active state — triggered by map marker hover/focus */
+  .country-chip.active {
+    color: #F57C00;
+    border-color: rgba(245, 124, 0, 0.70);
+    background: rgba(245, 124, 0, 0.14);
+    box-shadow: 0 0 18px rgba(245, 124, 0, 0.22);
+  }
+
+  /* ── Map interactive marker overlay ──────────────────────────────────────── */
+
+  .map-container {
+    position: relative;
+  }
+
+  .map-markers {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .map-marker {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #F57C00;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    box-shadow: 0 0 10px rgba(245, 124, 0, 0.55);
+    padding: 0;
+    cursor: pointer;
+    pointer-events: all;
+    transform: translate(-50%, -50%);
+    transition:
+      transform 220ms ease,
+      box-shadow 220ms ease;
+    z-index: 1;
+  }
+
+  .map-marker:hover,
+  .map-marker:focus-visible {
+    transform: translate(-50%, -50%) scale(1.45);
+    box-shadow: 0 0 20px rgba(245, 124, 0, 0.85);
+    outline: 2px solid rgba(245, 124, 0, 0.55);
+    outline-offset: 3px;
+    z-index: 2;
   }
 
   /* ────────────────────────────────────────────────────────────────────────── */
@@ -825,12 +911,26 @@ const MARQUEE_COMPANIES = ENTERPRISE_CONTEXTS.flatMap((c) => c.companies);
       grid-template-columns: 1fr;
     }
 
-    .international-map {
-      padding: 1rem;
-    }
-
     .countries-chips {
       gap: 0.5rem;
     }
   }
 </style>
+
+<script>
+  /* Map marker ↔ country chip interaction */
+  const markers = document.querySelectorAll('.map-marker');
+
+  function setChipActive(country: string, active: boolean) {
+    const chip = document.querySelector<HTMLElement>(`.country-chip[data-country="${country}"]`);
+    if (chip) chip.classList.toggle('active', active);
+  }
+
+  markers.forEach((marker) => {
+    const country = (marker as HTMLElement).dataset.country ?? '';
+    marker.addEventListener('mouseenter', () => setChipActive(country, true));
+    marker.addEventListener('mouseleave', () => setChipActive(country, false));
+    marker.addEventListener('focus',      () => setChipActive(country, true));
+    marker.addEventListener('blur',       () => setChipActive(country, false));
+  });
+</script>
