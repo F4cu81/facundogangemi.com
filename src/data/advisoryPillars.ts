@@ -21,7 +21,7 @@ export const ADVISORY_PILLARS: AdvisoryPillar[] = [
     outcome: 'From AI experiments to AI-enabled organizations.',
     description:
       'Build a pragmatic AI strategy aligned with your business model, operating structure and transformation goals.',
-    href: '/advisory/ai-strategy',
+    href: '/advisory/#ai-strategy',
   },
   {
     id: 'digital-transformation',
@@ -30,16 +30,16 @@ export const ADVISORY_PILLARS: AdvisoryPillar[] = [
     outcome: 'Operating models that scale beyond the pilot.',
     description:
       'Design and execute transformation programs that deliver measurable outcomes across people, process and technology.',
-    href: '/advisory/digital-transformation',
+    href: '/advisory/#digital-transformation',
   },
   {
-    id: 'enterprise-agility',
-    icon: 'git-branch',
-    title: 'Enterprise Agility',
-    outcome: 'Agility as an operating model, not a methodology.',
+    id: 'operational-excellence',
+    icon: 'trending-up',
+    title: 'Operational Excellence',
+    outcome: 'Execution systems that turn strategy into measurable performance.',
     description:
-      'Evolve how your organization operates, decides and delivers at enterprise scale — beyond frameworks and ceremonies.',
-    href: '/advisory/enterprise-agility',
+      'Improve how your organization operates, prioritizes and delivers through governance frameworks, OKRs, performance metrics and continuous improvement disciplines.',
+    href: '/advisory/#operational-excellence',
   },
   {
     id: 'ai-adoption',
@@ -48,6 +48,6 @@ export const ADVISORY_PILLARS: AdvisoryPillar[] = [
     outcome: 'From AI awareness to AI-enabled execution.',
     description:
       'Guide your organization through structured AI adoption — from readiness assessment and use-case prioritization to embedded, scalable AI practices.',
-    href: '/advisory/ai-adoption',
+    href: '/advisory/#ai-adoption',
   },
 ];
