@@ -1,68 +1,493 @@
-﻿---
+---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+
+interface FocusArea {
+  title: string;
+  description: string;
+}
+
+interface AdvisorySection {
+  id: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  themes: FocusArea[];
+  bg: string;
+  headingId: string;
+}
+
+const ADVISORY_SECTIONS: AdvisorySection[] = [
+  {
+    id: 'ai-strategy',
+    eyebrow: 'Advisory Practice',
+    title: 'AI Strategy',
+    description:
+      'AI initiatives create value when they connect technology decisions with business priorities. This advisory work helps leaders identify where AI can generate measurable impact, prioritize the right opportunities and build a roadmap that aligns strategy, governance and execution.',
+    themes: [
+      { title: 'AI opportunity mapping',    description: 'Identify where AI can create measurable business value.' },
+      { title: 'Use case prioritization',   description: 'Select the initiatives with the highest strategic potential.' },
+      { title: 'Business outcome alignment',description: 'Connect AI initiatives with clear business priorities.' },
+      { title: 'AI governance',             description: 'Define decision rules, ownership and responsible adoption.' },
+      { title: 'Strategic roadmap',         description: 'Translate AI ambition into sequenced execution.' },
+      { title: 'Executive decision-making', description: 'Help leaders make informed AI investment decisions.' },
+    ],
+    bg: 'bg-gray-950',
+    headingId: 'ai-strategy-heading',
+  },
+  {
+    id: 'digital-transformation',
+    eyebrow: 'Advisory Practice',
+    title: 'Digital Transformation',
+    description:
+      'Digital transformation does not succeed through technology alone. It requires operating models, decision systems and execution practices that allow business, product and technology teams to move in the same direction. This work helps organizations reduce complexity and transform with structure.',
+    themes: [
+      { title: 'Operating model evolution',          description: 'Redesign how teams, decisions and delivery systems work.' },
+      { title: 'Business and technology alignment',  description: 'Connect transformation priorities with technology execution.' },
+      { title: 'Transformation roadmap',             description: 'Structure the path from ambition to measurable delivery.' },
+      { title: 'Organizational agility',             description: 'Improve adaptability across business, product and technology teams.' },
+      { title: 'Product and technology collaboration', description: 'Strengthen collaboration between strategy, product and engineering.' },
+      { title: 'Execution governance',               description: 'Create routines that keep transformation work visible and accountable.' },
+    ],
+    bg: 'bg-[#05070D]',
+    headingId: 'digital-transformation-heading',
+  },
+  {
+    id: 'operational-excellence',
+    eyebrow: 'Advisory Practice',
+    title: 'Operational Excellence',
+    description:
+      'Operational excellence gives transformation the discipline it needs to scale. Through playbooks, execution standards, metrics and management routines, organizations can improve transparency, accountability and delivery performance.',
+    themes: [
+      { title: 'Operational playbooks',   description: 'Document standards that improve consistency and scalability.' },
+      { title: 'Jira operating practices',description: 'Turn Jira into a management system, not only a task tracker.' },
+      { title: 'Execution standards',     description: 'Define how teams plan, track and deliver work.' },
+      { title: 'Performance dashboards',  description: 'Make delivery, capacity and progress visible.' },
+      { title: 'OKRs and QBRs',           description: 'Connect strategic goals with quarterly execution routines.' },
+      { title: 'Continuous improvement',  description: 'Build routines for learning, adaptation and performance improvement.' },
+    ],
+    bg: 'bg-gray-950',
+    headingId: 'operational-excellence-heading',
+  },
+  {
+    id: 'ai-adoption',
+    eyebrow: 'Advisory Practice',
+    title: 'AI Adoption',
+    description:
+      'AI adoption requires more than access to tools. Leaders and teams need clarity, confidence and practical ways to integrate AI into decision-making, delivery and operational workflows. This advisory work helps organizations move from experimentation to sustainable adoption.',
+    themes: [
+      { title: 'AI adoption roadmap',      description: 'Sequence adoption from awareness to sustainable usage.' },
+      { title: 'Workflow redesign',        description: 'Integrate AI into real decision and delivery workflows.' },
+      { title: 'Team enablement',          description: 'Help teams build confidence and practical AI capabilities.' },
+      { title: 'Change management',        description: 'Reduce resistance and support behavioral adoption.' },
+      { title: 'Responsible adoption',     description: 'Align AI usage with governance, security and ethical standards.' },
+      { title: 'Practical AI integration', description: 'Move AI from experimentation into everyday business execution.' },
+    ],
+    bg: 'bg-[#05070D]',
+    headingId: 'ai-adoption-heading',
+  },
+];
+
 ---
 
 <BaseLayout
-  title="Enterprise Transformation Advisory"
-  description="Enterprise advisory spanning AI Strategy, Digital Transformation, Enterprise Agility and AI Adoption — operating models and measurable business impact."
+  title="Advisory | AI Strategy & Transformation"
+  description="Executive advisory for AI strategy, digital transformation, operational excellence and AI adoption focused on measurable business impact."
+  canonical="https://facundogangemi.com/advisory/"
+  structuredData={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: 'AI Strategy & Digital Transformation Advisory',
+      provider: {
+        '@type': 'Person',
+        name: 'Facundo Gangemi',
+        url: 'https://facundogangemi.com',
+      },
+      description: 'Executive advisory for AI strategy, digital transformation, operational excellence and AI adoption focused on measurable business impact.',
+      url: 'https://facundogangemi.com/advisory/',
+      serviceType: [
+        'AI Strategy Advisory',
+        'Digital Transformation Advisory',
+        'Operational Excellence Advisory',
+        'AI Adoption Advisory',
+      ],
+      areaServed: ['Europe', 'Latin America'],
+    },
+  ]}
 >
 
-  <section class="section-py bg-[#05070D]" aria-labelledby="advisory-heading">
+  <!-- ── Hero ──────────────────────────────────────────────────────────── -->
+  <section
+    id="advisory-hero"
+    class="section-py"
+    style="background: #05070D;"
+    aria-labelledby="advisory-h1"
+  >
     <div class="container-site">
+      <div class="advisory-hero-layout">
 
-      <nav class="mb-8" aria-label="Breadcrumb">
-        <a href="/" class="text-white/40 text-sm hover:text-white/65 transition-colors">
-          ← Facundo Gangemi
-        </a>
-      </nav>
-
-      <span class="eyebrow">Advisory</span>
-
-      <h1 id="advisory-heading" class="text-section font-heading font-bold text-white mt-2 mb-6 max-w-[20ch]">
-        Enterprise Transformation Advisory
-      </h1>
-
-      <p class="text-white/65 text-lg leading-relaxed max-w-[56ch] mb-6">
-        Four interconnected advisory practices for enterprise leaders navigating
-        AI Strategy, Digital Transformation, Enterprise Agility and AI Adoption.
-        Each practice is designed to connect strategy, operating models and execution
-        into a coherent transformation approach.
-      </p>
-
-      <p class="text-white/50 leading-relaxed max-w-[56ch] mb-12">
-        The work focuses on building operating structures that scale beyond the pilot,
-        governance models that sustain momentum, and execution disciplines that convert
-        strategic ambition into measurable business impact — across banking, financial
-        services, technology and enterprise organizations.
-      </p>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mb-12">
-        {[
-          { label: 'AI Strategy', href: '/advisory/ai-strategy' },
-          { label: 'Digital Transformation', href: '/advisory/digital-transformation' },
-          { label: 'Enterprise Agility', href: '/advisory/enterprise-agility' },
-          { label: 'AI Adoption', href: '/advisory/ai-adoption' },
-        ].map((item) => (
-          <a
-            href={item.href}
-            class="card-dark group flex items-center justify-between px-5 py-4"
+        <!-- Left: editorial text -->
+        <div class="advisory-hero-text">
+          <span class="eyebrow">AI Strategy · Enterprise Transformation</span>
+          <h1
+            id="advisory-h1"
+            class="advisory-h1 font-heading font-bold text-white reveal"
           >
-            <span class="font-heading font-semibold text-white text-sm">{item.label}</span>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="text-white/30 transition-transform group-hover:translate-x-1 group-hover:text-orange-500">
-              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        ))}
+            AI Strategy &amp; Digital Transformation Advisory.
+          </h1>
+          <p class="advisory-hero-lead reveal delay-100">
+            Executive advisory for AI Strategy, Digital Transformation and Intelligent
+            Operating Models. I help organizations evolve with clarity, structure and
+            measurable impact.
+          </p>
+          <p class="advisory-hero-sub reveal delay-200">
+            Each practice connects strategy with operating models, governance and
+            execution discipline — built for enterprise leaders driving measurable change.
+          </p>
+          <div class="advisory-hero-cta reveal delay-300">
+            <a href="/contact/" class="btn-primary">
+              Book Advisory Call
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="/insights/" class="btn-outline">
+              Explore Insights
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+          <p class="advisory-hero-topics reveal delay-300" aria-label="Practices: AI Strategy, Digital Transformation, Operational Excellence, AI Adoption">
+            AI Strategy · Digital Transformation · Operational Excellence · AI Adoption
+          </p>
+        </div>
+
+        <!-- Right: editorial hero image -->
+        <div class="advisory-hero-visual reveal delay-200">
+          <div class="advisory-hero-image-wrap">
+            <img
+              src="/images/Advisory/Advisory-hero-client-delivery.webp"
+              alt="Executive advisory session on AI strategy and digital transformation"
+              width="760"
+              height="570"
+              loading="eager"
+              decoding="async"
+              class="advisory-hero-img"
+            />
+            <div class="advisory-hero-fade-left" aria-hidden="true"></div>
+            <div class="advisory-hero-fade-bottom" aria-hidden="true"></div>
+          </div>
+        </div>
+
       </div>
+    </div>
+  </section>
 
-      <a href="/contact" class="btn-primary">
-        Book Advisory Call
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
+  <!-- ── Advisory Practice Sections ────────────────────────────────────── -->
+  {ADVISORY_SECTIONS.map((section) => (
+    <section
+      id={section.id}
+      class={`${section.bg} section-py`}
+      style="scroll-margin-top: 96px"
+      aria-labelledby={section.headingId}
+    >
+      <div class="container-site">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start lg:items-center">
 
+          <!-- Content -->
+          <div class="lg:col-span-7">
+            <span class="eyebrow">{section.eyebrow}</span>
+            <h2
+              id={section.headingId}
+              class="text-section font-heading font-bold text-white mt-3 mb-6 max-w-[24ch]"
+            >
+              {section.title}
+            </h2>
+            <p class="text-white/65 text-lg leading-relaxed max-w-[54ch]">
+              {section.description}
+            </p>
+          </div>
+
+          <!-- Focus areas -->
+          <div class="lg:col-span-5">
+            <p class="fa-label">Focus Areas</p>
+            <div class="fa-grid">
+              {section.themes.map((area, i) => (
+                <div class="fa-card">
+                  <p class="fa-num">{String(i + 1).padStart(2, '0')}</p>
+                  <h3 class="fa-title">{area.title}</h3>
+                  <p class="fa-desc">{area.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- ── Final CTA ─────────────────────────────────────────────────────── -->
+  <section
+    id="advisory-final-cta"
+    class="section-py-sm bg-gray-950"
+    aria-labelledby="advisory-cta-heading"
+  >
+    <div class="container-site">
+      <div class="advisory-cta-card reveal">
+        <div class="advisory-cta-inner">
+          <span class="eyebrow">Strategic Advisory</span>
+          <h2
+            id="advisory-cta-heading"
+            class="advisory-cta-heading font-heading font-bold text-white"
+          >
+            Need to turn AI strategy into measurable execution?
+          </h2>
+          <p class="advisory-cta-body">
+            Explore advisory support designed for leaders working on AI strategy,
+            digital transformation, operational excellence and measurable business impact.
+          </p>
+          <div class="advisory-cta-actions">
+            <a href="/contact/" class="btn-primary">
+              Book Advisory Call
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="/insights/" class="btn-outline">
+              Read Insights
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
 </BaseLayout>
+
+<style>
+  /* ── Hero ─────────────────────────────────────────────────────────────── */
+
+  .advisory-hero-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .advisory-hero-layout {
+      grid-template-columns: 50fr 50fr;
+      gap: 3.5rem;
+    }
+  }
+
+  .advisory-h1 {
+    font-size: clamp(1.875rem, 4vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0.75rem 0 1.5rem;
+  }
+
+  .advisory-hero-lead {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.68);
+    line-height: 1.7;
+    max-width: 50ch;
+    margin-bottom: 0.85rem;
+  }
+
+  .advisory-hero-sub {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.40);
+    line-height: 1.7;
+    max-width: 48ch;
+    margin-bottom: 2rem;
+  }
+
+  .advisory-hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.875rem;
+    align-items: center;
+  }
+
+  .advisory-hero-topics {
+    margin-top: 1.5rem;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.28);
+    letter-spacing: 0.06em;
+  }
+
+  /* Hero right: editorial image */
+  .advisory-hero-visual {
+    display: block;
+  }
+
+  .advisory-hero-image-wrap {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+  }
+
+  @media (min-width: 1024px) {
+    .advisory-hero-image-wrap {
+      aspect-ratio: 4 / 3;
+      border-radius: 1.25rem;
+    }
+  }
+
+  .advisory-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    filter: brightness(1.08);
+  }
+
+  .advisory-hero-fade-left {
+    position: absolute;
+    inset-y: 0;
+    left: 0;
+    width: 22%;
+    background: linear-gradient(to right, #05070D, transparent);
+    pointer-events: none;
+  }
+
+  .advisory-hero-fade-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25%;
+    background: linear-gradient(to top, #05070D, transparent);
+    pointer-events: none;
+  }
+
+  /* ── Focus Area Cards ──────────────────────────────────────────────────── */
+
+  .fa-label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245, 124, 0, 0.72);
+    margin-bottom: 1rem;
+  }
+
+  .fa-label::before {
+    content: '';
+    display: block;
+    width: 1.25rem;
+    height: 1.5px;
+    background: rgba(245, 124, 0, 0.55);
+    border-radius: 1px;
+    flex-shrink: 0;
+  }
+
+  .fa-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.625rem;
+  }
+
+  @media (min-width: 640px) {
+    .fa-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .fa-card {
+    padding: 1rem 1.125rem;
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-left: 2px solid rgba(245, 124, 0, 0.22);
+    transition:
+      transform 200ms ease,
+      background 200ms ease,
+      border-left-color 200ms ease,
+      box-shadow 200ms ease;
+  }
+
+  .fa-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.055);
+    border-left-color: rgba(245, 124, 0, 0.65);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), 0 0 12px rgba(245, 124, 0, 0.06);
+  }
+
+  .fa-num {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: rgba(245, 124, 0, 0.50);
+    margin: 0 0 0.3rem;
+  }
+
+  .fa-title {
+    font-family: Manrope, system-ui, sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.25;
+    margin: 0 0 0.325rem;
+  }
+
+  .fa-desc {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.38);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* ── Final CTA ─────────────────────────────────────────────────────────── */
+
+  .advisory-cta-card {
+    border-radius: 1.25rem;
+    padding: 3rem 2.5rem;
+    background: #121212;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-top: 2px solid rgba(245, 124, 0, 0.35);
+  }
+
+  @media (min-width: 1024px) {
+    .advisory-cta-card { padding: 4rem; }
+  }
+
+  .advisory-cta-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .advisory-cta-heading {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin: 0.75rem 0 1.25rem;
+  }
+
+  .advisory-cta-body {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.56);
+    line-height: 1.70;
+    margin-bottom: 2rem;
+  }
+
+  .advisory-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.875rem;
+    justify-content: center;
+  }
+</style>
