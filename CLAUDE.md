@@ -49,6 +49,20 @@ If there is a conflict between files:
 
 ---
 
+## Context Loading Guide
+
+Before loading additional Markdown documentation, read:
+
+- `PROJECT_CONTEXT_INDEX.md`
+
+Use it to determine which project documents are relevant for the current task.
+
+Do not load archived documents unless the user explicitly asks for historical context.
+
+Current active guidance remains governed by `CLAUDE.md`, `MASTER_CONTEXT.md` and `CEREBRO.md`.
+
+---
+
 ## Response Efficiency
 
 Follow the response style rules defined in:
