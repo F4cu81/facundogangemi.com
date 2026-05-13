@@ -74,14 +74,14 @@ Before modifying any source file, Claude Code must:
 | Role | Value | Notes |
 |---|---|---|
 | Primary background | `#05070D` | All major section backgrounds |
-| Alternate background | `#080A10` | Subtle contrast for alternating sections |
+| Alternate background | `#121212` / `bg-gray-950` | Alternate section backgrounds — visibly distinct from `#05070D` |
 | Footer background | `#02030A` | Slightly darker than body |
 | Elevated surface | `#0A0F1A` | Cards, modals, secondary surfaces |
 | Navy atmospheric tone | `#00274C` | Sparingly only — must not dominate |
 | Accent / CTA orange | `#F57C00` | Links, markers, highlights, CTAs |
 | Secondary color | `#F2F2F2` | Light text, labels |
 
-**Background rhythm rule:** Consecutive dark sections alternate between `#05070D` and `#080A10`. The visual contrast is intentionally subtle — approximately `#080A10` reads as elevated, not a strong stripe. Do NOT increase this contrast.
+**Background rhythm rule:** Consecutive dark sections alternate between `#05070D` (primary dark) and `#121212` / `bg-gray-950` (alternate dark). The alternate is visibly distinct — a real Tailwind project token — not a near-imperceptible shift. `#080A10` is retired and must not be reintroduced.
 
 ### Typography
 
@@ -435,7 +435,7 @@ These decisions are approved and must not be reversed without explicit user conf
 | Enterprise Contexts: marquee instead of chip grid | Marquee scales visually for many logos/tags without increasing page height | Phase 5a |
 | Eurasia as single SVG path (not separate Europe + Asia) | Avoids complex Ural/Bosphorus boundary; cleaner geometric aesthetic | Phase 5a.4 |
 | World map markers on Hispaniola (not Cuba) for Dominican Republic | Geographic accuracy; marker is at (367,222) aligned with Hispaniola ellipse | Phase 5a.4 |
-| Alternating section backgrounds `#05070D` / `#080A10` | Creates subtle rhythm without harsh stripe effect | Phase 5a.4 |
+| Alternating section backgrounds `#05070D` / `#121212` (`bg-gray-950`) | `#080A10` was imperceptibly close to `#05070D`; `gray.950` renders visibly distinct. `#080A10` is retired. | Phase 5a.5 |
 | Enterprise heading at `1.35rem`/`1.6rem` (not `text-section` size) | Larger heading overwhelmed the marquee and made the section feel unbalanced | Phase 5a.4 |
 | Contact added to main navbar (after About) | Expected by visitors; improves navigation clarity and conversion | Phase 5a.4 |
 | Narrative/detail sections use `bg-gray-950` (`#121212`); feature/action sections use `bg-[#05070D]` | `#080A10` was imperceptibly close to `#05070D`; `gray.950` is a real project token that renders visibly distinct | Phase 5a.5 |
