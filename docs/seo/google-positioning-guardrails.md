@@ -49,11 +49,15 @@ These are the terms the site must credibly compete for in Google Search. Every p
 
 | Term | Target page |
 |---|---|
-| AI Strategy Advisor | `/advisory/ai-strategy`, homepage |
-| Digital Transformation Advisor | `/advisory/digital-transformation`, homepage |
+| AI Strategy Advisor | `/advisory/#ai-strategy`, homepage |
+| Digital Transformation Advisor | `/advisory/#digital-transformation`, homepage |
 | Enterprise Transformation Advisor | `/advisory`, homepage |
-| AI Strategy Consultant | `/advisory/ai-strategy`, insights |
-| Digital Transformation Consultant | `/advisory/digital-transformation`, insights |
+| Operational Excellence Advisor | `/advisory/#operational-excellence` |
+| AI Adoption Advisor | `/advisory/#ai-adoption` |
+| AI Strategy Consultant | `/advisory/#ai-strategy`, insights |
+| Digital Transformation Consultant | `/advisory/#digital-transformation`, insights |
+
+**Note on advisory architecture (Phase 7):** The four advisory practices are consolidated into a single `/advisory/` page with anchor sections: `#ai-strategy`, `#digital-transformation`, `#operational-excellence`, `#ai-adoption`. There are no separate standalone sub-pages in the main navigation. References in this document use anchor URLs (`/advisory/#practice`) to reflect this structure.
 
 **Usage rule:** At least one primary positioning term must appear in the `<title>` and `<h1>` of the homepage and each advisory page. It must also appear naturally within the first 100 words of body text. Do not force it — integrate it into clear, readable copy.
 
@@ -101,13 +105,13 @@ Content and metadata must be designed to match these user intents. Each intent m
 
 | Search intent | Primary page |
 |---|---|
-| Find an AI strategy advisor | `/advisory/ai-strategy`, homepage |
-| Connect AI strategy with execution | `/advisory/ai-strategy`, insights |
-| Improve digital transformation outcomes | `/advisory/digital-transformation` |
-| Build better operating models | `/advisory`, `/advisory/digital-transformation` |
-| Align OKRs, QBRs and execution governance | `/advisory/enterprise-agility`, insights |
-| Explore enterprise agility beyond Scrum | `/advisory/enterprise-agility` |
-| Assess AI readiness and adoption strategy | `/advisory/ai-adoption`, `/ai-assessment` |
+| Find an AI strategy advisor | `/advisory/#ai-strategy`, homepage |
+| Connect AI strategy with execution | `/advisory/#ai-strategy`, insights |
+| Improve digital transformation outcomes | `/advisory/#digital-transformation` |
+| Build better operating models | `/advisory`, `/advisory/#digital-transformation` |
+| Align OKRs, QBRs and execution governance | `/advisory/#operational-excellence`, insights |
+| Improve operational discipline and execution systems | `/advisory/#operational-excellence` |
+| Assess AI readiness and adoption strategy | `/advisory/#ai-adoption`, `/ai-assessment` |
 | Read strategic perspectives on AI and transformation | `/insights` |
 | Hire an executive AI advisor or speaker | `/advisory`, `/speaking`, `/contact` |
 
@@ -172,33 +176,35 @@ The homepage is the highest-authority page and the primary entry point for most 
 
 ## 8. Advisory Page Positioning Map
 
-Each advisory page has a defined primary search intent. Titles, H1s, meta descriptions and body copy must align with the intent defined here.
+The advisory offering is consolidated into a single `/advisory/` page with four anchor-based practice sections (Phase 7 architecture). All advisory sub-pages (`/advisory/ai-strategy/`, `/advisory/digital-transformation/`, `/advisory/ai-adoption/`, `/advisory/enterprise-agility/`) were deleted in Phase 8 (2026-05-13). `/advisory/` is the only advisory route. All SEO, internal linking and content rules below apply to the consolidated page and its anchor sections.
 
-### `/advisory`
+Each practice section has a defined primary search intent. The `<h2>` heading of each section, the meta description and body copy of `/advisory/` must collectively cover all four practices.
+
+### `/advisory` (consolidated hub)
 - **Primary intent:** AI Strategy and Transformation Advisory hub
-- **Primary keyphrase:** Enterprise Transformation Advisory
-- **Secondary:** AI Strategy Advisory, Digital Transformation Advisory, Operating Model Design
-- **Purpose:** Overview of all four advisory practices; entry point for visitors who found the site but haven't identified a specific service
+- **Primary keyphrase:** Enterprise Transformation Advisory (or AI Strategy & Digital Transformation Advisory)
+- **Secondary:** AI Strategy Advisory, Digital Transformation Advisory, Operational Excellence Advisory, AI Adoption Advisory, Operating Model Design
+- **Purpose:** Single entry point for all four advisory practices; must allow visitors to self-identify which practice is relevant and navigate to the corresponding anchor section
 
-### `/advisory/ai-strategy`
+### `/advisory/#ai-strategy`
 - **Primary intent:** AI Strategy Advisor
 - **Primary keyphrase:** AI Strategy Advisor (or AI Strategy Consultant)
 - **Secondary:** AI governance, AI roadmap, AI operating model, enterprise AI strategy
-- **Purpose:** Converts visitors searching for an AI strategy advisor into advisory inquiries
+- **Purpose:** Converts visitors searching for an AI strategy advisor; the section H2 and opening copy carry the primary keyphrase weight for this practice
 
-### `/advisory/digital-transformation`
+### `/advisory/#digital-transformation`
 - **Primary intent:** Digital Transformation Advisor
 - **Primary keyphrase:** Digital Transformation Advisor (or Digital Transformation Consultant)
 - **Secondary:** operating model transformation, digital operating model, enterprise digital strategy
 - **Purpose:** Converts visitors searching for a digital transformation advisor
 
-### `/advisory/enterprise-agility`
-- **Primary intent:** Enterprise Agility Advisor
-- **Primary keyphrase:** Enterprise Agility (or Enterprise Agility Advisor)
-- **Secondary:** organizational agility, agile operating models, OKRs, portfolio governance, delivery governance
-- **Note:** Must not position primarily around Scrum or coaching. The focus is enterprise operating model agility.
+### `/advisory/#operational-excellence`
+- **Primary intent:** Operational Excellence Advisory
+- **Primary keyphrase:** Operational Excellence (or Operational Excellence Advisor)
+- **Secondary:** OKRs, QBRs, execution governance, delivery discipline, organizational agility, operating model agility
+- **Note:** "Operational Excellence" is the preferred label for this practice. "Enterprise Agility" may appear as a secondary search theme in Insights content but must not be used as the primary label for this advisory section. The focus is execution systems, discipline and measurable delivery — not Scrum or agile coaching.
 
-### `/advisory/ai-adoption`
+### `/advisory/#ai-adoption`
 - **Primary intent:** AI Adoption Strategy
 - **Primary keyphrase:** AI Adoption Strategy (or AI Adoption Advisor)
 - **Secondary:** AI readiness, AI use-case prioritization, AI enablement, enterprise AI rollout
@@ -218,7 +224,7 @@ Each advisory page has a defined primary search intent. Titles, H1s, meta descri
 ### `/case-studies`
 - **Primary intent:** Digital Transformation Case Studies
 - **Primary keyphrase:** Digital Transformation Case Studies (or AI Transformation Case Studies)
-- **Secondary:** enterprise agility case study, banking transformation, AI strategy results
+- **Secondary:** operational excellence case study, banking transformation, AI strategy results, enterprise transformation outcomes
 - **Note:** Only include real, documented experiences. Do not invent clients or outcomes.
 
 ### `/speaking`
@@ -281,14 +287,14 @@ Google evaluates content against Experience, Expertise, Authoritativeness and Tr
 Internal links distribute authority and help Google understand site structure. Follow these rules:
 
 **Required cross-links:**
-- Homepage → `/advisory`, `/advisory/ai-strategy`, `/insights`, `/contact`
-- `/advisory` → each service sub-page, `/contact`
-- `/advisory/ai-strategy` → `/advisory`, `/insights/ai-strategy/`, `/contact`
-- `/advisory/digital-transformation` → `/advisory`, `/insights/digital-transformation/`, `/contact`
-- `/advisory/enterprise-agility` → `/advisory`, `/insights/strategy-execution/`, `/contact`
-- `/advisory/ai-adoption` → `/advisory`, `/ai-assessment`, `/contact`
-- `/insights` → relevant advisory pages, `/about`
-- Each insight article → relevant advisory page, related insight category
+- Homepage → `/advisory`, `/advisory/#ai-strategy`, `/advisory/#operational-excellence`, `/insights`, `/contact`
+- `/advisory` → each practice anchor (`#ai-strategy`, `#digital-transformation`, `#operational-excellence`, `#ai-adoption`), `/contact`, `/insights`
+- `/advisory/#ai-strategy` section → contextual links to `/insights/ai-strategy/`, `/contact`
+- `/advisory/#digital-transformation` section → contextual links to `/insights/digital-transformation/`, `/contact`
+- `/advisory/#operational-excellence` section → contextual links to `/insights/operational-excellence/`, `/contact`
+- `/advisory/#ai-adoption` section → contextual links to `/ai-assessment`, `/contact`
+- `/insights` → relevant advisory anchor sections, `/about`
+- Each insight article → relevant advisory anchor section (`/advisory/#ai-strategy`, etc.), related insight category
 - `/about` → `/advisory`, `/contact`, `/speaking`
 - `/contact` → `/advisory`
 
@@ -353,16 +359,16 @@ These patterns actively harm the site's SEO positioning and brand credibility. A
 
 The Insights section should evolve into a structured content hub. Each hub is a pillar topic supported by multiple articles, with consistent internal linking back to the relevant advisory page.
 
-| Hub | Target advisory page | Example article topics |
+| Hub | Target advisory section | Example article topics |
 |---|---|---|
-| AI Strategy | `/advisory/ai-strategy` | AI governance frameworks, AI roadmap design, AI operating models, AI strategy for banking |
-| Digital Transformation | `/advisory/digital-transformation` | Operating model redesign, digital strategy execution, transformation program governance |
-| Operating Models | `/advisory`, `/advisory/digital-transformation` | Intelligent operating models, platform operating models, outcome-based operating structures |
-| Enterprise Agility | `/advisory/enterprise-agility` | Agility beyond Scrum, OKR implementation, portfolio governance, delivery discipline |
-| Operational Excellence | Insights category | OKRs, QBRs, process alignment, execution systems, continuous improvement |
-| Strategy Execution | Insights category | Translating strategy to delivery, OKR-linked execution, governance for transformation |
-| AI Governance | `/advisory/ai-strategy`, `/advisory/ai-adoption` | AI risk, responsible AI, AI accountability frameworks |
-| Banking & Financial Services Transformation | `/advisory/ai-strategy`, `/advisory/digital-transformation` | AI in banking, digital operating models for financial services, agile transformation in regulated industries |
+| AI Strategy | `/advisory/#ai-strategy` | AI governance frameworks, AI roadmap design, AI operating models, AI strategy for banking |
+| Digital Transformation | `/advisory/#digital-transformation` | Operating model redesign, digital strategy execution, transformation program governance |
+| Operating Models | `/advisory`, `/advisory/#digital-transformation` | Intelligent operating models, platform operating models, outcome-based operating structures |
+| Operational Excellence | `/advisory/#operational-excellence` | OKRs, QBRs, execution governance, delivery discipline, operational discipline, continuous improvement |
+| Strategy Execution | `/advisory/#operational-excellence` | Translating strategy to delivery, OKR-linked execution, governance for transformation |
+| AI Governance | `/advisory/#ai-strategy`, `/advisory/#ai-adoption` | AI risk, responsible AI, AI accountability frameworks |
+| Banking & Financial Services Transformation | `/advisory/#ai-strategy`, `/advisory/#digital-transformation` | AI in banking, digital operating models for financial services, transformation in regulated industries |
+| AI Adoption | `/advisory/#ai-adoption` | AI readiness assessment, use-case prioritization, change management for AI, scaling AI beyond pilots |
 
 **Content hub rules:**
 - Each hub page (category index) must have a clear H1 aligned to its primary keyphrase

@@ -53,7 +53,7 @@ Every article must belong to one primary content hub. The hub determines interna
   - Connecting AI investments to business outcomes
   - AI strategy for banking and financial services
   - Building an AI operating model
-- **Primary advisory page:** `/advisory/ai-strategy`
+- **Primary advisory page:** `/advisory/#ai-strategy`
 
 ### Hub: Digital Transformation
 - **Search intent:** Understand how to design and execute transformation programs that deliver measurable outcomes
@@ -62,7 +62,7 @@ Every article must belong to one primary content hub. The hub determines interna
   - Designing a transformation operating model
   - From transformation program to operating reality
   - How to govern a digital transformation portfolio
-- **Primary advisory page:** `/advisory/digital-transformation`
+- **Primary advisory page:** `/advisory/#digital-transformation`
 
 ### Hub: Operating Models
 - **Search intent:** Understand how to design organizational structures and processes that scale with transformation
@@ -71,7 +71,7 @@ Every article must belong to one primary content hub. The hub determines interna
   - Platform operating models for enterprise organizations
   - Operating model design for AI-enabled organizations
   - Outcome-based operating structures
-- **Primary advisory page:** `/advisory`, `/advisory/digital-transformation`
+- **Primary advisory page:** `/advisory`, `/advisory/#digital-transformation`
 
 ### Hub: Enterprise Agility
 - **Search intent:** Understand how to move beyond Scrum and Agile ceremonies toward an adaptive enterprise operating model
@@ -80,7 +80,7 @@ Every article must belong to one primary content hub. The hub determines interna
   - OKR implementation in complex organizations
   - Portfolio governance for adaptive organizations
   - Why Agile transformations fail at scale
-- **Primary advisory page:** `/advisory/enterprise-agility`
+- **Primary advisory page:** `/advisory/#operational-excellence`
 
 ### Hub: Operational Excellence
 - **Search intent:** Understand how to align OKRs, QBRs, process and execution systems to deliver sustainable business performance
@@ -89,7 +89,7 @@ Every article must belong to one primary content hub. The hub determines interna
   - How to run effective QBRs in a transformation context
   - Process alignment for enterprise performance
   - Continuous improvement at enterprise scale
-- **Primary advisory page:** `/advisory/enterprise-agility`
+- **Primary advisory page:** `/advisory/#operational-excellence`
 
 ### Hub: Strategy Execution
 - **Search intent:** Understand how to translate strategy into delivery without losing clarity or momentum
@@ -98,7 +98,7 @@ Every article must belong to one primary content hub. The hub determines interna
   - Governance models that connect strategy to delivery
   - How to align enterprise initiatives with strategic intent
   - OKR-linked execution frameworks
-- **Primary advisory page:** `/advisory`, `/advisory/enterprise-agility`
+- **Primary advisory page:** `/advisory`, `/advisory/#operational-excellence`
 
 ### Hub: AI Governance
 - **Search intent:** Understand how to manage AI risk, accountability and responsible adoption at enterprise scale
@@ -107,7 +107,7 @@ Every article must belong to one primary content hub. The hub determines interna
   - Responsible AI in financial services
   - AI accountability structures for enterprise organizations
   - Governing AI across business units
-- **Primary advisory page:** `/advisory/ai-strategy`, `/advisory/ai-adoption`
+- **Primary advisory page:** `/advisory/#ai-strategy`, `/advisory/#ai-adoption`
 
 ### Hub: Banking & Financial Services Transformation
 - **Search intent:** Understand how AI, agility and operating model evolution apply specifically in banking and financial services
@@ -116,7 +116,7 @@ Every article must belong to one primary content hub. The hub determines interna
   - Digital operating models for financial services
   - Agile transformation in compliance-heavy organizations
   - Portfolio governance in banking transformation programs
-- **Primary advisory page:** `/advisory/ai-strategy`, `/advisory/digital-transformation`
+- **Primary advisory page:** `/advisory/#ai-strategy`, `/advisory/#digital-transformation`
 
 ---
 
@@ -375,12 +375,12 @@ Every article must end with a clear, relevant call to action. The CTA should fee
 
 | Hub | Primary CTA |
 |---|---|
-| AI Strategy | "Explore AI Strategy Advisory" → `/advisory/ai-strategy` |
-| Digital Transformation | "Explore Digital Transformation Advisory" → `/advisory/digital-transformation` |
-| Enterprise Agility | "Explore Enterprise Agility Advisory" → `/advisory/enterprise-agility` |
+| AI Strategy | "Explore AI Strategy Advisory" → `/advisory/#ai-strategy` |
+| Digital Transformation | "Explore Digital Transformation Advisory" → `/advisory/#digital-transformation` |
+| Enterprise Agility | "Explore Operational Excellence Advisory" → `/advisory/#operational-excellence` |
 | AI Adoption | "Assess your AI readiness" → `/ai-assessment` |
 | Operating Models | "Discuss your operating model priorities" → `/contact` |
-| Operational Excellence | "Explore Enterprise Agility and Execution Advisory" → `/advisory/enterprise-agility` |
+| Operational Excellence | "Explore Operational Excellence Advisory" → `/advisory/#operational-excellence` |
 | Strategy Execution | "Discuss your strategy execution challenges" → `/contact` |
 | Banking & Financial Services | "Explore AI and Transformation Advisory for Financial Services" → `/advisory` |
 

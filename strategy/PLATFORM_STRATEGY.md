@@ -2,6 +2,12 @@
 **Executive AI Premium · Enterprise Transformation Authority Platform**
 Version 1.0 — Strategic Blueprint (pre-design, pre-code)
 
+> **Document status — Historical planning reference (advisory architecture superseded)**
+> This document was written before implementation. The advisory architecture described here (four separate sub-pages) was superseded in Phase 7 (advisory consolidation into a single `/advisory/` page) and finalized in Phase 8 (sub-pages deleted).
+> **Current live advisory architecture:** single `/advisory/` page with anchor sections `#ai-strategy`, `#digital-transformation`, `#operational-excellence`, `#ai-adoption`.
+> The fourth pillar is **Operational Excellence** (not Enterprise Agility — though Enterprise Agility remains valid as an editorial and SEO content theme).
+> All other strategic guidance in this document (positioning, messaging, UX direction, proof architecture) remains valid.
+
 ---
 
 ## 0. Strategic Diagnosis (Current → Target)
@@ -32,11 +38,11 @@ Three-tier information architecture: **Authority** → **Offer** → **Conversio
 - `/press` Press & Media *(future)*
 
 ### Tier 2 — Offer (what he does, how he helps)
-- `/advisory` Executive Advisory *(hub page)*
-  - `/advisory/ai-strategy` AI Strategy Advisory
-  - `/advisory/digital-transformation` Digital Transformation
-  - `/advisory/enterprise-agility` Enterprise Agility & Operating Models
-  - `/advisory/ai-adoption` AI Adoption & Enablement
+- `/advisory` Executive Advisory *(single consolidated hub — Phase 7)*
+  - `/advisory/#ai-strategy` AI Strategy Advisory *(anchor section)*
+  - `/advisory/#digital-transformation` Digital Transformation *(anchor section)*
+  - `/advisory/#operational-excellence` Operational Excellence *(anchor section — replaces Enterprise Agility sub-page)*
+  - `/advisory/#ai-adoption` AI Adoption & Enablement *(anchor section)*
 - `/programs` Programs & Workshops
   - `/programs/executive-ai-program` Executive AI Program
   - `/programs/transformation-bootcamp` Transformation Leadership Bootcamp
@@ -68,14 +74,15 @@ Three-tier information architecture: **Authority** → **Offer** → **Conversio
 [Logo F·G]   Advisory ▾   Frameworks   Case Studies   Insights   About   ──   [Book Advisory Call →]
 ```
 
-### Mega-menu — `Advisory ▾`
-Four-column layout, dark panel, subtle hover glow.
+### Advisory dropdown — `Advisory ▾`
+*(Phase 7: mega-menu replaced by simple dropdown linking to anchor sections)*
 
-| Column 1 — Strategy | Column 2 — Transformation | Column 3 — Adoption | Column 4 — Featured |
-|---|---|---|---|
-| AI Strategy Advisory | Digital Transformation | AI Adoption Programs | Executive AI Program |
-| Intelligent Operations | Enterprise Agility | Executive Enablement | AI Maturity Assessment |
-| Operating Model Design | Product Transformation | Workshops & Keynotes | Latest Case Study |
+| Item | Route |
+|---|---|
+| AI Strategy | `/advisory/#ai-strategy` |
+| Digital Transformation | `/advisory/#digital-transformation` |
+| Operational Excellence | `/advisory/#operational-excellence` |
+| AI Adoption | `/advisory/#ai-adoption` |
 
 ### Footer navigation (4 columns)
 1. **Advisory** — all advisory pages
@@ -320,7 +327,7 @@ Primary CTA: `Book an Advisory Call`. Secondary: `Send a strategic inquiry`.
 ### Launch scope (Phase 1 — MVP)
 1. Home
 2. About
-3. Advisory hub + 4 service detail pages
+3. Advisory hub (`/advisory/` with 4 anchor sections — sub-pages consolidated Phase 7, deleted Phase 8)
 4. Frameworks hub + 1 signature framework page (AI Strategy Framework)
 5. Case Studies index + 3 detail pages (banking, insurance/telco, executive enablement)
 6. Insights index + category filter + article template

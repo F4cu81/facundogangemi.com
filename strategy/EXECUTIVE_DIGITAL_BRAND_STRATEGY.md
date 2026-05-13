@@ -11,12 +11,13 @@
 
 **Executive Digital Brand Strategy** es la capacidad de diseñar, estructurar y optimizar la presencia digital de un profesional, líder, consultor, advisor, founder o experto para convertir su marca personal en un activo estratégico de posicionamiento, autoridad y generación de oportunidades comerciales.
 
-Esta skill integra cuatro dimensiones principales:
+Esta skill integra cinco dimensiones principales:
 
 - **Web Strategy:** cómo debe estructurarse la web según el modelo de negocio, la oferta y el público objetivo.
 - **Positioning:** cómo debe ser percibido el profesional en el mercado.
 - **Executive Personal Brand:** cómo construir autoridad, confianza y diferenciación desde una identidad profesional ejecutiva.
 - **Conversion Strategy:** cómo transformar visitas, lectores o contactos en conversaciones comerciales calificadas.
+- **Web Development Standards:** cómo asegurar que la ejecución técnica de la web refuerce autoridad, confianza, performance, accesibilidad, SEO y mantenibilidad.
 
 No se trata solamente de diseñar una página web. Se trata de construir una presencia digital que comunique con claridad:
 
@@ -38,6 +39,7 @@ Una persona con esta skill puede asesorar a clientes que necesitan:
 - Diferenciarse frente a competidores.
 - Generar más confianza en potenciales clientes.
 - Convertir visitas digitales en oportunidades de negocio.
+- Asegurar que la implementación técnica de la web sea coherente con la promesa de marca.
 
 ---
 
@@ -72,8 +74,9 @@ Algunos síntomas frecuentes son:
 - El contenido no conecta con dolores reales del cliente.
 - No existe una estrategia clara de conversión.
 - LinkedIn, la web y la narrativa profesional no están alineados.
+- La ejecución técnica de la web no sostiene la percepción de calidad, confianza o expertise.
 
-Esta skill resuelve ese problema mediante una combinación de estrategia, posicionamiento, arquitectura web, narrativa y conversión.
+Esta skill resuelve ese problema mediante una combinación de estrategia, posicionamiento, arquitectura web, narrativa, estándares técnicos y conversión.
 
 ---
 
@@ -213,6 +216,165 @@ Incluye:
 
 Por ejemplo, una persona puede ofrecer muchas cosas: Scrum, OKRs, transformación digital, AI, operating models, workshops y playbooks. Esta skill permite agrupar todo eso en una arquitectura comercial clara.
 
+En el caso de facundogangemi.com, la oferta se organiza en cuatro líneas de advisory:
+
+- **AI Strategy** — diseño de estrategia, gobernanza y modelo operativo de IA para líderes empresariales.
+- **Digital Transformation** — transformación de modelos operativos, ejecución y alineación estratégica.
+- **Operational Excellence** — sistemas de ejecución, OKRs, QBRs, disciplina operativa y mejora continua.
+- **AI Adoption** — habilitación de adopción de IA en equipos, casos de uso prioritarios y readiness organizacional.
+
+Esta arquitectura diferencia AI Strategy (definir la estrategia) de AI Adoption (implementar y habilitar), y separa Operational Excellence de Digital Transformation para comunicar con mayor precisión el tipo de problema que resuelve cada servicio. El término "Operational Excellence" es preferido sobre "Enterprise Agility" como categoría principal, ya que conecta mejor con el lenguaje ejecutivo y la búsqueda orgánica del público objetivo.
+
+---
+
+### 6.7 Web Development Standards for Executive Digital Authority
+
+Capacidad para definir estándares de desarrollo web que refuercen autoridad ejecutiva, confianza, performance, accesibilidad, SEO, mantenibilidad y conversión.
+
+En una marca ejecutiva, la ejecución técnica no es un detalle operativo. Es una señal directa de profesionalismo. Una web lenta, inestable, confusa o poco accesible contradice cualquier mensaje de excelencia, transformación u orientación a resultados.
+
+Esta competencia traduce mejores prácticas de desarrollo web en criterios aplicables a una presencia digital ejecutiva.
+
+#### Performance as Credibility
+
+La web debe tratar la performance como una señal de confianza. La velocidad de carga, la estabilidad visual y la respuesta fluida ante interacciones comunican disciplina operativa y madurez técnica.
+
+Criterios principales:
+
+- Optimizar imágenes en formatos modernos como WebP o AVIF cuando sea conveniente.
+- Definir dimensiones explícitas en imágenes para evitar saltos visuales.
+- Reducir JavaScript innecesario y priorizar HTML estático cuando aporte suficiente valor.
+- Mantener una experiencia rápida en dispositivos móviles y conexiones medias.
+- Revisar Core Web Vitals como parte del control de calidad, especialmente LCP, CLS e INP.
+- Evitar animaciones, librerías o efectos visuales que aporten poco valor y degraden la experiencia.
+
+Para una marca asociada a AI Strategy, Digital Transformation y Operational Excellence, la web debe demostrar eficiencia en su propia implementación.
+
+#### UX, UI and Visual Hierarchy
+
+La experiencia visual debe transmitir claridad ejecutiva. El diseño debe ayudar al visitante a entender rápido quién es el profesional, qué problema resuelve, qué autoridad tiene y cuál es el siguiente paso.
+
+Criterios principales:
+
+- Usar jerarquía visual clara en hero sections, títulos, subtítulos, bloques de prueba y CTAs.
+- Mantener una estructura editorial premium, con suficiente espacio, buena legibilidad y ritmo visual.
+- Diseñar layouts responsive con especial atención a mobile.
+- Usar navegación simple y consistente.
+- Evitar saturar la interfaz con demasiados mensajes, tarjetas o llamadas a la acción simultáneas.
+- Priorizar claridad sobre ornamentación.
+
+La estética debe sostener la estrategia. No debe competir con ella.
+
+#### Accessibility and Inclusive Quality
+
+La accesibilidad debe tratarse como un estándar de calidad, no como una corrección final. Una web accesible también tiende a ser más clara, más indexable y más robusta.
+
+Criterios principales:
+
+- Usar HTML semántico para estructurar correctamente páginas, secciones, navegación y contenido.
+- Mantener contraste suficiente entre texto y fondo.
+- Garantizar foco visible y navegación por teclado.
+- Usar textos alternativos relevantes en imágenes informativas.
+- Evitar depender únicamente del color para comunicar información.
+- Aplicar ARIA solo cuando el HTML nativo no sea suficiente.
+- Mantener tamaños de fuente y espaciados legibles.
+
+La marca debe proyectar excelencia también para usuarios con distintas capacidades, dispositivos y contextos de uso.
+
+#### SEO and Structured Content for AI Discoverability
+
+El SEO debe enfocarse en claridad, estructura, intención de búsqueda y autoridad temática. Además, la web debe facilitar que motores de búsqueda y sistemas asistidos por IA comprendan el posicionamiento, los servicios, los temas de expertise y la relación entre contenidos.
+
+Criterios principales:
+
+- Definir un H1 único y claro por página.
+- Mantener jerarquía lógica de headings.
+- Usar títulos SEO y meta descriptions precisos, orientados a intención y dentro de rangos adecuados.
+- Configurar canonical URLs alineadas al dominio principal.
+- Diseñar enlaces internos entre home, advisory, about, insights y contact. En arquitecturas con una sola página de advisory organizada por secciones ancladas (como `/advisory/#ai-strategy`, `/advisory/#operational-excellence`), los enlaces internos deben apuntar a los anchors correspondientes, no a sub-páginas independientes que puedan quedar huérfanas.
+- Usar structured data relevante, como Person, Organization, WebSite, WebPage, Article, BreadcrumbList, ProfessionalService, ContactPage o CollectionPage según corresponda.
+- Organizar insights en clusters temáticos vinculados al posicionamiento estratégico.
+- Evitar contenido genérico que no demuestre experiencia, criterio o punto de vista propio.
+
+La prioridad no es escribir para algoritmos. La prioridad es estructurar experiencia profesional de forma que humanos, buscadores y sistemas de IA puedan interpretarla con precisión.
+
+#### Content Architecture and Authority Signals
+
+La arquitectura de contenidos debe convertir la experiencia profesional en evidencia visible. Una web ejecutiva no debe depender solo de claims. Debe mostrar señales concretas de autoridad, trayectoria, foco e impacto.
+
+Criterios principales:
+
+- Conectar servicios con problemas de negocio reales.
+- Mostrar outcomes esperados en cada línea de advisory.
+- Integrar prueba de autoridad mediante experiencia, sectores, países, empresas, casos, métricas o credenciales.
+- Usar la sección Insights como hub de pensamiento estratégico.
+- Diseñar rutas claras desde contenido educativo hacia páginas de servicios o contacto.
+- Evitar páginas huérfanas sin conexión con la arquitectura principal.
+- Mantener consistencia entre el mensaje de la web, LinkedIn y el contenido editorial.
+
+La autoridad no debe quedar implícita. Debe estar diseñada dentro de la estructura del sitio.
+
+#### Trust, Security and Technical Reliability
+
+En una web ejecutiva, la confianza depende también de señales técnicas básicas. Aunque el sitio sea estático, debe proteger la experiencia del usuario y evitar riesgos reputacionales innecesarios.
+
+Criterios principales:
+
+- Usar HTTPS y canonicalización correcta del dominio.
+- Mantener dependencias actualizadas y revisar vulnerabilidades durante el desarrollo.
+- Evitar formularios inseguros o redirecciones confusas.
+- Integrar servicios externos, como Calendly o Formspree, de forma clara y controlada.
+- Cuidar privacidad, consentimiento y tratamiento de datos de contacto.
+- Evitar scripts innecesarios de terceros.
+- Documentar integraciones críticas para facilitar mantenimiento futuro.
+
+La seguridad debe ser proporcional al tipo de sitio. Para una web estática, el foco está en dependencias, formularios, servicios externos, privacidad y confiabilidad.
+
+#### Maintainable Static Architecture
+
+La arquitectura técnica debe mantenerse ligera, modular y escalable. En el caso de facundogangemi.com, los estándares deben alinearse con Astro, TypeScript, Tailwind, MDX/Markdown y despliegue estático en GitHub Pages.
+
+Criterios principales:
+
+- Crear componentes reutilizables en Astro para secciones, CTAs, cards, banners, layouts y bloques editoriales.
+- Usar TypeScript para reducir errores y mejorar mantenibilidad.
+- Centralizar patrones visuales mediante Tailwind y design tokens.
+- Mantener convenciones claras de nombres para imágenes, componentes, páginas y documentos.
+- Documentar decisiones estratégicas en archivos Markdown de contexto.
+- Ejecutar controles de calidad antes de publicar, incluyendo linting, checks del proyecto, performance básica, accesibilidad y revisión SEO.
+- Evitar dependencias pesadas cuando una solución nativa o estática sea suficiente.
+
+La mantenibilidad también es una señal de operational excellence. Una web fácil de evolucionar permite iterar estrategia, contenido y conversión sin reescrituras innecesarias.
+
+#### Conversion and Executive Decision Paths
+
+La conversión debe respetar el contexto de una audiencia ejecutiva. El objetivo no es presionar al usuario, sino facilitar que una persona interesada pueda avanzar con claridad y baja fricción.
+
+Criterios principales:
+
+- Usar CTAs claros y específicos.
+- Diferenciar CTAs de alta intención, como agendar una conversación, de CTAs exploratorios, como leer insights o revisar servicios.
+- Ubicar llamadas a la acción en momentos lógicos del recorrido.
+- Diseñar formularios simples, confiables y sin fricción innecesaria.
+- Reforzar CTAs con señales de autoridad cercanas.
+- Evitar popups agresivos o patrones de conversión que reduzcan percepción premium.
+
+La conversión debe sentirse como una continuación natural de la confianza construida por el contenido.
+
+#### Anti-patterns to Avoid
+
+Esta skill debe evitar patrones que debilitan la autoridad digital:
+
+- Convertir la web en un CV cronológico sin propuesta estratégica.
+- Sobrecargar la home con demasiadas líneas de servicio sin jerarquía.
+- Usar claims de AI, transformación o innovación sin evidencia concreta.
+- Instalar dependencias, animaciones o scripts que afecten performance sin aportar valor.
+- Crear páginas de servicios aisladas, sin enlaces internos ni relación con insights.
+- Publicar contenido genérico que podría pertenecer a cualquier consultor.
+- Priorizar estética sobre claridad, accesibilidad o conversión.
+- Introducir recomendaciones técnicas incompatibles con el stack real del proyecto.
+- Perseguir tendencias de desarrollo sin evaluar impacto, mantenibilidad o coherencia estratégica.
+
 ---
 
 ## 7. Framework de trabajo
@@ -230,6 +392,7 @@ Actividades:
 - Revisar competidores o referentes.
 - Evaluar activos digitales existentes.
 - Identificar objetivos comerciales.
+- Revisar estado técnico de la web, performance, accesibilidad, SEO y mantenibilidad.
 
 Entregables:
 
@@ -237,6 +400,7 @@ Entregables:
 - Mapa de audiencia objetivo.
 - Inventario de servicios y capacidades.
 - Hipótesis inicial de posicionamiento.
+- Diagnóstico técnico inicial de la web.
 
 ---
 
@@ -298,6 +462,7 @@ Actividades:
 - Crear secciones estratégicas.
 - Definir CTAs.
 - Alinear SEO, UX y conversión.
+- Definir señales de autoridad, prueba social y rutas de confianza.
 
 Entregables:
 
@@ -306,6 +471,7 @@ Entregables:
 - Wireframe conceptual.
 - Jerarquía de mensajes por página.
 - Recomendaciones de UX y conversión.
+- Mapa de enlaces internos.
 
 ---
 
@@ -368,6 +534,7 @@ Actividades:
 - Conectar contenidos con servicios.
 - Definir frecuencia editorial.
 - Alinear contenido con SEO y LinkedIn.
+- Diseñar clusters temáticos para reforzar autoridad y descubrimiento orgánico.
 
 Entregables:
 
@@ -376,6 +543,33 @@ Entregables:
 - Ideas de artículos.
 - Framework para LinkedIn.
 - Relación entre insights y servicios.
+- Mapa de clusters temáticos.
+
+---
+
+### Fase 8: Web Development Standards & Quality Assurance
+
+Objetivo: asegurar que la implementación técnica refuerce la estrategia de marca, el posicionamiento y la conversión.
+
+Actividades:
+
+- Definir estándares de performance, accesibilidad y SEO técnico.
+- Revisar Core Web Vitals y experiencia mobile.
+- Validar estructura semántica de páginas.
+- Revisar structured data, metadata, canonical e indexabilidad.
+- Optimizar imágenes, fuentes y assets críticos.
+- Revisar dependencias, scripts externos y mantenibilidad.
+- Verificar formularios, CTAs e integraciones externas.
+- Documentar decisiones técnicas relevantes.
+
+Entregables:
+
+- Checklist de calidad técnica.
+- Recomendaciones de performance.
+- Revisión de accesibilidad.
+- Revisión SEO técnica.
+- Estándares de componentes y diseño.
+- Roadmap de mejoras técnicas.
 
 ---
 
@@ -394,6 +588,10 @@ Una persona con esta skill sabe responder preguntas como:
 - ¿Qué contenido refuerza mejor la autoridad?
 - ¿Qué CTA debe usarse según el nivel de intención del visitante?
 - ¿Qué evidencia necesita ver un cliente antes de contactar?
+- ¿La performance de la web refuerza o debilita la percepción de profesionalismo?
+- ¿La arquitectura técnica actual permite evolucionar la estrategia sin fricción?
+- ¿La web está preparada para buscadores, usuarios y sistemas asistidos por IA?
+- ¿La experiencia mobile comunica el mismo nivel de calidad que la versión desktop?
 
 ---
 
@@ -416,6 +614,9 @@ Un servicio profesional de Executive Digital Brand Strategy puede entregar:
 13. Recomendaciones SEO.
 14. Guía de tono y narrativa.
 15. Roadmap de implementación.
+16. Checklist de performance, accesibilidad y calidad técnica.
+17. Recomendaciones de structured data e internal linking.
+18. Estándares de componentes, diseño visual y mantenibilidad.
 
 ---
 
@@ -445,6 +646,7 @@ Capacidades:
 - Mejorar propuesta de valor.
 - Diseñar estructura de páginas.
 - Alinear mensajes con cliente objetivo.
+- Detectar problemas básicos de UX, SEO y performance.
 
 ---
 
@@ -459,6 +661,7 @@ Capacidades:
 - Crear narrativa de autoridad.
 - Conectar web, LinkedIn y contenido.
 - Diseñar estrategia de conversión.
+- Definir criterios técnicos que refuercen autoridad, accesibilidad, SEO y mantenibilidad.
 
 ---
 
@@ -473,6 +676,7 @@ Capacidades:
 - Transformar experiencia profesional en autoridad comercial.
 - Crear sistemas de thought leadership.
 - Alinear marca, negocio, contenido y generación de oportunidades.
+- Convertir la ejecución técnica de la web en una prueba visible de excelencia, confianza y criterio estratégico.
 
 ---
 
@@ -490,6 +694,10 @@ Esta skill puede apoyarse en herramientas como:
 - Webflow.
 - WordPress.
 - Astro.
+- TypeScript.
+- Tailwind CSS.
+- MDX/Markdown.
+- GitHub Pages.
 - Framer.
 - LinkedIn.
 - Hotjar.
@@ -499,7 +707,7 @@ Esta skill puede apoyarse en herramientas como:
 - ChatGPT.
 - Claude.
 
-Las herramientas son importantes, pero no reemplazan la estrategia. El valor principal está en la capacidad de conectar negocio, posicionamiento, narrativa y conversión.
+Las herramientas son importantes, pero no reemplazan la estrategia. El valor principal está en la capacidad de conectar negocio, posicionamiento, narrativa, ejecución técnica y conversión.
 
 ---
 
@@ -517,6 +725,11 @@ Una estrategia bien diseñada debería mejorar indicadores como:
 - Posicionamiento en buscadores.
 - Engagement en contenidos estratégicos.
 - Reconocimiento profesional en un nicho específico.
+- Mejora en Core Web Vitals.
+- Reducción de fricción en mobile.
+- Mejora de accesibilidad y legibilidad.
+- Mayor coherencia entre contenido, servicios y rutas de conversión.
+- Menor deuda técnica y mayor facilidad para evolucionar el sitio.
 
 ---
 
@@ -532,19 +745,21 @@ Antes:
 
 Después:
 
-> Ayudo a organizaciones financieras y tecnológicas a transformar sus modelos operativos mediante AI Strategy, Digital Transformation y Operational Excellence, conectando estrategia, ejecución y resultados medibles.
+> Ayudo a organizaciones financieras y tecnológicas a transformar sus modelos operativos mediante AI Strategy, Digital Transformation, Operational Excellence y AI Adoption, conectando estrategia, ejecución y resultados medibles.
 
 El segundo mensaje comunica mayor autoridad, foco y valor de negocio.
+
+Además, esta skill permite que la ejecución técnica de la web sea coherente con ese posicionamiento. Si el mensaje promete transformación, eficiencia y excelencia operativa, la web debe comportarse como un activo digital eficiente, claro, accesible, rápido y mantenible.
 
 ---
 
 ## 14. Resumen ejecutivo
 
-**Executive Digital Brand Strategy** es una skill híbrida que conecta estrategia, marketing, UX, branding, contenido y conversión.
+**Executive Digital Brand Strategy** es una skill híbrida que conecta estrategia, marketing, UX, branding, contenido, estándares técnicos y conversión.
 
 Su valor está en ayudar a profesionales y empresas a construir una presencia digital que no solo se vea bien, sino que comunique autoridad, genere confianza y produzca oportunidades comerciales.
 
 En síntesis, esta skill responde a una pregunta central:
 
-> ¿Cómo convertimos la experiencia profesional en una presencia digital clara, creíble, diferenciada y orientada a negocio?
+> ¿Cómo convertimos la experiencia profesional en una presencia digital clara, creíble, diferenciada, técnicamente sólida y orientada a negocio?
 

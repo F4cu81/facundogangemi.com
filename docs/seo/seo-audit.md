@@ -315,7 +315,7 @@ Advisory index → 4 advisory services
 
 2. **Advisory service pages → Case Studies:** No advisory page links to the Case Studies hub. This is a missed conversion-supporting link.
 
-3. **About → Advisory:** About page likely does not have contextual links into specific advisory service pages (e.g., "AI Adoption" mentioned in narrative → link to `/advisory/ai-adoption`).
+3. **About → Advisory:** About page likely does not have contextual links into specific advisory practice sections (e.g., "AI Adoption" mentioned in narrative → link to `/advisory/#ai-adoption`).
 
 4. **Insights hub → Advisory:** Hub pages do not link to related advisory pages. Once articles exist, each article must link to at least one advisory page (per `article-seo-guidelines.md`).
 
@@ -506,9 +506,30 @@ The 4 category pages use `noIndex={!hasArticles}`. When articles are published t
 |---|---|
 | Publish first Insights articles (removes noindex automatically from categories) | Critical |
 | Publish first Case Studies (then remove noindex from case-studies page) | Critical |
-| Add ProfessionalService schema to individual advisory pages | Medium |
+| ~~Add ProfessionalService schema to individual advisory pages~~ | **Superseded** — advisory sub-pages deleted; schema lives on `/advisory/` page-level only |
 | Verify og:image paths and dimensions across all pages | Medium |
 | Improve focus indicator contrast on world map markers | Medium |
 | Speaking, newsletter, ai-assessment: expand content OR keep noindex permanently | Medium |
 | Submit sitemap to Google Search Console | High (after robots.txt fix is deployed) |
 | Re-enable i18n config when /es/ content is ready | Low |
+
+---
+
+## Phase 8 Architecture Update — 2026-05-13
+
+**Advisory sub-pages deleted.** The following route files were removed from disk:
+
+| Deleted route | Former status |
+|---|---|
+| `/advisory/ai-strategy/` | Orphaned since Phase 7 |
+| `/advisory/digital-transformation/` | Orphaned since Phase 7 |
+| `/advisory/enterprise-agility/` | Deprecated since Phase 7 (`noIndex={true}`) |
+| `/advisory/ai-adoption/` | Orphaned since Phase 7 |
+
+**Impact on this audit:** References to these pages in the metadata table, heading structure table and internal linking gaps section above are historical records. They no longer reflect live pages.
+
+**Current advisory architecture:** `/advisory/` is the single canonical advisory route. The four practices are accessible via anchor sections: `#ai-strategy`, `#digital-transformation`, `#operational-excellence`, `#ai-adoption`.
+
+**Additional fix applied:** One live internal link in `src/pages/ai-assessment.astro` pointed to `/advisory/ai-adoption` — updated to `/advisory/#ai-adoption`.
+
+**Documentation updated:** `docs/seo/google-positioning-guardrails.md`, `docs/seo/seo-page-inventory.md`, `docs/seo/article-seo-guidelines.md` all updated to reflect anchor-based advisory URLs.

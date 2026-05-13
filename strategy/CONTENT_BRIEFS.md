@@ -260,9 +260,11 @@ Clarity · *"I see exactly where I fit"* · executive register · zero ambiguity
 
 ---
 
-# 4. AI TRANSFORMATION — `/advisory/ai-strategy` & `/advisory/ai-adoption`
+# 4. AI TRANSFORMATION — `/advisory/#ai-strategy` & `/advisory/#ai-adoption`
 
-> Two sibling pages share this brief. AI Strategy = strategy/design. AI Adoption = enablement/scale. Same template, different focus.
+> **Architecture note (Phase 8):** The separate sub-pages `/advisory/ai-strategy/` and `/advisory/ai-adoption/` were deleted. Both practices now live as anchor sections on `/advisory/`. This content brief remains valid as a reference for expanding the copy within those sections.
+
+> Two sibling practices share this brief. AI Strategy = strategy/design. AI Adoption = enablement/scale.
 
 ### Page objective
 
@@ -341,9 +343,11 @@ Relief (*"finally, AI without hype"*) · confidence · *"this person speaks exec
 
 ---
 
-# 5. ENTERPRISE TRANSFORMATION — `/advisory/digital-transformation` & `/advisory/enterprise-agility`
+# 5. ENTERPRISE TRANSFORMATION — `/advisory/#digital-transformation` & `/advisory/#operational-excellence`
 
-> Two sibling pages. Digital Transformation = strategy/operating-model lens. Enterprise Agility = delivery/operating-system lens.
+> **Architecture note (Phase 8):** The separate sub-pages `/advisory/digital-transformation/` and `/advisory/enterprise-agility/` were deleted. Digital Transformation is now an anchor section at `/advisory/#digital-transformation`. The Enterprise Agility practice was renamed **Operational Excellence** and lives at `/advisory/#operational-excellence`. This content brief remains valid as a reference for expanding copy within those sections. Use "Operational Excellence" as the pillar label; "Enterprise Agility" may appear as an editorial or SEO content theme in Insights articles.
+
+> Two sibling practices. Digital Transformation = strategy/operating-model lens. Operational Excellence = execution discipline, OKRs, QBRs, delivery governance.
 
 ### Page objective
 

@@ -2,6 +2,15 @@
 **facundogangemi.com · Phase 2 · Executive AI Premium**
 Version 1.0
 
+> **Document status — Historical planning reference (superseded in part)**
+> This document describes the original Phase 2 advisory architecture with separate service sub-pages.
+> In Phase 7 (advisory consolidation) the four advisory sub-pages were merged into a single `/advisory/` page with anchor-based sections.
+> In Phase 8 the orphaned and deprecated sub-pages were deleted from disk.
+> **Current live advisory architecture:**
+> - `/advisory/` — single hub page with anchor sections: `#ai-strategy`, `#digital-transformation`, `#operational-excellence`, `#ai-adoption`
+> - The fourth pillar is **Operational Excellence** (not Enterprise Agility).
+> Sections below that describe separate advisory sub-pages are retained as historical content brief reference only.
+
 ---
 
 ## Information Architecture — Three Tiers
@@ -10,14 +19,15 @@ Version 1.0
 TIER 1: AUTHORITY          TIER 2: OFFER              TIER 3: CONVERSION
 ─────────────────          ─────────────              ─────────────────────
 / (Home)                   /advisory                  /case-studies
-/about                     /advisory/ai-strategy      /case-studies/[slug]
-/insights                  /advisory/digital-trans.   /ai-assessment
-/speaking                  /advisory/enterprise-ag.   /contact
-/press (future)            /advisory/ai-adoption      /newsletter
+/about                       #ai-strategy             /case-studies/[slug]
+/insights                    #digital-transformation  /ai-assessment
+/speaking                    #operational-excellence  /contact
+/press (future)              #ai-adoption             /newsletter
                            /frameworks                /contact/thank-you
                            /frameworks/ai-strategy
                            /programs (future)
 ```
+> ⚠️ Advisory sub-pages (`/advisory/ai-strategy/`, `/advisory/digital-transformation/`, `/advisory/enterprise-agility/`, `/advisory/ai-adoption/`) were consolidated into `/advisory/` (Phase 7) and deleted from disk (Phase 8).
 
 ---
 
@@ -30,12 +40,11 @@ facundogangemi.com/
 │
 ├── about/
 │
-├── advisory/
-│   ├── (hub)
-│   ├── ai-strategy/
-│   ├── digital-transformation/
-│   ├── enterprise-agility/
-│   └── ai-adoption/
+├── advisory/                    ← single hub page (Phase 7 consolidation)
+│   ├── #ai-strategy             ← anchor section
+│   ├── #digital-transformation  ← anchor section
+│   ├── #operational-excellence  ← anchor section (replaces enterprise-agility/)
+│   └── #ai-adoption             ← anchor section
 │
 ├── frameworks/
 │   ├── (hub)
@@ -191,7 +200,7 @@ facundogangemi.com/
 
 ---
 
-### SERVICE DETAIL — AI STRATEGY `/advisory/ai-strategy`
+### ~~SERVICE DETAIL — AI STRATEGY `/advisory/ai-strategy`~~ *(Historical — page deleted Phase 8; content brief retained for reference)*
 
 **Goal:** Qualify high-intent executives on AI Strategy track. Generate inquiry.
 **Template:** `service-detail.php` (reused for all 4 service pages)
@@ -248,10 +257,7 @@ facundogangemi.com/
    └── Secondary: Take the AI Assessment
 ```
 
-**Duplicate template for:**
-- `/advisory/digital-transformation` — same structure, different pain/approach/deliverables
-- `/advisory/enterprise-agility` — same structure
-- `/advisory/ai-adoption` — same structure
+> *(Historical — the service detail template was superseded by the consolidated `/advisory/` page with anchor sections for each practice. The content brief above is retained for reference when expanding advisory section copy.)*
 
 ---
 
@@ -566,8 +572,8 @@ facundogangemi.com/
 |----------|-------|
 | `home.php` | / |
 | `about.php` | /about |
-| `advisory-hub.php` | /advisory |
-| `service-detail.php` | All 4 advisory subpages |
+| `advisory-hub.php` | /advisory (consolidated hub with anchor sections — Phase 7) |
+| ~~`service-detail.php`~~ | ~~All 4 advisory subpages~~ *(deleted Phase 8)* |
 | `frameworks-hub.php` | /frameworks |
 | `framework-detail.php` | Each framework page |
 | `case-studies-index.php` | /case-studies |
@@ -588,7 +594,7 @@ facundogangemi.com/
 | Priority | Page | Reason |
 |----------|------|--------|
 | P0 | Home | Primary conversion surface |
-| P0 | Advisory hub + 4 service pages | Core offer |
+| P0 | Advisory hub (`/advisory/` with 4 anchor sections) | Core offer — sub-pages consolidated Phase 7, deleted Phase 8 |
 | P0 | Contact | Conversion gate |
 | P1 | About | High-intent visitor landing |
 | P1 | Case Studies (index + 3 detail) | Credibility evidence |

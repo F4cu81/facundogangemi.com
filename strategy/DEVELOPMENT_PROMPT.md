@@ -542,48 +542,17 @@ Route:
 
 Purpose:
 
-- explain services
-- route to pillar pages
+- single consolidated advisory hub (Phase 7 architecture)
+- contains four anchor sections covering all four practices
 
-## AI Strategy
+Anchor sections (do not create separate sub-pages):
 
-Route:
+- /advisory/#ai-strategy — AI Strategy practice
+- /advisory/#digital-transformation — Digital Transformation practice
+- /advisory/#operational-excellence — Operational Excellence practice (fourth pillar; replaces Enterprise Agility sub-page)
+- /advisory/#ai-adoption — AI Adoption practice
 
-/advisory/ai-strategy
-
-Purpose:
-
-- AI strategy advisory service page
-
-## AI Adoption
-
-Route:
-
-/advisory/ai-adoption
-
-Purpose:
-
-- AI adoption and scaling service page
-
-## Digital Transformation
-
-Route:
-
-/advisory/digital-transformation
-
-Purpose:
-
-- digital transformation advisory service page
-
-## Enterprise Agility
-
-Route:
-
-/advisory/enterprise-agility
-
-Purpose:
-
-- enterprise agility and intelligent operating models page
+> **Note:** The advisory sub-pages `/advisory/ai-strategy/`, `/advisory/digital-transformation/`, `/advisory/ai-adoption/`, `/advisory/enterprise-agility/` were deleted in Phase 8 (2026-05-13). Do not recreate them.
 
 ## Case Studies
 

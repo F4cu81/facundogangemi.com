@@ -151,90 +151,22 @@ No structured data is emitted on interior pages beyond what is inherited through
 | Indexable | Yes |
 | Structured data | Person (BaseLayout), Service (page-level — name, provider, description, url, serviceType \[4 values\], areaServed) |
 | Key internal links | `/advisory/#ai-strategy` (anchor), `/advisory/#digital-transformation` (anchor), `/advisory/#operational-excellence` (anchor), `/advisory/#ai-adoption` (anchor), `/contact/`, `/insights/` |
-| Improvement notes | Phase 7: complete rebuild as a single-page advisory hub replacing the placeholder. Navigation and footer links updated to use anchor-format URLs. Sub-pages (`/advisory/ai-strategy/`, `/advisory/digital-transformation/`, `/advisory/ai-adoption/`) remain on disk but are no longer linked from navigation — treat them as orphaned until repurposed or removed. `/advisory/enterprise-agility/` is deprecated — replaced by `/advisory/#operational-excellence`. Service JSON-LD added page-level (serviceType: AI Strategy Advisory, Digital Transformation Advisory, Operational Excellence Advisory, AI Adoption Advisory). Hero image: `/images/Advisory/Advisory-hero-client-delivery.webp`. |
+| Improvement notes | Phase 7: complete rebuild as a single-page advisory hub. Navigation and footer links use anchor-format URLs. Phase 8 (2026-05-13): orphaned and deprecated advisory sub-pages deleted — `/advisory/` is now the only advisory route. Service JSON-LD (serviceType: AI Strategy Advisory, Digital Transformation Advisory, Operational Excellence Advisory, AI Adoption Advisory). Hero image: `/images/Advisory/Advisory-hero-client-delivery.webp`. |
 
 ---
 
-### /advisory/ai-strategy/
+### Advisory sub-pages — Deleted (2026-05-13)
 
-| Property | Value |
-|---|---|
-| Route | `/advisory/ai-strategy/` |
-| Page type | Service landing page |
-| Language | `en` |
-| Status | **Orphaned** — page exists on disk but is no longer linked from navigation or footer (Phase 7: nav now uses `/advisory/#ai-strategy` anchor) |
-| SEO title | `AI Strategy Advisory \| Facundo Gangemi` (39 chars) |
-| Meta description | `AI Strategy Advisory for enterprise leaders. Build AI strategies connected to operating models, governance frameworks and measurable business outcomes.` (151 chars) |
-| Canonical URL | `https://facundogangemi.com/advisory/ai-strategy/` |
-| H1 | `AI Strategy Advisory` |
-| Primary search intent | Find an AI strategy advisor or consultant |
-| Primary keyword | AI Strategy Advisory (also: AI Strategy Consultant) |
-| Secondary keywords | AI governance, AI roadmap, AI operating model, enterprise AI strategy |
-| Indexable | Yes |
-| Structured data | Person (inherited) |
-| Key internal links | `/advisory`, `/contact`, `/ai-assessment` (secondary CTA) |
-| Improvement notes | Orphaned since Phase 7 — navigation and footer links now point to `/advisory/#ai-strategy`. Decision needed: either expand into a standalone deep-content landing page and restore navigation links, or repurpose/remove to avoid duplicate content. |
+The following advisory sub-pages were deleted as part of the Phase 8 advisory architecture consolidation. The decision was made to keep `/advisory/` as the single canonical advisory hub with anchor-based sections, rather than maintaining orphaned or thin sub-pages on disk.
 
----
+| Route | Former status | Reason for deletion |
+|---|---|---|
+| `/advisory/ai-strategy/` | Orphaned since Phase 7 (unlinked from nav/footer) | Removed — practice now covered by `/advisory/#ai-strategy` |
+| `/advisory/digital-transformation/` | Orphaned since Phase 7 (unlinked from nav/footer) | Removed — practice now covered by `/advisory/#digital-transformation` |
+| `/advisory/enterprise-agility/` | Deprecated since Phase 7 (`noIndex={true}` applied) | Removed — practice replaced by `Operational Excellence` at `/advisory/#operational-excellence` |
+| `/advisory/ai-adoption/` | Orphaned since Phase 7 (unlinked from nav/footer) | Removed — practice now covered by `/advisory/#ai-adoption` |
 
-### /advisory/digital-transformation/
-
-| Property | Value |
-|---|---|
-| Route | `/advisory/digital-transformation/` |
-| Page type | Service landing page |
-| Language | `en` |
-| Status | **Orphaned** — page exists on disk but is no longer linked from navigation or footer (Phase 7: nav now uses `/advisory/#digital-transformation` anchor) |
-| SEO title | `Digital Transformation Advisory \| Facundo Gangemi` (50 chars) |
-| Meta description | `Digital Transformation Advisory for enterprise leaders. Design operating models that scale beyond the pilot and deliver measurable transformation outcomes.` (154 chars) |
-| Canonical URL | `https://facundogangemi.com/advisory/digital-transformation/` |
-| H1 | `Digital Transformation Advisory` |
-| Primary search intent | Find a digital transformation advisor or consultant |
-| Primary keyword | Digital Transformation Advisory (also: Digital Transformation Consultant) |
-| Secondary keywords | Operating model transformation, Digital operating model, Enterprise digital strategy |
-| Indexable | Yes |
-| Structured data | Person (inherited) |
-| Key internal links | `/advisory`, `/contact` |
-| Improvement notes | Orphaned since Phase 7. Decision needed: expand into a standalone deep-content landing page or remove. |
-
----
-
-### /advisory/enterprise-agility/ ⚠️ Deprecated
-
-| Property | Value |
-|---|---|
-| Route | `/advisory/enterprise-agility/` |
-| Page type | Service landing page |
-| Language | `en` |
-| Status | **Deprecated** — "Enterprise Agility" practice replaced by "Operational Excellence" in Phase 7. Page exists on disk; no longer linked from nav, footer or homepage. |
-| SEO title | `Enterprise Agility Advisory \| Facundo Gangemi` (46 chars) |
-| Canonical URL | `https://facundogangemi.com/advisory/enterprise-agility/` |
-| H1 | `Enterprise Agility Advisory` |
-| Indexable | **No** — `noIndex={true}` set Phase 7 |
-| Structured data | Person (inherited) |
-| Improvement notes | Deprecated since Phase 7. `noIndex={true}` applied to prevent indexing of thin orphaned content. If later repurposed as a deep standalone landing page, remove `noIndex` and restore nav links. |
-
----
-
-### /advisory/ai-adoption/
-
-| Property | Value |
-|---|---|
-| Route | `/advisory/ai-adoption/` |
-| Page type | Service landing page |
-| Language | `en` |
-| Status | **Orphaned** — page exists on disk but is no longer linked from navigation or footer (Phase 7: nav now uses `/advisory/#ai-adoption` anchor) |
-| SEO title | `AI Adoption Strategy \| Facundo Gangemi` (39 chars) |
-| Meta description | `AI Adoption Strategy Advisory. Guide your organization from AI awareness through use-case prioritization to embedded, scalable AI practices and governance.` (155 chars) |
-| Canonical URL | `https://facundogangemi.com/advisory/ai-adoption/` |
-| H1 | `AI Adoption Strategy Advisory` |
-| Primary search intent | AI adoption strategy and enablement advisory |
-| Primary keyword | AI Adoption Strategy (also: AI Adoption Advisor) |
-| Secondary keywords | AI readiness, AI use-case prioritisation, AI enablement, Enterprise AI rollout |
-| Indexable | Yes |
-| Structured data | Person (inherited) |
-| Key internal links | `/advisory`, `/ai-assessment`, `/contact` |
-| Improvement notes | Orphaned since Phase 7. Decision needed: expand into a standalone deep-content landing page or remove. |
+All four practices remain fully accessible through `/advisory/` anchor sections. No redirects were added (site is in development; no existing redirect mechanism configured).
 
 ---
 
@@ -349,7 +281,7 @@ No structured data is emitted on interior pages beyond what is inherited through
 | Secondary keywords | Enterprise AI assessment, AI strategy evaluation, AI adoption readiness, AI maturity |
 | Indexable | Yes |
 | Structured data | Person (inherited) |
-| Key internal links | `/contact`, `/advisory/ai-adoption` |
+| Key internal links | `/contact`, `/advisory/#ai-adoption` |
 | Improvement notes | Placeholder — strong search intent target. Should be expanded into a detailed page describing the assessment methodology, scope and process. |
 
 ---
@@ -393,7 +325,7 @@ No structured data is emitted on interior pages beyond what is inherited through
 | Primary keyword | AI Strategy |
 | Indexable | Yes |
 | Structured data | Person (inherited) |
-| Key internal links | `/insights/`, `/advisory/ai-strategy/` (once articles exist — currently no article links) |
+| Key internal links | `/insights/`, `/advisory/#ai-strategy` (once articles exist — currently no article links) |
 | Improvement notes | H1 is `AI Strategy` while SEO title is `AI Strategy Insights`. Consider aligning H1. No articles published; shows "Coming Soon" state. |
 
 ---
@@ -491,10 +423,10 @@ The following pages were created during Phase 4a as structural placeholders. Eac
 | Route | Purpose | Future role | Primary keyword | Expand to full page? | Recommended expansion |
 |---|---|---|---|---|---|
 | ~~`/advisory/`~~ | ~~Hub entry point~~ | **Complete — Phase 7** | — | — | Single-page hub with four anchor-section practices (AI Strategy, Digital Transformation, Operational Excellence, AI Adoption). Full hero, practice sections with focus area cards, final CTA. |
-| `/advisory/ai-strategy/` | Orphaned service landing page | Standalone deep-content AI strategy page OR remove | AI Strategy Advisory | Pending decision | Orphaned since Phase 7. If kept: expand with approach, governance framework, outcomes, internal link to `/insights/ai-strategy/`, and restore nav link. If removed: ensure no 404 from any remaining internal link. |
-| `/advisory/digital-transformation/` | Orphaned service landing page | Standalone deep-content page OR remove | Digital Transformation Advisory | Pending decision | Orphaned since Phase 7. Same decision needed as AI Strategy above. |
-| `/advisory/enterprise-agility/` | Deprecated — replaced by Operational Excellence | Redirect or noindex | — | Yes | **Action required:** set `noIndex={true}` to prevent thin orphaned content from diluting domain authority, or repurpose as a redirect placeholder. |
-| `/advisory/ai-adoption/` | Orphaned service landing page | Standalone deep-content page OR remove | AI Adoption Strategy | Pending decision | Orphaned since Phase 7. |
+| ~~`/advisory/ai-strategy/`~~ | ~~Orphaned sub-page~~ | **Deleted — Phase 8** | — | — | Removed 2026-05-13. Practice covered by `/advisory/#ai-strategy`. |
+| ~~`/advisory/digital-transformation/`~~ | ~~Orphaned sub-page~~ | **Deleted — Phase 8** | — | — | Removed 2026-05-13. Practice covered by `/advisory/#digital-transformation`. |
+| ~~`/advisory/enterprise-agility/`~~ | ~~Deprecated sub-page~~ | **Deleted — Phase 8** | — | — | Removed 2026-05-13. Practice replaced by Operational Excellence at `/advisory/#operational-excellence`. |
+| ~~`/advisory/ai-adoption/`~~ | ~~Orphaned sub-page~~ | **Deleted — Phase 8** | — | — | Removed 2026-05-13. Practice covered by `/advisory/#ai-adoption`. |
 | `/about/` | Executive profile and background | Full executive profile with experience narrative, credentials, sector expertise | AI Strategy and Digital Transformation Advisor | Yes | Expand bio with 20+ years experience narrative, sector contexts, advisory philosophy, links to services and speaking |
 | `/case-studies/` | Case studies hub | Library of real transformation experiences | Digital Transformation Case Studies | Yes — when real content available | Populate with documented transformation experiences; do not invent client names or metrics |
 | `/speaking/` | Speaking enquiry page | Full speaking page with topics, formats and past engagements | AI Strategy Speaker | Yes | Add real speaking topics, formats (keynote, panel, workshop), event contexts once available |
@@ -546,7 +478,7 @@ Publish one substantive article (800+ words) in the **AI Strategy** hub (`/insig
 4. Internal links between article → hub → advisory page work as expected.
 5. OG image, Twitter card and social preview work as expected.
 
-Suggested topic: `"Why Most AI Strategies Fail Before Execution"` — targets a known executive search intent, aligns with the AI Strategy hub, and connects naturally to `/advisory/ai-strategy/`.
+Suggested topic: `"Why Most AI Strategies Fail Before Execution"` — targets a known executive search intent, aligns with the AI Strategy hub, and connects naturally to `/advisory/#ai-strategy`.
 
 ---
 
@@ -600,7 +532,7 @@ Suggested topic: `"Why Most AI Strategies Fail Before Execution"` — targets a 
 |---|---|
 | `/advisory/` | `/advisory/#ai-strategy` (anchor), `/advisory/#digital-transformation` (anchor), `/advisory/#operational-excellence` (anchor), `/advisory/#ai-adoption` (anchor), `/contact/`, `/insights/` |
 
-Note: `/advisory/ai-strategy/`, `/advisory/digital-transformation/`, `/advisory/ai-adoption/` are orphaned (no navigation links). `/advisory/enterprise-agility/` is deprecated. See individual page entries for recommended actions.
+Note: All advisory sub-pages (`/advisory/ai-strategy/`, `/advisory/digital-transformation/`, `/advisory/ai-adoption/`, `/advisory/enterprise-agility/`) were deleted in Phase 8 (2026-05-13). `/advisory/` is the only advisory route. All internal links and navigation use anchor-based URLs.
 
 ### Required cross-links not yet present
 
@@ -634,10 +566,10 @@ These are non-blocking improvements identified during Phase 4. None are urgent b
 | ~~High~~ | ~~Fix `/about/` H1 — does not include a primary keyphrase~~ | **Fixed Phase 4d** — H1 is now `Facundo Gangemi — AI Strategy & Digital Transformation Advisor`. |
 | ~~Medium~~ | ~~Consider `noIndex` on `/es/` until Spanish content is ready~~ | **Fixed Phase 4d** — `noIndex={true}` added; hreflang structure preserved. Remove when Spanish content is ready. |
 | ~~High~~ | ~~Set `noIndex={true}` on `/advisory/enterprise-agility/`~~ | **Fixed Phase 7** — `noIndex={true}` applied. |
-| Medium | Decide fate of orphaned advisory sub-pages (`/advisory/ai-strategy/`, `/advisory/digital-transformation/`, `/advisory/ai-adoption/`) | Either expand into standalone deep-content pages and restore nav links, or remove. Currently indexable but unlinked. |
+| ~~Medium~~ | ~~Decide fate of orphaned advisory sub-pages (`/advisory/ai-strategy/`, `/advisory/digital-transformation/`, `/advisory/ai-adoption/`)~~ | **Resolved Phase 8 (2026-05-13)** — all sub-pages deleted. `/advisory/` is the single advisory hub. |
+| ~~Medium~~ | ~~Expand placeholder advisory pages into full strategic landing pages~~ | **Superseded Phase 8** — advisory sub-pages deleted; all practices consolidated under `/advisory/` with anchor sections. |
 | Medium | Validate article JSON-LD with Google Rich Results Test on first article publish | Article schema not yet confirmed end-to-end. |
 | Medium | Validate OG / social card previews with LinkedIn Post Inspector, Facebook Sharing Debugger and Twitter Card Validator after deployment | WebP generated — confirm actual social preview rendering. |
-| Medium | Expand placeholder advisory pages into full strategic landing pages | Particularly `/advisory/ai-strategy/`, `/advisory/digital-transformation/` — highest organic traffic potential. |
 | Medium | Add `og:locale:alternate` for `es_ES` on the homepage | Minor signal improvement for international SEO. |
 | Low | Consider adding `email` to Person JSON-LD on homepage | Only if intentionally public-facing — check preference before implementing. |
 | Low | Consider `BreadcrumbList` JSON-LD on advisory and insights pages | Useful once pages have full content and depth. |

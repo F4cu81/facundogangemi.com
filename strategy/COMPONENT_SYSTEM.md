@@ -1609,30 +1609,33 @@ Recommended file:
 Example structure:
 
 ```ts
+// Phase 7 architecture: all practices link to anchor sections on /advisory/
+// Sub-pages /advisory/ai-strategy/, /advisory/digital-transformation/,
+// /advisory/ai-adoption/, /advisory/enterprise-agility/ were deleted in Phase 8.
 export const advisoryPillars = [
   {
     title: "AI Strategy",
     description: "Define AI strategies aligned to business goals and build scalable roadmaps for adoption.",
     icon: "brain-circuit",
-    href: "/advisory/ai-strategy"
+    href: "/advisory/#ai-strategy"
   },
   {
     title: "Digital Transformation",
     description: "Design and lead transformation programs that modernize capabilities and drive growth.",
     icon: "network",
-    href: "/advisory/digital-transformation"
+    href: "/advisory/#digital-transformation"
   },
   {
-    title: "Enterprise Agility & Operating Models",
-    description: "Build adaptive operating models that improve flow, focus and business outcomes at scale.",
+    title: "Operational Excellence",
+    description: "Build execution discipline through OKRs, QBRs, operating routines and delivery governance.",
     icon: "layers",
-    href: "/advisory/enterprise-agility"
+    href: "/advisory/#operational-excellence"
   },
   {
-    title: "Executive Advisory",
-    description: "Guide executive teams on transformation strategy, adoption and execution.",
+    title: "AI Adoption",
+    description: "Guide your organization from AI awareness through use-case prioritization to embedded AI practices.",
     icon: "briefcase-business",
-    href: "/advisory"
+    href: "/advisory/#ai-adoption"
   }
 ];
 ```
