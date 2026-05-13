@@ -157,14 +157,19 @@ Infinite horizontal scroll for logo/tag strips. Key properties:
 ## 6. Homepage Learnings
 
 Current approved homepage structure (Phase 8 — updated):
-1. Hero (`min-h-[92svh]`, bg `#05070D`, cinematic portrait)
-2. **Proof Logo Banner** — enterprise credibility band (Phase 8, `py-12 lg:py-14`, bg `#05070D`)
-3. Advisory Grid — 4 service pillars (bg `#05070D`)
-4. Metrics / KPI Band — 4 counters (accent, explicit `py-16 lg:py-20`)
-5. Industries Served — asymmetric image grid (bg `#05070D`)
-6. Strategic Perspectives — Insights section
-7. Final CTA
-8. Footer
+1. Hero (`min-h-[78svh]`, bg `#05070D`, cinematic portrait)
+2. **Proof Logo Banner** — enterprise credibility band (`section-py-xs`, bg `#05070D`)
+3. Advisory Grid — 4 service pillars (bg `#05070D`, `section-py`)
+4. **Signature Framework** — 4-phase methodology (bg `#121212` / `bg-gray-950`, `section-py`) ← Phase 8
+5. Metrics / KPI Band — 4 counters (bg `#05070D`, `section-py-xs`)
+6. Industries Served — asymmetric image grid (bg `#05070D`, `section-py`)
+7. **About Snapshot** — personal authority bridge (bg `#121212` / `bg-gray-950`, `section-py`) ← Phase 8
+8. Strategic Perspectives — Insights section
+9. Final CTA (bg `#05070D`, `section-py`)
+10. Footer
+
+**Background rhythm (Phase 8):** `#05070D` → `#05070D` → `#05070D` → `#121212` → `#05070D` → `#05070D` → `#121212` → (SP) → `#05070D`
+Both `#121212` sections are positioned to create visual breaks around the proof layer (Metrics + Industries).
 
 ### Proof Logo Banner (Phase 8)
 
@@ -456,7 +461,7 @@ Track known issues, deferred improvements and open questions here. Remove items 
 | ~~Advisory sub-pages — build and validate~~ | ~~High~~ | **Deprecated Phase 8** — consolidated into `/advisory/` with anchor sections `#ai-strategy`, `#digital-transformation`, `#operational-excellence`, `#ai-adoption`. Sub-pages deleted. Do not recreate. |
 | Legal pages — review placeholder content | Medium | All four legal pages exist; legal details need owner review |
 | Analytics / consent — not yet implemented | Medium | Awaiting approval for tooling |
-| Homepage CTA section — finalize copy and validate | Medium | Hero and KPI Band done; mid-page CTA may need refinement |
+| ~~Homepage CTA section — finalize copy and validate~~ | ~~Medium~~ | **Done Phase 8 (2026-05-13)** — Hero CTA and Final CTA complete; mid-page editorial CTAs added via Signature Framework (→ `/advisory/`) and About Snapshot (→ `/about/`). Home CTA architecture complete. |
 | `/speaking` page — build | Low | Referenced in footer nav; page may not exist |
 | `/ai-assessment` page — build | Low | Referenced in footer nav; page may not exist |
 | `/newsletter` page — build | Low | Referenced in footer nav; page may not exist |

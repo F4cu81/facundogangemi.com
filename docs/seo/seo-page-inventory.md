@@ -70,22 +70,22 @@ No structured data is emitted on interior pages beyond what is inherited through
 | Route | `/` |
 | Page type | Homepage |
 | Language | `en` |
-| Status | **Final** |
-| SEO title | `AI Strategy & Transformation Advisor \| Facundo Gangemi` (54 chars displayed) |
-| Meta description | `Executive advisory for AI Strategy, Digital Transformation and Operating Models. Helping enterprise leaders build clarity and measurable business impact.` (153 chars) |
-| Canonical URL | `https://facundogangemi.com/` |
-| H1 | `AI Strategy & Digital Transformation Advisory.` |
-| Main H2s | Strategic Advisory (sr-only), Experience and authority (sr-only), Industries Served, Strategic Perspectives, Insights |
+| Status | **Phase 8 complete** — Home Authority & Proof Layer validated (2026-05-13) |
+| SEO title | `AI Strategy & Transformation Advisor \| Facundo Gangemi` (54 chars displayed) — **unchanged Phase 8** |
+| Meta description | `Executive advisory for AI Strategy, Digital Transformation and Operating Models. Helping enterprise leaders build clarity and measurable business impact.` (153 chars) — **unchanged Phase 8** |
+| Canonical URL | `https://facundogangemi.com/` — **unchanged Phase 8** |
+| H1 | `AI Strategy & Digital Transformation Advisory.` — **unchanged Phase 8, unique** |
+| Main H2s | Strategic advisory for intelligent transformation. (Advisory Grid), A structured path from AI ambition to operating model reality. (Signature Framework — Phase 8), Experience and authority (Metrics — sr-only), Industries Served, Executive advisory grounded in real transformation. (About Snapshot — Phase 8), Ready to turn AI and digital transformation into measurable business impact? (Final CTA) |
 | Primary search intent | Find an AI strategy and digital transformation advisor |
 | Primary keyword | AI Strategy & Digital Transformation Advisor |
-| Secondary keywords | Enterprise Transformation, Operating Models, Business Impact, Banking & Financial Services |
+| Secondary keywords | Enterprise Transformation, Operating Models, Business Impact, Banking & Financial Services, Signature Framework, Discover Design Deploy Evolve |
 | OG title | Same as SEO title |
 | OG description | Same as meta description |
 | OG image | `https://facundogangemi.com/assets/og/og-home.webp` |
 | Indexable | Yes |
-| Structured data | Person, WebSite, ProfessionalService |
-| Key internal links | `/advisory`, `/advisory/#ai-strategy`, `/advisory/#digital-transformation`, `/advisory/#operational-excellence`, `/advisory/#ai-adoption`, `/insights`, `/contact`, `/about`, `/case-studies` |
-| Improvement notes | Consider adding `og:locale:alternate` for `es_ES`. Consider adding `email` to Person schema if intentionally public. |
+| Structured data | Person, WebSite, ProfessionalService — **unchanged Phase 8** |
+| Key internal links | `/advisory/` (Signature Framework CTA — Phase 8), `/advisory/#ai-strategy`, `/advisory/#digital-transformation`, `/advisory/#operational-excellence`, `/advisory/#ai-adoption`, `/about/` (About Snapshot CTA — Phase 8), `/insights`, `/contact`, `/case-studies` |
+| Improvement notes | **Phase 8 (2026-05-13):** Home Authority & Proof Layer implemented and validated. Two new sections added: (1) Signature Framework (`bg-gray-950`, `section-py`) — two-column editorial, four-phase methodology (Discover → Design → Deploy → Evolve), indexable text in `<p>` elements, CTA to `/advisory/`. (2) About Snapshot (`bg-gray-950`, `section-py`) — two-column editorial with portrait, credential signals, CTA to `/about/`. Section order: Hero → ProofLogoBanner → Advisory Grid → Signature Framework → Metrics → Industries Served → About Snapshot → Strategic Perspectives → Final CTA. Background alternation introduced for the first time on Home (`#121212` at §4 and §7). Heading hierarchy valid: H1 → H2 (each section). SEO title, meta description, canonical, JSON-LD and H1 all unchanged. New internal links from Home: → `/advisory/` (Signature Framework CTA), → `/about/` (About Snapshot CTA). Discover, Design, Deploy, Evolve are indexable `<p>` text, not images. Pre-existing improvement notes: Consider adding `og:locale:alternate` for `es_ES`. Consider adding `email` to Person schema if intentionally public. |
 
 ---
 
@@ -545,6 +545,17 @@ Per `docs/seo/google-positioning-guardrails.md` (Section 10), the following requ
 | `/insights/` | → relevant advisory page sections (links should be within article cards or intro copy) |
 | Each insight article | → relevant advisory page anchor, related insight category |
 | `/about/` | → `/speaking/` (currently not linked) |
+
+### Home page internal links added — Phase 8
+
+The Phase 8 Home Authority & Proof Layer introduced two new editorial CTA links from the Homepage:
+
+| Source section | Link destination | Link label | Added |
+|---|---|---|---|
+| Signature Framework | `/advisory/` | Explore Advisory Practices | Phase 8 (2026-05-13) |
+| About Snapshot | `/about/` | Explore my background | Phase 8 (2026-05-13) |
+
+Both links are text-link CTAs (`sf-cta-link` pattern), not primary buttons. They strengthen the Home → Advisory and Home → About internal link signals, which previously existed only through navigation or the Final CTA.
 
 ### Internal linking risks
 
