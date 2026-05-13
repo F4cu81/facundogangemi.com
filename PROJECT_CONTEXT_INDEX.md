@@ -44,6 +44,7 @@ These files should be loaded only when the task requires them.
 | Advisory positioning or conversion strategy | `strategy/EXECUTIVE_DIGITAL_BRAND_STRATEGY.md` |
 | Legal page changes | `legal/legal-context.md` |
 | Visual design or image direction | `references/visual-direction.md`, `references/reference-sources.md`, relevant files in `branding/` |
+| UX/UI review, layout review, spacing review, pre-implementation page audit | `docs/ux/UX_REVIEW_AGENT.md` |
 
 ---
 
