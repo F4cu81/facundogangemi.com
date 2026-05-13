@@ -37,13 +37,15 @@ Use them as follows:
 - `MASTER_CONTEXT.md`: strategic project context, business positioning, brand direction and high-level decisions.
 - `docs/seo/google-positioning-guardrails.md`: SEO positioning rules, keyword strategy, page-level metadata rules, content tone and internal linking rules.
 - `docs/seo/article-seo-guidelines.md`: article-level SEO rules, content hub structure, search intent, metadata, schema, readability and pre-publish checklist for all Insights and MDX content.
+- `strategy/EXECUTIVE_DIGITAL_BRAND_STRATEGY.md`: executive brand strategy — web strategy, strategic positioning, executive personal brand, conversion strategy, offer architecture and thought leadership direction. Consult when working on homepage, advisory pages, about page, insights strategy, service copy or conversion paths.
 
 If there is a conflict between files:
 1. Follow `CLAUDE.md` for technical implementation rules.
 2. Follow `MASTER_CONTEXT.md` for business and strategic context.
 3. Follow `docs/seo/google-positioning-guardrails.md` for site-wide SEO, content and metadata decisions.
 4. Follow `docs/seo/article-seo-guidelines.md` for article-level SEO and editorial decisions.
-5. Ask for clarification before making changes when the conflict affects architecture, branding, legal content or positioning.
+5. Follow `strategy/EXECUTIVE_DIGITAL_BRAND_STRATEGY.md` for brand positioning, conversion architecture and thought leadership direction.
+6. Ask for clarification before making changes when the conflict affects architecture, branding, legal content or positioning.
 
 ---
 
