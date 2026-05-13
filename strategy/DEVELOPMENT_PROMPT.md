@@ -22,6 +22,9 @@ Required source documents:
 
 ## Document Priority Rule
 
+> **Status — Phase 1 implementation handoff only.**
+> This override rule applied to the original build phase. The website has been fully implemented. For all ongoing development and content decisions, `CLAUDE.md` is the authoritative technical source of truth and takes precedence over this document. Use this document as historical context only.
+
 If there is any conflict between documents regarding launch language, routing, technology stack, visible homepage copy or implementation decisions, DEVELOPMENT_PROMPT.md overrides previous strategic documents.
 
 Current implementation decisions:

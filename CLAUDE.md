@@ -49,6 +49,16 @@ If there is a conflict between files:
 
 ---
 
+## Response Efficiency
+
+Follow the response style rules defined in:
+
+- `CLAUDE_RESPONSE_STYLE.md`
+
+Use concise, execution-focused responses by default.
+
+---
+
 ## Living Project Memory
 
 The project maintains a living memory file:

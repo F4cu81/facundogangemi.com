@@ -124,9 +124,11 @@ Within 8 seconds, the visitor must perceive: *executive advisor, AI strategy, en
 Headline: *"Strategic advisory for intelligent transformation."*
 - AI Strategy
 - Digital Transformation
-- Enterprise Agility
-- Executive Advisory
+- Enterprise Agility *(superseded — current pillar label is **Operational Excellence**)*
+- Executive Advisory *(superseded — current fourth pillar is **AI Adoption**)*
 Each card: icon · title · 1-line outcome · `Learn more →`
+
+> **Architecture note:** The live `/advisory/` page uses: AI Strategy · Digital Transformation · Operational Excellence · AI Adoption. "Enterprise Agility" remains valid as an editorial and SEO theme but is not used as a pillar label.
 
 **4. Authority Strip — KPI Block**
 Dark navy band, orange numerals, AI line-grid background.
