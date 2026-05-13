@@ -1,88 +1,193 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 
-interface FocusArea {
-  title: string;
-  description: string;
+interface Tab {
+  label: string;
+  paragraph?: string;
+  items?: string[];
 }
 
-interface AdvisorySection {
+interface Practice {
   id: string;
   eyebrow: string;
   title: string;
-  description: string;
-  themes: FocusArea[];
+  positioning: string;
+  tabs: Tab[];
   bg: string;
   headingId: string;
 }
 
-const ADVISORY_SECTIONS: AdvisorySection[] = [
+const PRACTICES: Practice[] = [
   {
     id: 'ai-strategy',
     eyebrow: 'Advisory Practice',
     title: 'AI Strategy',
-    description:
-      'AI initiatives create value when they connect technology decisions with business priorities. This advisory work helps leaders identify where AI can generate measurable impact, prioritize the right opportunities and build a roadmap that aligns strategy, governance and execution.',
-    themes: [
-      { title: 'AI opportunity mapping',    description: 'Identify where AI can create measurable business value.' },
-      { title: 'Use case prioritization',   description: 'Select the initiatives with the highest strategic potential.' },
-      { title: 'Business outcome alignment',description: 'Connect AI initiatives with clear business priorities.' },
-      { title: 'AI governance',             description: 'Define decision rules, ownership and responsible adoption.' },
-      { title: 'Strategic roadmap',         description: 'Translate AI ambition into sequenced execution.' },
-      { title: 'Executive decision-making', description: 'Help leaders make informed AI investment decisions.' },
+    positioning: 'I help organizations define where AI can create real business value, connect it with the operating model and build the strategic foundation to scale responsibly.',
+    tabs: [
+      {
+        label: 'Business problem',
+        paragraph: 'Many organizations are investing in AI without a clear business case, governance model or execution path. The result is often scattered experimentation, unclear ownership and limited measurable impact.',
+      },
+      {
+        label: 'Strategic approach',
+        paragraph: 'I help leadership teams define where AI can create real business value, prioritize opportunities and connect AI ambition with the operating model, governance and execution rhythm required to scale responsibly.',
+      },
+      {
+        label: 'What it includes',
+        items: [
+          'AI opportunity mapping',
+          'Business value and feasibility prioritization',
+          'AI governance principles',
+          'Executive alignment',
+          'Strategic roadmap definition',
+          'Connection between AI initiatives, operating model and measurable outcomes',
+        ],
+      },
+      {
+        label: 'Expected outcomes',
+        items: [
+          'A clear AI strategy connected to business priorities',
+          'Prioritized AI opportunities with execution logic',
+          'Better governance and decision-making around AI',
+          'Reduced fragmentation across AI initiatives',
+          'A roadmap that links AI ambition to measurable business impact',
+        ],
+      },
+      {
+        label: 'Who it is for',
+        paragraph: 'CEOs, transformation leaders, technology leaders, product leaders and organizations starting or scaling AI initiatives.',
+      },
     ],
-    bg: 'bg-gray-950',
+    bg: 'bg-[#05070D]',
     headingId: 'ai-strategy-heading',
   },
   {
     id: 'digital-transformation',
     eyebrow: 'Advisory Practice',
     title: 'Digital Transformation',
-    description:
-      'Digital transformation does not succeed through technology alone. It requires operating models, decision systems and execution practices that allow business, product and technology teams to move in the same direction. This work helps organizations reduce complexity and transform with structure.',
-    themes: [
-      { title: 'Operating model evolution',          description: 'Redesign how teams, decisions and delivery systems work.' },
-      { title: 'Business and technology alignment',  description: 'Connect transformation priorities with technology execution.' },
-      { title: 'Transformation roadmap',             description: 'Structure the path from ambition to measurable delivery.' },
-      { title: 'Organizational agility',             description: 'Improve adaptability across business, product and technology teams.' },
-      { title: 'Product and technology collaboration', description: 'Strengthen collaboration between strategy, product and engineering.' },
-      { title: 'Execution governance',               description: 'Create routines that keep transformation work visible and accountable.' },
+    positioning: 'I help organizations connect digital ambition with operating model design, leadership alignment and execution practices that make transformation practical, measurable and sustainable.',
+    tabs: [
+      {
+        label: 'Business problem',
+        paragraph: "Digital transformation often fails when technology changes faster than the organization's operating model. Teams adopt tools, platforms or processes, but decision-making, governance and execution habits remain unchanged.",
+      },
+      {
+        label: 'Strategic approach',
+        paragraph: 'I help organizations connect digital ambition with operating model design, leadership alignment and execution practices that make transformation practical, measurable and sustainable.',
+      },
+      {
+        label: 'What it includes',
+        items: [
+          'Current operating reality assessment',
+          'Transformation target definition',
+          'Operating model and governance alignment',
+          'Digital capability roadmap',
+          'Cross-functional execution model',
+          'Leadership and stakeholder alignment',
+        ],
+      },
+      {
+        label: 'Expected outcomes',
+        items: [
+          'Clear transformation direction',
+          'Stronger alignment between strategy and execution',
+          'Better operating model decisions',
+          'Improved delivery flow and organizational focus',
+          'Digital change connected to measurable business outcomes',
+        ],
+      },
+      {
+        label: 'Who it is for',
+        paragraph: 'Organizations evolving their business model, operating model, customer experience, technology capabilities or internal ways of working.',
+      },
     ],
-    bg: 'bg-[#05070D]',
+    bg: 'bg-gray-950',
     headingId: 'digital-transformation-heading',
   },
   {
     id: 'operational-excellence',
     eyebrow: 'Advisory Practice',
     title: 'Operational Excellence',
-    description:
-      'Operational excellence gives transformation the discipline it needs to scale. Through playbooks, execution standards, metrics and management routines, organizations can improve transparency, accountability and delivery performance.',
-    themes: [
-      { title: 'Operational playbooks',   description: 'Document standards that improve consistency and scalability.' },
-      { title: 'Jira operating practices',description: 'Turn Jira into a management system, not only a task tracker.' },
-      { title: 'Execution standards',     description: 'Define how teams plan, track and deliver work.' },
-      { title: 'Performance dashboards',  description: 'Make delivery, capacity and progress visible.' },
-      { title: 'OKRs and QBRs',           description: 'Connect strategic goals with quarterly execution routines.' },
-      { title: 'Continuous improvement',  description: 'Build routines for learning, adaptation and performance improvement.' },
+    positioning: 'I help teams and leaders improve how work flows through the organization by clarifying processes, governance, metrics, routines and execution systems.',
+    tabs: [
+      {
+        label: 'Business problem',
+        paragraph: 'Many organizations lose performance through fragmented processes, unclear ownership, poor visibility, manual work, inconsistent routines and weak execution discipline.',
+      },
+      {
+        label: 'Strategic approach',
+        paragraph: 'I help teams and leaders improve how work flows through the organization by clarifying processes, governance, metrics, routines and execution systems.',
+      },
+      {
+        label: 'What it includes',
+        items: [
+          'Process and workflow analysis',
+          'Operating rhythm design',
+          'Governance and role clarification',
+          'KPI and performance visibility',
+          'Playbooks and execution routines',
+          'Continuous improvement mechanisms',
+        ],
+      },
+      {
+        label: 'Expected outcomes',
+        items: [
+          'Clearer ownership and accountability',
+          'Improved execution discipline',
+          'Better visibility of work, risks and performance',
+          'Reduced operational friction',
+          'Stronger management routines and improvement loops',
+        ],
+      },
+      {
+        label: 'Who it is for',
+        paragraph: 'Operations leaders, transformation offices, technology teams, PMOs and organizations that need better execution visibility and operational discipline.',
+      },
     ],
-    bg: 'bg-gray-950',
+    bg: 'bg-[#05070D]',
     headingId: 'operational-excellence-heading',
   },
   {
     id: 'ai-adoption',
     eyebrow: 'Advisory Practice',
     title: 'AI Adoption',
-    description:
-      'AI adoption requires more than access to tools. Leaders and teams need clarity, confidence and practical ways to integrate AI into decision-making, delivery and operational workflows. This advisory work helps organizations move from experimentation to sustainable adoption.',
-    themes: [
-      { title: 'AI adoption roadmap',      description: 'Sequence adoption from awareness to sustainable usage.' },
-      { title: 'Workflow redesign',        description: 'Integrate AI into real decision and delivery workflows.' },
-      { title: 'Team enablement',          description: 'Help teams build confidence and practical AI capabilities.' },
-      { title: 'Change management',        description: 'Reduce resistance and support behavioral adoption.' },
-      { title: 'Responsible adoption',     description: 'Align AI usage with governance, security and ethical standards.' },
-      { title: 'Practical AI integration', description: 'Move AI from experimentation into everyday business execution.' },
+    positioning: 'I help organizations turn AI from isolated experimentation into practical ways of working adopted by leaders and teams.',
+    tabs: [
+      {
+        label: 'Business problem',
+        paragraph: 'AI adoption fails when organizations focus only on tools and training, without changing behaviors, workflows, leadership routines or team-level capabilities.',
+      },
+      {
+        label: 'Strategic approach',
+        paragraph: 'I help organizations turn AI from isolated experimentation into practical ways of working by enabling leaders and teams to adopt AI in real processes, decisions and routines.',
+      },
+      {
+        label: 'What it includes',
+        items: [
+          'AI adoption readiness assessment',
+          'Use case selection for teams and functions',
+          'AI-enabled workflow redesign',
+          'Leadership and team enablement',
+          'Practical adoption playbooks',
+          'Measurement of adoption, usage and impact',
+        ],
+      },
+      {
+        label: 'Expected outcomes',
+        items: [
+          'Higher AI adoption across teams',
+          'Practical AI use cases connected to real work',
+          'Reduced resistance and confusion',
+          'Improved productivity and decision support',
+          'AI-enabled capabilities embedded into daily execution',
+        ],
+      },
+      {
+        label: 'Who it is for',
+        paragraph: 'Leaders, teams and organizations that want to move from AI awareness or experimentation to practical adoption and measurable usage.',
+      },
     ],
-    bg: 'bg-[#05070D]',
+    bg: 'bg-gray-950',
     headingId: 'ai-adoption-heading',
   },
 ];
@@ -184,43 +289,203 @@ const ADVISORY_SECTIONS: AdvisorySection[] = [
     </div>
   </section>
 
-  <!-- ── Advisory Practice Sections ────────────────────────────────────── -->
-  {ADVISORY_SECTIONS.map((section) => (
-    <section
-      id={section.id}
-      class={`${section.bg} section-py`}
-      style="scroll-margin-top: 96px"
-      aria-labelledby={section.headingId}
-    >
-      <div class="container-site">
-        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start lg:items-center">
+  <!-- ── Signature Framework ──────────────────────────────────────────── -->
+  <section
+    id="advisory-framework"
+    class="section-py bg-gray-950"
+    aria-labelledby="framework-heading"
+  >
+    <div class="container-site">
 
-          <!-- Content -->
-          <div class="lg:col-span-7">
-            <span class="eyebrow">{section.eyebrow}</span>
-            <h2
-              id={section.headingId}
-              class="text-section font-heading font-bold text-white mt-3 mb-6 max-w-[24ch]"
-            >
-              {section.title}
-            </h2>
-            <p class="text-white/65 text-lg leading-relaxed max-w-[54ch]">
-              {section.description}
+      <!-- Top: editorial left + timeline right -->
+      <div class="sf-top-grid">
+
+        <!-- Left: editorial column -->
+        <div class="sf-editorial">
+          <span class="eyebrow">The Approach</span>
+          <h2
+            id="framework-heading"
+            class="sf-title font-heading font-bold text-white reveal"
+          >
+            A Framework for AI-Enabled Enterprise Transformation
+          </h2>
+          <p class="sf-subtitle reveal delay-100">
+            Each engagement follows a structured method that connects strategy with
+            operating models, governance and disciplined execution — adapted to the
+            specific context of your organization.
+          </p>
+          <!-- Core principle card -->
+          <div class="sf-principle reveal delay-200">
+            <span class="sf-principle-label">Core Principle</span>
+            <p class="sf-principle-text">
+              AI alone does not transform organizations. Leadership alignment,
+              operating model clarity and disciplined execution are what make
+              transformation real and durable.
             </p>
           </div>
+        </div>
 
-          <!-- Focus areas -->
-          <div class="lg:col-span-5">
-            <p class="fa-label">Focus Areas</p>
-            <div class="fa-grid">
-              {section.themes.map((area, i) => (
-                <div class="fa-card">
-                  <p class="fa-num">{String(i + 1).padStart(2, '0')}</p>
-                  <h3 class="fa-title">{area.title}</h3>
-                  <p class="fa-desc">{area.description}</p>
+        <!-- Right: vertical transformation timeline -->
+        <div class="sf-timeline reveal delay-100" aria-label="Transformation framework steps">
+          <div class="sf-timeline-inner">
+            {[
+              {
+                num: '01',
+                title: 'Diagnose',
+                desc: 'Assess the current state, strategic priorities and organizational constraints that shape the transformation opportunity.',
+              },
+              {
+                num: '02',
+                title: 'Align',
+                desc: 'Build executive alignment on scope, objectives and success criteria before design begins.',
+              },
+              {
+                num: '03',
+                title: 'Design',
+                desc: 'Define the operating model, governance structures and transformation roadmap.',
+              },
+              {
+                num: '04',
+                title: 'Install',
+                desc: 'Equip leaders and teams with the frameworks, tools and routines needed to execute.',
+              },
+              {
+                num: '05',
+                title: 'Sustain',
+                desc: 'Embed measurement systems, improvement routines and leadership practices that make progress durable.',
+              },
+            ].map((step, i) => (
+              <div class="sf-step">
+                <!-- connector line above (not on first) -->
+                {i > 0 && <div class="sf-connector" aria-hidden="true" />}
+                <div class="sf-step-row">
+                  <div class="sf-step-marker" aria-hidden="true">
+                    <span class="sf-step-num">{step.num}</span>
+                  </div>
+                  <div class="sf-step-content">
+                    <h3 class="sf-step-title">{step.title}</h3>
+                    <p class="sf-step-desc">{step.desc}</p>
+                  </div>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom: 3 supporting statements -->
+      <div class="sf-bottom reveal delay-200">
+        {[
+          {
+            icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 10l4.5 4.5 7.5-8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+            title: 'Starts with evidence',
+            text: 'Every engagement begins with a clear diagnosis of how the organization actually operates.',
+          },
+          {
+            icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polyline points="2,14 7,9 11,12 18,4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="13,4 18,4 18,9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+            title: 'Moves through execution',
+            text: 'Strategy becomes real through roadmaps, governance, delivery rhythm and visible progress.',
+          },
+          {
+            icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="8" cy="6.5" r="2.8" stroke="currentColor" stroke-width="1.4"/><path d="M1 17c0-3.1 3.1-5.5 7-5.5s7 2.4 7 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M14 9.5c1.8.4 3 1.9 3 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M12.5 4.5c.7.6 1.1 1.4 1.1 2.4s-.4 1.8-1.1 2.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`,
+            title: 'Ends with capability',
+            text: 'The goal is not dependency. It is organizational capability that outlasts the engagement.',
+          },
+        ].map((item) => (
+          <div class="sf-statement">
+            <div class="sf-stmt-icon" set:html={item.icon} />
+            <p class="sf-stmt-title">{item.title}</p>
+            <p class="sf-stmt-text">{item.text}</p>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Bridge ───────────────────────────────────────────────────────────── -->
+  <div class="advisory-bridge bg-[#05070D]">
+    <div class="advisory-bridge-inner">
+      <p class="advisory-bridge-text">
+        This framework guides four advisory practices:
+        <span class="bridge-accent">AI Strategy</span>,
+        <span class="bridge-accent">Digital Transformation</span>,
+        <span class="bridge-accent">Operational Excellence</span>
+        and <span class="bridge-accent">AI Adoption</span>.
+        Each practice connects strategic clarity, operating model decisions,
+        execution discipline and measurable business impact.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Advisory Practice Sections ────────────────────────────────────── -->
+  {PRACTICES.map((practice) => (
+    <section
+      id={practice.id}
+      class={`${practice.bg} section-py`}
+      style="scroll-margin-top: 96px"
+      aria-labelledby={practice.headingId}
+    >
+      <div class="container-site">
+        <div class="ap-layout">
+
+          <!-- Left: editorial -->
+          <div class="ap-editorial">
+            <span class="eyebrow">{practice.eyebrow}</span>
+            <h2
+              id={practice.headingId}
+              class="ap-title font-heading font-bold text-white"
+            >
+              {practice.title}
+            </h2>
+            <p class="ap-positioning">{practice.positioning}</p>
+            <a href="/contact/" class="ap-cta-link">
+              Discuss this practice
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Right: tabs -->
+          <div class="ap-tabs" id={`${practice.id}-tabs`}>
+            <div
+              role="tablist"
+              aria-label={`${practice.title} advisory content`}
+              class="ap-tablist"
+            >
+              {practice.tabs.map((tab, ti) => (
+                <button
+                  role="tab"
+                  id={`${practice.id}-tab-${ti}`}
+                  aria-controls={`${practice.id}-panel-${ti}`}
+                  aria-selected={ti === 0 ? 'true' : 'false'}
+                  tabindex={ti === 0 ? 0 : -1}
+                  class="ap-tab"
+                >
+                  {tab.label}
+                </button>
               ))}
             </div>
+            {practice.tabs.map((tab, ti) => (
+              <div
+                role="tabpanel"
+                id={`${practice.id}-panel-${ti}`}
+                aria-labelledby={`${practice.id}-tab-${ti}`}
+                class="ap-panel"
+                hidden={ti !== 0}
+              >
+                {tab.paragraph && <p class="ap-panel-text">{tab.paragraph}</p>}
+                {tab.items && (
+                  <ul class="ap-panel-list">
+                    {tab.items.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
           </div>
 
         </div>
@@ -231,7 +496,7 @@ const ADVISORY_SECTIONS: AdvisorySection[] = [
   <!-- ── Final CTA ─────────────────────────────────────────────────────── -->
   <section
     id="advisory-final-cta"
-    class="section-py-sm bg-gray-950"
+    class="section-py-sm bg-[#05070D]"
     aria-labelledby="advisory-cta-heading"
   >
     <div class="container-site">
@@ -370,84 +635,395 @@ const ADVISORY_SECTIONS: AdvisorySection[] = [
     pointer-events: none;
   }
 
-  /* ── Focus Area Cards ──────────────────────────────────────────────────── */
+  /* ── Signature Framework ──────────────────────────────────────────────── */
 
-  .fa-label {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(245, 124, 0, 0.72);
-    margin-bottom: 1rem;
-  }
-
-  .fa-label::before {
-    content: '';
-    display: block;
-    width: 1.25rem;
-    height: 1.5px;
-    background: rgba(245, 124, 0, 0.55);
-    border-radius: 1px;
-    flex-shrink: 0;
-  }
-
-  .fa-grid {
+  .sf-top-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.625rem;
+    gap: 3rem;
+    margin-bottom: 4rem;
   }
 
-  @media (min-width: 640px) {
-    .fa-grid {
-      grid-template-columns: 1fr 1fr;
+  @media (min-width: 1024px) {
+    .sf-top-grid {
+      grid-template-columns: 46fr 54fr;
+      gap: 5rem;
+      align-items: start;
     }
   }
 
-  .fa-card {
-    padding: 1rem 1.125rem;
-    border-radius: 0.75rem;
-    background: rgba(255, 255, 255, 0.03);
+  /* Left editorial */
+  .sf-title {
+    font-size: clamp(1.625rem, 3.2vw, 2.5rem);
+    line-height: 1.18;
+    letter-spacing: -0.018em;
+    margin: 0.75rem 0 1.25rem;
+  }
+
+  .sf-subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.58);
+    line-height: 1.72;
+    max-width: 48ch;
+    margin-bottom: 2rem;
+  }
+
+  .sf-principle {
+    padding: 1.375rem 1.5rem;
+    border-radius: 0.875rem;
+    background: rgba(255, 255, 255, 0.025);
     border: 1px solid rgba(255, 255, 255, 0.07);
-    border-left: 2px solid rgba(245, 124, 0, 0.22);
-    transition:
-      transform 200ms ease,
-      background 200ms ease,
-      border-left-color 200ms ease,
-      box-shadow 200ms ease;
+    border-left: 2px solid rgba(245, 124, 0, 0.38);
   }
 
-  .fa-card:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.055);
-    border-left-color: rgba(245, 124, 0, 0.65);
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), 0 0 12px rgba(245, 124, 0, 0.06);
-  }
-
-  .fa-num {
+  .sf-principle-label {
+    display: block;
     font-size: 0.625rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
-    color: rgba(245, 124, 0, 0.50);
-    margin: 0 0 0.3rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: rgba(245, 124, 0, 0.68);
+    margin-bottom: 0.6rem;
   }
 
-  .fa-title {
+  .sf-principle-text {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* Right vertical timeline */
+  .sf-timeline {
+    position: relative;
+  }
+
+  .sf-timeline-inner {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sf-connector {
+    width: 1.5px;
+    height: 1.5rem;
+    background: linear-gradient(to bottom, rgba(245, 124, 0, 0.55), rgba(245, 124, 0, 0.25));
+    margin-left: 1.1875rem; /* center-aligns under the 2.375rem marker */
+    flex-shrink: 0;
+  }
+
+  .sf-step-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.125rem;
+  }
+
+  .sf-step-marker {
+    width: 2.375rem;
+    height: 2.375rem;
+    border-radius: 50%;
+    border: 1.5px solid rgba(245, 124, 0, 0.55);
+    background: rgba(245, 124, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .sf-step-num {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(245, 124, 0, 0.80);
+  }
+
+  .sf-step-content {
+    padding-top: 0.3rem;
+    padding-bottom: 0.125rem;
+  }
+
+  .sf-step-title {
     font-family: Manrope, system-ui, sans-serif;
-    font-size: 0.8125rem;
+    font-size: 0.9375rem;
     font-weight: 700;
     color: rgba(255, 255, 255, 0.88);
-    line-height: 1.25;
-    margin: 0 0 0.325rem;
+    line-height: 1.3;
+    margin: 0 0 0.35rem;
   }
 
-  .fa-desc {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.38);
-    line-height: 1.55;
+  .sf-step-desc {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.42);
+    line-height: 1.6;
     margin: 0;
+    max-width: 42ch;
+  }
+
+  /* Bottom supporting statements */
+  .sf-bottom {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 2.5rem;
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .sf-bottom {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .sf-statement {
+    display: flex;
+    flex-direction: column;
+    padding: 1.375rem 1.5rem;
+    border-radius: 0.875rem;
+    border: 1px solid rgba(245, 124, 0, 0.12);
+    border-top: 2px solid rgba(245, 124, 0, 0.28);
+    background: rgba(255, 255, 255, 0.018);
+    transition:
+      background 240ms ease,
+      border-color 240ms ease,
+      border-top-color 240ms ease,
+      transform 240ms ease;
+  }
+
+  .sf-statement:hover {
+    background: rgba(255, 255, 255, 0.032);
+    border-color: rgba(245, 124, 0, 0.22);
+    border-top-color: rgba(245, 124, 0, 0.60);
+    transform: translateY(-2px);
+  }
+
+  .sf-stmt-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    border: 1px solid rgba(245, 124, 0, 0.32);
+    background: rgba(245, 124, 0, 0.04);
+    color: rgba(245, 124, 0, 0.72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-bottom: 1rem;
+    transition: color 240ms ease, border-color 240ms ease;
+  }
+
+  .sf-statement:hover .sf-stmt-icon {
+    color: rgba(245, 124, 0, 0.92);
+    border-color: rgba(245, 124, 0, 0.55);
+  }
+
+  .sf-stmt-title {
+    font-family: Manrope, system-ui, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.3;
+    margin: 0 0 0.5rem;
+  }
+
+  .sf-stmt-text {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.42);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── Advisory Bridge ───────────────────────────────────────────────────── */
+
+  .advisory-bridge {
+    padding-block: 2.75rem;
+  }
+
+  .advisory-bridge-inner {
+    max-width: 64rem;
+    margin-inline: auto;
+    text-align: center;
+    padding-inline: 1.5rem;
+  }
+
+  .advisory-bridge-text {
+    font-size: 1.0625rem;
+    color: rgba(255, 255, 255, 0.62);
+    line-height: 1.80;
+    margin: 0;
+  }
+
+  .bridge-accent {
+    color: #F57C00;
+  }
+
+  /* ── Advisory Practice Layout ──────────────────────────────────────────── */
+
+  .ap-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .ap-layout {
+      grid-template-columns: 38fr 62fr;
+      gap: 4rem;
+      align-items: start;
+    }
+  }
+
+  .ap-title {
+    font-size: clamp(1.625rem, 3vw, 2.375rem);
+    line-height: 1.15;
+    letter-spacing: -0.018em;
+    margin: 0.75rem 0 1.125rem;
+  }
+
+  .ap-positioning {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.60);
+    line-height: 1.72;
+    max-width: 44ch;
+    margin: 0 0 1.25rem;
+  }
+
+  .ap-cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: rgba(245, 124, 0, 0.78);
+    text-decoration: none;
+    transition: color 180ms ease, gap 180ms ease;
+  }
+
+  .ap-cta-link:hover {
+    color: #F57C00;
+    gap: 0.6rem;
+  }
+
+  /* ── Tabs ──────────────────────────────────────────────────────────────── */
+
+  .ap-tabs {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(245, 124, 0, 0.13);
+    border-top: 2px solid rgba(245, 124, 0, 0.30);
+    border-radius: 0.875rem;
+    background: rgba(255, 255, 255, 0.022);
+    transition:
+      background 240ms ease,
+      border-color 240ms ease,
+      border-top-color 240ms ease,
+      box-shadow 240ms ease,
+      transform 240ms ease;
+  }
+
+  .ap-tabs:hover {
+    background: rgba(255, 255, 255, 0.034);
+    border-color: rgba(245, 124, 0, 0.24);
+    border-top-color: rgba(245, 124, 0, 0.65);
+    box-shadow:
+      0 20px 60px rgba(0, 0, 0, 0.48),
+      0 0 0 1px rgba(245, 124, 0, 0.08);
+    transform: translateY(-2px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ap-tabs { transition: background 240ms ease, border-color 240ms ease, border-top-color 240ms ease, box-shadow 240ms ease; }
+    .ap-tabs:hover { transform: none; }
+  }
+
+  .ap-tablist {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    gap: 0;
+    padding: 0 0.5rem;
+  }
+
+  .ap-tablist::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ap-tab {
+    flex-shrink: 0;
+    padding: 0.75rem 1rem;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.45);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 180ms ease, border-bottom-color 180ms ease;
+  }
+
+  .ap-tab:hover {
+    color: rgba(255, 255, 255, 0.80);
+  }
+
+  .ap-tab:focus-visible {
+    outline: 2px solid rgba(245, 124, 0, 0.65);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .ap-tab[aria-selected="true"] {
+    color: #ffffff;
+    border-bottom-color: #F57C00;
+    font-weight: 700;
+  }
+
+  /* ── Tab Panels ─────────────────────────────────────────────────────────── */
+
+  .ap-panel {
+    padding: 1.375rem 1.5rem 1.75rem;
+    min-height: 8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .ap-panel-text {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.68);
+    line-height: 1.75;
+    max-width: 56ch;
+    margin: 0;
+  }
+
+  .ap-panel-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .ap-panel-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.68);
+    line-height: 1.55;
+  }
+
+  .ap-panel-list li::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(245, 124, 0, 0.72);
+    flex-shrink: 0;
+    margin-top: 0.575em;
   }
 
   /* ── Final CTA ─────────────────────────────────────────────────────────── */
@@ -491,3 +1067,42 @@ const ADVISORY_SECTIONS: AdvisorySection[] = [
     justify-content: center;
   }
 </style>
+
+<script is:inline>
+  (function () {
+    var containers = document.querySelectorAll('.ap-tabs');
+    containers.forEach(function (container) {
+      var tablist = container.querySelector('[role="tablist"]');
+      if (!tablist) return;
+      var tabs = Array.from(container.querySelectorAll('[role="tab"]'));
+      var panels = Array.from(container.querySelectorAll('[role="tabpanel"]'));
+      function activateTab(tab) {
+        tabs.forEach(function (t) {
+          t.setAttribute('aria-selected', 'false');
+          t.setAttribute('tabindex', '-1');
+        });
+        panels.forEach(function (p) { p.hidden = true; });
+        tab.setAttribute('aria-selected', 'true');
+        tab.setAttribute('tabindex', '0');
+        var panelId = tab.getAttribute('aria-controls');
+        if (panelId) {
+          var panel = document.getElementById(panelId);
+          if (panel) panel.hidden = false;
+        }
+      }
+      tabs.forEach(function (tab, index) {
+        tab.addEventListener('click', function () { activateTab(tab); });
+        tab.addEventListener('keydown', function (e) {
+          var nextIndex = index;
+          if (e.key === 'ArrowRight') { e.preventDefault(); nextIndex = (index + 1) % tabs.length; }
+          else if (e.key === 'ArrowLeft') { e.preventDefault(); nextIndex = (index - 1 + tabs.length) % tabs.length; }
+          else if (e.key === 'Home') { e.preventDefault(); nextIndex = 0; }
+          else if (e.key === 'End') { e.preventDefault(); nextIndex = tabs.length - 1; }
+          else return;
+          activateTab(tabs[nextIndex]);
+          tabs[nextIndex].focus();
+        });
+      });
+    });
+  })();
+</script>

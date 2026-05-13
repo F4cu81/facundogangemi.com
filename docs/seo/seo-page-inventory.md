@@ -138,20 +138,20 @@ No structured data is emitted on interior pages beyond what is inherited through
 | Route | `/advisory/` |
 | Page type | Service hub — full advisory page with anchor sections |
 | Language | `en` |
-| Status | **Phase 7 complete** — full advisory hub; hero + four anchor practice sections + final CTA |
+| Status | **Phase 8.2 complete** — hero + Signature Framework + four anchor practice sections + final CTA |
 | SEO title | `Advisory \| AI Strategy & Transformation \| Facundo Gangemi` (57 chars) |
 | Meta description | `Executive advisory for AI strategy, digital transformation, operational excellence and AI adoption focused on measurable business impact.` (135 chars) |
 | Canonical URL | `https://facundogangemi.com/advisory/` |
 | H1 | `AI Strategy & Digital Transformation Advisory.` |
-| Main anchors | `#ai-strategy`, `#digital-transformation`, `#operational-excellence`, `#ai-adoption` |
-| Main H2s | AI Strategy, Digital Transformation, Operational Excellence, AI Adoption, (CTA) Need to turn AI strategy into measurable execution? |
+| Main anchors | `#advisory-framework`, `#ai-strategy`, `#digital-transformation`, `#operational-excellence`, `#ai-adoption` |
+| Main H2s | A Framework Built for Enterprise Transformation, AI Strategy, Digital Transformation, Operational Excellence, AI Adoption, (CTA) Need to turn AI strategy into measurable execution? |
 | Primary search intent | Advisory hub for AI strategy and digital transformation |
 | Primary keyword | AI Strategy & Digital Transformation Advisory |
 | Secondary keywords | Enterprise Transformation, Operating Models, Operational Excellence, AI Adoption |
 | Indexable | Yes |
 | Structured data | Person (BaseLayout), Service (page-level — name, provider, description, url, serviceType \[4 values\], areaServed) |
 | Key internal links | `/advisory/#ai-strategy` (anchor), `/advisory/#digital-transformation` (anchor), `/advisory/#operational-excellence` (anchor), `/advisory/#ai-adoption` (anchor), `/contact/`, `/insights/` |
-| Improvement notes | Phase 7: complete rebuild as a single-page advisory hub. Navigation and footer links use anchor-format URLs. Phase 8 (2026-05-13): orphaned and deprecated advisory sub-pages deleted — `/advisory/` is now the only advisory route. Service JSON-LD (serviceType: AI Strategy Advisory, Digital Transformation Advisory, Operational Excellence Advisory, AI Adoption Advisory). Hero image: `/images/Advisory/Advisory-hero-client-delivery.webp`. |
+| Improvement notes | Phase 7: complete rebuild as a single-page advisory hub. Navigation and footer links use anchor-format URLs. Phase 8 (2026-05-13): orphaned and deprecated advisory sub-pages deleted — `/advisory/` is now the only advisory route. Service JSON-LD (serviceType: AI Strategy Advisory, Digital Transformation Advisory, Operational Excellence Advisory, AI Adoption Advisory). Hero image: `/images/Advisory/Advisory-hero-client-delivery.webp`. Phase 8.2 (2026-05-13): added Signature Framework section (`#advisory-framework`) between Hero and practice sections — editorial left column + vertical 5-step transformation timeline + 3 supporting statements. Background `#080A10`. |
 
 ---
 
