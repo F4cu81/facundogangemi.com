@@ -52,6 +52,21 @@ Update CEREBRO.md at the end of any session where:
 
 ---
 
+## Pre-Coding Expectations
+
+Before modifying any source file, Claude Code must:
+
+1. **Identify the page or section being changed.** Know exactly which Astro page, component or layout is in scope before opening files.
+2. **Identify the relevant phase or initiative.** Check CEREBRO.md for the current approved section order, background rhythm and layout decisions for that page.
+3. **Read only the relevant context files.** Use `PROJECT_CONTEXT_INDEX.md` to determine which documentation is needed. Do not load the full documentation set unless the task explicitly requires it.
+4. **Reuse approved visual, SEO and technical patterns.** Check §11 (components), §13 (protected decisions) and §4 (global visual system) before inventing a new approach.
+5. **Avoid modifying unrelated files.** A task scoped to a single section must not trigger changes in other pages, layouts or global styles unless a shared dependency makes it unavoidable — in which case, flag it before acting.
+6. **Avoid creating new routes unless explicitly requested.** Do not add pages, advisory sub-pages or content collection entries outside the task scope.
+7. **Preserve approved copy, SEO metadata and canonical URLs** unless the task explicitly requires changes to them. Never overwrite a unique `<title>`, `<meta description>` or `<link rel="canonical">` without instruction.
+8. **Report after implementation:** list files changed, validation performed (`npm run check`, `npm run build`), and any remaining risks or follow-up actions.
+
+---
+
 ## 4. Global Visual System
 
 ### Colors
@@ -324,7 +339,7 @@ File: `src/components/sections/AboutWorldMap.astro`
 
 ---
 
-## 10. Reusable Components and Patterns
+## 11. Reusable Components and Patterns
 
 ### Navigation
 
@@ -375,7 +390,7 @@ Hover state increases both opacities.
 
 ---
 
-## 11. SEO and Content Learnings
+## 12. SEO and Content Learnings
 
 ### Primary Keyphrases (Site-Wide)
 
@@ -408,7 +423,7 @@ Do NOT create `/blog`, `/posts`, `/articles`, or `/thoughts` folders.
 
 ---
 
-## 12. Protected Decisions
+## 13. Protected Decisions
 
 These decisions are approved and must not be reversed without explicit user confirmation:
 
@@ -430,7 +445,7 @@ These decisions are approved and must not be reversed without explicit user conf
 
 ---
 
-## 13. Pending Improvements
+## 14. Pending Improvements
 
 Track known issues, deferred improvements and open questions here. Remove items when resolved.
 
@@ -438,7 +453,7 @@ Track known issues, deferred improvements and open questions here. Remove items 
 |---|---|---|
 | ~~Insights listing page — build and validate~~ | ~~High~~ | **Done Phase 6a** — full editorial hub at `/insights/` |
 | Case Studies listing page — build and validate | High | Same |
-| Advisory sub-pages — build and validate | High | Dropdown routes exist in nav; pages may be stubs |
+| ~~Advisory sub-pages — build and validate~~ | ~~High~~ | **Deprecated Phase 8** — consolidated into `/advisory/` with anchor sections `#ai-strategy`, `#digital-transformation`, `#operational-excellence`, `#ai-adoption`. Sub-pages deleted. Do not recreate. |
 | Legal pages — review placeholder content | Medium | All four legal pages exist; legal details need owner review |
 | Analytics / consent — not yet implemented | Medium | Awaiting approval for tooling |
 | Homepage CTA section — finalize copy and validate | Medium | Hero and KPI Band done; mid-page CTA may need refinement |
