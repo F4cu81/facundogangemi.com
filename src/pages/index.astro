@@ -4,6 +4,7 @@ import { SITE } from '@/data/site';
 import { ADVISORY_PILLARS } from '@/data/advisoryPillars';
 import { KPIS } from '@/data/kpis';
 import StrategicPerspectives from '@/components/sections/StrategicPerspectives.astro';
+import ProofLogoBanner from '@/components/sections/ProofLogoBanner.astro';
 
 /*
  * Advisory card icons — inline SVG strings, one per pillar in ADVISORY_PILLARS order.
@@ -78,7 +79,7 @@ const ADVISORY_ICONS: string[] = [
 
   <!-- ── 1. Hero — Cinematic dark ──────────────────────────────────────────── -->
   <section
-    class="relative min-h-[92svh] flex items-center bg-[#05070D] overflow-hidden"
+    class="relative min-h-[78svh] flex items-center bg-[#05070D] overflow-hidden"
     aria-label="Hero"
   >
     <!-- Background visual layers -->
@@ -111,7 +112,7 @@ const ADVISORY_ICONS: string[] = [
     </div>
 
     <!-- Content — left-anchored, max 580px -->
-    <div class="container-site relative z-10 py-24 lg:py-28">
+    <div class="container-site relative z-10 py-16 lg:py-20">
       <div class="max-w-[580px]">
 
         <span class="eyebrow reveal">AI Strategy · Enterprise Transformation</span>
@@ -150,7 +151,10 @@ const ADVISORY_ICONS: string[] = [
     </div>
   </section>
 
-  <!-- ── 2. Advisory Grid — Dark foundation ────────────────────────────────── -->
+  <!-- ── 2. Authority & Proof — Enterprise logo band ──────────────────────── -->
+  <ProofLogoBanner />
+
+  <!-- ── 3. Advisory Grid — Dark foundation ────────────────────────────────── -->
   <section
     class="section-py bg-[#05070D]"
     aria-labelledby="advisory-heading"
@@ -192,10 +196,10 @@ const ADVISORY_ICONS: string[] = [
     </div>
   </section>
 
-  <!-- ── 3. Metrics & Proof Points ────────────────────────────────────────── -->
+  <!-- ── 4. Metrics & Proof Points ────────────────────────────────────────── -->
   <section
     id="metrics-section"
-    class="relative py-16 lg:py-20 bg-[#05070D] overflow-hidden"
+    class="relative section-py-xs bg-[#05070D] overflow-hidden"
     aria-labelledby="metrics-heading"
   >
     <!-- Background: subtle elevation gradient at top -->
@@ -285,7 +289,7 @@ const ADVISORY_ICONS: string[] = [
   })();
 </script>
 
-  <!-- ── 4. Industries Served — Asymmetric editorial grid ─────────────────── -->
+  <!-- ── 5. Industries Served — Asymmetric editorial grid ─────────────────── -->
   <section
     class="section-py bg-[#05070D]"
     aria-labelledby="industries-heading"
@@ -390,10 +394,10 @@ const ADVISORY_ICONS: string[] = [
     </div>
   </section>
 
-  <!-- ── 5. Strategic Perspectives ─────────────────────────────────────────── -->
+  <!-- ── 6. Strategic Perspectives ─────────────────────────────────────────── -->
   <StrategicPerspectives />
 
-  <!-- ── 6. Final CTA ───────────────────────────────────────────────────────── -->
+  <!-- ── 7. Final CTA ───────────────────────────────────────────────────────── -->
   <section
     class="cta-section section-py"
     aria-labelledby="final-cta-heading"

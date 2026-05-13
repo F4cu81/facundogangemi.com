@@ -67,6 +67,9 @@ Preferred visual characteristics:
 - structured grids
 - sophisticated spacing
 
+Section spacing follows the approved four-tier system.
+See: `branding/SPACING_SYSTEM.md`
+
 ---
 
 # AI Visual Language

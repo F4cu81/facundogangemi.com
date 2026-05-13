@@ -141,14 +141,35 @@ Infinite horizontal scroll for logo/tag strips. Key properties:
 
 ## 6. Homepage Learnings
 
-*To be updated after Homepage sections are reviewed/refined.*
+Current approved homepage structure (Phase 8 — updated):
+1. Hero (`min-h-[92svh]`, bg `#05070D`, cinematic portrait)
+2. **Proof Logo Banner** — enterprise credibility band (Phase 8, `py-12 lg:py-14`, bg `#05070D`)
+3. Advisory Grid — 4 service pillars (bg `#05070D`)
+4. Metrics / KPI Band — 4 counters (accent, explicit `py-16 lg:py-20`)
+5. Industries Served — asymmetric image grid (bg `#05070D`)
+6. Strategic Perspectives — Insights section
+7. Final CTA
+8. Footer
 
-Current approved homepage structure (to verify in source):
-1. Hero
-2. KPI Band (accent, explicit `py-16 lg:py-20`)
-3. Strategic Perspectives (Insights section)
-4. CTA / Services teaser
-5. Footer
+### Proof Logo Banner (Phase 8)
+
+Component: `src/components/sections/ProofLogoBanner.astro`
+
+Assets: `public/images/proof/logos/webp/` (8 WebP files)
+Processing script: `scripts/process-logos.mjs` — run with `node scripts/process-logos.mjs` to regenerate
+
+Logos displayed (in order): BBVA, Santander, CaixaBank, BNP Paribas Cardif, Chubb, AIG, Enel, Telefónica
+
+Visual pattern:
+- Section bg: `#05070D` — matches Hero for visual continuity
+- Feathered 1px top separator (`rgba(255,255,255,0.07)`)
+- Card: `rgba(10,15,26,0.55)` dark surface, 1px border `rgba(255,255,255,0.055)`, 8px radius, 72px height
+- Logo images: max 120px × 40px, `object-fit: contain`
+- CSS: `filter: grayscale(1) brightness(1.05)` + `opacity: 0.55` default → `0.82` on hover
+- WebP assets are already monochrome (#D8DCE3) — CSS grayscale is a safety net
+- Responsive grid: 2 cols (mobile) → 4 cols (≥480px) → 8 cols (≥900px)
+- Section copy positions these as *enterprise experience*, NOT as direct client portfolio
+- `prefers-reduced-motion`: transitions disabled
 
 ---
 

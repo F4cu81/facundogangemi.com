@@ -108,6 +108,7 @@ select {
   margin-inline: auto;
 }
 
+/* Section spacing tiers — full rules and usage guidelines in branding/SPACING_SYSTEM.md */
 .section-py {
   padding-block: 96px;
 }
@@ -120,11 +121,16 @@ select {
   padding-block: 64px;
 }
 
+.section-py-xs {
+  padding-block: 48px;
+}
+
 /* Tablet */
 @media (max-width: 1023px) {
   .section-py    { padding-block: 80px; }
   .section-py-lg { padding-block: 96px; }
   .section-py-sm { padding-block: 56px; }
+  .section-py-xs { padding-block: 40px; }
 }
 
 /* Mobile */
@@ -132,6 +138,7 @@ select {
   .section-py    { padding-block: 64px; }
   .section-py-lg { padding-block: 80px; }
   .section-py-sm { padding-block: 48px; }
+  .section-py-xs { padding-block: 32px; }
 }
 
 /* Container width — kept in its own breakpoint, separate from section spacing */
