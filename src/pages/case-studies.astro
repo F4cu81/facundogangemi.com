@@ -288,6 +288,10 @@ const METHOD_STEPS = [
     display: block;
   }
 
+  @media (max-width: 1023px) {
+    .cs-hero-visual { display: none; }
+  }
+
   .cs-hero-image-wrap {
     position: relative;
     border-radius: 1.25rem;
@@ -402,6 +406,7 @@ const METHOD_STEPS = [
   }
 
   .cs-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 1.375rem;
@@ -412,11 +417,55 @@ const METHOD_STEPS = [
     transition: border-color 240ms ease, box-shadow 240ms ease, transform 240ms ease;
   }
 
+  /* Dossier stack: two pseudo-element layers sit behind each card */
+
+  .cs-card::before,
+  .cs-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-card);
+    pointer-events: none;
+  }
+
+  .cs-card::before {
+    z-index: -1;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.018);
+    transform: translate(7px, 7px);
+    transition: transform 240ms ease, border-color 240ms ease;
+  }
+
+  .cs-card::after {
+    z-index: -2;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.008);
+    transform: translate(13px, 13px);
+    transition: transform 240ms ease;
+  }
+
   .cs-card:hover {
     border-color: rgba(245, 124, 0, 0.24);
     box-shadow: 0 0 0 1px rgba(245, 124, 0, 0.06) inset,
                 0 16px 56px rgba(0, 0, 0, 0.36);
     transform: translateY(-2px);
+  }
+
+  .cs-card:hover::before {
+    transform: translate(10px, 10px);
+    border-color: rgba(245, 124, 0, 0.15);
+  }
+
+  .cs-card:hover::after {
+    transform: translate(17px, 17px);
+  }
+
+  /* Mobile: vertical offset only — prevents horizontal overflow on narrow viewports */
+  @media (max-width: 767px) {
+    .cs-card::before { transform: translate(0, 6px); }
+    .cs-card::after  { transform: translate(0, 10px); }
+    .cs-card:hover::before { transform: translate(0, 8px); }
+    .cs-card:hover::after  { transform: translate(0, 13px); }
   }
 
   @media (max-width: 639px) {
@@ -705,6 +754,8 @@ const METHOD_STEPS = [
 
   @media (prefers-reduced-motion: reduce) {
     .cs-card,
+    .cs-card::before,
+    .cs-card::after,
     .cs-cta-link,
     .cs-cta-arrow {
       transition: none;

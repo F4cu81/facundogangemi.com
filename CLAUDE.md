@@ -373,6 +373,21 @@ Target WCAG AA alignment.
 - Prefer WebP. Avoid generic stock imagery that weakens credibility.
 - Use `loading="lazy"` for below-the-fold images. Use `loading="eager"` only for above-the-fold LCP images.
 
+### Mobile Hero Image Behavior
+
+On mobile viewports, hero/editorial images must not appear as large standalone blocks below the hero content.
+
+Rules:
+
+- Keep desktop hero image layouts unchanged.
+- On mobile, convert hero/editorial images into subtle background or ambient layers when appropriate. Apply a strong dark overlay to preserve readability. Keep image opacity low. Prevent the image from adding extra vertical height.
+- If background treatment reduces readability or creates layout issues, hide the image on mobile instead.
+- Do not add JavaScript to implement this behavior. Use CSS media queries only.
+
+This rule applies to: Home, Advisory, About, Insights, Contact, Case Studies, and any future page that uses a hero or editorial image.
+
+Current implementation: hero image containers on Advisory, About, Insights, Contact and Case Studies use `display: none` below `1024px`. The Home page portrait is already an absolutely-positioned background layer with a `lg:hidden` dark overlay.
+
 ---
 
 ## 17. Security Standards
