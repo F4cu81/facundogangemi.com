@@ -394,8 +394,10 @@ const PRACTICES: Practice[] = [
           },
         ].map((item) => (
           <div class="sf-statement">
-            <div class="sf-stmt-icon" set:html={item.icon} />
-            <p class="sf-stmt-title">{item.title}</p>
+            <div class="sf-stmt-header">
+              <div class="sf-stmt-icon" aria-hidden="true" set:html={item.icon} />
+              <p class="sf-stmt-title">{item.title}</p>
+            </div>
             <p class="sf-stmt-text">{item.text}</p>
           </div>
         ))}
@@ -783,7 +785,7 @@ const PRACTICES: Practice[] = [
   .sf-statement {
     display: flex;
     flex-direction: column;
-    padding: 1.375rem 1.5rem;
+    padding: 1.25rem 1.5rem 1.375rem;
     border-radius: 0.875rem;
     border: 1px solid rgba(245, 124, 0, 0.12);
     border-top: 2px solid rgba(245, 124, 0, 0.28);
@@ -792,19 +794,30 @@ const PRACTICES: Practice[] = [
       background 240ms ease,
       border-color 240ms ease,
       border-top-color 240ms ease,
-      transform 240ms ease;
+      box-shadow 240ms ease;
   }
 
   .sf-statement:hover {
-    background: rgba(255, 255, 255, 0.032);
-    border-color: rgba(245, 124, 0, 0.22);
-    border-top-color: rgba(245, 124, 0, 0.60);
-    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.028);
+    border-color: rgba(245, 124, 0, 0.26);
+    border-top-color: rgba(245, 124, 0, 0.65);
+    box-shadow: 0 0 0 1px rgba(245, 124, 0, 0.08), 0 8px 32px rgba(0, 0, 0, 0.28);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sf-statement { transition: none; }
+  }
+
+  .sf-stmt-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
   }
 
   .sf-stmt-icon {
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2.75rem;
+    height: 2.75rem;
     border-radius: 50%;
     border: 1px solid rgba(245, 124, 0, 0.32);
     background: rgba(245, 124, 0, 0.04);
@@ -813,28 +826,27 @@ const PRACTICES: Practice[] = [
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    margin-bottom: 1rem;
     transition: color 240ms ease, border-color 240ms ease;
   }
 
   .sf-statement:hover .sf-stmt-icon {
     color: rgba(245, 124, 0, 0.92);
-    border-color: rgba(245, 124, 0, 0.55);
+    border-color: rgba(245, 124, 0, 0.52);
   }
 
   .sf-stmt-title {
     font-family: Manrope, system-ui, sans-serif;
     font-size: 0.875rem;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.85);
-    line-height: 1.3;
-    margin: 0 0 0.5rem;
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.25;
+    margin: 0;
   }
 
   .sf-stmt-text {
     font-size: 0.8125rem;
-    color: rgba(255, 255, 255, 0.42);
-    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.52);
+    line-height: 1.65;
     margin: 0;
   }
 
