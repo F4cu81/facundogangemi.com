@@ -116,7 +116,7 @@ No structured data is emitted on interior pages beyond what is inherited through
 | Route | `/about/` |
 | Page type | About / Profile |
 | Language | `en` |
-| Status | **Phase 8b complete** — About UX/UI + SEO Alignment validated (2026-05-13) |
+| Status | **Phase 8d complete** — Readability, country consistency and CTA cleanup (2026-05-14) |
 | SEO title | `About \| AI Strategy Advisor \| Facundo Gangemi` (45 chars) |
 | Meta description | `Facundo Gangemi advises enterprise leaders on AI strategy, digital transformation and operating models across banking, financial services and technology.` (153 chars) |
 | Canonical URL | `https://facundogangemi.com/about/` |
@@ -129,11 +129,13 @@ No structured data is emitted on interior pages beyond what is inherited through
 | Indexable | Yes |
 | OG image | `/assets/og/og-about.webp` — dedicated About OG image, confirmed at `public/assets/og/og-about.webp` |
 | Structured data | Person (BaseLayout global) + Person (page-level via `structuredData` prop — `url: https://facundogangemi.com/about/`, jobTitle, description, image, knowsAbout, areaServed, worksFor). Dual Person schema accepted — complementary, not conflicting. |
-| Key internal links | `/contact`, `/advisory/`, `/insights/`, `/speaking/` |
+| Key internal links | `/contact/`, `/advisory/`, `/insights/`, `/case-studies/` |
 | SEO scores | SEO Page Audit: 75% → **90%**. Google Positioning Audit: 80% → **90%**. Combined SEO Readiness: 77% → **90%**. No must-fix SEO issues remain. |
 | UX/UI scores | UX/UI alignment: 88% → **92%**. No must-fix UX/UI issues remain. Hero, card system, contrast, CTA hierarchy, internal links and focus states validated. |
 | Improvement notes | **Phase 8b (2026-05-13):** Full About page UX/UI + SEO alignment completed. OG image replaced from fallback `og-home.webp` to dedicated `og-about.webp`. Title fixed from duplicated `About Facundo Gangemi \| Facundo Gangemi` to `About \| AI Strategy Advisor \| Facundo Gangemi` (45 chars, no duplication). Meta description corrected from 184 chars to 153 chars. Canonical trailing slash confirmed. Person schema URL updated to `https://facundogangemi.com/about/`. `/speaking/` internal link added to Closing CTA. `Operational Excellence & Execution` added at H3 level inside Domain Expertise. |
-| Optional future refinements | Add "AI Strategy Advisor" as exact phrase naturally in body copy. Normalize `/contact` links to `/contact/` if site convention changes. Add `sameAs` (LinkedIn) to page-level Person schema. Add OKRs/QBRs to `knowsAbout`. Strengthen "My Approach" H2 in a future content pass. Expand `/speaking/` from placeholder to full page. Publish first Insights article to activate About → Insights → Advisory topical chain. |
+| Improvement notes (Phase 8c) | **Phase 8c (2026-05-14):** Hero copy sharpened to lead with AI advisory positioning and Europe/Latin America international dimension. Strategic Narrative rewritten with personal "I" voice to strengthen storytelling arc from enterprise transformation roots to AI strategy advisory. International Footprint intro revised to name geographies explicitly. Enterprise Contexts subtitle updated to include "AI adoption" and "digital strategy". Closing CTA expanded: `/case-studies/` added; `/contact` normalized to `/contact/` (trailing slash) in both hero and closing CTA. `sameAs` LinkedIn already present at BaseLayout level — no change needed to page-level schema. |
+| Improvement notes (Phase 8d) | **Phase 8d (2026-05-14):** `text-align: justify` removed from narrative and why-body-col paragraphs — left-aligned for readability on dark editorial layouts. Ecuador added to §5 international footprint paragraph and to `areaServed` structured data (was already present in COUNTRY_KEYS, MAP_MARKERS and INTERNATIONAL_COUNTRIES). `/speaking/` CTA removed from closing section — page is noIndex placeholder; closing CTA now has clear 2-link hierarchy: primary "Book Advisory Call" + secondary "Explore Advisory Services" and "Review transformation case studies". Internal links reduced from 5 to 4 after removing the noindex `/speaking/` CTA. Current links remain intentional and relevant: `/contact/`, `/advisory/`, `/case-studies/` and `/insights/`. |
+| Optional future refinements | Add AI OKRs/QBRs to page-level `knowsAbout` if this becomes a visible content theme. Strengthen the About → Insights → Advisory topical chain by adding more strategic insight articles over time. Restore `/speaking/` CTA when the page has full indexable content. |
 
 ---
 
