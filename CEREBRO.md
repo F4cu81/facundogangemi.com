@@ -271,16 +271,81 @@ Grid: 1 col (mobile) → 2 cols (640px+) → 5 cols (1024px+)
 
 ## 7b. Featured Insights Learnings
 
-*To be populated when Insights list pages and article templates are built.*
-
 Insights content lives at: `src/content/insights/`
 Insights pages live at: `src/pages/insights/`
 
-Approved pillar categories (from `src/data/insightPillars.ts`):
-- AI Strategy
-- Digital Transformation
-- Operational Excellence
-- Strategy Execution
+### Approved production categories (from `src/data/insightPillars.ts`)
+
+These are the **only valid `categorySlug` values** for article frontmatter. Each maps to a live category hub page:
+
+| Category | `categorySlug` | Hub page |
+|---|---|---|
+| AI Strategy | `ai-strategy` | `/insights/ai-strategy/` |
+| Digital Transformation | `digital-transformation` | `/insights/digital-transformation/` |
+| Operational Excellence | `operational-excellence` | `/insights/operational-excellence/` |
+| AI Adoption | `ai-adoption` | `/insights/ai-adoption/` |
+
+**Strategy Execution is deprecated** — it was removed from `insightPillars.ts` and replaced with AI Adoption. Do not use `strategy-execution` as a `categorySlug` value. The `/insights/strategy-execution/` route is a legacy stub that will be removed.
+
+### Cross-cutting themes (use as `tags`, not `categorySlug`)
+
+These themes add topical depth and support internal linking but do not map to a category hub page:
+
+`operating-models`, `enterprise-agility`, `ai-governance`, `banking`, `leadership`, `enterprise-transformation`, `transformation-governance`, `okrs`, `qbrs`
+
+### Insights page architecture (Phase 10 complete — 2026-05-14)
+
+- **Filter section always visible** regardless of whether articles exist (unwrapped from `{hasArticles}` guard in Phase 10 Fix)
+- **Featured Insight** section is conditional: only renders when at least one article has `featured: true`
+- **Article cards** carry `data-category`, `data-title`, `data-description`, `data-tags` attributes for client-side JS filtering
+- **No-results message** uses `aria-live="polite"` and `hidden` attribute toggle
+- **Category pages** use `noIndex={!hasArticles}` — stays out of Google until articles are published
+
+### Article template — production-ready (Phase 10C — 2026-05-14)
+
+`src/pages/insights/[slug].astro` and `src/content/config.ts` are production-ready. No articles published yet.
+
+**Content schema (`config.ts`):**
+- `updatedDate: z.coerce.date().optional()` — use when an article is substantially revised
+
+**Article JSON-LD (auto-generated in template):**
+- `headline`, `description`, `datePublished`, `dateModified` (falls back to `pubDate` when `updatedDate` absent)
+- `image` — included only when article `image` field is set; URL made absolute
+- `timeRequired` — ISO 8601 duration (e.g. `PT4M`), computed from `article.body` at 220 wpm
+- `author`, `publisher` (both `Person`), `mainEntityOfPage`
+
+**BreadcrumbList JSON-LD (auto-generated in template):**
+- 3 items: Home (`/`) → Insights (`/insights/`) → article canonical URL
+
+**Hero image:**
+- `width="1200"` `height="630"` — layout hint to prevent CLS
+- `alt` falls back to article `title` when `imageAlt` is not set in frontmatter
+- Authors should use 1200×630 images to match the template hint
+
+**Article body:**
+- `max-width: 68ch; margin-inline: auto` — centered on desktop
+
+**Category-aware footer CTA:**
+```
+ai-strategy           → "Explore AI Strategy Advisory"           → /advisory/#ai-strategy
+digital-transformation → "Explore Digital Transformation Advisory" → /advisory/#digital-transformation
+operational-excellence → "Explore Operational Excellence Advisory" → /advisory/#operational-excellence
+ai-adoption           → "Explore AI Adoption Advisory"            → /advisory/#ai-adoption
+fallback              → "Book a strategic conversation"           → /contact/
+```
+
+**Reading time:**
+- Computed at build time from `article.body` (raw markdown, no frontmatter)
+- 220 wpm · `Math.round` · minimum 1
+- Displayed in meta row as "4 min read"
+
+**Title length guidance:**
+- Keep article `title` in frontmatter ≤42 chars
+- BaseLayout appends " | Facundo Gangemi" (18 chars) → full `<title>` stays within 60-char SEO target
+- Not enforced at build time — editorial discipline only
+
+**Validation status:** `npm run check` — 0 errors, 0 warnings, 4 pre-existing hints
+**End-to-end JSON-LD validation:** pending first real article publication + Google Rich Results Test
 
 ---
 
@@ -288,7 +353,7 @@ Approved pillar categories (from `src/data/insightPillars.ts`):
 
 *To be populated after CTA sections are reviewed and approved.*
 
-Current approved CTA: **"Book Advisory Call"** → `/contact`
+Current approved CTA: **"Book Advisory Call"** → `/contact/`
 
 CTA button style: orange fill (`#F57C00`), white text, hover darkens fill.
 

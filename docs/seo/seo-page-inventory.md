@@ -311,11 +311,11 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Main H2s | Explore Insights (Filters), Featured Insight (sr-only), Strategic Perspectives, Latest Insights (sr-only), Strategic Advisory (Final CTA) |
 | Primary search intent | Read strategic perspectives on AI and transformation |
 | Primary keyword | AI Strategy & Transformation Insights |
-| Secondary keywords | Digital transformation insights, Operating models, Operational excellence, Enterprise agility, Strategy execution |
+| Secondary keywords | Digital transformation insights, Operating models, Operational excellence, AI adoption, Enterprise agility |
 | Indexable | Yes |
 | Structured data | Person (BaseLayout), CollectionPage (page-level — name, description, url, author) |
-| Key internal links | `/insights/ai-strategy/`, `/insights/digital-transformation/`, `/insights/operational-excellence/`, `/insights/strategy-execution/`, `/advisory`, `/contact`, `/about/`, `/case-studies/` (final CTA proof text — Phase 9 internal linking) |
-| Improvement notes | Phase 6a: hero with editorial image, filter chips, featured insight card, topic cards, article grid. Title fixed from 87-char overage to 57 chars. Meta description trimmed to 127 chars. Internal /about link added to Final CTA section. CollectionPage JSON-LD added. Static placeholder articles shown until real collection content is published. |
+| Key internal links | `/insights/ai-strategy/`, `/insights/digital-transformation/`, `/insights/operational-excellence/`, `/insights/ai-adoption/`, `/advisory/`, `/contact/`, `/about/`, `/case-studies/` (final CTA proof text — Phase 9 internal linking) |
+| Improvement notes | Phase 6a: hero with editorial image, filter chips, featured insight card, topic cards, article grid. Title fixed from 87-char overage to 57 chars. Meta description trimmed to 127 chars. Internal /about link added to Final CTA section. CollectionPage JSON-LD added. Phase 10 (2026-05-14): Strategy Execution category replaced with AI Adoption; Strategic Perspectives topic cards section removed from Insights page; filter section always visible regardless of article count; article cards now carry data attributes for client-side filtering. |
 
 ---
 
@@ -378,22 +378,37 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 
 ---
 
-### /insights/strategy-execution/
+### /insights/ai-adoption/
+
+| Property | Value |
+|---|---|
+| Route | `/insights/ai-adoption/` |
+| Page type | Content hub — category index |
+| Language | `en` |
+| Status | **Active hub** — added Phase 10 (2026-05-14); no articles yet |
+| SEO title | `AI Adoption Insights \| Facundo Gangemi` (38 chars) |
+| Meta description | `Perspectives on moving from AI awareness to embedded adoption, prioritized use cases, capability building and sustained behavior change.` (135 chars) |
+| Canonical URL | `https://facundogangemi.com/insights/ai-adoption/` |
+| H1 | `AI Adoption` |
+| Primary keyword | AI Adoption |
+| Indexable | **Conditional** — `noIndex={!hasArticles}` — will be indexed once first article published in this category |
+| Structured data | Person (inherited) |
+| Key internal links | `/insights/`, `/advisory/#ai-adoption` |
+| Improvement notes | New category page replacing Strategy Execution as the fourth editorial pillar. Matches `/advisory/#ai-adoption` anchor. `noIndex={!hasArticles}` prevents premature indexing of empty hub. |
+
+---
+
+### /insights/strategy-execution/ *(deprecated)*
 
 | Property | Value |
 |---|---|
 | Route | `/insights/strategy-execution/` |
 | Page type | Content hub — category index |
 | Language | `en` |
-| Status | **Hub** — no articles yet |
-| SEO title | `Strategy Execution Insights \| Facundo Gangemi` (45 chars) |
-| Meta description | `Perspectives on connecting strategy, OKRs, QBRs and portfolio decisions to execution routines that create measurable business outcomes.` (135 chars) |
+| Status | **Deprecated and never built** — planned hub that was superseded by `/insights/ai-adoption/` before implementation (Phase 10, 2026-05-14). No file exists on disk. |
 | Canonical URL | `https://facundogangemi.com/insights/strategy-execution/` |
-| H1 | `Strategy Execution` |
-| Primary keyword | Strategy Execution |
-| Indexable | Yes |
-| Structured data | Person (inherited) |
-| Improvement notes | No articles yet. Hub page complies with guardrails for category structure. |
+| Indexable | N/A — route does not exist |
+| Improvement notes | No action required. The page was never created on disk. `strategy-execution` is deprecated as a category. Strategy Execution content should be published under `operational-excellence` or `digital-transformation` with `strategy-execution` as a tag. |
 
 ---
 
@@ -450,33 +465,52 @@ The following pages were created during Phase 4a as structural placeholders. Eac
 
 ### Current state
 
-The Insights section has four category hub pages and one main index page, all structurally complete:
+The Insights section has four active category hub pages and one main index page, all structurally complete:
 
-| Hub route | Title | Status |
+| Hub route | `categorySlug` | Title | Status |
+|---|---|---|---|
+| `/insights/` | — | Insights \| AI Strategy & Transformation | Phase 10 — full editorial hub; no articles yet |
+| `/insights/ai-strategy/` | `ai-strategy` | AI Strategy Insights | Active hub — no articles yet |
+| `/insights/digital-transformation/` | `digital-transformation` | Digital Transformation Insights | Active hub — no articles yet |
+| `/insights/operational-excellence/` | `operational-excellence` | Operational Excellence Insights | Active hub — no articles yet |
+| `/insights/ai-adoption/` | `ai-adoption` | AI Adoption Insights | Active hub — added Phase 10 (2026-05-14) |
+| `/insights/strategy-execution/` | ~~`strategy-execution`~~ | Strategy Execution Insights | **Deprecated and never built** — planned hub superseded by AI Adoption before implementation; no file on disk |
+
+**Individual articles:** None published yet. The article template (`src/pages/insights/[slug].astro`) is **production-ready as of Phase 10C (2026-05-14)**.
+
+### Article template — Phase 10C production readiness summary
+
+Phase 10C hardened the article template across four sub-phases. The following is confirmed implemented in `src/pages/insights/[slug].astro` and `src/content/config.ts`:
+
+| Area | Status | Detail |
 |---|---|---|
-| `/insights/` | Insights \| AI Strategy & Transformation | Phase 6a — full editorial hub; no articles yet |
-| `/insights/ai-strategy/` | AI Strategy Insights | Active hub — no articles yet |
-| `/insights/digital-transformation/` | Digital Transformation Insights | Active hub — no articles yet |
-| `/insights/operational-excellence/` | Operational Excellence Insights | Active hub — no articles yet |
-| `/insights/strategy-execution/` | Strategy Execution Insights | Active hub — no articles yet |
-
-**Individual articles:** None published yet. The article template (`src/pages/insights/[slug].astro`) is implemented and ready.
+| Content schema | ✅ Complete | `updatedDate: z.coerce.date().optional()` added to insights schema |
+| Article JSON-LD | ✅ Complete | `headline`, `description`, `datePublished`, `dateModified`, `author`, `publisher`, `mainEntityOfPage`, `image` (conditional), `timeRequired` |
+| BreadcrumbList JSON-LD | ✅ Complete | 3-item breadcrumb: Home → Insights → article |
+| Hero image performance | ✅ Complete | `width="1200"` `height="630"` added; `loading="eager"` preserved |
+| Hero image accessibility | ✅ Complete | `alt` falls back to article `title` when `imageAlt` is absent |
+| Article body layout | ✅ Complete | `margin-inline: auto` on `.article-body` — centered on desktop |
+| Category-aware CTA | ✅ Complete | Footer CTA derives label and URL from `categorySlug`; fallback to `/contact/` |
+| Reading time | ✅ Complete | Computed at build time from `article.body` at 220 wpm; displayed in meta row; `timeRequired` in JSON-LD |
+| Prose styles | ✅ Complete | h4, h5, h6 explicit styles added; consistent with h2/h3 hierarchy |
+| CTA trailing slash | ✅ Complete | All footer CTAs use trailing slash |
 
 ### Article SEO requirements
 
 All articles published to `/insights/` must follow `docs/seo/article-seo-guidelines.md` before publication. Key requirements:
 
-- Assign to one of the eight defined content hubs.
-- Title under 60 chars including ` | Facundo Gangemi` suffix.
+- Assign to one of the **four production categories**: `ai-strategy`, `digital-transformation`, `operational-excellence`, `ai-adoption`.
+- Article `title` in frontmatter should stay ≤42 chars — BaseLayout appends ` | Facundo Gangemi` (18 chars), keeping the full `<title>` within the 60-char SEO target.
 - Meta description 120–155 chars.
 - Primary keyphrase in title, H1, and first 100 words.
-- Article JSON-LD (`Article` or `BlogPosting` schema) — not yet validated end-to-end.
+- Article JSON-LD is template-generated — author does not need to write schema manually.
+- Hero images should be 1200×630 px where possible to match the `width`/`height` hint in the template.
 - Internal links: at minimum one link to the relevant advisory page and one back to the category hub.
 - Pre-publish checklist in `docs/seo/article-seo-guidelines.md` must be completed before any article goes live.
 
 ### Article JSON-LD validation status
 
-Article JSON-LD (`Article` schema) has **not yet been validated end-to-end** because no articles have been published. The `[slug].astro` template exists but its structured data output must be confirmed with Google's Rich Results Test tool when the first article is published.
+Article JSON-LD (`Article` schema) has **not yet been validated end-to-end** because no articles have been published. The template is complete and correct, but the structured data output must be confirmed with Google's Rich Results Test when the first article is published.
 
 ### Recommended first article
 
@@ -504,13 +538,14 @@ Suggested topic: `"Why Most AI Strategies Fail Before Execution"` — targets a 
 | `Service` | `/advisory/` (via `structuredData` prop) | `name`, `provider` (Person), `description`, `url`, `serviceType` (4 values), `areaServed` |
 | `ContactPage` | `/contact/` (page-level) | `name`, `description`, `url`, `author` |
 | `CollectionPage` | `/insights/` (page-level) | `name`, `description`, `url`, `author` |
+| `Article` | Each `/insights/[slug]/` article (Phase 10C-2) | `headline`, `description`, `datePublished`, `dateModified`, `author`, `publisher`, `mainEntityOfPage`, `image` (conditional), `timeRequired` (ISO 8601 duration, computed at build time) |
+| `BreadcrumbList` | Each `/insights/[slug]/` article (Phase 10C-2) | 3 items: Home → Insights → article canonical URL |
 
 ### Not yet implemented
 
 | Schema type | Recommended for | Notes |
 |---|---|---|
-| `Article` / `BlogPosting` | Each `/insights/[slug]/` article | Template exists but not yet validated. Required before first article goes live. |
-| `BreadcrumbList` | Interior advisory and insights pages | Improves Google's understanding of site hierarchy. Add when advisory pages are expanded to full content. |
+| `BreadcrumbList` | Interior advisory pages | Only implemented on article pages currently. Advisory pages do not yet have breadcrumb structured data. |
 | `FAQPage` | Advisory or assessment pages only if real FAQ content exists | Do not add unless genuine Q&A content is written. Never invent FAQ entries for SEO purposes alone. |
 
 ---

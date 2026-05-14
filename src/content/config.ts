@@ -19,6 +19,7 @@ const insights = defineCollection({
     draft:           z.boolean().default(false),
     image:           z.string().optional(),
     imageAlt:        z.string().optional(),
+    updatedDate:     z.coerce.date().optional(),
     linkedinSummary: z.string().optional(),
     author:          z.string().default('Facundo Gangemi'),
     language:        z.enum(['en', 'es']).default('en'),

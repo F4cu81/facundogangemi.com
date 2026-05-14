@@ -26,26 +26,38 @@ Articles published on this site serve two purposes simultaneously:
 
 Articles must accumulate authority around these core topics:
 
+**Primary categories (must assign one per article):**
 - AI Strategy
 - Digital Transformation
+- Operational Excellence
+- AI Adoption
+
+**Cross-cutting themes (used as tags, not categories):**
 - Operating Models
 - Enterprise Agility
-- Operational Excellence
-- Strategy Execution
 - AI Governance
 - Banking & Financial Services Transformation
-- AI Adoption
+- Strategy Execution
 - OKRs and QBRs
+- Leadership
+- Enterprise Transformation
+- Transformation Governance
 
-Every article published should advance authority in at least one of these areas. Articles outside these topics dilute focus and should not be published without a clear strategic reason.
+Every article must be assigned to one of the four primary categories. Cross-cutting themes enrich topical depth and support internal linking but do not determine the article's hub assignment. Articles outside these areas dilute focus and should not be published without a clear strategic reason.
 
 ---
 
 ## 3. Content Hubs
 
-Every article must belong to one primary content hub. The hub determines internal linking, category tagging, sitemap organization and editorial focus.
+Every article must belong to one of the four **production category hubs**. The hub determines the `categorySlug` frontmatter value, internal linking, category page assignment and editorial focus.
+
+> **Authoritative category list:** AI Strategy · Digital Transformation · Operational Excellence · AI Adoption
+>
+> These are the only four categories with live hub pages at `/insights/<slug>/`. Any article with a `categorySlug` outside this list will not appear on a category page.
 
 ### Hub: AI Strategy
+- **`categorySlug`:** `ai-strategy`
+- **Hub page:** `/insights/ai-strategy/`
 - **Search intent:** Understand how to define, govern and scale AI as a strategic business capability
 - **Example topics:**
   - Why most AI strategies fail before execution
@@ -54,8 +66,11 @@ Every article must belong to one primary content hub. The hub determines interna
   - AI strategy for banking and financial services
   - Building an AI operating model
 - **Primary advisory page:** `/advisory/#ai-strategy`
+- **Relevant cross-cutting tags:** `ai-governance`, `operating-models`, `banking`, `enterprise-transformation`
 
 ### Hub: Digital Transformation
+- **`categorySlug`:** `digital-transformation`
+- **Hub page:** `/insights/digital-transformation/`
 - **Search intent:** Understand how to design and execute transformation programs that deliver measurable outcomes
 - **Example topics:**
   - Why digital transformation stalls after the pilot
@@ -63,26 +78,11 @@ Every article must belong to one primary content hub. The hub determines interna
   - From transformation program to operating reality
   - How to govern a digital transformation portfolio
 - **Primary advisory page:** `/advisory/#digital-transformation`
-
-### Hub: Operating Models
-- **Search intent:** Understand how to design organizational structures and processes that scale with transformation
-- **Example topics:**
-  - What is an intelligent operating model
-  - Platform operating models for enterprise organizations
-  - Operating model design for AI-enabled organizations
-  - Outcome-based operating structures
-- **Primary advisory page:** `/advisory`, `/advisory/#digital-transformation`
-
-### Hub: Enterprise Agility
-- **Search intent:** Understand how to move beyond Scrum and Agile ceremonies toward an adaptive enterprise operating model
-- **Example topics:**
-  - Enterprise agility beyond frameworks
-  - OKR implementation in complex organizations
-  - Portfolio governance for adaptive organizations
-  - Why Agile transformations fail at scale
-- **Primary advisory page:** `/advisory/#operational-excellence`
+- **Relevant cross-cutting tags:** `operating-models`, `enterprise-agility`, `transformation-governance`, `leadership`
 
 ### Hub: Operational Excellence
+- **`categorySlug`:** `operational-excellence`
+- **Hub page:** `/insights/operational-excellence/`
 - **Search intent:** Understand how to align OKRs, QBRs, process and execution systems to deliver sustainable business performance
 - **Example topics:**
   - OKRs vs KPIs — what executives need to know
@@ -90,33 +90,39 @@ Every article must belong to one primary content hub. The hub determines interna
   - Process alignment for enterprise performance
   - Continuous improvement at enterprise scale
 - **Primary advisory page:** `/advisory/#operational-excellence`
+- **Relevant cross-cutting tags:** `okrs`, `qbrs`, `enterprise-agility`, `operating-models`
 
-### Hub: Strategy Execution
-- **Search intent:** Understand how to translate strategy into delivery without losing clarity or momentum
+### Hub: AI Adoption
+- **`categorySlug`:** `ai-adoption`
+- **Hub page:** `/insights/ai-adoption/`
+- **Search intent:** Understand how to move from AI awareness and pilots to embedded, scalable adoption
 - **Example topics:**
-  - The gap between strategy and execution
-  - Governance models that connect strategy to delivery
-  - How to align enterprise initiatives with strategic intent
-  - OKR-linked execution frameworks
-- **Primary advisory page:** `/advisory`, `/advisory/#operational-excellence`
+  - Moving from AI pilots to embedded AI adoption
+  - Building AI capabilities in enterprise teams
+  - AI adoption roadmaps for regulated industries
+  - Sustained behavior change in AI-enabled organizations
+  - Prioritizing AI use cases by business impact
+- **Primary advisory page:** `/advisory/#ai-adoption`
+- **Relevant cross-cutting tags:** `ai-governance`, `operating-models`, `banking`, `enterprise-transformation`
 
-### Hub: AI Governance
-- **Search intent:** Understand how to manage AI risk, accountability and responsible adoption at enterprise scale
-- **Example topics:**
-  - Building an AI risk framework
-  - Responsible AI in financial services
-  - AI accountability structures for enterprise organizations
-  - Governing AI across business units
-- **Primary advisory page:** `/advisory/#ai-strategy`, `/advisory/#ai-adoption`
+---
 
-### Hub: Banking & Financial Services Transformation
-- **Search intent:** Understand how AI, agility and operating model evolution apply specifically in banking and financial services
-- **Example topics:**
-  - AI transformation in regulated banking environments
-  - Digital operating models for financial services
-  - Agile transformation in compliance-heavy organizations
-  - Portfolio governance in banking transformation programs
-- **Primary advisory page:** `/advisory/#ai-strategy`, `/advisory/#digital-transformation`
+### Cross-cutting themes (use as `tags`, not `categorySlug`)
+
+These themes are used in article `tags[]` frontmatter to enrich topical depth and support future internal linking and tag-filtered views. They do **not** map to category hub pages and must **not** be used as `categorySlug` values.
+
+| Theme | Recommended `tag` value | Notes |
+|---|---|---|
+| Operating Models | `operating-models` | Use in AI Strategy, Digital Transformation, Operational Excellence articles |
+| Enterprise Agility | `enterprise-agility` | Use in Operational Excellence, Digital Transformation articles |
+| AI Governance | `ai-governance` | Use in AI Strategy, AI Adoption articles |
+| Banking & Financial Services | `banking` | Use when content is specific to regulated financial services |
+| Strategy Execution | `strategy-execution` | **Deprecated as a category** — use as a tag only in Operational Excellence articles |
+| Leadership | `leadership` | Use for articles on executive decision-making and organizational change |
+| Enterprise Transformation | `enterprise-transformation` | Broad cross-hub theme |
+| Transformation Governance | `transformation-governance` | Use in Digital Transformation, Operational Excellence articles |
+| OKRs | `okrs` | Use in Operational Excellence articles |
+| QBRs | `qbrs` | Use in Operational Excellence articles |
 
 ---
 
@@ -195,7 +201,7 @@ Each article must include complete, unique metadata. No two articles should shar
 | `datePublished` | ISO 8601 format (`YYYY-MM-DD`) | — |
 | `dateModified` | Updated whenever the article is substantially revised | — |
 | Author | `Facundo Gangemi` | — |
-| Category / hub | One of the eight defined hubs | — |
+| Category / hub | One of the four production categories: `ai-strategy`, `digital-transformation`, `operational-excellence`, `ai-adoption` | — |
 | Tags | Two to five relevant tags | — |
 
 **Metadata must be:**
@@ -371,18 +377,24 @@ Every article must end with a clear, relevant call to action. The CTA should fee
 - Optional secondary CTA — `/ai-assessment` or a related article
 - CTA text must be descriptive and aligned with the article topic
 
-**Appropriate CTA examples by hub:**
+**Appropriate CTA examples by category:**
 
-| Hub | Primary CTA |
+| Category | Primary CTA |
 |---|---|
 | AI Strategy | "Explore AI Strategy Advisory" → `/advisory/#ai-strategy` |
 | Digital Transformation | "Explore Digital Transformation Advisory" → `/advisory/#digital-transformation` |
-| Enterprise Agility | "Explore Operational Excellence Advisory" → `/advisory/#operational-excellence` |
-| AI Adoption | "Assess your AI readiness" → `/ai-assessment` |
-| Operating Models | "Discuss your operating model priorities" → `/contact` |
 | Operational Excellence | "Explore Operational Excellence Advisory" → `/advisory/#operational-excellence` |
-| Strategy Execution | "Discuss your strategy execution challenges" → `/contact` |
-| Banking & Financial Services | "Explore AI and Transformation Advisory for Financial Services" → `/advisory` |
+| AI Adoption | "Assess your AI readiness" → `/ai-assessment/` |
+
+**CTAs for cross-cutting themes** (when the article is tagged with one of these but assigned to a primary category):
+
+| Cross-cutting theme | Suggested CTA when prominent in article |
+|---|---|
+| Operating Models | "Discuss your operating model priorities" → `/contact/` |
+| Banking & Financial Services | "Explore AI and Transformation Advisory" → `/advisory/` |
+| AI Governance | "Explore AI Strategy Advisory" → `/advisory/#ai-strategy` |
+| Enterprise Agility | "Explore Operational Excellence Advisory" → `/advisory/#operational-excellence` |
+| Strategy Execution (deprecated as category) | "Discuss your strategy execution challenges" → `/contact/` |
 
 **Do not use:**
 - "Buy now" or transactional sales language
@@ -417,11 +429,14 @@ All article pages must include Article JSON-LD structured data. This enables ric
   "datePublished": "YYYY-MM-DD",
   "dateModified": "YYYY-MM-DD",
   "image": "https://facundogangemi.com/assets/og/<image>.webp",
+  "timeRequired": "PT4M",
   "mainEntityOfPage": "https://facundogangemi.com/insights/<slug>/",
   "articleSection": "<hub name>",
   "keywords": "comma-separated list of primary and secondary keywords"
 }
 ```
+
+> **Implementation note (Phase 10C):** All fields above except `articleSection` and `keywords` are auto-generated by `src/pages/insights/[slug].astro` from frontmatter. Authors do not need to write JSON-LD manually. `timeRequired` is computed at build time from `article.body` at 220 wpm. `image` is included only when the `image` frontmatter field is set. `dateModified` falls back to `datePublished` when `updatedDate` is not in frontmatter. A BreadcrumbList schema is also emitted alongside the Article schema on every article page.
 
 **Rules:**
 - `headline` must match the article H1 exactly
@@ -484,7 +499,7 @@ Avoid these patterns in every article:
 Before publishing any article, verify every item on this checklist:
 
 **Planning:**
-- [ ] Primary content hub defined (one of the eight hubs)
+- [ ] Primary category defined (one of: `ai-strategy`, `digital-transformation`, `operational-excellence`, `ai-adoption`)
 - [ ] Search intent defined (one of the eight intent types)
 - [ ] Primary keyword defined
 - [ ] Secondary keywords defined (3–7)
