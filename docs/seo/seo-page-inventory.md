@@ -84,7 +84,7 @@ No structured data is emitted on interior pages beyond what is inherited through
 | OG image | `https://facundogangemi.com/assets/og/og-home.webp` |
 | Indexable | Yes |
 | Structured data | Person (with `image` field added — Phase 10), WebSite, ProfessionalService (with `@id` added — Phase 10) |
-| Key internal links | `/advisory/` (Signature Framework CTA + Final CTA secondary), `/advisory/#ai-strategy`, `/advisory/#digital-transformation`, `/advisory/#operational-excellence`, `/advisory/#ai-adoption`, `/about/` (About Snapshot CTA), `/insights`, `/contact/` |
+| Key internal links | `/advisory/` (Signature Framework CTA + Final CTA secondary), `/advisory/#ai-strategy`, `/advisory/#digital-transformation`, `/advisory/#operational-excellence`, `/advisory/#ai-adoption`, `/about/` (About Snapshot CTA), `/insights`, `/contact/`, `/case-studies/` (TiP section footer — Phase 9 internal linking) |
 | Improvement notes | **Phase 10 (2026-05-14):** Home remediation Phase 1 applied based on 7-agent multi-agent audit. Changes: (1) Section resequenced — TiP moved from §5 to §7, after Industries Served (§5) and Metrics (§6). (2) TiP case copy rewritten — ambiguous "10–15% targeted" metric removed, challenge reframed as business/regulatory pressure, outcome restructured to lead with organizational change. Case tag updated to "BANKING & FINANCIAL SERVICES · AI-ENABLED ENGINEERING GOVERNANCE". (3) AI diagram SVG updated — viewBox expanded to 340×280, center shifted to (170,138), all node positions recalculated, label font-size raised from 10.5 to 12, center label "AI Governance" raised from 16/11px to 18/13px, inner circle opacity strengthened (0.09 fill, 0.40 stroke). (4) Advisory Grid background changed from `#05070D` to `#080A10` to break triple-dark opening. (5) Advisory card outcome italic removed (now font-semibold upright). (6) Hero pull quote replaced: "AI adoption fails when it is treated as a tool rollout instead of an operating model redesign." (7) Final CTA secondary changed from "Contact Me → /contact" to "See Advisory Services → /advisory/". (8) "10+ Teams Enabled" KPI replaced with "9 Countries / International transformation footprint". (9) "€10M Estimated Portfolio Scope" KPI replaced with "5+ AI Opportunities Prioritized / Connecting business needs, governance requirements, operating model constraints and measurable business impact." (10) Person JSON-LD `image` field added. (11) ProfessionalService JSON-LD `@id` field added. No /case-studies/ body link added — case study page not yet ready. |
 
 ---
@@ -156,7 +156,7 @@ No structured data is emitted on interior pages beyond what is inherited through
 | Secondary keywords | Enterprise Transformation, Operating Models, Operational Excellence, AI Adoption |
 | Indexable | Yes |
 | Structured data | Person (BaseLayout), Service (page-level — name, provider, description, url, serviceType \[4 values\], areaServed) |
-| Key internal links | `/advisory/#ai-strategy` (anchor), `/advisory/#digital-transformation` (anchor), `/advisory/#operational-excellence` (anchor), `/advisory/#ai-adoption` (anchor), `/contact/`, `/insights/` |
+| Key internal links | `/advisory/#ai-strategy` (anchor), `/advisory/#digital-transformation` (anchor), `/advisory/#operational-excellence` (anchor), `/advisory/#ai-adoption` (anchor), `/contact/`, `/insights/`, `/case-studies/` (final CTA proof text — Phase 9 internal linking) |
 | Improvement notes | Phase 7: complete rebuild as a single-page advisory hub. Navigation and footer links use anchor-format URLs. Phase 8 (2026-05-13): orphaned and deprecated advisory sub-pages deleted — `/advisory/` is now the only advisory route. Service JSON-LD (serviceType: AI Strategy Advisory, Digital Transformation Advisory, Operational Excellence Advisory, AI Adoption Advisory). Hero image: `/images/Advisory/Advisory-hero-client-delivery.webp`. Phase 8.2 (2026-05-13): added Signature Framework section (`#advisory-framework`) between Hero and practice sections — editorial left column + vertical 5-step transformation timeline + 3 supporting statements. Background `#080A10`. |
 
 ---
@@ -222,6 +222,7 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Indexable | Yes |
 | Structured data | `CollectionPage` (page-level) + `Person` (inherited from BaseLayout) |
 | Key internal links | `/contact/` (hero CTA + final CTA), `/advisory/` (hero secondary + final secondary) |
+| Inbound links | `/` (TiP section footer), `/advisory/` (final CTA proof text), `/insights/` (final CTA proof text) — Phase 9 internal linking complete (2026-05-14) |
 | Content source | Astro Content Collection `case-studies` — 6 Markdown files in `src/content/case-studies/**/*.md` |
 | Confidentiality filter | `confidentiality !== 'internal'` — all 6 current cases are `anonymized` |
 | Sections | Hero · Confidentiality note · Case cards (6) · Advisory method (5 steps) · Final CTA |
@@ -313,7 +314,7 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Secondary keywords | Digital transformation insights, Operating models, Operational excellence, Enterprise agility, Strategy execution |
 | Indexable | Yes |
 | Structured data | Person (BaseLayout), CollectionPage (page-level — name, description, url, author) |
-| Key internal links | `/insights/ai-strategy/`, `/insights/digital-transformation/`, `/insights/operational-excellence/`, `/insights/strategy-execution/`, `/advisory`, `/contact`, `/about` |
+| Key internal links | `/insights/ai-strategy/`, `/insights/digital-transformation/`, `/insights/operational-excellence/`, `/insights/strategy-execution/`, `/advisory`, `/contact`, `/about/`, `/case-studies/` (final CTA proof text — Phase 9 internal linking) |
 | Improvement notes | Phase 6a: hero with editorial image, filter chips, featured insight card, topic cards, article grid. Title fixed from 87-char overage to 57 chars. Meta description trimmed to 127 chars. Internal /about link added to Final CTA section. CollectionPage JSON-LD added. Static placeholder articles shown until real collection content is published. |
 
 ---

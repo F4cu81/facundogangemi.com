@@ -527,6 +527,9 @@ const PRACTICES: Practice[] = [
               </svg>
             </a>
           </div>
+          <p class="advisory-cta-proof">
+            See how advisory work translates into measurable outcomes in the <a href="/case-studies/">transformation case studies</a>.
+          </p>
         </div>
       </div>
     </div>
@@ -591,6 +594,10 @@ const PRACTICES: Practice[] = [
   /* Hero right: editorial image */
   .advisory-hero-visual {
     display: block;
+  }
+
+  @media (max-width: 1023px) {
+    .advisory-hero-visual { display: none; }
   }
 
   .advisory-hero-image-wrap {
@@ -1067,6 +1074,23 @@ const PRACTICES: Practice[] = [
     gap: 0.875rem;
     justify-content: center;
   }
+
+  .advisory-cta-proof {
+    font-size: 0.825rem;
+    color: rgba(255, 255, 255, 0.32);
+    line-height: 1.6;
+    margin-top: 1.25rem;
+    text-align: center;
+  }
+
+  .advisory-cta-proof a {
+    color: rgba(255, 255, 255, 0.48);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 160ms ease;
+  }
+
+  .advisory-cta-proof a:hover { color: rgba(255, 255, 255, 0.75); }
 </style>
 
 <script is:inline>

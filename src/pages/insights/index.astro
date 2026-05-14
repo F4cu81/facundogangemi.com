@@ -461,7 +461,7 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
             operating models and measurable business impact.
           </p>
           <p class="insights-cta-about">
-            Explore the strategic background behind these perspectives on the <a href="/about">About page</a>.
+            Explore the strategic background behind these perspectives on the <a href="/about/">About page</a>, or see how they translate into execution in the <a href="/case-studies/">transformation case studies</a>.
           </p>
           <div class="insights-cta-actions">
             <a href="/contact" class="btn-primary">
@@ -538,6 +538,10 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
   /* Hero right: editorial image */
   .insights-hero-visual {
     display: block;
+  }
+
+  @media (max-width: 1023px) {
+    .insights-hero-visual { display: none; }
   }
 
   .insights-hero-image-wrap {
