@@ -62,6 +62,7 @@ const ADVISORY_ICONS: string[] = [
     {
       '@context': 'https://schema.org',
       '@type': 'ProfessionalService',
+      '@id': 'https://facundogangemi.com/#professional-service',
       name: 'Facundo Gangemi',
       url: 'https://facundogangemi.com',
       description: 'Executive advisory for AI Strategy, Digital Transformation and Operating Models — helping enterprise leaders build clarity, execution and measurable business impact.',
@@ -130,7 +131,7 @@ const ADVISORY_ICONS: string[] = [
         <!-- Pull quote -->
         <blockquote class="border-l-2 border-orange-500/50 pl-5 mb-8 max-w-[44ch] reveal delay-100">
           <p class="text-white/50 text-sm leading-snug italic">
-            The future belongs to organizations that combine intelligence, adaptability and execution.
+            AI adoption fails when it is treated as a tool rollout instead of an operating model redesign.
           </p>
         </blockquote>
 
@@ -156,7 +157,7 @@ const ADVISORY_ICONS: string[] = [
 
   <!-- ── 3. Advisory Grid — Dark foundation ────────────────────────────────── -->
   <section
-    class="section-py bg-[#05070D]"
+    class="section-py bg-[#080A10]"
     aria-labelledby="advisory-heading"
   >
     <div class="container-site">
@@ -182,7 +183,7 @@ const ADVISORY_ICONS: string[] = [
             <!-- Icon -->
             <div class="adv-icon" aria-hidden="true" set:html={ADVISORY_ICONS[i]} />
             <h3 class="font-heading font-semibold text-white text-lg mb-2">{pillar.title}</h3>
-            <p class="text-sm text-orange-400 font-medium mb-3 italic">{pillar.outcome}</p>
+            <p class="text-sm text-orange-400 font-semibold mb-3">{pillar.outcome}</p>
             <p class="text-white/55 text-sm leading-relaxed">{pillar.description}</p>
             <span class="text-link-light text-sm adv-cta">
               Learn more
@@ -258,170 +259,7 @@ const ADVISORY_ICONS: string[] = [
     </div>
   </section>
 
-  <!-- ── 5. Transformation in Practice ────────────────────────────────────── -->
-  <section
-    class="section-py-sm bg-gray-950"
-    aria-labelledby="tip-heading"
-  >
-    <div class="container-site">
-
-      <!-- Section header -->
-      <div class="mb-8 lg:mb-10">
-        <span class="eyebrow">Applied AI Transformation</span>
-        <h2 id="tip-heading" class="text-section font-heading font-semibold text-white mt-1">
-          Transformation in Practice
-        </h2>
-      </div>
-
-      <!-- Financial Services case card -->
-      <article class="tip-card reveal" aria-label="Financial services transformation case">
-
-        <!-- Left orange accent bar -->
-        <div class="tip-bar" aria-hidden="true"></div>
-
-        <!-- Card body -->
-        <div class="tip-body">
-
-          <!-- Tag + Headline -->
-          <div>
-            <p class="tip-tag">Banking &amp; Financial Services · AI-Enabled SDLC Governance</p>
-            <h3 class="tip-headline font-heading">
-              From manual quality control to AI-enabled software governance
-            </h3>
-          </div>
-
-          <!-- Challenge + Outcome -->
-          <div class="tip-detail">
-            <div>
-              <p class="tip-label">Challenge</p>
-              <p class="tip-text">A financial services organization needed to improve development quality, security alignment and SDLC compliance across technology teams while preserving delivery speed.</p>
-            </div>
-            <div>
-              <p class="tip-label">Outcome</p>
-              <p class="tip-text">An AI-enabled governance layer was introduced into the pull request workflow, helping developers detect SDLC, quality and security gaps earlier in the delivery cycle. Early measurements targeted a 10–15% improvement in development quality, tracked through AI-reviewed pull requests, recurring findings and correction cycles.</p>
-            </div>
-          </div>
-
-          <!-- Card CTA -->
-          <div>
-            <a href="/contact/" class="sf-cta-link">
-              Discuss a similar transformation
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
-
-        </div>
-      </article>
-
-      <!-- Section footer CTA -->
-      <div class="tip-footer">
-        <a href="/advisory/" class="sf-cta-link">
-          Explore advisory work
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ── 7. Metrics & Proof Points ────────────────────────────────────────── -->
-  <section
-    id="metrics-section"
-    class="relative section-py-xs bg-[#05070D] overflow-hidden"
-    aria-labelledby="metrics-heading"
-  >
-    <!-- Background: subtle elevation gradient at top -->
-    <div class="absolute inset-0 bg-gradient-to-b from-[#0C0E13]/18 via-[#08090D]/10 to-transparent pointer-events-none" aria-hidden="true"></div>
-    <!-- Top separator: feathered line -->
-    <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.10] to-transparent pointer-events-none" aria-hidden="true"></div>
-    <!-- Bottom separator: feathered line -->
-    <div class="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none" aria-hidden="true"></div>
-    <!-- Warm orange radial glow — anchors section to brand accent -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-40 bg-[radial-gradient(ellipse_at_top,rgba(245,124,0,0.05)_0%,transparent_70%)] pointer-events-none" aria-hidden="true"></div>
-
-    <div class="container-site relative z-10">
-      <h2 id="metrics-heading" class="sr-only">Experience and authority</h2>
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
-        {KPIS.map((kpi) => {
-          const isNumeric = /^\d/.test(kpi.value);
-          const num = isNumeric ? parseInt(kpi.value, 10) : null;
-          const suffix = isNumeric ? kpi.value.replace(/^\d+/, '') : undefined;
-          return (
-            <div class="kpi-cell px-6 py-10 text-center reveal">
-              <div
-                class="font-heading font-bold text-5xl lg:text-6xl text-orange-500 mb-3 leading-none tabular-nums"
-                data-kpi-value={kpi.value}
-                data-counter={isNumeric ? String(num) : undefined}
-                data-suffix={suffix}
-                aria-label={`${kpi.value} ${kpi.label}`}
-              >
-                {kpi.value}
-              </div>
-              <p class="text-white font-semibold text-sm mb-1">{kpi.label}</p>
-              {kpi.sublabel && (
-                <p class="text-white/45 text-xs leading-relaxed">{kpi.sublabel}</p>
-              )}
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  </section>
-
-<script>
-  // Scroll-triggered count-up animation for numeric metrics.
-  // Runs once when the metrics section enters the viewport.
-  // Respects prefers-reduced-motion: shows final values immediately.
-  (function () {
-    if (typeof window === 'undefined') return;
-
-    const section = document.getElementById('metrics-section');
-    if (!section) return;
-
-    const counters = Array.from(section.querySelectorAll<HTMLElement>('[data-counter]'));
-    if (counters.length === 0) return;
-
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (prefersReduced) return; // final values already rendered in HTML
-
-    const DURATION = 1600;
-    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
-
-    function runCounter(el: HTMLElement) {
-      const target = parseInt(el.dataset.counter ?? '0', 10);
-      const suffix = el.dataset.suffix ?? '';
-      const start = performance.now();
-
-      function tick(now: number) {
-        const progress = Math.min((now - start) / DURATION, 1);
-        el.textContent = String(Math.round(easeOut(progress) * target)) + suffix;
-        if (progress < 1) requestAnimationFrame(tick);
-        else el.textContent = String(target) + suffix;
-      }
-
-      requestAnimationFrame(tick);
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          counters.forEach(runCounter);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(section);
-  })();
-</script>
-
-  <!-- ── 6. Industries Served — Asymmetric editorial grid ─────────────────── -->
+  <!-- ── 5. Industries Served — Asymmetric editorial grid ─────────────────── -->
   <section
     class="section-py bg-[#05070D]"
     aria-labelledby="industries-heading"
@@ -526,7 +364,276 @@ const ADVISORY_ICONS: string[] = [
     </div>
   </section>
 
-  <!-- ── 7. About Snapshot — Personal authority bridge ────────────────────── -->
+  <!-- ── 6. Metrics & Proof Points ────────────────────────────────────────── -->
+  <section
+    id="metrics-section"
+    class="relative section-py-xs bg-[#05070D] overflow-hidden"
+    aria-labelledby="metrics-heading"
+  >
+    <!-- Background: subtle elevation gradient at top -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0C0E13]/18 via-[#08090D]/10 to-transparent pointer-events-none" aria-hidden="true"></div>
+    <!-- Top separator: feathered line -->
+    <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.10] to-transparent pointer-events-none" aria-hidden="true"></div>
+    <!-- Bottom separator: feathered line -->
+    <div class="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none" aria-hidden="true"></div>
+    <!-- Warm orange radial glow — anchors section to brand accent -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-40 bg-[radial-gradient(ellipse_at_top,rgba(245,124,0,0.05)_0%,transparent_70%)] pointer-events-none" aria-hidden="true"></div>
+
+    <div class="container-site relative z-10">
+      <h2 id="metrics-heading" class="sr-only">Experience and authority</h2>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+        {KPIS.map((kpi) => {
+          const isNumeric = /^\d/.test(kpi.value);
+          const num = isNumeric ? parseInt(kpi.value, 10) : null;
+          const suffix = isNumeric ? kpi.value.replace(/^\d+/, '') : undefined;
+          return (
+            <div class="kpi-cell px-6 py-10 text-center reveal">
+              <div
+                class="font-heading font-bold text-5xl lg:text-6xl text-orange-500 mb-3 leading-none tabular-nums"
+                data-kpi-value={kpi.value}
+                data-counter={isNumeric ? String(num) : undefined}
+                data-suffix={suffix}
+                aria-label={`${kpi.value} ${kpi.label}`}
+              >
+                {kpi.value}
+              </div>
+              <p class="text-white font-semibold text-sm mb-1">{kpi.label}</p>
+              {kpi.sublabel && (
+                <p class="text-white/45 text-xs leading-relaxed">{kpi.sublabel}</p>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+<script>
+  // Scroll-triggered count-up animation for numeric metrics.
+  // Runs once when the metrics section enters the viewport.
+  // Respects prefers-reduced-motion: shows final values immediately.
+  (function () {
+    if (typeof window === 'undefined') return;
+
+    const section = document.getElementById('metrics-section');
+    if (!section) return;
+
+    const counters = Array.from(section.querySelectorAll<HTMLElement>('[data-counter]'));
+    if (counters.length === 0) return;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReduced) return; // final values already rendered in HTML
+
+    const DURATION = 1600;
+    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+
+    function runCounter(el: HTMLElement) {
+      const target = parseInt(el.dataset.counter ?? '0', 10);
+      const suffix = el.dataset.suffix ?? '';
+      const start = performance.now();
+
+      function tick(now: number) {
+        const progress = Math.min((now - start) / DURATION, 1);
+        el.textContent = String(Math.round(easeOut(progress) * target)) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.textContent = String(target) + suffix;
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          counters.forEach(runCounter);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(section);
+  })();
+</script>
+
+  <!-- ── 7. Transformation in Practice ────────────────────────────────────── -->
+  <section
+    class="section-py-sm bg-gray-950"
+    aria-labelledby="tip-heading"
+  >
+    <div class="container-site">
+
+      <!-- Section header -->
+      <div class="mb-8 lg:mb-10">
+        <span class="eyebrow">Applied AI Transformation</span>
+        <h2 id="tip-heading" class="text-section font-heading font-semibold text-white mt-1">
+          Transformation in Practice
+        </h2>
+      </div>
+
+      <!-- Financial Services case card -->
+      <article class="tip-card reveal" aria-label="Financial services transformation case">
+
+        <!-- Left orange accent bar -->
+        <div class="tip-bar" aria-hidden="true"></div>
+
+        <!-- Card body -->
+        <div class="tip-body">
+
+          <!-- Case content -->
+          <div class="tip-content">
+
+            <!-- Tag + Headline -->
+            <div>
+              <p class="tip-tag">BANKING &amp; FINANCIAL SERVICES · AI-ENABLED ENGINEERING GOVERNANCE</p>
+              <h3 class="tip-headline font-heading">
+                From manual quality control to AI-enabled software governance
+              </h3>
+            </div>
+
+            <!-- Challenge + Outcome -->
+            <div class="tip-detail">
+              <div>
+                <p class="tip-label">Challenge</p>
+                <p class="tip-text">At enterprise scale, inconsistent quality controls across software delivery increased regulatory, security and operational risk for technology leadership.</p>
+              </div>
+              <div>
+                <p class="tip-label">Outcome</p>
+                <p class="tip-text">The organization moved from manual, late-stage quality control to an AI-enabled governance loop inside the software delivery governance workflow, giving teams earlier visibility into quality, security and compliance gaps before they became delivery risks. Improvement was tracked through AI-reviewed pull requests, recurring findings and correction cycles.</p>
+              </div>
+            </div>
+
+            <!-- Card CTA -->
+            <div>
+              <a href="/contact/" class="sf-cta-link">
+                Discuss a similar transformation
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- AI-Enabled Delivery Loop diagram -->
+          <figure class="tip-diagram-col" aria-hidden="true">
+            <p class="tip-diagram-title">AI-Enabled Governance Loop</p>
+            <p class="tip-diagram-sub">Quality · Security · Compliance · Efficiency</p>
+            <!--
+              Circular flow diagram — AI-enabled pull request governance cycle.
+              Center: (170,138), track radius: 90. ViewBox: 340×280.
+              Nodes at 60° intervals from top, clockwise:
+                n0 PR Submitted (−90°): (170,48)
+                n1 AI Review    (−30°): (248,93)
+                n2 Findings     (+30°): (248,183)
+                n3 Developer Fix(+90°): (170,228)
+                n4 Re-check    (+150°): (92,183)
+                n5 Learning Loop(+210°): (92,93)
+            -->
+            <svg viewBox="0 0 340 280" fill="none" xmlns="http://www.w3.org/2000/svg" class="tip-svg" focusable="false">
+
+              <!-- Inner circle — intentional center node with orange presence -->
+              <circle class="tip-gi" cx="170" cy="138" r="40" fill="rgba(245,124,0,0.09)" stroke="rgba(245,124,0,0.40)" stroke-width="1"/>
+
+              <!-- Outer track — dashed guide circle -->
+              <circle cx="170" cy="138" r="90" stroke="rgba(255,255,255,0.14)" stroke-width="1" stroke-dasharray="3 7"/>
+
+              <!-- ── Arc segments ── -->
+              <!-- 0→1 PR Submitted → AI Review — orange highlight -->
+              <path class="tip-ga" d="M170,48 A90,90 0 0,1 248,93" stroke="rgba(245,124,0,0.68)" stroke-width="1.5"/>
+              <!-- 1→2 AI Review → Findings -->
+              <path class="tip-gn-neutral" d="M248,93 A90,90 0 0,1 248,183" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+              <!-- 2→3 Findings → Developer Fix -->
+              <path class="tip-gn-neutral" d="M248,183 A90,90 0 0,1 170,228" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+              <!-- 3→4 Developer Fix → Re-check -->
+              <path class="tip-gn-neutral" d="M170,228 A90,90 0 0,1 92,183" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+              <!-- 4→5 Re-check → Learning Loop -->
+              <path class="tip-gn-neutral" d="M92,183 A90,90 0 0,1 92,93" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+              <!-- 5→0 Learning Loop → PR Submitted -->
+              <path class="tip-gn-neutral" d="M92,93 A90,90 0 0,1 170,48" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+
+              <!-- ── Clockwise chevrons at arc midpoints ── -->
+              <!-- m0→1 θ=−60° (215,60) rot=30° — orange -->
+              <g transform="translate(215,60) rotate(30)">
+                <path d="M-5,-3 L5,0 L-5,3" stroke="rgba(245,124,0,0.80)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <!-- m1→2 θ=0° (260,138) rot=90° -->
+              <g transform="translate(260,138) rotate(90)">
+                <path d="M-5,-3 L5,0 L-5,3" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <!-- m2→3 θ=60° (215,216) rot=150° -->
+              <g transform="translate(215,216) rotate(150)">
+                <path d="M-5,-3 L5,0 L-5,3" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <!-- m3→4 θ=120° (125,216) rot=210° -->
+              <g transform="translate(125,216) rotate(210)">
+                <path d="M-5,-3 L5,0 L-5,3" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <!-- m4→5 θ=180° (80,138) rot=270° -->
+              <g transform="translate(80,138) rotate(270)">
+                <path d="M-5,-3 L5,0 L-5,3" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <!-- m5→0 θ=240° (125,60) rot=330° -->
+              <g transform="translate(125,60) rotate(330)">
+                <path d="M-5,-3 L5,0 L-5,3" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+
+              <!-- ── Node dots ── -->
+              <!-- n0 PR Submitted — top -->
+              <circle cx="170" cy="48" r="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+              <!-- n1 AI Review — top-right, orange -->
+              <circle class="tip-gn" cx="248" cy="93" r="5.5" fill="rgba(245,124,0,0.20)" stroke="rgba(245,124,0,0.88)" stroke-width="1.5"/>
+              <!-- n2 Findings — bottom-right -->
+              <circle cx="248" cy="183" r="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+              <!-- n3 Developer Fix — bottom -->
+              <circle cx="170" cy="228" r="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+              <!-- n4 Re-check — bottom-left -->
+              <circle cx="92" cy="183" r="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+              <!-- n5 Learning Loop — top-left -->
+              <circle cx="92" cy="93" r="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+
+              <!-- ── Center label: "AI Governance System" — conceptual anchor ── -->
+              <text x="170" y="128" text-anchor="middle" fill="rgba(245,124,0,0.92)" font-size="14" font-weight="700" font-family="'Manrope', sans-serif" letter-spacing="0.02em">AI</text>
+              <text x="170" y="141" text-anchor="middle" fill="rgba(245,124,0,0.80)" font-size="10" font-weight="600" font-family="'Manrope', sans-serif" letter-spacing="0.06em">Governance</text>
+              <text x="170" y="153" text-anchor="middle" fill="rgba(245,124,0,0.80)" font-size="10" font-weight="600" font-family="'Manrope', sans-serif" letter-spacing="0.06em">System</text>
+
+              <!-- ── Step labels ── -->
+              <!-- n0 top — centered above -->
+              <text x="170" y="28" text-anchor="middle" fill="rgba(255,255,255,0.78)" font-size="12" font-weight="500" font-family="'Inter', sans-serif">Quality Standards</text>
+              <!-- n1 top-right — orange only active stage -->
+              <text x="262" y="97" text-anchor="start" fill="rgba(245,124,0,0.92)" font-size="12" font-weight="600" font-family="'Inter', sans-serif">AI Review</text>
+              <!-- n2 bottom-right -->
+              <text x="262" y="187" text-anchor="start" fill="rgba(255,255,255,0.78)" font-size="12" font-weight="500" font-family="'Inter', sans-serif">Risk Signals</text>
+              <!-- n3 bottom -->
+              <text x="170" y="248" text-anchor="middle" fill="rgba(255,255,255,0.78)" font-size="12" font-weight="500" font-family="'Inter', sans-serif">Team Action</text>
+              <!-- n4 bottom-left — two lines -->
+              <text x="78" y="180" text-anchor="end" fill="rgba(255,255,255,0.78)" font-size="12" font-weight="500" font-family="'Inter', sans-serif">Evidence</text>
+              <text x="78" y="194" text-anchor="end" fill="rgba(255,255,255,0.78)" font-size="12" font-weight="500" font-family="'Inter', sans-serif">Capture</text>
+              <!-- n5 top-left — two lines -->
+              <text x="78" y="88" text-anchor="end" fill="rgba(255,255,255,0.78)" font-size="12" font-weight="500" font-family="'Inter', sans-serif">Learning</text>
+              <text x="78" y="102" text-anchor="end" fill="rgba(255,255,255,0.78)" font-size="12" font-weight="500" font-family="'Inter', sans-serif">Loop</text>
+
+            </svg>
+          </figure>
+
+        </div>
+      </article>
+
+      <!-- Section footer CTA -->
+      <div class="tip-footer">
+        <a href="/advisory/" class="sf-cta-link">
+          Explore advisory work
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 8. About Snapshot — Personal authority bridge ────────────────────── -->
   <section
     class="section-py bg-gray-950"
     aria-labelledby="as-heading"
@@ -587,10 +694,10 @@ const ADVISORY_ICONS: string[] = [
     </div>
   </section>
 
-  <!-- ── 8. Strategic Perspectives ─────────────────────────────────────────── -->
+  <!-- ── 9. Strategic Perspectives ─────────────────────────────────────────── -->
   <StrategicPerspectives />
 
-  <!-- ── 9. Final CTA ───────────────────────────────────────────────────────── -->
+  <!-- ── 10. Final CTA ──────────────────────────────────────────────────────── -->
   <section
     class="cta-section section-py"
     aria-labelledby="final-cta-heading"
@@ -625,11 +732,8 @@ const ADVISORY_ICONS: string[] = [
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
-        <a href="/contact" class="cta-secondary-link">
-          Contact Me
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="cta-secondary-arrow">
-            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <a href="/advisory/" class="btn-outline">
+          See Advisory Services
         </a>
       </div>
     </div>
@@ -1005,11 +1109,40 @@ const ADVISORY_ICONS: string[] = [
     border-radius: var(--radius-card);
     border: 1px solid rgba(255, 255, 255, 0.08);
     background: rgba(255, 255, 255, 0.03);
-    transition: border-color var(--transition-base);
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
   }
 
   .tip-card:hover {
-    border-color: rgba(245, 124, 0, 0.22);
+    border-color: rgba(245, 124, 0, 0.28);
+    box-shadow: 0 0 28px rgba(245, 124, 0, 0.10), 0 8px 32px rgba(0, 0, 0, 0.28);
+  }
+
+  .tip-gi,
+  .tip-ga,
+  .tip-gn {
+    transition: fill 220ms ease-out, stroke 220ms ease-out;
+  }
+
+  .tip-gn-neutral {
+    transition: stroke 220ms ease-out;
+  }
+
+  .tip-card:hover .tip-gi {
+    fill: rgba(245, 124, 0, 0.15);
+    stroke: rgba(245, 124, 0, 0.55);
+  }
+
+  .tip-card:hover .tip-ga {
+    stroke: rgba(245, 124, 0, 0.85);
+  }
+
+  .tip-card:hover .tip-gn {
+    fill: rgba(245, 124, 0, 0.28);
+    stroke: rgba(245, 124, 0, 0.95);
+  }
+
+  .tip-card:hover .tip-gn-neutral {
+    stroke: rgba(255, 255, 255, 0.40);
   }
 
   .tip-bar {
@@ -1019,12 +1152,69 @@ const ADVISORY_ICONS: string[] = [
   }
 
   .tip-body {
-    display: flex;
-    flex-direction: column;
-    gap: 1.75rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
     padding: 2rem 2.25rem;
     flex: 1;
     min-width: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .tip-body {
+      grid-template-columns: 1fr 300px;
+      align-items: center;
+      gap: 2.5rem;
+    }
+  }
+
+  .tip-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .tip-diagram-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    gap: 0.75rem;
+  }
+
+  .tip-diagram-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.78);
+    text-align: center;
+    margin: 0;
+  }
+
+  .tip-diagram-sub {
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.38);
+    text-align: center;
+    margin: 0.25rem 0 0;
+  }
+
+  .tip-svg {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    display: block;
+    margin-inline: auto;
+  }
+
+  @media (max-width: 1023px) {
+    .tip-svg {
+      max-width: 240px;
+    }
   }
 
   .tip-tag {
@@ -1063,7 +1253,7 @@ const ADVISORY_ICONS: string[] = [
     font-weight: 700;
     letter-spacing: 0.10em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.50);
     margin: 0 0 0.5rem;
   }
 
@@ -1081,7 +1271,11 @@ const ADVISORY_ICONS: string[] = [
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .tip-card {
+    .tip-card,
+    .tip-gi,
+    .tip-ga,
+    .tip-gn,
+    .tip-gn-neutral {
       transition: none;
     }
   }

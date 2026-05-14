@@ -70,12 +70,12 @@ No structured data is emitted on interior pages beyond what is inherited through
 | Route | `/` |
 | Page type | Homepage |
 | Language | `en` |
-| Status | **Phase 9 complete** — "Transformation in Practice" updated to AI-enabled SDLC governance case (2026-05-14) |
-| SEO title | `AI Strategy & Transformation Advisor \| Facundo Gangemi` (54 chars displayed) — **unchanged Phase 8** |
-| Meta description | `Executive advisory for AI Strategy, Digital Transformation and Operating Models. Helping enterprise leaders build clarity and measurable business impact.` (153 chars) — **unchanged Phase 8** |
-| Canonical URL | `https://facundogangemi.com/` — **unchanged Phase 8** |
-| H1 | `AI Strategy & Digital Transformation Advisory.` — **unchanged Phase 8, unique** |
-| Main H2s | Strategic advisory for intelligent transformation. (Advisory Grid), A structured path from AI ambition to operating model reality. (Signature Framework), **Transformation in Practice** (Case Preview — Phase 9), Experience and authority (Metrics — sr-only), Industries Served, Executive advisory grounded in real transformation. (About Snapshot), Ready to turn AI and digital transformation into measurable business impact? (Final CTA) |
+| Status | **Phase 10 complete** — Home remediation Phase 1 applied (2026-05-14) |
+| SEO title | `AI Strategy & Transformation Advisor \| Facundo Gangemi` (54 chars displayed) — unchanged |
+| Meta description | `Executive advisory for AI Strategy, Digital Transformation and Operating Models. Helping enterprise leaders build clarity and measurable business impact.` (153 chars) — unchanged |
+| Canonical URL | `https://facundogangemi.com/` — unchanged |
+| H1 | `AI Strategy & Digital Transformation Advisory.` — unchanged, unique |
+| Main H2s | Strategic advisory for intelligent transformation. (Advisory Grid §3), A structured path from AI ambition to operating model reality. (Signature Framework §4), Industries Served (§5), Experience and authority (Metrics §6 — sr-only), **Transformation in Practice** (Case Preview §7), Executive advisory grounded in real transformation. (About Snapshot §8), Ready to turn AI and digital transformation into measurable business impact? (Final CTA §10) |
 | Primary search intent | Find an AI strategy and digital transformation advisor |
 | Primary keyword | AI Strategy & Digital Transformation Advisor |
 | Secondary keywords | Enterprise Transformation, Operating Models, Business Impact, Banking & Financial Services, Signature Framework, Discover Design Deploy Evolve |
@@ -83,9 +83,9 @@ No structured data is emitted on interior pages beyond what is inherited through
 | OG description | Same as meta description |
 | OG image | `https://facundogangemi.com/assets/og/og-home.webp` |
 | Indexable | Yes |
-| Structured data | Person, WebSite, ProfessionalService — **unchanged Phase 8** |
-| Key internal links | `/advisory/` (Signature Framework CTA — Phase 8), `/advisory/#ai-strategy`, `/advisory/#digital-transformation`, `/advisory/#operational-excellence`, `/advisory/#ai-adoption`, `/about/` (About Snapshot CTA — Phase 8), `/insights`, `/contact`, `/case-studies` |
-| Improvement notes | **Phase 8 (2026-05-13):** Home Authority & Proof Layer implemented and validated. Two new sections added: (1) Signature Framework (`bg-gray-950`, `section-py`) — two-column editorial, four-phase methodology (Discover → Design → Deploy → Evolve), indexable text in `<p>` elements, CTA to `/advisory/`. (2) About Snapshot (`bg-gray-950`, `section-py`) — two-column editorial with portrait, credential signals, CTA to `/about/`. Section order: Hero → ProofLogoBanner → Advisory Grid → Signature Framework → Metrics → Industries Served → About Snapshot → Strategic Perspectives → Final CTA. Background alternation introduced for the first time on Home (`#121212` at §4 and §7). Heading hierarchy valid: H1 → H2 (each section). SEO title, meta description, canonical, JSON-LD and H1 all unchanged. New internal links from Home: → `/advisory/` (Signature Framework CTA), → `/about/` (About Snapshot CTA). Discover, Design, Deploy, Evolve are indexable `<p>` text, not images. Pre-existing improvement notes: Consider adding `og:locale:alternate` for `es_ES`. Consider adding `email` to Person schema if intentionally public. |
+| Structured data | Person (with `image` field added — Phase 10), WebSite, ProfessionalService (with `@id` added — Phase 10) |
+| Key internal links | `/advisory/` (Signature Framework CTA + Final CTA secondary), `/advisory/#ai-strategy`, `/advisory/#digital-transformation`, `/advisory/#operational-excellence`, `/advisory/#ai-adoption`, `/about/` (About Snapshot CTA), `/insights`, `/contact/` |
+| Improvement notes | **Phase 10 (2026-05-14):** Home remediation Phase 1 applied based on 7-agent multi-agent audit. Changes: (1) Section resequenced — TiP moved from §5 to §7, after Industries Served (§5) and Metrics (§6). (2) TiP case copy rewritten — ambiguous "10–15% targeted" metric removed, challenge reframed as business/regulatory pressure, outcome restructured to lead with organizational change. Case tag updated to "BANKING & FINANCIAL SERVICES · AI-ENABLED ENGINEERING GOVERNANCE". (3) AI diagram SVG updated — viewBox expanded to 340×280, center shifted to (170,138), all node positions recalculated, label font-size raised from 10.5 to 12, center label "AI Governance" raised from 16/11px to 18/13px, inner circle opacity strengthened (0.09 fill, 0.40 stroke). (4) Advisory Grid background changed from `#05070D` to `#080A10` to break triple-dark opening. (5) Advisory card outcome italic removed (now font-semibold upright). (6) Hero pull quote replaced: "AI adoption fails when it is treated as a tool rollout instead of an operating model redesign." (7) Final CTA secondary changed from "Contact Me → /contact" to "See Advisory Services → /advisory/". (8) "10+ Teams Enabled" KPI replaced with "9 Countries / International transformation footprint". (9) "€10M Estimated Portfolio Scope" KPI replaced with "5+ AI Opportunities Prioritized / Connecting business needs, governance requirements, operating model constraints and measurable business impact." (10) Person JSON-LD `image` field added. (11) ProfessionalService JSON-LD `@id` field added. No /case-studies/ body link added — case study page not yet ready. |
 
 ---
 

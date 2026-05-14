@@ -156,34 +156,47 @@ Infinite horizontal scroll for logo/tag strips. Key properties:
 
 ## 6. Homepage Learnings
 
-Current approved homepage structure (Phase 9 — updated 2026-05-14):
+Current approved homepage structure (Phase 10 — updated 2026-05-14):
 1. Hero (`min-h-[78svh]`, bg `#05070D`, cinematic portrait)
 2. **Proof Logo Banner** — enterprise credibility band (`section-py-xs`, bg `#05070D`)
-3. Advisory Grid — 4 service pillars (bg `#05070D`, `section-py`)
+3. Advisory Grid — 4 service pillars (bg `#080A10`, `section-py`) ← bg changed Phase 10 (was `#05070D`)
 4. **Signature Framework** — 4-phase methodology (bg `#121212` / `bg-gray-950`, `section-py`) ← Phase 8
-5. **Transformation in Practice** — 1 Financial Services case preview (bg `#121212` / `bg-gray-950`, `section-py-sm`) ← Phase 9
-6. Metrics / KPI Band — 4 counters (bg `#05070D`, `section-py-xs`)
-7. Industries Served — asymmetric image grid (bg `#05070D`, `section-py`)
+5. Industries Served — asymmetric image grid (bg `#05070D`, `section-py`) ← moved to §5 Phase 10 (was §7)
+6. Metrics / KPI Band — 4 counters (bg `#05070D`, `section-py-xs`) ← moved to §6 Phase 10 (was §6)
+7. **Transformation in Practice** — 1 Financial Services case preview (bg `#121212` / `bg-gray-950`, `section-py-sm`) ← moved to §7 Phase 10 (was §5)
 8. **About Snapshot** — personal authority bridge (bg `#121212` / `bg-gray-950`, `section-py`) ← Phase 8
 9. Strategic Perspectives — Insights section
 10. Final CTA (bg `#05070D`, `section-py`)
 11. Footer
 
-**Background rhythm (Phase 9):** `#05070D` → `#05070D` → `#05070D` → `#121212` → `#121212` → `#05070D` → `#05070D` → `#121212` → (SP) → `#05070D`
-Sections 4 and 5 share `#121212` intentionally — they form a continuous proof zone: methodology → applied evidence. The section-py-sm spacing on §5 creates a perceptible rhythm break despite the shared background.
+**Background rhythm (Phase 10):** `#05070D` → `#05070D` → `#080A10` → `#121212` → `#05070D` → `#05070D` → `#121212` → `#121212` → (SP) → `#05070D`
+Advisory Grid uses `#080A10` (not `#05070D`) to break the triple-dark opening that ran through Hero + Proof Banner + Grid. Industries and Metrics share `#05070D` back-to-back — this is fine because Metrics has top/bottom feathered separators. TiP (§7) and About Snapshot (§8) share `#121212` — pre-existing pairing, not a new issue.
 
-### Transformation in Practice — Phase 9 (2026-05-14)
+### Transformation in Practice — Phase 10 (2026-05-14, updated)
 
-- **Placement:** After Signature Framework (§4), before Metrics (§6).
+- **Placement:** §7 — after Industries Served (§5) and Metrics (§6). Moved from §5 to §7 in Phase 10 so it arrives after credibility breadth is established.
 - **Purpose:** Applied transformation proof — shows the advisory framework in context, not as theory.
-- **Background:** `bg-gray-950` (`#121212`) — continuous with Signature Framework; creates a combined methodology + evidence zone.
+- **Background:** `bg-gray-950` (`#121212`).
 - **Spacing:** `section-py-sm` — compact to contrast with full `section-py` sections.
-- **Content:** One Financial Services AI-enabled SDLC governance case. No `/case-studies/` link or page created.
-- **Case framing:** AI-enabled pull request governance → earlier detection of SDLC, quality and security gaps. Outcome uses responsible metrics wording: targeted 10–15% improvement in development quality, not claimed as fully achieved.
-- **Card style:** Text-only, left vertical orange gradient accent bar (`width: 3px`), subtle dark surface (`rgba(255,255,255,0.03)`), border hover to `rgba(245,124,0,0.22)`.
+- **Content:** One Financial Services AI-enabled engineering governance case. No `/case-studies/` link or page created.
+- **Case tag (Phase 10):** "BANKING & FINANCIAL SERVICES · AI-ENABLED ENGINEERING GOVERNANCE" (all caps — changed from "Banking & Financial Services · AI-Enabled SDLC Governance" to remove engineering-facing "SDLC" term).
+- **Case framing (Phase 10):** Challenge reframed as business/regulatory pressure (not IT task). Outcome restructured to lead with organizational change. Ambiguous "10–15% targeted" metric removed — replaced with qualitative behavioral outcome.
+- **SVG diagram (Phase 10):** ViewBox expanded to 340×280; center shifted to (170,138); all node positions recalculated; label font-size raised from 10.5 to 12; "AI Governance" center label raised from 16/11px to 18/13px; inner circle opacity strengthened (0.09 fill, 0.40 stroke vs 0.05/0.22 before).
+- **Card style:** Left vertical orange gradient accent bar (`width: 3px`), subtle dark surface, border hover to `rgba(245,124,0,0.22)`.
+- **tip-label contrast (Phase 10):** Raised from `rgba(255,255,255,0.35)` to `rgba(255,255,255,0.50)` for WCAG legibility.
 - **CTAs:** Per-card "Discuss a similar transformation" → `/contact/`; Section footer "Explore advisory work" → `/advisory/`.
 - **Do not add** a `/case-studies/` link until that page has published content.
 - **CSS classes:** `.tip-card`, `.tip-bar`, `.tip-body`, `.tip-tag`, `.tip-headline`, `.tip-detail`, `.tip-label`, `.tip-text`, `.tip-footer` — all scoped to `index.astro` `<style>` block.
+
+### Other Phase 10 Home changes
+
+- **Hero pull quote (Phase 10):** Replaced generic "The future belongs to organizations..." with: "AI adoption fails when it is treated as a tool rollout instead of an operating model redesign."
+- **KPI strip (Phase 10):** "10+ Teams Enabled / Supporting teams in agile..." replaced with "8 Countries / International transformation footprint..." Agile coaching language removed. "€10M Estimated Portfolio Scope" replaced with "5+ AI Opportunities Prioritized / Connecting business needs, governance requirements, operating model constraints and measurable business impact."
+- **KPI strip (Phase 10 update):** Countries updated from 8 to 9.
+- **Advisory card outcomes (Phase 10):** `italic font-medium` removed; now `font-semibold` upright for legibility.
+- **Final CTA secondary (Phase 10):** "Contact Me → /contact" changed to "See Advisory Services → /advisory/" to eliminate duplicate destination and restore conversion optionality.
+- **Person schema (Phase 10):** `image` field added pointing to hero portrait URL.
+- **ProfessionalService schema (Phase 10):** `@id` field added: `https://facundogangemi.com/#professional-service`.
 
 ### Proof Logo Banner (Phase 8)
 
