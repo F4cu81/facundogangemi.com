@@ -178,7 +178,7 @@ Advisory Grid uses `#080A10` (not `#05070D`) to break the triple-dark opening th
 - **Purpose:** Applied transformation proof — shows the advisory framework in context, not as theory.
 - **Background:** `bg-gray-950` (`#121212`).
 - **Spacing:** `section-py-sm` — compact to contrast with full `section-py` sections.
-- **Content:** One Financial Services AI-enabled engineering governance case. No `/case-studies/` link or page created.
+- **Content:** One Financial Services AI-enabled engineering governance case. `/case-studies/` page now live (Phase 9B) — a link can be added to the TiP footer CTA if desired.
 - **Case tag (Phase 10):** "BANKING & FINANCIAL SERVICES · AI-ENABLED ENGINEERING GOVERNANCE" (all caps — changed from "Banking & Financial Services · AI-Enabled SDLC Governance" to remove engineering-facing "SDLC" term).
 - **Case framing (Phase 10):** Challenge reframed as business/regulatory pressure (not IT task). Outcome restructured to lead with organizational change. Ambiguous "10–15% targeted" metric removed — replaced with qualitative behavioral outcome.
 - **SVG diagram (Phase 10):** ViewBox expanded to 340×280; center shifted to (170,138); all node positions recalculated; label font-size raised from 10.5 to 12; "AI Governance" center label raised from 16/11px to 18/13px; inner circle opacity strengthened (0.09 fill, 0.40 stroke vs 0.05/0.22 before).
@@ -220,7 +220,56 @@ Visual pattern:
 
 ---
 
-## 7. Featured Insights Learnings
+## 7. Case Studies Page — Phase 9 (2026-05-14)
+
+### Phase 9A — Content pipeline wiring
+
+- **Collection name:** `case-studies` (matches directory `src/content/case-studies/`)
+- **Config file:** `src/content/config.ts` — `caseStudies` variable exported as `'case-studies'` key
+- **Schema:** `title`, `summary`, `sector`, `environment`, `theme`, `challenge`, `intervention`, `impact`, `strategicProof`, `relatedPractices[]`, `tags[]`, `confidentiality` (enum), `evidenceStatus` (enum), `featured`, `order`, `seoTitle`, `metaDescription`, `ctaLabel`, `ctaHref`
+- **`slug` field:** Present in frontmatter but NOT in schema — Astro 4 reserves `slug` for auto-generation from filename
+- **Content:** 6 Markdown files in `src/content/case-studies/**/*.md`, all `anonymized`, none `internal`
+- **Filter:** `cs.data.confidentiality !== 'internal'`; sort by `cs.data.order` ascending
+
+### Phase 9B — Visual and experience upgrade
+
+**Page:** `src/pages/case-studies.astro` (flat file at same route as `/case-studies/`)
+
+**Section structure:**
+
+| # | Section | Background | Spacing |
+|---|---|---|---|
+| 1 | Hero | `#05070D` | `section-py-lg` |
+| 2 | Confidentiality note | `bg-gray-950` | `section-py-xs` |
+| 3 | Case study cards (6) | `#05070D` | `section-py` |
+| 4 | Advisory method (5 steps) | `bg-gray-950` | `section-py` |
+| 5 | Final CTA | `#05070D` | `section-py` |
+
+**SEO (Phase 9B):**
+- Title: `Case Studies | AI Transformation | Facundo Gangemi` (52 chars)
+- Description: `Explore selected transformation case studies on AI strategy, operating models, operational excellence and measurable business impact.` (133 chars)
+- H1: `Proof of transformation impact across strategy, operating models and execution`
+- Canonical: `https://facundogangemi.com/case-studies/`
+- Structured data: `CollectionPage` (page-level)
+
+**Card anatomy:**
+- Eyebrow: `CASE STUDY · {sector.toUpperCase()}`
+- Title (`h3`), summary
+- Strategic proof block: orange left-accent, subtle orange bg tint, italic text, small uppercase label
+- 3-col detail: number (`01/02/03`), label (`Challenge/Intervention/Impact`), text
+- Footer: tags (pill list) + CTA link with animated arrow
+
+**Method steps:** `01 Diagnose → 02 Design → 03 Align → 04 Execute → 05 Measure`
+Grid: 1 col (mobile) → 2 cols (640px+) → 5 cols (1024px+)
+
+**CSS classes (all scoped to `case-studies.astro`):**
+`.cs-breadcrumb`, `.cs-h1`, `.cs-hero-lead`, `.cs-hero-meta`, `.cs-hero-cta`, `.cs-anon-band`, `.cs-anon-accent`, `.cs-anon-body`, `.cs-anon-text`, `.cs-grid`, `.cs-card`, `.cs-card-header`, `.cs-card-eyebrow`, `.cs-card-title`, `.cs-card-summary`, `.cs-proof-block`, `.cs-proof-label`, `.cs-proof-text`, `.cs-detail`, `.cs-detail-col`, `.cs-detail-num`, `.cs-detail-label`, `.cs-detail-text`, `.cs-card-footer`, `.cs-tags`, `.cs-tag`, `.cs-cta-link`, `.cs-cta-arrow`, `.cs-method-intro`, `.cs-method-h2`, `.cs-method-lead`, `.cs-method-steps`, `.cs-method-step`, `.cs-method-num`, `.cs-method-phase`, `.cs-method-body`, `.cs-final-card`, `.cs-final-inner`, `.cs-final-h2`, `.cs-final-body`, `.cs-final-actions`
+
+**Do not create** individual `[slug].astro` detail pages until explicitly requested.
+
+---
+
+## 7b. Featured Insights Learnings
 
 *To be populated when Insights list pages and article templates are built.*
 
@@ -510,7 +559,7 @@ Track known issues, deferred improvements and open questions here. Remove items 
 | Item | Priority | Notes |
 |---|---|---|
 | ~~Insights listing page — build and validate~~ | ~~High~~ | **Done Phase 6a** — full editorial hub at `/insights/` |
-| Case Studies listing page — build and validate | High | Same |
+| ~~Case Studies listing page — build and validate~~ | ~~High~~ | **Done Phase 9B (2026-05-14)** — premium editorial hub at `/case-studies/` with 6 anonymized cases via Content Collection. |
 | ~~Advisory sub-pages — build and validate~~ | ~~High~~ | **Deprecated Phase 8** — consolidated into `/advisory/` with anchor sections `#ai-strategy`, `#digital-transformation`, `#operational-excellence`, `#ai-adoption`. Sub-pages deleted. Do not recreate. |
 | Legal pages — review placeholder content | Medium | All four legal pages exist; legal details need owner review |
 | Analytics / consent — not yet implemented | Medium | Awaiting approval for tooling |

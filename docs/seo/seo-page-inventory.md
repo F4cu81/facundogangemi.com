@@ -209,20 +209,23 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Property | Value |
 |---|---|
 | Route | `/case-studies/` |
-| Page type | Content hub — placeholder |
+| Page type | Content hub — live (Phase 9B complete) |
 | Language | `en` |
-| Status | **Placeholder** — no case studies published yet |
-| SEO title | `Transformation Case Studies \| Facundo Gangemi` (46 chars) |
-| Meta description | `Transformation experiences in AI strategy, digital transformation, enterprise agility and operating model redesign across banking and financial services.` (152 chars) |
+| Status | **Live** — 6 anonymized case studies loaded via Astro Content Collection (`case-studies`) |
+| SEO title | `Case Studies \| AI Transformation \| Facundo Gangemi` (52 chars) |
+| Meta description | `Explore selected transformation case studies on AI strategy, operating models, operational excellence and measurable business impact.` (133 chars) |
 | Canonical URL | `https://facundogangemi.com/case-studies/` |
-| H1 | `Transformation Case Studies` |
-| Primary search intent | Digital transformation and AI strategy case studies |
+| H1 | `Proof of transformation impact across strategy, operating models and execution` |
+| Primary search intent | AI strategy and digital transformation case studies |
 | Primary keyword | Digital Transformation Case Studies |
-| Secondary keywords | Enterprise agility case study, Banking transformation, AI strategy results |
+| Secondary keywords | AI strategy case study, operating model transformation, operational excellence, enterprise agility |
 | Indexable | Yes |
-| Structured data | Person (inherited) |
-| Key internal links | `/contact`, `/advisory` |
-| Improvement notes | Placeholder — copy states case studies are being prepared. No invented content. When real case studies exist, each should link back to this hub. |
+| Structured data | `CollectionPage` (page-level) + `Person` (inherited from BaseLayout) |
+| Key internal links | `/contact/` (hero CTA + final CTA), `/advisory/` (hero secondary + final secondary) |
+| Content source | Astro Content Collection `case-studies` — 6 Markdown files in `src/content/case-studies/**/*.md` |
+| Confidentiality filter | `confidentiality !== 'internal'` — all 6 current cases are `anonymized` |
+| Sections | Hero · Confidentiality note · Case cards (6) · Advisory method (5 steps) · Final CTA |
+| Phase | Phase 9B — visual and experience upgrade complete (2026-05-14) |
 
 ---
 
