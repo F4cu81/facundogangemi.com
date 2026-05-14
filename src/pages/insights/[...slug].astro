@@ -61,6 +61,29 @@ const wordCount = article.body.trim().split(/\s+/).filter(Boolean).length;
 const readingTimeMin = Math.max(1, Math.round(wordCount / 220));
 const readingTimeLabel = `${readingTimeMin} min read`;
 
+// TOC — extract H2 headings from raw markdown body at build time
+function tocSlug(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+const tocHeadings = [...article.body.matchAll(/^## (.+)$/gm)].map(m => ({
+  text: m[1].trim().replace(/\*\*/g, ''),
+  id: tocSlug(m[1].trim()),
+}));
+const hasToc = tocHeadings.length > 0;
+
+// Related articles sidebar — up to 3 latest articles excluding the current one
+const allArticles = await getCollection('insights', ({ data }) => !data.draft);
+const relatedArticles = allArticles
+  .filter(a => a.slug !== article.slug)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+
 const articleSchema: Record<string, unknown> = {
   '@context': 'https://schema.org',
   '@type': 'Article',
@@ -86,6 +109,8 @@ if (image) {
 }
 
 articleSchema.timeRequired = `PT${readingTimeMin}M`;
+articleSchema.articleSection = category;
+articleSchema.keywords = [title, category, ...tags].join(', ');
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -106,6 +131,12 @@ const breadcrumbSchema = {
     {
       '@type': 'ListItem',
       position: 3,
+      name: category,
+      item: new URL(categoryHref, SITE.url).href,
+    },
+    {
+      '@type': 'ListItem',
+      position: 4,
       name: title,
       item: canonicalUrl,
     },
@@ -182,9 +213,73 @@ const breadcrumbSchema = {
 
   <!-- ── Article Body ─────────────────────────────────────────────────────── -->
   <section class="article-body-section" aria-label="Article content">
-    <div class="container-site">
-      <div class="article-body">
-        <Content />
+    <div class="article-body-wrap">
+
+      <!-- Mobile/tablet TOC disclosure (hidden at ≥1280px via CSS) -->
+      {hasToc && (
+        <details class="toc-mobile">
+          <summary class="toc-mobile-summary">Contents</summary>
+          <ol class="toc-mobile-list">
+            {tocHeadings.map(h => (
+              <li><a href={`#${h.id}`}>{h.text}</a></li>
+            ))}
+          </ol>
+        </details>
+      )}
+
+      <!-- 3-column grid: TOC | body | sidebar (right column always reserved on desktop) -->
+      <div class="article-layout-grid">
+
+        <!-- Left: sticky TOC (desktop only, hidden at <1280px via CSS) -->
+        <aside class="article-toc-sidebar" aria-label="Table of contents">
+          {hasToc && (
+            <nav class="article-toc">
+              <p class="toc-label">Contents</p>
+              <ol class="toc-list">
+                {tocHeadings.map(h => (
+                  <li>
+                    <a href={`#${h.id}`} class="toc-link">{h.text}</a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )}
+        </aside>
+
+        <!-- Center: article prose -->
+        <div class="article-body">
+          <Content />
+        </div>
+
+        <!-- Right: sidebar column always present on desktop; heading always visible; cards only when articles exist -->
+        <aside class="article-sidebar" aria-label="Latest insights">
+          <p class="sidebar-heading">Latest Insights</p>
+          {relatedArticles.length > 0 && (
+            <div class="sidebar-cards">
+              {relatedArticles.map((a) => {
+                const relDate = a.data.pubDate.toLocaleDateString('en-US', {
+                  year: 'numeric', month: 'short', day: 'numeric',
+                });
+                return (
+                  <article class="sidebar-card">
+                    <span class="sidebar-card-category">{a.data.category}</span>
+                    <h3 class="sidebar-card-title">
+                      <a href={`/insights/${a.slug}/`}>{a.data.title}</a>
+                    </h3>
+                    <p class="sidebar-card-excerpt">{a.data.description}</p>
+                    <time
+                      datetime={a.data.pubDate.toISOString().slice(0, 10)}
+                      class="sidebar-card-date"
+                    >
+                      {relDate}
+                    </time>
+                  </article>
+                );
+              })}
+            </div>
+          )}
+        </aside>
+
       </div>
     </div>
   </section>
@@ -319,18 +414,164 @@ const breadcrumbSchema = {
     border: 1px solid rgba(255, 255, 255, 0.07);
   }
 
-  /* ── Body ───────────────────────────────────────────────────────────────── */
+  /* ── Body Section ───────────────────────────────────────────────────────── */
   .article-body-section {
     background: #05070D;
     padding-block: 64px 80px;
   }
 
+  /* Wider than container-site (1280px) to give sidebars room */
+  .article-body-wrap {
+    width: min(100% - 2.5rem, 1420px);
+    margin-inline: auto;
+  }
+
+  /* ── Mobile/tablet TOC disclosure ───────────────────────────────────────── */
+  .toc-mobile {
+    margin-bottom: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.625rem;
+    background: rgba(255, 255, 255, 0.02);
+    overflow: hidden;
+  }
+
+  .toc-mobile-summary {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.60);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    user-select: none;
+  }
+
+  .toc-mobile-summary::-webkit-details-marker { display: none; }
+
+  .toc-mobile-summary::after {
+    content: '▾';
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.35);
+    margin-left: auto;
+    transition: transform 200ms ease;
+  }
+
+  .toc-mobile[open] .toc-mobile-summary::after {
+    transform: rotate(180deg);
+  }
+
+  .toc-mobile-list {
+    list-style: none;
+    padding: 0 1.25rem 1rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .toc-mobile-list li a {
+    display: block;
+    padding: 0.35rem 0 0.35rem 0.75rem;
+    font-size: 0.84rem;
+    color: rgba(255, 255, 255, 0.50);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: color 160ms ease, border-color 160ms ease;
+  }
+
+  .toc-mobile-list li a:hover,
+  .toc-mobile-list li a:focus-visible {
+    color: #F57C00;
+    border-left-color: rgba(245, 124, 0, 0.60);
+    outline: none;
+  }
+
+  /* ── 3-Column Layout Grid ────────────────────────────────────────────────── */
+  .article-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  /* Single column: center the prose */
   .article-body {
     max-width: 68ch;
     margin-inline: auto;
   }
 
-  /* Prose-like styles for markdown output */
+  /* Desktop 3-column layout */
+  @media (min-width: 1280px) {
+    .toc-mobile { display: none; }
+
+    .article-layout-grid {
+      grid-template-columns: 240px 1fr 300px;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    /* In grid context, body fills its column (grid handles sizing) */
+    .article-layout-grid .article-body {
+      max-width: none;
+      margin-inline: 0;
+    }
+  }
+
+  /* ── Desktop TOC sidebar ─────────────────────────────────────────────────── */
+  .article-toc-sidebar {
+    display: none;
+  }
+
+  @media (min-width: 1280px) {
+    .article-toc-sidebar {
+      display: block;
+      position: sticky;
+      top: 5rem;
+    }
+  }
+
+  .article-toc {
+    border-left: 1px solid rgba(255, 255, 255, 0.07);
+    padding-left: 1rem;
+  }
+
+  .toc-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #F57C00;
+    margin: 0 0 0.875rem;
+  }
+
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .toc-link {
+    display: block;
+    padding: 0.3rem 0 0.3rem calc(1rem - 2px);
+    font-size: 0.8rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.65);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1rem;
+    transition: color 160ms ease, border-color 160ms ease;
+  }
+
+  .toc-link:hover,
+  .toc-link:focus-visible {
+    color: #F57C00;
+    border-left-color: rgba(245, 124, 0, 0.70);
+    outline: none;
+  }
+
+  /* ── Article prose ───────────────────────────────────────────────────────── */
   .article-body :global(h2) {
     font-family: Manrope, system-ui, sans-serif;
     font-size: 1.5rem;
@@ -383,6 +624,7 @@ const breadcrumbSchema = {
     font-size: 1rem;
     line-height: 1.8;
     margin: 0 0 1.4rem;
+    text-align: justify;
   }
 
   .article-body :global(ul),
@@ -450,6 +692,89 @@ const breadcrumbSchema = {
     border: none;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     margin: 2.5rem 0;
+  }
+
+  /* ── Right sidebar ───────────────────────────────────────────────────────── */
+  .article-sidebar {
+    display: none;
+  }
+
+  @media (min-width: 1280px) {
+    .article-sidebar {
+      display: block;
+      position: sticky;
+      top: 5rem;
+    }
+  }
+
+  .sidebar-heading {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #F57C00;
+    margin: 0 0 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .sidebar-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .sidebar-card {
+    padding: 1rem 1.125rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.02);
+    transition: border-color 200ms ease, background 200ms ease;
+  }
+
+  .sidebar-card:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .sidebar-card-category {
+    display: block;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #F57C00;
+    margin-bottom: 0.4rem;
+  }
+
+  .sidebar-card-title {
+    font-family: Manrope, system-ui, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 0.5rem;
+  }
+
+  .sidebar-card-title a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: color 160ms ease;
+  }
+
+  .sidebar-card-title a:hover {
+    color: #ffffff;
+  }
+
+  .sidebar-card-excerpt {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.42);
+    line-height: 1.55;
+    margin: 0 0 0.625rem;
+  }
+
+  .sidebar-card-date {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.26);
   }
 
   /* ── Footer ─────────────────────────────────────────────────────────────── */

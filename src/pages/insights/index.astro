@@ -162,6 +162,26 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
       </div>
   </section>
 
+  <!-- INSIGHTS_SEARCH_RESULTS — shown when search/filter is active ────────── -->
+  <section
+    id="search-results-section"
+    class="section-py"
+    style="background: #05070D;"
+    aria-label="Search results"
+    hidden
+  >
+    <div class="container-site">
+      <div class="search-results-header">
+        <span class="search-results-label">Search Results</span>
+        <span id="search-results-count" class="search-results-count"></span>
+      </div>
+      <div class="latest-grid" id="search-results-grid"></div>
+      <p id="search-no-results" hidden class="no-results-msg" aria-live="polite">
+        No insights match your search yet.
+      </p>
+    </div>
+  </section>
+
   <!-- INSIGHTS_SECTION_02_FEATURED_INSIGHT — only shown when a featured article exists ── -->
   {featuredArticle && (
     <section
@@ -202,23 +222,37 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
             </a>
           </div>
 
-          <!-- Right: abstract visual (decorative) -->
-          <div class="featured-visual" aria-hidden="true">
-            <div class="featured-visual-inner">
-              <div class="fv-accent"></div>
-              {featuredLabel && <div class="fv-label">{featuredLabel}</div>}
-              <div class="fv-grid">
-                <div class="fv-cell fv-cell-orange"></div>
-                <div class="fv-cell"></div>
-                <div class="fv-cell fv-cell-dim"></div>
-                <div class="fv-cell fv-cell-orange fv-cell-short"></div>
-              </div>
-              <div class="fv-lines">
-                <div class="fv-line fv-line-long"></div>
-                <div class="fv-line fv-line-med"></div>
+          <!-- Right: article image if available, else abstract decorative visual -->
+          {featuredArticle.data.image ? (
+            <div class="featured-visual">
+              <img
+                src={featuredArticle.data.image}
+                alt={featuredArticle.data.imageAlt || featuredArticle.data.title}
+                width="560"
+                height="370"
+                loading="eager"
+                decoding="async"
+                class="featured-article-img"
+              />
+            </div>
+          ) : (
+            <div class="featured-visual" aria-hidden="true">
+              <div class="featured-visual-inner">
+                <div class="fv-accent"></div>
+                {featuredLabel && <div class="fv-label">{featuredLabel}</div>}
+                <div class="fv-grid">
+                  <div class="fv-cell fv-cell-orange"></div>
+                  <div class="fv-cell"></div>
+                  <div class="fv-cell fv-cell-dim"></div>
+                  <div class="fv-cell fv-cell-orange fv-cell-short"></div>
+                </div>
+                <div class="fv-lines">
+                  <div class="fv-line fv-line-long"></div>
+                  <div class="fv-line fv-line-med"></div>
+                </div>
               </div>
             </div>
-          </div>
+          )}
 
         </div>
       </div>
@@ -261,6 +295,18 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
                   data-description={article.data.description}
                   data-tags={article.data.tags.join(',')}
                 >
+                  {article.data.image && (
+                    <div class="insight-card-image">
+                      <img
+                        src={article.data.image}
+                        alt={article.data.imageAlt || article.data.title}
+                        width="400"
+                        height="210"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  )}
                   <div class="insight-card-meta">
                     <span class="insight-category">{article.data.category.toUpperCase()}</span>
                     <time
@@ -282,14 +328,6 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
               );
             })}
           </div>
-          <p
-            id="insights-no-results"
-            hidden
-            class="no-results-msg"
-            aria-live="polite"
-          >
-            No insights match your current search.
-          </p>
         </Fragment>
       ) : (
         <p class="insights-empty-state">
@@ -524,6 +562,14 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
     align-self: flex-start;
   }
 
+  .featured-article-img {
+    width: 100%;
+    border-radius: 0.875rem;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    display: block;
+  }
+
   /* Featured right: abstract visual */
   .featured-visual {
     display: flex;
@@ -733,6 +779,20 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.40);
   }
 
+  .insight-card-image {
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+  }
+
+  .insight-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
   .insight-card-meta {
     display: flex;
     align-items: center;
@@ -858,25 +918,74 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
     gap: 0.875rem;
     justify-content: center;
   }
+
+  /* ── Search input clear button ─────────────────────────────────────────── */
+  .search-input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M2 2l10 10M12 2L2 12' stroke='%23F57C00' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    opacity: 0.75;
+    transition: opacity 160ms ease;
+  }
+
+  .search-input::-webkit-search-cancel-button:hover {
+    opacity: 1;
+  }
+
+  /* ── Search Results Section ────────────────────────────────────────────── */
+  .search-results-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.875rem;
+    margin-bottom: 1.75rem;
+    flex-wrap: wrap;
+  }
+
+  .search-results-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #F57C00;
+  }
+
+  .search-results-count {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.36);
+  }
 </style>
 
 <script>
   (function () {
-    var searchInput = document.getElementById('insights-search') as HTMLInputElement | null;
-    var chips = document.querySelectorAll('[data-filter-chip]');
-    var grid = document.getElementById('insights-grid');
-    var cards = grid ? Array.from(grid.querySelectorAll('a[data-category]')) : [];
-    var noResults = document.getElementById('insights-no-results');
+    var searchInput   = document.getElementById('insights-search') as HTMLInputElement | null;
+    var chips         = document.querySelectorAll('[data-filter-chip]');
+    var latestGrid    = document.getElementById('insights-grid');
+    var cards         = latestGrid
+      ? (Array.from(latestGrid.querySelectorAll('a[data-category]')) as HTMLElement[])
+      : [] as HTMLElement[];
+
+    var searchSection   = document.getElementById('search-results-section') as HTMLElement | null;
+    var searchGrid      = document.getElementById('search-results-grid') as HTMLElement | null;
+    var searchCount     = document.getElementById('search-results-count') as HTMLElement | null;
+    var searchNoResults = document.getElementById('search-no-results') as HTMLElement | null;
 
     if (!cards.length) return;
 
     var activeCategory = 'all';
 
-    function filterCards() {
-      var query = (searchInput && searchInput.value) ? searchInput.value.trim().toLowerCase() : '';
-      var visible = 0;
+    function isActive(): boolean {
+      var q = searchInput ? searchInput.value.trim() : '';
+      return q.length > 0 || activeCategory !== 'all';
+    }
 
-      cards.forEach(function (card) {
+    function getMatching(): HTMLElement[] {
+      var q = searchInput ? searchInput.value.trim().toLowerCase() : '';
+      return cards.filter(function (card) {
         var catMatch = activeCategory === 'all' || card.getAttribute('data-category') === activeCategory;
         var searchable = [
           card.getAttribute('data-title') || '',
@@ -884,23 +993,42 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
           card.getAttribute('data-category') || '',
           card.getAttribute('data-tags') || '',
         ].join(' ').toLowerCase();
-        var searchMatch = !query || searchable.includes(query);
-        var show = catMatch && searchMatch;
-
-        if (show) {
-          card.removeAttribute('hidden');
-          visible++;
-        } else {
-          card.setAttribute('hidden', '');
-        }
+        var searchMatch = !q || searchable.includes(q);
+        return catMatch && searchMatch;
       });
+    }
 
-      if (noResults) {
-        if (visible > 0) {
-          noResults.setAttribute('hidden', '');
-        } else {
-          noResults.removeAttribute('hidden');
+    function applyFilter() {
+      if (isActive()) {
+        if (searchSection) searchSection.removeAttribute('hidden');
+
+        var matching = getMatching();
+
+        if (searchGrid) {
+          searchGrid.innerHTML = '';
+          matching.forEach(function (card) {
+            var clone = card.cloneNode(true) as HTMLElement;
+            clone.removeAttribute('hidden');
+            // Remove scroll-reveal class so cloned cards are immediately visible
+            clone.classList.remove('reveal');
+            searchGrid!.appendChild(clone);
+          });
         }
+
+        if (searchCount) {
+          var n = matching.length;
+          searchCount.textContent = n === 1 ? '1 result' : n + ' results';
+        }
+
+        if (searchNoResults) {
+          if (matching.length > 0) {
+            searchNoResults.setAttribute('hidden', '');
+          } else {
+            searchNoResults.removeAttribute('hidden');
+          }
+        }
+      } else {
+        if (searchSection) searchSection.setAttribute('hidden', '');
       }
     }
 
@@ -912,12 +1040,12 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
           c.setAttribute('aria-pressed', on ? 'true' : 'false');
           c.classList.toggle('filter-chip--active', on);
         });
-        filterCards();
+        applyFilter();
       });
     });
 
     if (searchInput) {
-      searchInput.addEventListener('input', filterCards);
+      searchInput.addEventListener('input', applyFilter);
     }
   }());
 </script>

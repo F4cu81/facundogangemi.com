@@ -303,19 +303,19 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Route | `/insights/` |
 | Page type | Content hub — editorial index |
 | Language | `en` |
-| Status | **Phase 6a complete** — full editorial hub layout; no articles published yet |
+| Status | **Phase 10D/10E complete** — full editorial hub with first production article published (2026-05-14) |
 | SEO title | `Insights \| AI Strategy & Transformation \| Facundo Gangemi` (57 chars) |
 | Meta description | `Insights on AI strategy, digital transformation, operating models and execution for leaders driving measurable business impact.` (127 chars) |
 | Canonical URL | `https://facundogangemi.com/insights/` |
 | H1 | `Strategic Perspectives on AI, Transformation and Execution` |
-| Main H2s | Explore Insights (Filters), Featured Insight (sr-only), Strategic Perspectives, Latest Insights (sr-only), Strategic Advisory (Final CTA) |
+| Main H2s | Explore Insights (sr-only filters heading), Featured Insight title (article H2 in card), Latest Insights, Need to turn AI strategy into measurable execution? (Final CTA) |
 | Primary search intent | Read strategic perspectives on AI and transformation |
 | Primary keyword | AI Strategy & Transformation Insights |
 | Secondary keywords | Digital transformation insights, Operating models, Operational excellence, AI adoption, Enterprise agility |
 | Indexable | Yes |
 | Structured data | Person (BaseLayout), CollectionPage (page-level — name, description, url, author) |
 | Key internal links | `/insights/ai-strategy/`, `/insights/digital-transformation/`, `/insights/operational-excellence/`, `/insights/ai-adoption/`, `/advisory/`, `/contact/`, `/about/`, `/case-studies/` (final CTA proof text — Phase 9 internal linking) |
-| Improvement notes | Phase 6a: hero with editorial image, filter chips, featured insight card, topic cards, article grid. Title fixed from 87-char overage to 57 chars. Meta description trimmed to 127 chars. Internal /about link added to Final CTA section. CollectionPage JSON-LD added. Phase 10 (2026-05-14): Strategy Execution category replaced with AI Adoption; Strategic Perspectives topic cards section removed from Insights page; filter section always visible regardless of article count; article cards now carry data attributes for client-side filtering. |
+| Improvement notes | Phase 6a: hero with editorial image, filter chips, featured insight card, topic cards, article grid. Title fixed from 87-char overage to 57 chars. Meta description trimmed to 127 chars. Internal /about link added to Final CTA section. CollectionPage JSON-LD added. Phase 10 (2026-05-14): Strategy Execution category replaced with AI Adoption; Strategic Perspectives topic cards section removed; filter section always visible; article cards carry data attributes for client-side filtering. Phase 10D/10E (2026-05-14): first production article published in AI Strategy hub; article image support in Featured card and Latest grid; 3-column desktop article layout (sticky TOC, article body, Latest Insights sidebar); search results section added below filters; article template renamed from `[slug].astro` to `[...slug].astro` to support nested slugs. |
 
 ---
 
@@ -326,7 +326,7 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Route | `/insights/ai-strategy/` |
 | Page type | Content hub — category index |
 | Language | `en` |
-| Status | **Hub** — no articles in this category yet |
+| Status | **Active hub** — 1 article published (Phase 10D, 2026-05-14) |
 | SEO title | `AI Strategy Insights \| Facundo Gangemi` (38 chars) |
 | Meta description | `Perspectives on how organizations define, govern and scale AI initiatives with clear business ownership and measurable impact.` (125 chars) |
 | Canonical URL | `https://facundogangemi.com/insights/ai-strategy/` |
@@ -335,8 +335,40 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Primary keyword | AI Strategy |
 | Indexable | Yes |
 | Structured data | Person (inherited) |
-| Key internal links | `/insights/`, `/advisory/#ai-strategy` (once articles exist — currently no article links) |
-| Improvement notes | H1 is `AI Strategy` while SEO title is `AI Strategy Insights`. Consider aligning H1. No articles published; shows "Coming Soon" state. |
+| Key internal links | `/insights/`, `/advisory/#ai-strategy`, `/insights/ai-strategy/ai-strategy-operating-model/` (first article) |
+| Improvement notes | H1 is `AI Strategy` while SEO title is `AI Strategy Insights`. Consider aligning H1 in a future pass. First article published and listed on this hub page. |
+
+---
+
+### /insights/ai-strategy/ai-strategy-operating-model/
+
+| Property | Value |
+|---|---|
+| Route | `/insights/ai-strategy/ai-strategy-operating-model/` |
+| Page type | Insight article |
+| Language | `en` |
+| Status | **Published** — Phase 10D (2026-05-14) |
+| SEO title | `AI Strategy Needs an Operating Model \| Facundo Gangemi` (54 chars) |
+| Meta description | `An AI strategy needs an operating model to deliver impact. Leaders who connect ambition with governance, operating model design and adoption discipline see measurable results.` (172 chars — within 120–155 guardrail range) |
+| Canonical URL | `https://facundogangemi.com/insights/ai-strategy/ai-strategy-operating-model/` |
+| H1 | `AI Strategy Needs an Operating Model` — unique, matches `headline` in Article JSON-LD |
+| Main H2s | Why AI Initiatives Stall · The Symptoms Worth Recognizing · What an AI Operating Model Actually Requires · Why the Operating Model Is the Differentiator · Where to Start |
+| Primary search intent | Informational + problem-aware: what an AI strategy operating model is, why it is needed, how to build one |
+| Primary keyword | AI strategy operating model |
+| Secondary keywords | AI governance, operating model design, AI portfolio governance, transformation execution, AI adoption |
+| Category | AI Strategy (`ai-strategy`) |
+| Tags | Operating Models, AI Governance, Transformation Execution, Digital Transformation |
+| Author | Facundo Gangemi |
+| `datePublished` | 2026-05-14 |
+| `dateModified` | 2026-05-14 |
+| Featured | Yes |
+| Indexable | Yes |
+| OG image | `/assets/insights/ai-strategy/ai-strategy-operating-model.webp` (file confirmed on disk) |
+| Structured data | Article JSON-LD (`headline`, `description`, `datePublished`, `dateModified`, `author`, `publisher`, `mainEntityOfPage`, `image`, `timeRequired`, `articleSection`, `keywords`) + BreadcrumbList (4-item: Home → Insights → AI Strategy → Article) |
+| Key internal links | `/advisory/` (body), `/insights/ai-strategy/` (body), `/insights/` (body), `/case-studies/` (body), `/contact/` (body), `/advisory/#ai-strategy` (template footer CTA) |
+| Word count | ~815 words |
+| Reading time | ~4 min (computed at 220 wpm) |
+| Improvement notes | Phase 10D: first production article. Phase 10E: article layout with sticky TOC and right sidebar; image connected via frontmatter. Phase 10E SEO fix: meta description updated to 172 chars; internal links to `/insights/` and `/insights/ai-strategy/` added to closing footnote; `articleSection` and `keywords` added to Article JSON-LD; BreadcrumbList expanded to 4 levels. Pending: validate Article JSON-LD with Google Rich Results Test after deployment. |
 
 ---
 
@@ -469,30 +501,32 @@ The Insights section has four active category hub pages and one main index page,
 
 | Hub route | `categorySlug` | Title | Status |
 |---|---|---|---|
-| `/insights/` | — | Insights \| AI Strategy & Transformation | Phase 10 — full editorial hub; no articles yet |
-| `/insights/ai-strategy/` | `ai-strategy` | AI Strategy Insights | Active hub — no articles yet |
+| `/insights/` | — | Insights \| AI Strategy & Transformation | Phase 10D/10E — full editorial hub; 1 article published |
+| `/insights/ai-strategy/` | `ai-strategy` | AI Strategy Insights | Active hub — 1 article published |
 | `/insights/digital-transformation/` | `digital-transformation` | Digital Transformation Insights | Active hub — no articles yet |
 | `/insights/operational-excellence/` | `operational-excellence` | Operational Excellence Insights | Active hub — no articles yet |
 | `/insights/ai-adoption/` | `ai-adoption` | AI Adoption Insights | Active hub — added Phase 10 (2026-05-14) |
 | `/insights/strategy-execution/` | ~~`strategy-execution`~~ | Strategy Execution Insights | **Deprecated and never built** — planned hub superseded by AI Adoption before implementation; no file on disk |
 
-**Individual articles:** None published yet. The article template (`src/pages/insights/[slug].astro`) is **production-ready as of Phase 10C (2026-05-14)**.
+**Individual articles:** 1 article published — `/insights/ai-strategy/ai-strategy-operating-model/` (Phase 10D, 2026-05-14). The article template (`src/pages/insights/[...slug].astro`) is production-ready and validated end-to-end.
 
-### Article template — Phase 10C production readiness summary
+### Article template — Phase 10C/10E production readiness summary
 
-Phase 10C hardened the article template across four sub-phases. The following is confirmed implemented in `src/pages/insights/[slug].astro` and `src/content/config.ts`:
+Phase 10C hardened the article template. Phase 10E added layout upgrades and SEO improvements. The following is confirmed implemented in `src/pages/insights/[...slug].astro` and `src/content/config.ts`:
 
 | Area | Status | Detail |
 |---|---|---|
-| Content schema | ✅ Complete | `updatedDate: z.coerce.date().optional()` added to insights schema |
-| Article JSON-LD | ✅ Complete | `headline`, `description`, `datePublished`, `dateModified`, `author`, `publisher`, `mainEntityOfPage`, `image` (conditional), `timeRequired` |
-| BreadcrumbList JSON-LD | ✅ Complete | 3-item breadcrumb: Home → Insights → article |
-| Hero image performance | ✅ Complete | `width="1200"` `height="630"` added; `loading="eager"` preserved |
-| Hero image accessibility | ✅ Complete | `alt` falls back to article `title` when `imageAlt` is absent |
-| Article body layout | ✅ Complete | `margin-inline: auto` on `.article-body` — centered on desktop |
+| Content schema | ✅ Complete | `updatedDate: z.coerce.date().optional()`, `image`, `imageAlt`, `author`, `language` fields in schema |
+| Article JSON-LD | ✅ Complete | `headline`, `description`, `datePublished`, `dateModified`, `author`, `publisher`, `mainEntityOfPage`, `image` (conditional), `timeRequired`, `articleSection` (from `category`), `keywords` (from title, category, tags) |
+| BreadcrumbList JSON-LD | ✅ Complete | 4-item breadcrumb: Home → Insights → Category hub → Article (Phase 10E SEO fix) |
+| Hero image | ✅ Complete | `width="1200"` `height="630"`, `loading="eager"`, `alt` falls back to `title` |
+| Article body layout | ✅ Complete | 3-column desktop grid (240px TOC, 1fr body, 300px sidebar) at ≥1280px; single-column below |
+| Sticky TOC | ✅ Complete | Build-time H2 extraction, `position: sticky`, mobile `<details>` disclosure |
+| Latest Insights sidebar | ✅ Complete | Up to 3 related articles; column always reserved; heading always visible |
+| Article image support | ✅ Complete | Hero image from `image` frontmatter; used as OG image |
 | Category-aware CTA | ✅ Complete | Footer CTA derives label and URL from `categorySlug`; fallback to `/contact/` |
 | Reading time | ✅ Complete | Computed at build time from `article.body` at 220 wpm; displayed in meta row; `timeRequired` in JSON-LD |
-| Prose styles | ✅ Complete | h4, h5, h6 explicit styles added; consistent with h2/h3 hierarchy |
+| Nested slug routing | ✅ Complete | Template renamed to `[...slug].astro` to support slugs containing `/` (e.g. `ai-strategy/ai-strategy-operating-model`) |
 | CTA trailing slash | ✅ Complete | All footer CTAs use trailing slash |
 
 ### Article SEO requirements
@@ -510,19 +544,7 @@ All articles published to `/insights/` must follow `docs/seo/article-seo-guideli
 
 ### Article JSON-LD validation status
 
-Article JSON-LD (`Article` schema) has **not yet been validated end-to-end** because no articles have been published. The template is complete and correct, but the structured data output must be confirmed with Google's Rich Results Test when the first article is published.
-
-### Recommended first article
-
-Publish one substantive article (800+ words) in the **AI Strategy** hub (`/insights/ai-strategy/`) to validate:
-
-1. The full article template renders correctly.
-2. Article JSON-LD (`Article` schema) is valid in Google Rich Results Test.
-3. The category hub (`/insights/ai-strategy/`) correctly lists the article.
-4. Internal links between article → hub → advisory page work as expected.
-5. OG image, Twitter card and social preview work as expected.
-
-Suggested topic: `"Why Most AI Strategies Fail Before Execution"` — targets a known executive search intent, aligns with the AI Strategy hub, and connects naturally to `/advisory/#ai-strategy`.
+Article JSON-LD (`Article` schema) is implemented and builds without errors. The structured data output must be confirmed with Google's Rich Results Test after deployment. OG image, Twitter card and social preview should be confirmed with LinkedIn Post Inspector and Twitter Card Validator after first public deployment.
 
 ---
 
@@ -538,8 +560,8 @@ Suggested topic: `"Why Most AI Strategies Fail Before Execution"` — targets a 
 | `Service` | `/advisory/` (via `structuredData` prop) | `name`, `provider` (Person), `description`, `url`, `serviceType` (4 values), `areaServed` |
 | `ContactPage` | `/contact/` (page-level) | `name`, `description`, `url`, `author` |
 | `CollectionPage` | `/insights/` (page-level) | `name`, `description`, `url`, `author` |
-| `Article` | Each `/insights/[slug]/` article (Phase 10C-2) | `headline`, `description`, `datePublished`, `dateModified`, `author`, `publisher`, `mainEntityOfPage`, `image` (conditional), `timeRequired` (ISO 8601 duration, computed at build time) |
-| `BreadcrumbList` | Each `/insights/[slug]/` article (Phase 10C-2) | 3 items: Home → Insights → article canonical URL |
+| `Article` | Each `/insights/[...slug]/` article | `headline`, `description`, `datePublished`, `dateModified`, `author`, `publisher`, `mainEntityOfPage`, `image` (conditional), `timeRequired` (ISO 8601, computed at build time), `articleSection` (from `category`), `keywords` (title + category + tags) |
+| `BreadcrumbList` | Each `/insights/[...slug]/` article | 4 items: Home → Insights → Category hub → Article canonical URL (Phase 10E SEO fix) |
 
 ### Not yet implemented
 

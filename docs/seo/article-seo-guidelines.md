@@ -473,7 +473,71 @@ Articles are written for executive readers with limited time. They must be easy 
 
 ---
 
-## 15. Anti-Patterns
+## 15. External References Rule
+
+Articles should include 2–4 external references where they improve credibility, help the reader verify a concept, or reinforce a claim with authoritative evidence. External references are not required in every article, but they strengthen E-E-A-T signals and distinguish expert-authored content from generic marketing copy.
+
+**Preferred sources:**
+- NIST (AI Risk Management Framework, cybersecurity standards)
+- OECD (AI Principles, digital economy frameworks)
+- MIT Sloan Management Review
+- Harvard Business Review
+- McKinsey Global Institute, BCG Henderson Institute, Bain, Deloitte, Accenture, PwC (research and insights publications)
+- ISO (international standards)
+- World Economic Forum
+- Google, Microsoft, AWS (technical research and industry reports)
+- Academic institutions and peer-reviewed publications relevant to the topic
+
+**Usage rules:**
+- Integrate references contextually into paragraphs — do not add a bibliography or footnotes section
+- Use references to reinforce specific claims, not as decoration
+- The reference must be directly relevant to the sentence where it appears
+- Do not exceed 4 external links per article; more than this dilutes editorial focus
+- Use standard followed links for trusted editorial sources — do not add `rel="nofollow"`, `rel="sponsored"` or `rel="ugc"` unless the relationship requires it
+- Verify that the linked URL is accessible and points to the intended content before publishing
+- Do not overstate what a source says — paraphrase accurately and attribute conservatively
+
+**Anti-patterns to avoid:**
+- Adding external links purely to appear credible (links without editorial purpose)
+- Linking to low-authority, commercial or biased sources
+- Listing references as a bibliography at the end of the article
+- Using external links as a substitute for original expert analysis
+
+---
+
+## 16. Closing Section Rule
+
+Every production Insight article must include a final H2 section before the closing footnote:
+
+```
+## Conclusion and Recommendations
+```
+
+**Purpose:** This section synthesizes the article's core argument and provides 3–5 concise, actionable recommendations targeted at executive decision-makers. It is the highest-conversion section of the article — where a reader who has scanned the article decides whether to contact or explore further.
+
+**Requirements:**
+- Begins with a 1–2 paragraph synthesis of the article's central insight
+- Includes 3–5 bold-titled recommendations — specific, executive-level, not generic advice
+- Recommendations must connect to the article's topic — not recycled from other articles
+- Each recommendation should be 2–4 sentences: concise enough to scan, substantive enough to be useful
+- Closes with a short synthesis paragraph that connects the recommendations back to organizational change or business impact
+- Does not repeat the CTA or internal links — those belong in the closing footnote
+
+**Tone:**
+- Direct and authoritative — not hedged or academic
+- Practical enough to be actionable; strategic enough to apply broadly
+- No hype, invented metrics or unsupported claims
+- No generic advice ("communicate clearly", "align stakeholders")
+
+**What this is not:**
+- A generic conclusion that summarizes section headings
+- A sales pitch
+- A list of bullet points without supporting explanation
+- A section that could appear unchanged in any other article
+
+---
+
+## 17. Anti-Patterns
 
 Avoid these patterns in every article:
 
@@ -494,7 +558,7 @@ Avoid these patterns in every article:
 
 ---
 
-## 16. Article SEO Pre-Publish Checklist
+## 18. Article SEO Pre-Publish Checklist
 
 Before publishing any article, verify every item on this checklist:
 
@@ -520,18 +584,24 @@ Before publishing any article, verify every item on this checklist:
 - [ ] H1 aligns with SEO title and contains primary keyword when natural
 - [ ] First 100 words include primary keyword and state the business problem
 - [ ] Heading hierarchy is correct (H1 → H2 → H3, no skips)
-- [ ] No generic headings ("Introduction", "Conclusion")
+- [ ] No generic headings ("Introduction", "Conclusion") — use descriptive H2s
+- [ ] `Conclusion and Recommendations` H2 section present before the closing footnote
+- [ ] Conclusion includes 3–5 executive recommendations specific to the article topic
 - [ ] Active voice used throughout
 - [ ] No fabricated clients, metrics, testimonials or credentials
 - [ ] No keyword stuffing
 
 **Linking:**
 - [ ] Link to most relevant advisory page included
-- [ ] Link to Insights index or hub category included
+- [ ] Link to Insights index (`/insights/`) included
+- [ ] Link to category hub (`/insights/<categorySlug>/`) included
 - [ ] Link to related article included (if one exists)
 - [ ] CTA link included — descriptive anchor text
 - [ ] All linked pages actually exist on the site
 - [ ] No broken internal links
+- [ ] 2–4 external references included from authoritative sources (where content supports it)
+- [ ] External links are contextual — each reference directly supports the sentence where it appears
+- [ ] All external URLs verified accessible before publishing
 
 **Schema:**
 - [ ] Article JSON-LD present with all required properties
