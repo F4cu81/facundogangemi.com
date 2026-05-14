@@ -116,18 +116,24 @@ No structured data is emitted on interior pages beyond what is inherited through
 | Route | `/about/` |
 | Page type | About / Profile |
 | Language | `en` |
-| Status | **Placeholder** — content present, can be expanded |
-| SEO title | `About Facundo Gangemi \| Facundo Gangemi` (40 chars) |
-| Meta description | `AI Strategy and Digital Transformation Advisor. Enterprise experience across banking, financial services, technology and operating model transformation.` (151 chars) |
+| Status | **Phase 8b complete** — About UX/UI + SEO Alignment validated (2026-05-13) |
+| SEO title | `About \| AI Strategy Advisor \| Facundo Gangemi` (45 chars) |
+| Meta description | `Facundo Gangemi advises enterprise leaders on AI strategy, digital transformation and operating models across banking, financial services and technology.` (153 chars) |
 | Canonical URL | `https://facundogangemi.com/about/` |
-| H1 | `Facundo Gangemi — AI Strategy & Digital Transformation Advisor` |
+| H1 | `AI Strategy & Transformation Leader` |
+| Main H2s | AI Strategy Rooted in Enterprise Transformation, Strategic Capabilities, Domain Expertise, International Transformation Footprint, Experience Across Enterprise Environments, My Approach, Why It Matters Now, Let's connect strategy with operating reality. |
+| Important H3 | `Operational Excellence & Execution` — present at H3 level inside Domain Expertise (from `EXPERIENCE_ITEMS[1].category`) |
 | Primary search intent | Executive AI and Digital Transformation profile and background |
-| Primary keyword | AI Strategy and Digital Transformation Advisor |
-| Secondary keywords | Enterprise transformation, Banking digital transformation, Executive advisory |
+| Primary keyword | AI Strategy Advisor |
+| Secondary keywords | Enterprise transformation, Banking digital transformation, Executive advisory, Operating Models, Operational Excellence |
 | Indexable | Yes |
-| Structured data | Person (inherited via BaseLayout) |
-| Key internal links | `/contact`, `/advisory` |
-| Improvement notes | H1 updated in Phase 4d to include primary keyphrase. Title produces a visible duplication (`About Facundo Gangemi \| Facundo Gangemi`) — acceptable for a placeholder; address when full About page is written. |
+| OG image | `/assets/og/og-about.webp` — dedicated About OG image, confirmed at `public/assets/og/og-about.webp` |
+| Structured data | Person (BaseLayout global) + Person (page-level via `structuredData` prop — `url: https://facundogangemi.com/about/`, jobTitle, description, image, knowsAbout, areaServed, worksFor). Dual Person schema accepted — complementary, not conflicting. |
+| Key internal links | `/contact`, `/advisory/`, `/insights/`, `/speaking/` |
+| SEO scores | SEO Page Audit: 75% → **90%**. Google Positioning Audit: 80% → **90%**. Combined SEO Readiness: 77% → **90%**. No must-fix SEO issues remain. |
+| UX/UI scores | UX/UI alignment: 88% → **92%**. No must-fix UX/UI issues remain. Hero, card system, contrast, CTA hierarchy, internal links and focus states validated. |
+| Improvement notes | **Phase 8b (2026-05-13):** Full About page UX/UI + SEO alignment completed. OG image replaced from fallback `og-home.webp` to dedicated `og-about.webp`. Title fixed from duplicated `About Facundo Gangemi \| Facundo Gangemi` to `About \| AI Strategy Advisor \| Facundo Gangemi` (45 chars, no duplication). Meta description corrected from 184 chars to 153 chars. Canonical trailing slash confirmed. Person schema URL updated to `https://facundogangemi.com/about/`. `/speaking/` internal link added to Closing CTA. `Operational Excellence & Execution` added at H3 level inside Domain Expertise. |
+| Optional future refinements | Add "AI Strategy Advisor" as exact phrase naturally in body copy. Normalize `/contact` links to `/contact/` if site convention changes. Add `sameAs` (LinkedIn) to page-level Person schema. Add OKRs/QBRs to `knowsAbout`. Strengthen "My Approach" H2 in a future content pass. Expand `/speaking/` from placeholder to full page. Publish first Insights article to activate About → Insights → Advisory topical chain. |
 
 ---
 
@@ -427,7 +433,7 @@ The following pages were created during Phase 4a as structural placeholders. Eac
 | ~~`/advisory/digital-transformation/`~~ | ~~Orphaned sub-page~~ | **Deleted — Phase 8** | — | — | Removed 2026-05-13. Practice covered by `/advisory/#digital-transformation`. |
 | ~~`/advisory/enterprise-agility/`~~ | ~~Deprecated sub-page~~ | **Deleted — Phase 8** | — | — | Removed 2026-05-13. Practice replaced by Operational Excellence at `/advisory/#operational-excellence`. |
 | ~~`/advisory/ai-adoption/`~~ | ~~Orphaned sub-page~~ | **Deleted — Phase 8** | — | — | Removed 2026-05-13. Practice covered by `/advisory/#ai-adoption`. |
-| `/about/` | Executive profile and background | Full executive profile with experience narrative, credentials, sector expertise | AI Strategy and Digital Transformation Advisor | Yes | Expand bio with 20+ years experience narrative, sector contexts, advisory philosophy, links to services and speaking |
+| ~~`/about/`~~ | ~~Executive profile and background~~ | **Complete — Phase 8b** | — | — | Full About page with UX/UI + SEO alignment validated (2026-05-13). H1, H2s, H3s, internal links, structured data, OG image and metadata finalized. See `/about/` entry above. |
 | `/case-studies/` | Case studies hub | Library of real transformation experiences | Digital Transformation Case Studies | Yes — when real content available | Populate with documented transformation experiences; do not invent client names or metrics |
 | `/speaking/` | Speaking enquiry page | Full speaking page with topics, formats and past engagements | AI Strategy Speaker | Yes | Add real speaking topics, formats (keynote, panel, workshop), event contexts once available |
 | `/newsletter/` | Newsletter landing page | Newsletter signup with subscription mechanism | AI Strategy Newsletter | Yes — when platform ready | Integrate newsletter platform (configured in `SITE.makeNewsletterWebhook`); add subscription form |
@@ -544,7 +550,6 @@ Per `docs/seo/google-positioning-guardrails.md` (Section 10), the following requ
 | `/advisory/` | → `/about/` (consider adding to final CTA or hero sub-copy) |
 | `/insights/` | → relevant advisory page sections (links should be within article cards or intro copy) |
 | Each insight article | → relevant advisory page anchor, related insight category |
-| `/about/` | → `/speaking/` (currently not linked) |
 
 ### Home page internal links added — Phase 8
 

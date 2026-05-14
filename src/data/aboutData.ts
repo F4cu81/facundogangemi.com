@@ -58,7 +58,7 @@ export const EXPERIENCE_ITEMS: ExperienceItem[] = [
     ],
   },
   {
-    category: 'Execution Systems',
+    category: 'Operational Excellence & Execution',
     items: ['OKRs & QBRs', 'Governance Frameworks', 'Portfolio Management', 'Delivery Excellence'],
   },
   {
@@ -127,7 +127,7 @@ export const APPROACH_STEPS: ApproachStep[] = [
 ];
 
 export const ABOUT_PAGE_META = {
-  title: 'About Facundo Gangemi | AI Strategy & Transformation Leader',
+  title: 'About | AI Strategy Advisor',
   description:
-    'Learn about Facundo Gangemi, an AI Strategy and Transformation Leader helping enterprise organizations connect digital transformation, operating models, agility and business execution.',
+    'Facundo Gangemi advises enterprise leaders on AI strategy, digital transformation and operating models across banking, financial services and technology.',
 };

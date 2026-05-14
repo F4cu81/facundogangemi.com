@@ -342,6 +342,32 @@ File: `src/components/sections/AboutWorldMap.astro`
 - **Credentials line** — removed from hero. The two-column narrative covers the same ground with more depth.
 - **Country chips as a flat block below the map** — replaced by the two-column map+countries layout.
 
+### Phase 8b — Completion Record (2026-05-13)
+
+About UX/UI + SEO Alignment validated and closed.
+
+| Item | Value |
+|---|---|
+| UX/UI validation score | **92%** (previous 88%) — no must-fix issues |
+| SEO Page Audit | **90%** (previous 75%) |
+| Google Positioning Audit | **90%** (previous 80%) |
+| Combined SEO Readiness | **90%** (previous 77%) |
+| Final rendered SEO title | `About \| AI Strategy Advisor \| Facundo Gangemi` (45 chars) |
+| Final meta description | `Facundo Gangemi advises enterprise leaders on AI strategy, digital transformation and operating models across banking, financial services and technology.` (153 chars) |
+| Canonical | `https://facundogangemi.com/about/` |
+| OG image | `/assets/og/og-about.webp` (dedicated; replaces `og-home.webp` fallback) |
+| Internal links validated | `/contact`, `/advisory/`, `/insights/`, `/speaking/` |
+| Operational Excellence at H3 | `Operational Excellence & Execution` in Domain Expertise (from `EXPERIENCE_ITEMS[1].category`) |
+| Structured data | Page-level Person schema with `url: https://facundogangemi.com/about/` (trailing slash). Dual Person schema with BaseLayout accepted — complementary. |
+| Build status | `npm run check`: 0 errors, 0 warnings. `npm run build`: 19 pages, complete. |
+
+**Non-blocking future refinements (do not re-open About SEO for these):**
+- Add "AI Strategy Advisor" as exact phrase naturally in one body paragraph.
+- Normalize `/contact` links to `/contact/` if site convention changes.
+- Add `sameAs` (LinkedIn) and OKRs/QBRs to `knowsAbout` in page-level Person schema.
+- Expand `/speaking/` from placeholder to full page.
+- Publish first Insights article to activate About → Insights → Advisory topical chain.
+
 ---
 
 ## 11. Reusable Components and Patterns

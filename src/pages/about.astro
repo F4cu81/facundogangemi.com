@@ -69,17 +69,17 @@ const MAP_MARKERS = [
 ---
 
 <BaseLayout
-  title={ABOUT_PAGE_META.title.split(' | ')[0]}
+  title={ABOUT_PAGE_META.title}
   description={ABOUT_PAGE_META.description}
   ogImage="/assets/og/og-about.webp"
-  ogImageAlt="Facundo Gangemi - AI Strategy and Transformation Leader"
-  canonical="https://facundogangemi.com/about"
+  ogImageAlt="Facundo Gangemi — AI Strategy and Transformation Advisor"
+  canonical="https://facundogangemi.com/about/"
   structuredData={[
     {
       '@context': 'https://schema.org',
       '@type': 'Person',
       name: 'Facundo Gangemi',
-      url: 'https://facundogangemi.com/about',
+      url: 'https://facundogangemi.com/about/',
       jobTitle: 'AI Strategy & Enterprise Transformation Advisor',
       description: ABOUT_PAGE_META.description,
       image: 'https://facundogangemi.com/images/about/facundo-about-portrait-bw.webp',
@@ -104,17 +104,17 @@ const MAP_MARKERS = [
   <!-- 1. ABOUT HERO                                                           -->
   <!-- ════════════════════════════════════════════════════════════════════════ -->
 
-  <section class="about-hero section-py bg-[#05070D]" aria-labelledby="about-main-heading">
+  <section class="about-hero section-py-lg bg-[#05070D]" aria-labelledby="about-main-heading">
     <div class="container-site">
       <div class="about-hero-grid">
 
         <!-- Left: Text content -->
         <div class="about-hero-content">
-          <span class="eyebrow">About</span>
+          <span class="eyebrow">AI Strategy Advisor</span>
 
           <h1
             id="about-main-heading"
-            class="text-section font-heading font-bold text-white mt-2 mb-6 max-w-[28ch]"
+            class="text-hero font-heading font-extrabold text-white mt-2 mb-6 max-w-[22ch]"
           >
             AI Strategy &amp; Transformation Leader
           </h1>
@@ -124,7 +124,7 @@ const MAP_MARKERS = [
             strategy, governance, technology, data and measurable business impact.
           </p>
 
-          <p class="text-white/50 leading-relaxed max-w-[56ch] mb-6">
+          <p class="text-white/65 leading-relaxed max-w-[56ch] mb-6">
             With over 20 years of professional experience across banking, financial services, technology
             and product organizations, the work combines strategic advisory with practical execution —
             from AI governance frameworks and transformation roadmaps to OKR implementation, QBR
@@ -144,7 +144,7 @@ const MAP_MARKERS = [
                 />
               </svg>
             </a>
-            <a href="/advisory" class="btn-outline">Explore Services</a>
+            <a href="/advisory/" class="btn-outline">Explore Services</a>
           </div>
         </div>
 
@@ -179,15 +179,15 @@ const MAP_MARKERS = [
         <!-- Left: heading -->
         <div class="narrative-heading-col">
           <h2 id="narrative-heading" class="text-section font-heading font-bold text-white leading-tight">
-            From Agile Transformation<br class="hidden lg:block" /> to AI Strategy
+            AI Strategy Rooted in<br class="hidden lg:block" /> Enterprise Transformation
           </h2>
         </div>
 
         <!-- Right: body copy -->
         <div class="narrative-body-col space-y-5">
           <p class="text-white/65 leading-relaxed">
-            The journey started with Agile Transformation — helping teams adopt modern ways of working,
-            improve delivery flow and build adaptive decision-making. Over time, this evolved into
+            My work in enterprise transformation has focused on helping organizations improve delivery flow,
+            decision-making and execution systems. Over time, this evolved into
             understanding that agility alone is not enough. Organizations need alignment between business
             and technology, governance structures, clear priorities through OKRs and quarterly reviews,
             and operating models that translate strategy into measurable execution.
@@ -219,8 +219,9 @@ const MAP_MARKERS = [
 
   <section class="about-value section-py bg-[#05070D]" aria-labelledby="value-heading">
     <div class="container-site">
-      <h2 id="value-heading" class="text-section font-heading font-bold text-white mb-12 max-w-[40ch]">
-        What I Bring
+      <span class="eyebrow">Advisory Capabilities</span>
+      <h2 id="value-heading" class="text-section font-heading font-bold text-white mt-2 mb-12 max-w-[40ch]">
+        Strategic Capabilities
       </h2>
 
       <div class="value-grid">
@@ -250,10 +251,11 @@ const MAP_MARKERS = [
 
         <!-- Left: heading + intro -->
         <div class="experience-heading-col">
-          <h2 id="experience-heading" class="text-section font-heading font-bold text-white mb-4 leading-tight">
-            Experience &amp; Expertise
+          <span class="eyebrow">Areas of Deep Practice</span>
+          <h2 id="experience-heading" class="text-section font-heading font-bold text-white mt-2 mb-4 leading-tight">
+            Domain Expertise
           </h2>
-          <p class="text-white/50 leading-relaxed max-w-[36ch]">
+          <p class="text-white/65 leading-relaxed max-w-[36ch]">
             Two decades spanning transformation, agility, product strategy and enterprise execution
             across banking, technology and consulting environments.
           </p>
@@ -289,7 +291,7 @@ const MAP_MARKERS = [
   >
     <div class="container-site">
       <div class="international-intro mb-12">
-        <span class="eyebrow">GLOBAL OPERATING CONTEXTS</span>
+        <span class="eyebrow">Global Operating Contexts</span>
         <h2 id="international-heading" class="text-section font-heading font-bold text-white mt-2 mb-4">
           International Transformation Footprint
         </h2>
@@ -323,7 +325,7 @@ const MAP_MARKERS = [
 
         <!-- Countries & Regions (right) -->
         <div class="international-countries">
-          <h3 class="text-xs font-semibold text-white/45 uppercase tracking-widest mb-4">
+          <h3 class="text-xs font-semibold text-white/55 uppercase tracking-widest mb-4">
             Countries &amp; Regions
           </h3>
           <div class="countries-chips">
@@ -347,7 +349,7 @@ const MAP_MARKERS = [
         <h2 id="enterprise-heading" class="enterprise-heading font-heading font-semibold text-white mt-2 mb-2">
           Experience Across Enterprise Environments
         </h2>
-        <p class="text-white/40 text-sm leading-relaxed max-w-[52ch]">
+        <p class="text-white/65 text-sm leading-relaxed max-w-[52ch]">
           Transformation, agility, product, technology, financial services and operational excellence
           initiatives across leading organizations.
         </p>
@@ -387,7 +389,8 @@ const MAP_MARKERS = [
 
   <section class="about-approach section-py bg-[#05070D]" aria-labelledby="approach-heading">
     <div class="container-site">
-      <h2 id="approach-heading" class="text-section font-heading font-bold text-white mb-12 max-w-[40ch]">
+      <span class="eyebrow">Advisory Practice</span>
+      <h2 id="approach-heading" class="text-section font-heading font-bold text-white mt-2 mb-12 max-w-[40ch]">
         My Approach
       </h2>
 
@@ -436,6 +439,13 @@ const MAP_MARKERS = [
             governance structures, execution discipline and clear business outcomes. That requires
             clarity, alignment, structure and measurement.
           </p>
+
+          <a href="/insights/" class="about-cta-link">
+            Explore my thinking on AI strategy
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
         </div>
 
       </div>
@@ -449,7 +459,8 @@ const MAP_MARKERS = [
   <section class="about-closing section-py bg-[#05070D]" aria-labelledby="closing-heading">
     <div class="container-site max-w-3xl">
       <div class="closing-content">
-        <h2 id="closing-heading" class="text-section font-heading font-bold text-white mb-6">
+        <span class="eyebrow">Execution-Driven Advisory</span>
+        <h2 id="closing-heading" class="text-section font-heading font-bold text-white mt-2 mb-6">
           Let's connect strategy with operating reality.
         </h2>
 
@@ -471,7 +482,18 @@ const MAP_MARKERS = [
               />
             </svg>
           </a>
-          <a href="/contact" class="btn-outline">Contact Me</a>
+          <a href="/advisory/" class="about-cta-link">
+            Explore Advisory Services
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="/speaking/" class="about-cta-link">
+            Explore speaking and executive sessions
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
         </div>
       </div>
     </div>
@@ -486,8 +508,8 @@ const MAP_MARKERS = [
 
   .about-hero-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
+    grid-template-columns: 58fr 42fr;
+    gap: 5rem;
     align-items: center;
   }
 
@@ -502,7 +524,7 @@ const MAP_MARKERS = [
     position: relative;
     aspect-ratio: 1 / 1.3;
     overflow: hidden;
-    border-radius: 0.5rem;
+    border-radius: 0.875rem;
   }
 
   .portrait-image {
@@ -517,7 +539,7 @@ const MAP_MARKERS = [
     position: absolute;
     inset: 0;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 0.5rem;
+    border-radius: 0.875rem;
     pointer-events: none;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
   }
@@ -540,8 +562,8 @@ const MAP_MARKERS = [
     }
   }
 
-  /* Justified body text — desktop/tablet only for editorial readability */
-  @media (min-width: 768px) {
+  /* Justified body text — desktop only (≥1024px) to avoid word-spacing rivers on tablet */
+  @media (min-width: 1024px) {
     .narrative-body-col p,
     .why-body-col p {
       text-align: justify;
@@ -561,14 +583,22 @@ const MAP_MARKERS = [
   .value-card {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.2) 100%);
     border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 2px solid rgba(245, 124, 0, 0.38);
     padding: 2rem;
     border-radius: 0.75rem;
-    transition: all 0.3s ease;
+    transition:
+      border-color 220ms ease,
+      background 220ms ease,
+      transform 220ms ease,
+      box-shadow 220ms ease;
   }
 
   .value-card:hover {
     border-color: rgba(245, 124, 0, 0.3);
+    border-top-color: rgba(245, 124, 0, 0.65);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.1) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(245, 124, 0, 0.10);
   }
 
   .value-icon {
@@ -585,7 +615,7 @@ const MAP_MARKERS = [
   }
 
   .value-description {
-    color: rgba(255, 255, 255, 0.60);
+    color: rgba(255, 255, 255, 0.65);
     font-size: 0.875rem;
     line-height: 1.65;
   }
@@ -689,7 +719,11 @@ const MAP_MARKERS = [
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: 9999px;
-    transition: all 0.2s ease;
+    transition:
+      color 200ms ease,
+      background 200ms ease,
+      border-color 200ms ease,
+      box-shadow 200ms ease;
     white-space: nowrap;
   }
 
@@ -813,7 +847,7 @@ const MAP_MARKERS = [
     padding: 0 2.25rem;
     font-size: 1.05rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(255, 255, 255, 0.78);
     white-space: nowrap;
     letter-spacing: 0.01em;
   }
@@ -846,14 +880,22 @@ const MAP_MARKERS = [
     position: relative;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.2) 100%);
     border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 2px solid rgba(245, 124, 0, 0.38);
     padding: 2rem;
     border-radius: 0.75rem;
-    transition: all 0.3s ease;
+    transition:
+      border-color 220ms ease,
+      background 220ms ease,
+      transform 220ms ease,
+      box-shadow 220ms ease;
   }
 
   .approach-card:hover {
     border-color: rgba(245, 124, 0, 0.3);
+    border-top-color: rgba(245, 124, 0, 0.65);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.1) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(245, 124, 0, 0.10);
   }
 
   .approach-number {
@@ -874,7 +916,7 @@ const MAP_MARKERS = [
   }
 
   .approach-description {
-    color: rgba(255, 255, 255, 0.60);
+    color: rgba(255, 255, 255, 0.65);
     font-size: 0.875rem;
     line-height: 1.65;
   }
@@ -914,6 +956,32 @@ const MAP_MARKERS = [
     .countries-chips {
       gap: 0.5rem;
     }
+  }
+
+  /* ────────────────────────────────────────────────────────────────────────── */
+  /* CLOSING CTA — editorial text link                                         */
+  /* ────────────────────────────────────────────────────────────────────────── */
+
+  .about-cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: rgba(245, 124, 0, 0.78);
+    text-decoration: none;
+    border-radius: 0.25rem;
+    transition: color 180ms ease, gap 180ms ease;
+  }
+
+  .about-cta-link:hover {
+    color: #F57C00;
+    gap: 0.6rem;
+  }
+
+  .about-cta-link:focus-visible {
+    outline: 2px solid rgba(245, 124, 0, 0.55);
+    outline-offset: 4px;
   }
 </style>
 
