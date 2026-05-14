@@ -1,12 +1,12 @@
-﻿---
+---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-const CATEGORY_SLUG = 'strategy-execution';
-const CATEGORY_TITLE = 'Strategy Execution';
-const SEO_TITLE = 'Strategy Execution Insights';
+const CATEGORY_SLUG = 'ai-adoption';
+const CATEGORY_TITLE = 'AI Adoption';
+const SEO_TITLE = 'AI Adoption Insights';
 const CATEGORY_DESCRIPTION =
-  'Perspectives on connecting strategy, OKRs, QBRs and portfolio decisions to execution routines that create measurable business outcomes.';
+  'Perspectives on moving from AI awareness to embedded adoption, prioritized use cases, capability building and sustained behavior change.';
 
 const articles = (
   await getCollection(
@@ -25,6 +25,7 @@ const hasArticles = articles.length > 0;
   noIndex={!hasArticles}
 >
 
+  <!-- ── Category Header ──────────────────────────────────────────────────── -->
   <section class="section-py bg-[#05070D]" aria-labelledby="category-heading">
     <div class="container-site">
       <a href="/insights/" class="back-link">
@@ -46,6 +47,7 @@ const hasArticles = articles.length > 0;
     </div>
   </section>
 
+  <!-- ── Article Listing ──────────────────────────────────────────────────── -->
   <section class="section-py bg-[#05070D]" aria-labelledby="articles-heading">
     <div class="container-site">
       <h2 id="articles-heading" class="sr-only">Articles in {CATEGORY_TITLE}</h2>
@@ -110,8 +112,13 @@ const hasArticles = articles.length > 0;
     gap: 1.25rem;
   }
 
-  @media (min-width: 768px) { .articles-grid { grid-template-columns: 1fr 1fr; } }
-  @media (min-width: 1280px) { .articles-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 768px) {
+    .articles-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (min-width: 1280px) {
+    .articles-grid { grid-template-columns: repeat(3, 1fr); }
+  }
 
   .article-card {
     display: flex;
@@ -147,7 +154,10 @@ const hasArticles = articles.length > 0;
     color: #F57C00;
   }
 
-  .article-date { font-size: 0.78rem; color: rgba(255, 255, 255, 0.38); }
+  .article-date {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.38);
+  }
 
   .article-title {
     font-family: Manrope, system-ui, sans-serif;
@@ -176,5 +186,8 @@ const hasArticles = articles.length > 0;
     transition: color 180ms ease, gap 180ms ease;
   }
 
-  .article-card:hover .article-cta { color: rgba(245, 124, 0, 0.9); gap: 0.6rem; }
+  .article-card:hover .article-cta {
+    color: rgba(245, 124, 0, 0.9);
+    gap: 0.6rem;
+  }
 </style>

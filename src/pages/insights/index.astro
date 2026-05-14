@@ -1,111 +1,30 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { INSIGHT_PILLARS } from '@/data/insightPillars';
 
 const articles = (await getCollection('insights', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
 const hasArticles = articles.length > 0;
+const featuredArticle = articles.find(a => a.data.featured) ?? null;
 
-/* Topic card icons — 28×28, stroke="currentColor", identical style to homepage advisory icons */
-const TOPIC_ICONS: string[] = [
-  // AI Strategy — hub-satellite neural network
-  `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-    <circle cx="14"   cy="3.5"  r="2.1" stroke="currentColor" stroke-width="1.4"/>
-    <circle cx="23.1" cy="19.6" r="2.1" stroke="currentColor" stroke-width="1.4"/>
-    <circle cx="4.9"  cy="19.6" r="2.1" stroke="currentColor" stroke-width="1.4"/>
-    <circle cx="14"   cy="14"   r="2.6" stroke="currentColor" stroke-width="1.4"/>
-    <line x1="14"   y1="5.6"  x2="14"   y2="11.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-    <line x1="21.4" y1="18.1" x2="16.3" y2="15.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-    <line x1="6.6"  y1="18.1" x2="11.7" y2="15.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-  </svg>`,
-  // Digital Transformation — stacked diamond layers
-  `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-    <path d="M14 3L26 9L14 15L2 9Z"   stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
-    <path d="M2 14L14 20L26 14"       stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M2 19L14 25L26 19"       stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>`,
-  // Operational Excellence — ascending performance bars
-  `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-    <rect x="3"    y="19" width="5.5" height="6"  rx="1" stroke="currentColor" stroke-width="1.4"/>
-    <rect x="11.3" y="13" width="5.5" height="12" rx="1" stroke="currentColor" stroke-width="1.4"/>
-    <rect x="19.5" y="5"  width="5.5" height="20" rx="1" stroke="currentColor" stroke-width="1.4"/>
-  </svg>`,
-  // Strategy Execution — pipeline nodes (strategy → execution flow)
-  `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-    <circle cx="5"  cy="14" r="2.5" stroke="currentColor" stroke-width="1.4"/>
-    <circle cx="14" cy="14" r="2.5" stroke="currentColor" stroke-width="1.4"/>
-    <circle cx="23" cy="14" r="2.5" stroke="currentColor" stroke-width="1.4"/>
-    <line x1="7.5"  y1="14" x2="11.5" y2="14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-    <line x1="16.5" y1="14" x2="20.5" y2="14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-    <path d="M5 9c3-1.5 6-1.5 9 0s6 1.5 9 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.4"/>
-  </svg>`,
-];
+const featuredDate = featuredArticle
+  ? featuredArticle.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+  : '';
+const featuredLabel = featuredArticle
+  ? [
+      featuredArticle.data.category,
+      ...(featuredArticle.data.tags.length > 0 ? [featuredArticle.data.tags[0]] : []),
+    ].join(' · ')
+  : '';
 
-/* Filter chips */
+/* Visible filter chips — slugs match categorySlug in content collection */
 const FILTER_CHIPS = [
-  { label: 'All', active: true },
-  { label: 'AI Strategy', active: false },
-  { label: 'Digital Transformation', active: false },
-  { label: 'Operational Excellence', active: false },
-  { label: 'Enterprise Agility', active: false },
-  { label: 'Strategy Execution', active: false },
-];
-
-/* Placeholder articles — shown when content collection is empty.
-   Replace this section with real collection data when articles are published. */
-interface StaticArticle {
-  category: string;
-  title: string;
-  excerpt: string;
-  date: string;
-  readTime: string;
-}
-
-const STATIC_ARTICLES: StaticArticle[] = [
-  {
-    category: 'GOVERNANCE',
-    title: 'Establishing the Ethics & Policy Board',
-    excerpt: 'How leaders formalize responsible AI governance before scaling AI adoption.',
-    date: 'May 8, 2026',
-    readTime: '5 min read',
-  },
-  {
-    category: 'IMPACT',
-    title: 'Measuring AI ROI Beyond Productivity Gains',
-    excerpt: 'A practical view on connecting AI initiatives to operating model and business performance.',
-    date: 'April 23, 2026',
-    readTime: '6 min read',
-  },
-  {
-    category: 'OPERATING MODELS',
-    title: 'The Hybrid AI Center of Excellence',
-    excerpt: 'How organizations balance centralized governance with distributed AI execution.',
-    date: 'March 18, 2026',
-    readTime: '7 min read',
-  },
-  {
-    category: 'EXECUTION',
-    title: 'From Pilot to Production: Scaling AI',
-    excerpt: 'The real blockers organizations face when moving beyond isolated AI experiments.',
-    date: 'March 6, 2026',
-    readTime: '5 min read',
-  },
-  {
-    category: 'STRATEGY',
-    title: 'AI as a Competitive Moat in 2026',
-    excerpt: 'Understanding where AI creates durable advantage and where it only accelerates parity.',
-    date: 'Feb 17, 2026',
-    readTime: '6 min read',
-  },
-  {
-    category: 'LEADERSHIP',
-    title: 'Leading Through Technological Disruption',
-    excerpt: 'Critical leadership conversations senior teams need during AI-driven transformation.',
-    date: 'Feb 12, 2026',
-    readTime: '4 min read',
-  },
+  { label: 'All',                    slug: 'all' },
+  { label: 'AI Strategy',            slug: 'ai-strategy' },
+  { label: 'Digital Transformation', slug: 'digital-transformation' },
+  { label: 'Operational Excellence', slug: 'operational-excellence' },
+  { label: 'AI Adoption',            slug: 'ai-adoption' },
 ];
 
 const SEO_TITLE = 'Insights | AI Strategy & Transformation';
@@ -194,170 +113,117 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
   <!-- INSIGHTS_SECTION_03_FILTERS_AND_SEARCH ──────────────────────────────── -->
   <section
     id="insights-filters"
-    class="section-py-sm bg-gray-950"
-    aria-labelledby="filters-section-heading"
-  >
-    <div class="container-site">
-      <span class="eyebrow">Explore Insights</span>
-      <h2 id="filters-section-heading" class="sr-only">Filter and search insights by topic</h2>
-      <p class="filters-sub reveal">Find perspectives by topic, discipline or strategic priority.</p>
+      class="section-py-sm bg-gray-950"
+      aria-labelledby="filters-section-heading"
+    >
+      <div class="container-site">
+        <span class="eyebrow">Explore Insights</span>
+        <h2 id="filters-section-heading" class="sr-only">Filter and search insights by topic</h2>
+        <p class="filters-sub reveal">Find perspectives by topic, discipline or strategic priority.</p>
 
-      <!-- Search input -->
-      <div class="search-row reveal">
-        <div class="search-wrap">
-          <svg class="search-icon-svg" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-            <circle cx="7.5" cy="7.5" r="5.5" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M12 12l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          <label for="insights-search" class="sr-only">Search insights</label>
-          <input
-            id="insights-search"
-            type="search"
-            name="q"
-            placeholder="Search insights..."
-            class="search-input"
-            autocomplete="off"
-          />
-        </div>
-      </div>
-
-      <!-- Filter chips
-           To enable functional filtering: add a JS module that listens to
-           button clicks, updates aria-pressed, and filters visible insight cards
-           by matching data-category attributes. -->
-      <div
-        class="filter-chips reveal delay-100"
-        role="group"
-        aria-label="Filter insights by topic"
-      >
-        {FILTER_CHIPS.map((chip) => (
-          <button
-            type="button"
-            class={`filter-chip${chip.active ? ' filter-chip--active' : ''}`}
-            aria-pressed={chip.active ? 'true' : 'false'}
-          >
-            {chip.label}
-          </button>
-        ))}
-      </div>
-
-    </div>
-  </section>
-
-  <!-- INSIGHTS_SECTION_02_FEATURED_INSIGHT ─────────────────────────────────── -->
-  <section
-    id="featured-insight"
-    class="section-py-sm"
-    style="background: #05070D;"
-    aria-labelledby="featured-insight-heading"
-  >
-    <div class="container-site">
-      <span class="eyebrow">Featured Insight</span>
-      <div class="featured-card reveal">
-
-        <!-- Left: content -->
-        <div class="featured-content">
-          <div class="featured-category-badge">AI Strategy</div>
-          <h2
-            id="featured-insight-heading"
-            class="featured-title font-heading font-bold text-white"
-          >
-            Why AI Strategy Fails Without an Operating Model
-          </h2>
-          <p class="featured-summary">
-            Most AI initiatives do not fail because of technology alone. They fail when
-            organizations scale experimentation without governance, decision routines,
-            ownership and execution discipline.
-          </p>
-          <div class="featured-meta">
-            <time class="featured-date">May 12, 2026</time>
-            <span class="featured-sep" aria-hidden="true">·</span>
-            <span class="featured-read-time">6 min read</span>
-          </div>
-          <a href="/insights/ai-strategy/" class="btn-primary featured-cta-btn">
-            Read Insight
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Search input -->
+        <div class="search-row reveal">
+          <div class="search-wrap">
+            <svg class="search-icon-svg" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <circle cx="7.5" cy="7.5" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M12 12l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
-          </a>
-        </div>
-
-        <!-- Right: abstract visual (decorative) -->
-        <div class="featured-visual" aria-hidden="true">
-          <div class="featured-visual-inner">
-            <div class="fv-accent"></div>
-            <div class="fv-label">Operating Model · AI Governance</div>
-            <div class="fv-grid">
-              <div class="fv-cell fv-cell-orange"></div>
-              <div class="fv-cell"></div>
-              <div class="fv-cell fv-cell-dim"></div>
-              <div class="fv-cell fv-cell-orange fv-cell-short"></div>
-            </div>
-            <div class="fv-lines">
-              <div class="fv-line fv-line-long"></div>
-              <div class="fv-line fv-line-med"></div>
-            </div>
+            <label for="insights-search" class="sr-only">Search insights</label>
+            <input
+              id="insights-search"
+              type="search"
+              name="q"
+              placeholder="Search insights..."
+              class="search-input"
+              autocomplete="off"
+              aria-label="Search insights by title, topic or keyword"
+            />
           </div>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- INSIGHTS_SECTION_04_EDITORIAL_TOPICS ─────────────────────────────────── -->
-  <section
-    id="editorial-topics"
-    class="section-py bg-gray-950"
-    aria-labelledby="topics-heading"
-  >
-    <div class="container-site">
-      <div class="topics-layout">
-
-        <!-- Left: editorial header -->
-        <div class="topics-text-col reveal">
-          <span class="eyebrow">Strategic Perspectives</span>
-          <h2
-            id="topics-heading"
-            class="topics-heading font-heading font-bold text-white"
-          >
-            Explore selected themes on AI strategy, transformation and execution.
-          </h2>
-          <p class="topics-sub">
-            Selected perspectives designed to connect strategy, operating models, operational
-            excellence and measurable business impact.
-          </p>
-          <a href="/insights/" class="topics-view-all">
-            View all insights
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-
-        <!-- Right: 2×2 topic cards -->
-        <div class="topics-card-grid">
-          {INSIGHT_PILLARS.map((pillar, i) => (
-            <a
-              href={pillar.href}
-              class={`topic-card reveal delay-${(i % 2) * 100}`}
-              aria-label={`${pillar.title} insights`}
+        <!-- Category filter chips -->
+        <div
+          class="filter-chips reveal delay-100"
+          role="group"
+          aria-label="Filter insights by topic"
+        >
+          {FILTER_CHIPS.map((chip, i) => (
+            <button
+              type="button"
+              class={`filter-chip${i === 0 ? ' filter-chip--active' : ''}`}
+              aria-pressed={i === 0 ? 'true' : 'false'}
+              data-filter-chip={chip.slug}
             >
-              <div class="topic-card-icon" set:html={TOPIC_ICONS[i]} />
-              <h3 class="topic-card-title">{pillar.title}</h3>
-              <p class="topic-card-desc">{pillar.description}</p>
-              <span class="topic-card-cta">
-                {pillar.cta}
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-            </a>
+              {chip.label}
+            </button>
           ))}
         </div>
 
       </div>
-    </div>
   </section>
+
+  <!-- INSIGHTS_SECTION_02_FEATURED_INSIGHT — only shown when a featured article exists ── -->
+  {featuredArticle && (
+    <section
+      id="featured-insight"
+      class="section-py-sm"
+      style="background: #05070D;"
+      aria-labelledby="featured-insight-heading"
+    >
+      <div class="container-site">
+        <span class="eyebrow">Featured Insight</span>
+        <div class="featured-card reveal">
+
+          <!-- Left: content -->
+          <div class="featured-content">
+            <div class="featured-category-badge">{featuredArticle.data.category}</div>
+            <h2
+              id="featured-insight-heading"
+              class="featured-title font-heading font-bold text-white"
+            >
+              <a href={`/insights/${featuredArticle.slug}/`} class="featured-title-link">
+                {featuredArticle.data.title}
+              </a>
+            </h2>
+            <p class="featured-summary">{featuredArticle.data.description}</p>
+            <div class="featured-meta">
+              <time
+                datetime={featuredArticle.data.pubDate.toISOString().slice(0, 10)}
+                class="featured-date"
+              >
+                {featuredDate}
+              </time>
+            </div>
+            <a href={`/insights/${featuredArticle.slug}/`} class="btn-primary featured-cta-btn">
+              Read Insight
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Right: abstract visual (decorative) -->
+          <div class="featured-visual" aria-hidden="true">
+            <div class="featured-visual-inner">
+              <div class="fv-accent"></div>
+              {featuredLabel && <div class="fv-label">{featuredLabel}</div>}
+              <div class="fv-grid">
+                <div class="fv-cell fv-cell-orange"></div>
+                <div class="fv-cell"></div>
+                <div class="fv-cell fv-cell-dim"></div>
+                <div class="fv-cell fv-cell-orange fv-cell-short"></div>
+              </div>
+              <div class="fv-lines">
+                <div class="fv-line fv-line-long"></div>
+                <div class="fv-line fv-line-med"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- INSIGHTS_SECTION_05_LATEST_INSIGHTS ─────────────────────────────────── -->
   <section
@@ -378,64 +244,59 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
         Recent perspectives on AI strategy, operating models, governance and transformation execution.
       </p>
 
-      <div class="latest-grid">
-        {hasArticles ? (
-          /* Real articles from content collection */
-          articles.slice(0, 6).map((article) => {
-            const date = article.data.pubDate.toLocaleDateString('en-US', {
-              year: 'numeric', month: 'long', day: 'numeric',
-            });
-            return (
-              <a
-                href={`/insights/${article.slug}/`}
-                class="insight-card reveal"
-                aria-label={`Read: ${article.data.title}`}
-              >
-                <div class="insight-card-meta">
-                  <span class="insight-category">{article.data.category.toUpperCase()}</span>
-                  <time
-                    datetime={article.data.pubDate.toISOString().slice(0, 10)}
-                    class="insight-date"
-                  >
-                    {date}
-                  </time>
-                </div>
-                <h3 class="insight-title">{article.data.title}</h3>
-                <p class="insight-excerpt">{article.data.description}</p>
-                <span class="insight-cta">
-                  Read insight
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                    <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </a>
-            );
-          })
-        ) : (
-          /* Static placeholder cards — replace with real collection data when articles are published */
-          STATIC_ARTICLES.map((art, i) => (
-            <article class={`insight-card reveal delay-${(i % 3) * 100}`}>
-              <div class="insight-card-meta">
-                <span class="insight-category">{art.category}</span>
-                <span class="insight-date">{art.date}</span>
-              </div>
-              <h3 class="insight-title">{art.title}</h3>
-              <p class="insight-excerpt">{art.excerpt}</p>
-              <div class="insight-footer">
-                <span class="insight-read-time">{art.readTime}</span>
-                <span class="insight-coming">Coming soon</span>
-              </div>
-            </article>
-          ))
-        )}
-      </div>
-
-      <!-- Load More — becomes functional when pagination is implemented -->
-      <div class="load-more-row">
-        <button type="button" class="btn-outline load-more-btn">
-          Load More Insights
-        </button>
-      </div>
+      {hasArticles ? (
+        <Fragment>
+          <div class="latest-grid" id="insights-grid">
+            {articles.map((article) => {
+              const date = article.data.pubDate.toLocaleDateString('en-US', {
+                year: 'numeric', month: 'long', day: 'numeric',
+              });
+              return (
+                <a
+                  href={`/insights/${article.slug}/`}
+                  class="insight-card reveal"
+                  aria-label={`Read: ${article.data.title}`}
+                  data-category={article.data.categorySlug}
+                  data-title={article.data.title}
+                  data-description={article.data.description}
+                  data-tags={article.data.tags.join(',')}
+                >
+                  <div class="insight-card-meta">
+                    <span class="insight-category">{article.data.category.toUpperCase()}</span>
+                    <time
+                      datetime={article.data.pubDate.toISOString().slice(0, 10)}
+                      class="insight-date"
+                    >
+                      {date}
+                    </time>
+                  </div>
+                  <h3 class="insight-title">{article.data.title}</h3>
+                  <p class="insight-excerpt">{article.data.description}</p>
+                  <span class="insight-cta">
+                    Read insight
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                      <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </a>
+              );
+            })}
+          </div>
+          <p
+            id="insights-no-results"
+            hidden
+            class="no-results-msg"
+            aria-live="polite"
+          >
+            No insights match your current search.
+          </p>
+        </Fragment>
+      ) : (
+        <p class="insights-empty-state">
+          Insights are being prepared. New perspectives on AI strategy, digital transformation,
+          operational excellence and AI adoption will be published soon.
+        </p>
+      )}
 
     </div>
   </section>
@@ -464,13 +325,13 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
             Explore the strategic background behind these perspectives on the <a href="/about/">About page</a>, or see how they translate into execution in the <a href="/case-studies/">transformation case studies</a>.
           </p>
           <div class="insights-cta-actions">
-            <a href="/contact" class="btn-primary">
+            <a href="/contact/" class="btn-primary">
               Book Advisory Call
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </a>
-            <a href="/advisory" class="btn-outline">
+            <a href="/advisory/" class="btn-outline">
               Explore Advisory
             </a>
           </div>
@@ -628,6 +489,16 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
     margin: 0 0 1.25rem;
   }
 
+  .featured-title-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .featured-title-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
   .featured-summary {
     font-size: 1rem;
     color: rgba(255, 255, 255, 0.60);
@@ -644,15 +515,9 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
     flex-wrap: wrap;
   }
 
-  .featured-date,
-  .featured-read-time {
+  .featured-date {
     font-size: 0.82rem;
     color: rgba(255, 255, 255, 0.36);
-  }
-
-  .featured-sep {
-    color: rgba(255, 255, 255, 0.22);
-    font-size: 0.82rem;
   }
 
   .featured-cta-btn {
@@ -822,121 +687,6 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
     background: rgba(245, 124, 0, 0.16);
   }
 
-  /* ── SECTION 04: Editorial Topics ─────────────────────────────────────── */
-
-  .topics-layout {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    align-items: start;
-  }
-
-  @media (min-width: 1024px) {
-    .topics-layout {
-      grid-template-columns: 38fr 62fr;
-      gap: 5rem;
-    }
-  }
-
-  .topics-heading {
-    font-size: clamp(1.5rem, 3vw, 2.125rem);
-    line-height: 1.22;
-    letter-spacing: -0.015em;
-    margin: 0.75rem 0 1.25rem;
-  }
-
-  .topics-sub {
-    font-size: 0.9375rem;
-    color: rgba(255, 255, 255, 0.46);
-    line-height: 1.65;
-    margin-bottom: 1.75rem;
-  }
-
-  .topics-view-all {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: rgba(245, 124, 0, 0.78);
-    text-decoration: none;
-    transition: color 180ms ease, gap 180ms ease;
-  }
-
-  .topics-view-all:hover {
-    color: #F57C00;
-    gap: 0.6rem;
-  }
-
-  .topics-card-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-
-  @media (min-width: 640px) {
-    .topics-card-grid { grid-template-columns: 1fr 1fr; }
-  }
-
-  .topic-card {
-    display: flex;
-    flex-direction: column;
-    padding: 1.75rem;
-    border-radius: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-top: 2px solid rgba(245, 124, 0, 0.35);
-    background: rgba(255, 255, 255, 0.025);
-    text-decoration: none;
-    transition: background 240ms ease, border-top-color 240ms ease, transform 240ms ease, box-shadow 240ms ease;
-  }
-
-  .topic-card:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-top-color: rgba(245, 124, 0, 0.80);
-    transform: translateY(-3px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.40);
-  }
-
-  .topic-card-icon {
-    color: rgba(245, 124, 0, 0.70);
-    margin-bottom: 1rem;
-    transition: color 240ms ease;
-  }
-
-  .topic-card:hover .topic-card-icon { color: #F57C00; }
-
-  .topic-card-title {
-    font-family: Manrope, system-ui, sans-serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0 0 0.65rem;
-    line-height: 1.25;
-  }
-
-  .topic-card-desc {
-    font-size: 0.86rem;
-    color: rgba(255, 255, 255, 0.50);
-    line-height: 1.65;
-    margin: 0 0 auto;
-    padding-bottom: 1.25rem;
-  }
-
-  .topic-card-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: rgba(245, 124, 0, 0.70);
-    transition: color 180ms ease, gap 180ms ease;
-  }
-
-  .topic-card:hover .topic-card-cta {
-    color: #F57C00;
-    gap: 0.6rem;
-  }
-
   /* ── SECTION 05: Latest Insights ──────────────────────────────────────── */
 
   .latest-heading {
@@ -1021,7 +771,6 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
     padding-bottom: 1.25rem;
   }
 
-  /* CTA for real article cards (link version) */
   .insight-cta {
     display: inline-flex;
     align-items: center;
@@ -1037,35 +786,21 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
     gap: 0.6rem;
   }
 
-  /* Footer for placeholder cards */
-  .insight-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .insight-read-time {
-    font-size: 0.78rem;
-    color: rgba(255, 255, 255, 0.34);
-  }
-
-  .insight-coming {
-    font-size: 0.68rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.20);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  .load-more-row {
-    display: flex;
-    justify-content: center;
+  /* No-results message — shown by JS when filter+search return zero cards */
+  .no-results-msg {
     margin-top: 2rem;
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.42);
+    line-height: 1.6;
   }
 
-  .load-more-btn { min-width: 200px; }
+  /* Empty state — shown server-side when no articles are published yet */
+  .insights-empty-state {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.46);
+    line-height: 1.75;
+    max-width: 56ch;
+  }
 
   /* ── SECTION 06: Final CTA ─────────────────────────────────────────────── */
 
@@ -1124,3 +859,65 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
     justify-content: center;
   }
 </style>
+
+<script>
+  (function () {
+    var searchInput = document.getElementById('insights-search') as HTMLInputElement | null;
+    var chips = document.querySelectorAll('[data-filter-chip]');
+    var grid = document.getElementById('insights-grid');
+    var cards = grid ? Array.from(grid.querySelectorAll('a[data-category]')) : [];
+    var noResults = document.getElementById('insights-no-results');
+
+    if (!cards.length) return;
+
+    var activeCategory = 'all';
+
+    function filterCards() {
+      var query = (searchInput && searchInput.value) ? searchInput.value.trim().toLowerCase() : '';
+      var visible = 0;
+
+      cards.forEach(function (card) {
+        var catMatch = activeCategory === 'all' || card.getAttribute('data-category') === activeCategory;
+        var searchable = [
+          card.getAttribute('data-title') || '',
+          card.getAttribute('data-description') || '',
+          card.getAttribute('data-category') || '',
+          card.getAttribute('data-tags') || '',
+        ].join(' ').toLowerCase();
+        var searchMatch = !query || searchable.includes(query);
+        var show = catMatch && searchMatch;
+
+        if (show) {
+          card.removeAttribute('hidden');
+          visible++;
+        } else {
+          card.setAttribute('hidden', '');
+        }
+      });
+
+      if (noResults) {
+        if (visible > 0) {
+          noResults.setAttribute('hidden', '');
+        } else {
+          noResults.removeAttribute('hidden');
+        }
+      }
+    }
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        activeCategory = chip.getAttribute('data-filter-chip') || 'all';
+        chips.forEach(function (c) {
+          var on = c === chip;
+          c.setAttribute('aria-pressed', on ? 'true' : 'false');
+          c.classList.toggle('filter-chip--active', on);
+        });
+        filterCards();
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', filterCards);
+    }
+  }());
+</script>
