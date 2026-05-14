@@ -156,20 +156,34 @@ Infinite horizontal scroll for logo/tag strips. Key properties:
 
 ## 6. Homepage Learnings
 
-Current approved homepage structure (Phase 8 — updated):
+Current approved homepage structure (Phase 9 — updated 2026-05-14):
 1. Hero (`min-h-[78svh]`, bg `#05070D`, cinematic portrait)
 2. **Proof Logo Banner** — enterprise credibility band (`section-py-xs`, bg `#05070D`)
 3. Advisory Grid — 4 service pillars (bg `#05070D`, `section-py`)
 4. **Signature Framework** — 4-phase methodology (bg `#121212` / `bg-gray-950`, `section-py`) ← Phase 8
-5. Metrics / KPI Band — 4 counters (bg `#05070D`, `section-py-xs`)
-6. Industries Served — asymmetric image grid (bg `#05070D`, `section-py`)
-7. **About Snapshot** — personal authority bridge (bg `#121212` / `bg-gray-950`, `section-py`) ← Phase 8
-8. Strategic Perspectives — Insights section
-9. Final CTA (bg `#05070D`, `section-py`)
-10. Footer
+5. **Transformation in Practice** — 1 Financial Services case preview (bg `#121212` / `bg-gray-950`, `section-py-sm`) ← Phase 9
+6. Metrics / KPI Band — 4 counters (bg `#05070D`, `section-py-xs`)
+7. Industries Served — asymmetric image grid (bg `#05070D`, `section-py`)
+8. **About Snapshot** — personal authority bridge (bg `#121212` / `bg-gray-950`, `section-py`) ← Phase 8
+9. Strategic Perspectives — Insights section
+10. Final CTA (bg `#05070D`, `section-py`)
+11. Footer
 
-**Background rhythm (Phase 8):** `#05070D` → `#05070D` → `#05070D` → `#121212` → `#05070D` → `#05070D` → `#121212` → (SP) → `#05070D`
-Both `#121212` sections are positioned to create visual breaks around the proof layer (Metrics + Industries).
+**Background rhythm (Phase 9):** `#05070D` → `#05070D` → `#05070D` → `#121212` → `#121212` → `#05070D` → `#05070D` → `#121212` → (SP) → `#05070D`
+Sections 4 and 5 share `#121212` intentionally — they form a continuous proof zone: methodology → applied evidence. The section-py-sm spacing on §5 creates a perceptible rhythm break despite the shared background.
+
+### Transformation in Practice — Phase 9 (2026-05-14)
+
+- **Placement:** After Signature Framework (§4), before Metrics (§6).
+- **Purpose:** Applied transformation proof — shows the advisory framework in context, not as theory.
+- **Background:** `bg-gray-950` (`#121212`) — continuous with Signature Framework; creates a combined methodology + evidence zone.
+- **Spacing:** `section-py-sm` — compact to contrast with full `section-py` sections.
+- **Content:** One Financial Services AI-enabled SDLC governance case. No `/case-studies/` link or page created.
+- **Case framing:** AI-enabled pull request governance → earlier detection of SDLC, quality and security gaps. Outcome uses responsible metrics wording: targeted 10–15% improvement in development quality, not claimed as fully achieved.
+- **Card style:** Text-only, left vertical orange gradient accent bar (`width: 3px`), subtle dark surface (`rgba(255,255,255,0.03)`), border hover to `rgba(245,124,0,0.22)`.
+- **CTAs:** Per-card "Discuss a similar transformation" → `/contact/`; Section footer "Explore advisory work" → `/advisory/`.
+- **Do not add** a `/case-studies/` link until that page has published content.
+- **CSS classes:** `.tip-card`, `.tip-bar`, `.tip-body`, `.tip-tag`, `.tip-headline`, `.tip-detail`, `.tip-label`, `.tip-text`, `.tip-footer` — all scoped to `index.astro` `<style>` block.
 
 ### Proof Logo Banner (Phase 8)
 

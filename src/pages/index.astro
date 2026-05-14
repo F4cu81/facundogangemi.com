@@ -258,7 +258,77 @@ const ADVISORY_ICONS: string[] = [
     </div>
   </section>
 
-  <!-- ── 5. Metrics & Proof Points ────────────────────────────────────────── -->
+  <!-- ── 5. Transformation in Practice ────────────────────────────────────── -->
+  <section
+    class="section-py-sm bg-gray-950"
+    aria-labelledby="tip-heading"
+  >
+    <div class="container-site">
+
+      <!-- Section header -->
+      <div class="mb-8 lg:mb-10">
+        <span class="eyebrow">Applied AI Transformation</span>
+        <h2 id="tip-heading" class="text-section font-heading font-semibold text-white mt-1">
+          Transformation in Practice
+        </h2>
+      </div>
+
+      <!-- Financial Services case card -->
+      <article class="tip-card reveal" aria-label="Financial services transformation case">
+
+        <!-- Left orange accent bar -->
+        <div class="tip-bar" aria-hidden="true"></div>
+
+        <!-- Card body -->
+        <div class="tip-body">
+
+          <!-- Tag + Headline -->
+          <div>
+            <p class="tip-tag">Banking &amp; Financial Services · AI-Enabled SDLC Governance</p>
+            <h3 class="tip-headline font-heading">
+              From manual quality control to AI-enabled software governance
+            </h3>
+          </div>
+
+          <!-- Challenge + Outcome -->
+          <div class="tip-detail">
+            <div>
+              <p class="tip-label">Challenge</p>
+              <p class="tip-text">A financial services organization needed to improve development quality, security alignment and SDLC compliance across technology teams while preserving delivery speed.</p>
+            </div>
+            <div>
+              <p class="tip-label">Outcome</p>
+              <p class="tip-text">An AI-enabled governance layer was introduced into the pull request workflow, helping developers detect SDLC, quality and security gaps earlier in the delivery cycle. Early measurements targeted a 10–15% improvement in development quality, tracked through AI-reviewed pull requests, recurring findings and correction cycles.</p>
+            </div>
+          </div>
+
+          <!-- Card CTA -->
+          <div>
+            <a href="/contact/" class="sf-cta-link">
+              Discuss a similar transformation
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- Section footer CTA -->
+      <div class="tip-footer">
+        <a href="/advisory/" class="sf-cta-link">
+          Explore advisory work
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 7. Metrics & Proof Points ────────────────────────────────────────── -->
   <section
     id="metrics-section"
     class="relative section-py-xs bg-[#05070D] overflow-hidden"
@@ -925,5 +995,94 @@ const ADVISORY_ICONS: string[] = [
     color: rgba(245, 124, 0, 0.85);
     font-weight: 700;
     flex-shrink: 0;
+  }
+
+  /* ── Transformation in Practice ─────────────────────────────────────────── */
+
+  .tip-card {
+    display: flex;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    transition: border-color var(--transition-base);
+  }
+
+  .tip-card:hover {
+    border-color: rgba(245, 124, 0, 0.22);
+  }
+
+  .tip-bar {
+    flex-shrink: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, rgba(245, 124, 0, 0.90), rgba(245, 124, 0, 0.50));
+  }
+
+  .tip-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    padding: 2rem 2.25rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .tip-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: rgba(245, 124, 0, 0.78);
+    margin: 0 0 0.75rem;
+  }
+
+  .tip-headline {
+    font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .tip-detail {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .tip-detail {
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+  }
+
+  .tip-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+    margin: 0 0 0.5rem;
+  }
+
+  .tip-text {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.60);
+    line-height: 1.72;
+    margin: 0;
+  }
+
+  .tip-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tip-card {
+      transition: none;
+    }
   }
 </style>

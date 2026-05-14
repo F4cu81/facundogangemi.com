@@ -70,12 +70,12 @@ No structured data is emitted on interior pages beyond what is inherited through
 | Route | `/` |
 | Page type | Homepage |
 | Language | `en` |
-| Status | **Phase 8 complete** — Home Authority & Proof Layer validated (2026-05-13) |
+| Status | **Phase 9 complete** — "Transformation in Practice" updated to AI-enabled SDLC governance case (2026-05-14) |
 | SEO title | `AI Strategy & Transformation Advisor \| Facundo Gangemi` (54 chars displayed) — **unchanged Phase 8** |
 | Meta description | `Executive advisory for AI Strategy, Digital Transformation and Operating Models. Helping enterprise leaders build clarity and measurable business impact.` (153 chars) — **unchanged Phase 8** |
 | Canonical URL | `https://facundogangemi.com/` — **unchanged Phase 8** |
 | H1 | `AI Strategy & Digital Transformation Advisory.` — **unchanged Phase 8, unique** |
-| Main H2s | Strategic advisory for intelligent transformation. (Advisory Grid), A structured path from AI ambition to operating model reality. (Signature Framework — Phase 8), Experience and authority (Metrics — sr-only), Industries Served, Executive advisory grounded in real transformation. (About Snapshot — Phase 8), Ready to turn AI and digital transformation into measurable business impact? (Final CTA) |
+| Main H2s | Strategic advisory for intelligent transformation. (Advisory Grid), A structured path from AI ambition to operating model reality. (Signature Framework), **Transformation in Practice** (Case Preview — Phase 9), Experience and authority (Metrics — sr-only), Industries Served, Executive advisory grounded in real transformation. (About Snapshot), Ready to turn AI and digital transformation into measurable business impact? (Final CTA) |
 | Primary search intent | Find an AI strategy and digital transformation advisor |
 | Primary keyword | AI Strategy & Digital Transformation Advisor |
 | Secondary keywords | Enterprise Transformation, Operating Models, Business Impact, Banking & Financial Services, Signature Framework, Discover Design Deploy Evolve |
