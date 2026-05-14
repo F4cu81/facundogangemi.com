@@ -1,14 +1,40 @@
-﻿---
+---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allCaseStudies = await getCollection('case-studies');
+
+const caseStudies = allCaseStudies
+  .filter((cs) => cs.data.confidentiality !== 'internal')
+  .sort((a, b) => a.data.order - b.data.order);
+
+const count = caseStudies.length;
+
+const SEO_TITLE = 'Transformation Case Studies';
+const SEO_DESCRIPTION =
+  'Selected transformation experiences in AI strategy, digital transformation, enterprise agility and operating model redesign across banking, financial services and technology organizations.';
 ---
 
 <BaseLayout
-  title="Transformation Case Studies"
-  description="Transformation experiences in AI strategy, digital transformation, enterprise agility and operating model redesign across banking and financial services."
-  noIndex={true}
+  title={SEO_TITLE}
+  description={SEO_DESCRIPTION}
+  canonical="/case-studies/"
+  structuredData={[{
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Transformation Case Studies — Facundo Gangemi',
+    description: SEO_DESCRIPTION,
+    url: 'https://facundogangemi.com/case-studies/',
+    author: {
+      '@type': 'Person',
+      name: 'Facundo Gangemi',
+      url: 'https://facundogangemi.com',
+    },
+  }]}
 >
 
-  <section class="section-py bg-[#05070D]" aria-labelledby="case-studies-heading">
+  <!-- ── Hero ──────────────────────────────────────────────────────────────── -->
+  <section class="section-py bg-[#05070D]" aria-labelledby="cs-heading">
     <div class="container-site">
 
       <nav class="mb-8" aria-label="Breadcrumb">
@@ -19,35 +45,287 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 
       <span class="eyebrow">Case Studies</span>
 
-      <h1 id="case-studies-heading" class="text-section font-heading font-bold text-white mt-2 mb-6 max-w-[20ch]">
+      <h1 id="cs-heading" class="cs-h1 font-heading font-bold text-white mt-2 mb-6">
         Transformation Case Studies
       </h1>
 
-      <p class="text-white/65 text-lg leading-relaxed max-w-[56ch] mb-6">
+      <p class="cs-lead">
         Selected transformation experiences across banking and financial services,
         technology and product organizations — covering AI strategy implementation,
         digital operating model design, enterprise agility programs and execution
         governance at scale.
       </p>
 
-      <p class="text-white/50 leading-relaxed max-w-[56ch] mb-12">
-        Detailed case studies are being prepared for publication here. They will document
-        transformation patterns, operating model decisions and measurable outcomes across
-        real enterprise contexts — without disclosing confidential client information.
-        Contact to discuss specific transformation challenges in the meantime.
-      </p>
+      <!-- Validation counter — confirms collection is wired correctly -->
+      <p class="cs-count" aria-hidden="true">{count} selected case studies</p>
 
-      <div class="flex flex-wrap gap-4">
-        <a href="/contact" class="btn-primary">
-          Discuss Your Transformation
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-        <a href="/advisory" class="btn-outline">Explore Advisory Services</a>
+    </div>
+  </section>
+
+  <!-- ── Case Study Cards ───────────────────────────────────────────────────── -->
+  <section class="section-py bg-gray-950" aria-label="Case study listing">
+    <div class="container-site">
+
+      <div class="cs-grid">
+        {caseStudies.map((cs) => (
+          <article class="cs-card reveal" aria-label={cs.data.title}>
+
+            <header class="cs-card-header">
+              <p class="cs-sector">{cs.data.sector} · {cs.data.theme}</p>
+              <h2 class="cs-title font-heading">{cs.data.title}</h2>
+              <p class="cs-summary">{cs.data.summary}</p>
+            </header>
+
+            <div class="cs-detail">
+              <div>
+                <p class="cs-label">Challenge</p>
+                <p class="cs-text">{cs.data.challenge}</p>
+              </div>
+              <div>
+                <p class="cs-label">Intervention</p>
+                <p class="cs-text">{cs.data.intervention}</p>
+              </div>
+              <div>
+                <p class="cs-label">Impact</p>
+                <p class="cs-text">{cs.data.impact}</p>
+              </div>
+            </div>
+
+            <footer class="cs-card-footer">
+              <div class="cs-tags" aria-label="Tags">
+                {cs.data.tags.map((tag) => (
+                  <span class="cs-tag">{tag}</span>
+                ))}
+              </div>
+              <a href={cs.data.ctaHref} class="cs-cta">
+                {cs.data.ctaLabel}
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </footer>
+
+          </article>
+        ))}
       </div>
 
     </div>
   </section>
 
+  <!-- ── Final CTA ─────────────────────────────────────────────────────────── -->
+  <section class="section-py-sm bg-[#05070D]" aria-labelledby="cs-cta-heading">
+    <div class="container-site">
+      <div class="cs-cta-block">
+        <span class="eyebrow">Strategic Advisory</span>
+        <h2 id="cs-cta-heading" class="cs-cta-heading font-heading font-bold text-white">
+          Facing a similar transformation challenge?
+        </h2>
+        <p class="cs-cta-body">
+          These cases reflect real enterprise transformation contexts. Discuss your
+          specific challenge to explore whether there is a relevant advisory approach.
+        </p>
+        <div class="cs-cta-actions">
+          <a href="/contact/" class="btn-primary">
+            Book Advisory Call
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="/advisory/" class="btn-outline">Explore Advisory Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
+
+<style>
+  .cs-h1 {
+    font-size: clamp(1.875rem, 4vw, 2.875rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    max-width: 22ch;
+    margin-bottom: 1.25rem;
+  }
+
+  .cs-lead {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.68;
+    max-width: 56ch;
+    margin-bottom: 1.5rem;
+  }
+
+  .cs-count {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.20);
+    margin: 0;
+  }
+
+  /* ── Card grid ─────────────────────────────────────────────────────────── */
+
+  .cs-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .cs-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 2.25rem;
+    border-radius: var(--radius-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid rgba(245, 124, 0, 0.55);
+    background: rgba(255, 255, 255, 0.025);
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .cs-card:hover {
+    border-color: rgba(255, 255, 255, 0.14);
+    border-left-color: rgba(245, 124, 0, 0.80);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.30);
+  }
+
+  .cs-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .cs-sector {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: rgba(245, 124, 0, 0.78);
+    margin: 0 0 0.75rem;
+  }
+
+  .cs-title {
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.85rem;
+  }
+
+  .cs-summary {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.60);
+    line-height: 1.70;
+    margin: 0;
+    max-width: 72ch;
+  }
+
+  /* ── Challenge / Intervention / Impact columns ───────────────────────── */
+
+  .cs-detail {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  @media (min-width: 768px) {
+    .cs-detail { grid-template-columns: 1fr 1fr 1fr; gap: 2rem; }
+  }
+
+  .cs-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 0 0 0.5rem;
+  }
+
+  .cs-text {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── Footer: tags + CTA ──────────────────────────────────────────────── */
+
+  .cs-card-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .cs-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+
+  .cs-tag {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 0.2rem 0.625rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    color: rgba(255, 255, 255, 0.40);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .cs-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: rgba(245, 124, 0, 0.72);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 180ms ease, gap 180ms ease;
+  }
+
+  .cs-cta:hover {
+    color: #F57C00;
+    gap: 0.6rem;
+  }
+
+  /* ── Final CTA block ─────────────────────────────────────────────────── */
+
+  .cs-cta-block {
+    max-width: 640px;
+  }
+
+  .cs-cta-heading {
+    font-size: clamp(1.5rem, 3vw, 2.125rem);
+    line-height: 1.22;
+    letter-spacing: -0.015em;
+    margin: 0.75rem 0 1.25rem;
+  }
+
+  .cs-cta-body {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.56);
+    line-height: 1.70;
+    margin-bottom: 2rem;
+  }
+
+  .cs-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.875rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cs-card { transition: none; }
+    .cs-cta  { transition: none; }
+  }
+</style>
