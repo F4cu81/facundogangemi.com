@@ -150,9 +150,9 @@ No structured data is emitted on interior pages beyond what is inherited through
 | SEO title | `Advisory \| AI Strategy & Transformation \| Facundo Gangemi` (57 chars) |
 | Meta description | `Executive advisory for AI strategy, digital transformation, operational excellence and AI adoption focused on measurable business impact.` (135 chars) |
 | Canonical URL | `https://facundogangemi.com/advisory/` |
-| H1 | `AI Strategy & Digital Transformation Advisory.` |
+| H1 | `AI Strategy & Enterprise Transformation Advisory.` |
 | Main anchors | `#advisory-framework`, `#ai-strategy`, `#digital-transformation`, `#operational-excellence`, `#ai-adoption` |
-| Main H2s | A Framework Built for Enterprise Transformation, AI Strategy, Digital Transformation, Operational Excellence, AI Adoption, (CTA) Need to turn AI strategy into measurable execution? |
+| Main H2s | A Framework for AI-Enabled Enterprise Transformation, AI Strategy, Digital Transformation, Operational Excellence, AI Adoption, (CTA) Need to turn AI strategy into measurable execution? |
 | Primary search intent | Advisory hub for AI strategy and digital transformation |
 | Primary keyword | AI Strategy & Digital Transformation Advisory |
 | Secondary keywords | Enterprise Transformation, Operating Models, Operational Excellence, AI Adoption |
@@ -190,7 +190,7 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Meta description | `Start a strategic conversation on AI strategy, digital transformation, operating models, enterprise agility and measurable business impact.` (139 chars) |
 | Canonical URL | `https://facundogangemi.com/contact/` |
 | H1 | `Let's shape your next transformation` |
-| Main H2s | Strategic conversations I engage with, Start a strategic conversation |
+| Main H2s | Strategic conversations I engage with, Send a detailed message |
 | Primary search intent | Contact an AI Strategy Advisor; discuss transformation, advisory, speaking or strategic collaboration |
 | Primary keyword | AI Strategy & Advisory |
 | Secondary keywords | Digital Transformation Advisor, Operating Models, Enterprise Agility, OKRs and QBRs, Banking & Financial Services |
