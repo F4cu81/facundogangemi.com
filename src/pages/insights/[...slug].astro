@@ -260,19 +260,44 @@ const breadcrumbSchema = {
                 const relDate = a.data.pubDate.toLocaleDateString('en-US', {
                   year: 'numeric', month: 'short', day: 'numeric',
                 });
+                const articleHref = `/insights/${a.slug}/`;
                 return (
                   <article class="sidebar-card">
-                    <span class="sidebar-card-category">{a.data.category}</span>
-                    <h3 class="sidebar-card-title">
-                      <a href={`/insights/${a.slug}/`}>{a.data.title}</a>
-                    </h3>
-                    <p class="sidebar-card-excerpt">{a.data.description}</p>
-                    <time
-                      datetime={a.data.pubDate.toISOString().slice(0, 10)}
-                      class="sidebar-card-date"
-                    >
-                      {relDate}
-                    </time>
+                    {a.data.image && (
+                      <div class="sidebar-card-img-wrap">
+                        <img
+                          src={a.data.image}
+                          alt={a.data.imageAlt || a.data.title}
+                          width="300"
+                          height="169"
+                          class="sidebar-card-img"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                    )}
+                    <div class="sidebar-card-body">
+                      <span class="sidebar-card-category">{a.data.category}</span>
+                      <h3 class="sidebar-card-title">
+                        <a href={articleHref}>{a.data.title}</a>
+                      </h3>
+                      <p class="sidebar-card-excerpt">{a.data.description}</p>
+                      <div class="sidebar-card-footer">
+                        <time
+                          datetime={a.data.pubDate.toISOString().slice(0, 10)}
+                          class="sidebar-card-date"
+                        >
+                          {relDate}
+                        </time>
+                        <a
+                          href={articleHref}
+                          class="sidebar-card-readmore"
+                          aria-label={`Read more: ${a.data.title}`}
+                        >
+                          Read more →
+                        </a>
+                      </div>
+                    </div>
                   </article>
                 );
               })}
@@ -407,9 +432,11 @@ const breadcrumbSchema = {
   }
 
   .article-hero-image {
+    display: block;
     width: 100%;
-    max-height: 480px;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
     border-radius: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.07);
   }
@@ -725,16 +752,33 @@ const breadcrumbSchema = {
   }
 
   .sidebar-card {
-    padding: 1rem 1.125rem;
     border-radius: 0.75rem;
     border: 1px solid rgba(255, 255, 255, 0.07);
     background: rgba(255, 255, 255, 0.02);
+    overflow: hidden;
     transition: border-color 200ms ease, background 200ms ease;
   }
 
   .sidebar-card:hover {
-    border-color: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.13);
     background: rgba(255, 255, 255, 0.04);
+  }
+
+  /* Image */
+  .sidebar-card-img-wrap {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .sidebar-card-img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Text body */
+  .sidebar-card-body {
+    padding: 0.875rem 1rem 1rem;
   }
 
   .sidebar-card-category {
@@ -769,12 +813,42 @@ const breadcrumbSchema = {
     font-size: 0.78rem;
     color: rgba(255, 255, 255, 0.42);
     line-height: 1.55;
-    margin: 0 0 0.625rem;
+    margin: 0;
+  }
+
+  /* Footer row: date + read more */
+  .sidebar-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
   }
 
   .sidebar-card-date {
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     color: rgba(255, 255, 255, 0.26);
+  }
+
+  .sidebar-card-readmore {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: rgba(245, 124, 0, 0.70);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 160ms ease;
+  }
+
+  .sidebar-card-readmore:hover,
+  .sidebar-card-readmore:focus-visible {
+    color: #F57C00;
+    outline: none;
+  }
+
+  .sidebar-card-readmore:focus-visible {
+    outline: 2px solid rgba(245, 124, 0, 0.5);
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 
   /* ── Footer ─────────────────────────────────────────────────────────────── */

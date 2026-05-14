@@ -264,16 +264,10 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
     id="latest-insights"
     class="section-py"
     style="background: #05070D;"
-    aria-labelledby="latest-heading"
+    aria-label="Latest insights"
   >
     <div class="container-site">
       <span class="eyebrow">Latest Insights</span>
-      <h2
-        id="latest-heading"
-        class="latest-heading font-heading font-semibold text-white reveal"
-      >
-        Latest Insights
-      </h2>
       <p class="latest-sub reveal delay-100">
         Recent perspectives on AI strategy, operating models, governance and transformation execution.
       </p>
@@ -735,16 +729,11 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
 
   /* ── SECTION 05: Latest Insights ──────────────────────────────────────── */
 
-  .latest-heading {
-    font-size: 1.75rem;
-    margin: 0.5rem 0 0.75rem;
-  }
-
   .latest-sub {
     font-size: 0.9375rem;
     color: rgba(255, 255, 255, 0.46);
     line-height: 1.65;
-    margin: 0 0 2rem;
+    margin: 0.5rem 0 2rem;
   }
 
   .latest-grid {
@@ -783,14 +772,12 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
     margin-bottom: 1rem;
     border-radius: 0.5rem;
     overflow: hidden;
-    aspect-ratio: 16 / 9;
   }
 
   .insight-card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     display: block;
+    width: 100%;
+    height: auto;
   }
 
   .insight-card-meta {
