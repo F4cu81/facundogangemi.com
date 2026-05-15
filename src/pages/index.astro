@@ -1,26 +1,93 @@
----
+﻿---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { SITE } from '@/data/site';
 import { ADVISORY_PILLARS } from '@/data/advisoryPillars';
 import { KPIS } from '@/data/kpis';
 import StrategicPerspectives from '@/components/sections/StrategicPerspectives.astro';
+import ProofLogoBanner from '@/components/sections/ProofLogoBanner.astro';
+
+/*
+ * Advisory card icons — inline SVG strings, one per pillar in ADVISORY_PILLARS order.
+ * 28×28 viewport, stroke="currentColor" — inherits CSS color for hover transitions.
+ * Stroke weights 1.4/1.2 match Insights icon system. Scale factor 28/28 (native).
+ */
+const ADVISORY_ICONS: string[] = [
+  // 01 — AI Strategy: hub-satellite — neural network, 3 satellite nodes + central hub
+  `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+    <circle cx="14"   cy="3.5"  r="2.1" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="23.1" cy="19.6" r="2.1" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="4.9"  cy="19.6" r="2.1" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="14"   cy="14"   r="2.6" stroke="currentColor" stroke-width="1.4"/>
+    <line x1="14"   y1="5.6"  x2="14"   y2="11.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="21.4" y1="18.1" x2="16.3" y2="15.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="6.6"  y1="18.1" x2="11.7" y2="15.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+  </svg>`,
+
+  // 02 — Digital Transformation: stacked diamond layers — operating model evolution
+  `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+    <path d="M14 3L26 9L14 15L2 9Z"   stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+    <path d="M2 14L14 20L26 14"       stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M2 19L14 25L26 19"       stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`,
+
+  // 03 — Operational Excellence: ascending bars — execution performance and continuous improvement
+  `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+    <rect x="3"  y="17" width="5" height="8"  rx="1" stroke="currentColor" stroke-width="1.4"/>
+    <rect x="11" y="11" width="5" height="14" rx="1" stroke="currentColor" stroke-width="1.4"/>
+    <rect x="19" y="4"  width="5" height="21" rx="1" stroke="currentColor" stroke-width="1.4"/>
+    <line x1="3" y1="24.5" x2="25" y2="24.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+  </svg>`,
+
+  // 04 — AI Adoption: concentric target — structured progression to embedded AI
+  `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+    <circle cx="14" cy="14" r="11.5" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="14" cy="14" r="6.5"  stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="14" cy="14" r="2.2"  fill="currentColor"/>
+  </svg>`,
+];
 ---
 
 <BaseLayout
-  title="AI Strategy & Enterprise Transformation Advisor"
+  title="AI Strategy &amp; Transformation Advisor"
   description={SITE.description}
+  canonical="/"
+  ogImage="/assets/og/og-home.webp"
+  ogImageAlt="Facundo Gangemi AI Strategy and Digital Transformation Advisor"
+  preloadImage="/assets/portraits/facundo-hero-executive.webp"
+  structuredData={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Facundo Gangemi',
+      url: 'https://facundogangemi.com',
+      description: SITE.description,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      '@id': 'https://facundogangemi.com/#professional-service',
+      name: 'Facundo Gangemi',
+      url: 'https://facundogangemi.com',
+      description: 'Executive advisory for AI Strategy, Digital Transformation and Operating Models — helping enterprise leaders build clarity, execution and measurable business impact.',
+      areaServed: ['Europe', 'Latin America'],
+      serviceType: [
+        'AI Strategy Advisory',
+        'Digital Transformation Advisory',
+        'Operational Excellence Advisory',
+        'Operating Model Transformation',
+        'AI Adoption Advisory',
+      ],
+    },
+  ]}
 >
 
   <!-- ── 1. Hero — Cinematic dark ──────────────────────────────────────────── -->
   <section
-    class="relative min-h-[92svh] flex items-center bg-[#070B14] overflow-hidden"
+    class="relative min-h-[78svh] flex items-center bg-[#05070D] overflow-hidden"
     aria-label="Hero"
   >
     <!-- Background visual layers -->
     <div class="absolute inset-0 pointer-events-none select-none" aria-hidden="true">
-
-      <!-- AI network texture -->
-      <div class="absolute inset-0 bg-[url('/assets/backgrounds/hero-ai-network-bg.svg')] bg-cover opacity-[0.025]"></div>
 
       <!-- Portrait: right-side, bleeds full height, no container border -->
       <div class="absolute inset-y-0 right-0 w-full lg:w-[56%]">
@@ -34,29 +101,29 @@ import StrategicPerspectives from '@/components/sections/StrategicPerspectives.a
           decoding="async"
         />
         <!-- Left: portrait fades into the dark background -->
-        <div class="absolute inset-y-0 left-0 w-3/4 bg-gradient-to-r from-[#070B14] via-[#070B14]/80 to-transparent"></div>
+        <div class="absolute inset-y-0 left-0 w-3/4 bg-gradient-to-r from-[#05070D] via-[#05070D]/80 to-transparent"></div>
         <!-- Bottom: fade out -->
-        <div class="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#070B14] to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#05070D] to-transparent"></div>
         <!-- Top: subtle fade -->
-        <div class="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#070B14]/50 to-transparent"></div>
+        <div class="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#05070D]/50 to-transparent"></div>
       </div>
 
       <!-- Cyan atmospheric glow — AI accent -->
       <div class="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_70%_65%_at_85%_30%,rgba(0,217,255,0.07)_0%,transparent_70%)]"></div>
 
       <!-- Mobile: solid overlay so text remains readable over the portrait -->
-      <div class="absolute inset-0 bg-[#070B14]/65 lg:hidden"></div>
+      <div class="absolute inset-0 bg-[#05070D]/65 lg:hidden"></div>
     </div>
 
     <!-- Content — left-anchored, max 580px -->
-    <div class="container-site relative z-10 py-24 lg:py-28">
+    <div class="container-site relative z-10 py-16 lg:py-20">
       <div class="max-w-[580px]">
 
         <span class="eyebrow reveal">AI Strategy · Enterprise Transformation</span>
 
         <h1 class="text-hero font-heading font-extrabold text-white mt-4 mb-6 reveal">
-          Transforming ambition<br />
-          into results.
+          AI Strategy &amp;<br />
+          Digital Transformation Advisory.
         </h1>
 
         <p class="text-white/65 text-lg leading-relaxed max-w-[46ch] mb-8 reveal delay-100">
@@ -67,19 +134,19 @@ import StrategicPerspectives from '@/components/sections/StrategicPerspectives.a
         <!-- Pull quote -->
         <blockquote class="border-l-2 border-orange-500/50 pl-5 mb-8 max-w-[44ch] reveal delay-100">
           <p class="text-white/50 text-sm leading-snug italic">
-            The future belongs to organizations that combine intelligence, adaptability and execution.
+            AI adoption fails when it is treated as a tool rollout instead of an operating model redesign.
           </p>
         </blockquote>
 
         <!-- CTAs -->
         <div class="flex flex-wrap gap-3 reveal delay-200">
-          <a href="/contact" class="btn-primary">
+          <a href="/contact/" class="btn-primary">
             Book an Advisory Call
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-          <a href="/advisory" class="btn-outline">
+          <a href="/advisory/" class="btn-outline">
             Explore Services
           </a>
         </div>
@@ -88,9 +155,12 @@ import StrategicPerspectives from '@/components/sections/StrategicPerspectives.a
     </div>
   </section>
 
-  <!-- ── 2. Advisory Grid — Dark foundation ────────────────────────────────── -->
+  <!-- ── 2. Authority & Proof — Enterprise logo band ──────────────────────── -->
+  <ProofLogoBanner />
+
+  <!-- ── 3. Advisory Grid — Dark foundation ────────────────────────────────── -->
   <section
-    class="section-py bg-[#070B14]"
+    class="section-py bg-[#080A10]"
     aria-labelledby="advisory-heading"
   >
     <div class="container-site">
@@ -110,22 +180,17 @@ import StrategicPerspectives from '@/components/sections/StrategicPerspectives.a
         {ADVISORY_PILLARS.map((pillar, i) => (
           <a
             href={pillar.href}
-            class={`card-dark group reveal delay-${i * 100}`}
+            class={`card-dark card-adv group reveal delay-${i * 100}`}
             aria-label={`Learn more about ${pillar.title}`}
           >
             <!-- Icon -->
-            <div class="w-11 h-11 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-4">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                <circle cx="11" cy="11" r="7" stroke="#F57C00" stroke-width="1.5"/>
-                <path d="M8 11h6M11 8v6" stroke="#F57C00" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-            </div>
+            <div class="adv-icon" aria-hidden="true" set:html={ADVISORY_ICONS[i]} />
             <h3 class="font-heading font-semibold text-white text-lg mb-2">{pillar.title}</h3>
-            <p class="text-sm text-orange-400 font-medium mb-3 italic">{pillar.outcome}</p>
-            <p class="text-white/55 text-sm leading-relaxed mb-4">{pillar.description}</p>
-            <span class="text-link-light text-sm">
+            <p class="text-sm text-orange-400 font-semibold mb-3">{pillar.outcome}</p>
+            <p class="text-white/55 text-sm leading-relaxed">{pillar.description}</p>
+            <span class="text-link-light text-sm adv-cta">
               Learn more
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="transition-transform group-hover:translate-x-1">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="adv-cta-arrow">
                 <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
@@ -135,9 +200,71 @@ import StrategicPerspectives from '@/components/sections/StrategicPerspectives.a
     </div>
   </section>
 
-  <!-- ── 3. Industries Served — Asymmetric editorial grid ─────────────────── -->
+  <!-- ── 4. Signature Framework — Methodology ─────────────────────────────── -->
   <section
-    class="section-py bg-[#070B14]"
+    class="section-py bg-gray-950"
+    aria-labelledby="sf-heading"
+  >
+    <div class="container-site">
+      <div class="sf-layout reveal">
+
+        <!-- Left: editorial header -->
+        <div>
+          <span class="eyebrow">Signature Framework</span>
+          <h2 id="sf-heading" class="text-section font-heading font-semibold text-white mt-1 mb-4">
+            A structured path from AI ambition<br class="hidden lg:block" />
+            to operating model reality.
+          </h2>
+          <p class="sf-body">
+            Every advisory engagement follows a proven four-phase process. Not a template, but a discipline refined across complex enterprise transformations in banking, technology, insurance and operations.
+          </p>
+          <a href="/advisory/" class="sf-cta-link">
+            Explore Advisory Practices
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Right: four steps -->
+        <div class="sf-steps">
+
+          <div class="sf-step">
+            <div class="sf-step-num font-heading" aria-hidden="true">01</div>
+            <p class="sf-step-phase">Discover</p>
+            <h3 class="sf-step-title font-heading">Strategic Clarity</h3>
+            <p class="sf-step-body">Diagnose the current state. Identify AI readiness gaps, operating model constraints and the misalignments that prevent meaningful progress.</p>
+          </div>
+
+          <div class="sf-step">
+            <div class="sf-step-num font-heading" aria-hidden="true">02</div>
+            <p class="sf-step-phase">Design</p>
+            <h3 class="sf-step-title font-heading">Architecture</h3>
+            <p class="sf-step-body">Design the future operating model. Define the AI strategy, governance structure, capability roadmap and organizational design required for sustained transformation.</p>
+          </div>
+
+          <div class="sf-step">
+            <div class="sf-step-num font-heading" aria-hidden="true">03</div>
+            <p class="sf-step-phase">Deploy</p>
+            <h3 class="sf-step-title font-heading">Execution</h3>
+            <p class="sf-step-body">Execute with discipline. Implement governance frameworks, delivery systems, OKRs and transformation programs that convert strategy into organizational behavior.</p>
+          </div>
+
+          <div class="sf-step">
+            <div class="sf-step-num font-heading" aria-hidden="true">04</div>
+            <p class="sf-step-phase">Evolve</p>
+            <h3 class="sf-step-title font-heading">Continuity</h3>
+            <p class="sf-step-body">Embed continuous improvement. Establish measurement cycles, leadership feedback loops and adaptive mechanisms that make transformation sustainable, not a one-time event.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 5. Industries Served — Asymmetric editorial grid ─────────────────── -->
+  <section
+    class="section-py bg-[#05070D]"
     aria-labelledby="industries-heading"
   >
     <div class="container-site">
@@ -164,7 +291,7 @@ import StrategicPerspectives from '@/components/sections/StrategicPerspectives.a
             loading="lazy"
             decoding="async"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#070B14]/90 via-[#070B14]/30 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#05070D]/90 via-[#05070D]/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-7 lg:p-8">
             <p class="industries-eyebrow">Financial Services</p>
             <h3 class="font-heading font-bold text-white text-xl lg:text-2xl mb-2 leading-tight">
@@ -184,7 +311,7 @@ import StrategicPerspectives from '@/components/sections/StrategicPerspectives.a
             loading="lazy"
             decoding="async"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#070B14]/90 via-[#070B14]/30 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#05070D]/90 via-[#05070D]/30 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-6">
             <p class="industries-eyebrow">Tech & Product</p>
             <h3 class="font-heading font-bold text-white text-lg mb-2 leading-tight">
@@ -204,7 +331,7 @@ import StrategicPerspectives from '@/components/sections/StrategicPerspectives.a
             loading="lazy"
             decoding="async"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#070B14]/90 via-[#070B14]/35 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#05070D]/90 via-[#05070D]/35 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-5">
             <p class="industries-eyebrow">Insurance</p>
             <h3 class="font-heading font-semibold text-white text-base mb-1 leading-tight">
@@ -224,7 +351,7 @@ import StrategicPerspectives from '@/components/sections/StrategicPerspectives.a
             loading="lazy"
             decoding="async"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#070B14]/90 via-[#070B14]/35 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#05070D]/90 via-[#05070D]/35 to-transparent"></div>
           <div class="absolute bottom-0 left-0 right-0 p-5">
             <p class="industries-eyebrow">Operations</p>
             <h3 class="font-heading font-semibold text-white text-base mb-1 leading-tight">
@@ -240,16 +367,18 @@ import StrategicPerspectives from '@/components/sections/StrategicPerspectives.a
     </div>
   </section>
 
-  <!-- ── 4. Metrics & Proof Points ────────────────────────────────────────── -->
+  <!-- ── 6. Metrics & Proof Points ────────────────────────────────────────── -->
   <section
     id="metrics-section"
-    class="relative section-py bg-[#070B14] overflow-hidden"
+    class="relative section-py-xs bg-[#05070D] overflow-hidden"
     aria-labelledby="metrics-heading"
   >
     <!-- Background: subtle elevation gradient at top -->
-    <div class="absolute inset-0 bg-gradient-to-b from-[#0D1829]/50 via-[#0A101A]/20 to-transparent pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0C0E13]/18 via-[#08090D]/10 to-transparent pointer-events-none" aria-hidden="true"></div>
     <!-- Top separator: feathered line -->
     <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.10] to-transparent pointer-events-none" aria-hidden="true"></div>
+    <!-- Bottom separator: feathered line -->
+    <div class="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent pointer-events-none" aria-hidden="true"></div>
     <!-- Warm orange radial glow — anchors section to brand accent -->
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-40 bg-[radial-gradient(ellipse_at_top,rgba(245,124,0,0.05)_0%,transparent_70%)] pointer-events-none" aria-hidden="true"></div>
 
@@ -281,7 +410,6 @@ import StrategicPerspectives from '@/components/sections/StrategicPerspectives.a
       </div>
     </div>
   </section>
-
 
 <script>
   // Scroll-triggered count-up animation for numeric metrics.
@@ -332,7 +460,834 @@ import StrategicPerspectives from '@/components/sections/StrategicPerspectives.a
   })();
 </script>
 
-  <!-- ── 5. Strategic Perspectives ─────────────────────────────────────────── -->
+  <!-- ── 7. Transformation in Practice ────────────────────────────────────── -->
+  <section
+    class="section-py-sm bg-gray-950"
+    aria-labelledby="tip-heading"
+  >
+    <div class="container-site">
+
+      <!-- Section header -->
+      <div class="mb-8 lg:mb-10">
+        <span class="eyebrow">Applied AI Transformation</span>
+        <h2 id="tip-heading" class="text-section font-heading font-semibold text-white mt-1">
+          Transformation in Practice
+        </h2>
+      </div>
+
+      <!-- Financial Services case card -->
+      <article class="tip-card reveal" aria-label="Financial services transformation case">
+
+        <!-- Left orange accent bar -->
+        <div class="tip-bar" aria-hidden="true"></div>
+
+        <!-- Card body -->
+        <div class="tip-body">
+
+          <!-- Case content -->
+          <div class="tip-content">
+
+            <!-- Tag + Headline -->
+            <div>
+              <p class="tip-tag">BANKING &amp; FINANCIAL SERVICES · AI-ENABLED ENGINEERING GOVERNANCE</p>
+              <h3 class="tip-headline font-heading">
+                From manual quality control to AI-enabled software governance
+              </h3>
+            </div>
+
+            <!-- Challenge + Outcome -->
+            <div class="tip-detail">
+              <div>
+                <p class="tip-label">Challenge</p>
+                <p class="tip-text">At enterprise scale, inconsistent quality controls across software delivery increased regulatory, security and operational risk for technology leadership.</p>
+              </div>
+              <div>
+                <p class="tip-label">Outcome</p>
+                <p class="tip-text">The organization moved from manual, late-stage quality control to an AI-enabled governance loop inside the software delivery governance workflow, giving teams earlier visibility into quality, security and compliance gaps before they became delivery risks. Improvement was tracked through AI-reviewed pull requests, recurring findings and correction cycles.</p>
+              </div>
+            </div>
+
+            <!-- Card CTA -->
+            <div>
+              <a href="/contact/" class="sf-cta-link">
+                Discuss a similar transformation
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- AI-Enabled Delivery Loop diagram -->
+          <figure class="tip-diagram-col" aria-hidden="true">
+            <p class="tip-diagram-title">AI-Enabled Governance Loop</p>
+            <p class="tip-diagram-sub">Quality · Security · Compliance · Efficiency</p>
+            <!--
+              Circular flow diagram — AI-enabled pull request governance cycle.
+              Center: (170,138), track radius: 90. ViewBox: 340×280.
+              Nodes at 60° intervals from top, clockwise:
+                n0 PR Submitted (−90°): (170,48)
+                n1 AI Review    (−30°): (248,93)
+                n2 Findings     (+30°): (248,183)
+                n3 Developer Fix(+90°): (170,228)
+                n4 Re-check    (+150°): (92,183)
+                n5 Learning Loop(+210°): (92,93)
+            -->
+            <svg viewBox="0 0 340 280" fill="none" xmlns="http://www.w3.org/2000/svg" class="tip-svg" focusable="false">
+
+              <!-- Inner circle — intentional center node with orange presence -->
+              <circle class="tip-gi" cx="170" cy="138" r="40" fill="rgba(245,124,0,0.09)" stroke="rgba(245,124,0,0.40)" stroke-width="1"/>
+
+              <!-- Outer track — dashed guide circle -->
+              <circle cx="170" cy="138" r="90" stroke="rgba(255,255,255,0.14)" stroke-width="1" stroke-dasharray="3 7"/>
+
+              <!-- ── Arc segments ── -->
+              <!-- 0→1 PR Submitted → AI Review — orange highlight -->
+              <path class="tip-ga" d="M170,48 A90,90 0 0,1 248,93" stroke="rgba(245,124,0,0.68)" stroke-width="1.5"/>
+              <!-- 1→2 AI Review → Findings -->
+              <path class="tip-gn-neutral" d="M248,93 A90,90 0 0,1 248,183" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+              <!-- 2→3 Findings → Developer Fix -->
+              <path class="tip-gn-neutral" d="M248,183 A90,90 0 0,1 170,228" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+              <!-- 3→4 Developer Fix → Re-check -->
+              <path class="tip-gn-neutral" d="M170,228 A90,90 0 0,1 92,183" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+              <!-- 4→5 Re-check → Learning Loop -->
+              <path class="tip-gn-neutral" d="M92,183 A90,90 0 0,1 92,93" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+              <!-- 5→0 Learning Loop → PR Submitted -->
+              <path class="tip-gn-neutral" d="M92,93 A90,90 0 0,1 170,48" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+
+              <!-- ── Clockwise chevrons at arc midpoints ── -->
+              <!-- m0→1 θ=−60° (215,60) rot=30° — orange -->
+              <g transform="translate(215,60) rotate(30)">
+                <path d="M-5,-3 L5,0 L-5,3" stroke="rgba(245,124,0,0.80)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <!-- m1→2 θ=0° (260,138) rot=90° -->
+              <g transform="translate(260,138) rotate(90)">
+                <path d="M-5,-3 L5,0 L-5,3" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <!-- m2→3 θ=60° (215,216) rot=150° -->
+              <g transform="translate(215,216) rotate(150)">
+                <path d="M-5,-3 L5,0 L-5,3" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <!-- m3→4 θ=120° (125,216) rot=210° -->
+              <g transform="translate(125,216) rotate(210)">
+                <path d="M-5,-3 L5,0 L-5,3" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <!-- m4→5 θ=180° (80,138) rot=270° -->
+              <g transform="translate(80,138) rotate(270)">
+                <path d="M-5,-3 L5,0 L-5,3" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <!-- m5→0 θ=240° (125,60) rot=330° -->
+              <g transform="translate(125,60) rotate(330)">
+                <path d="M-5,-3 L5,0 L-5,3" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+
+              <!-- ── Node dots ── -->
+              <!-- n0 PR Submitted — top -->
+              <circle cx="170" cy="48" r="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+              <!-- n1 AI Review — top-right, orange -->
+              <circle class="tip-gn" cx="248" cy="93" r="5.5" fill="rgba(245,124,0,0.20)" stroke="rgba(245,124,0,0.88)" stroke-width="1.5"/>
+              <!-- n2 Findings — bottom-right -->
+              <circle cx="248" cy="183" r="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+              <!-- n3 Developer Fix — bottom -->
+              <circle cx="170" cy="228" r="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+              <!-- n4 Re-check — bottom-left -->
+              <circle cx="92" cy="183" r="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+              <!-- n5 Learning Loop — top-left -->
+              <circle cx="92" cy="93" r="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+
+              <!-- ── Center label: "AI Governance System" — conceptual anchor ── -->
+              <text x="170" y="128" text-anchor="middle" fill="rgba(245,124,0,0.92)" font-size="14" font-weight="700" font-family="'Manrope', sans-serif" letter-spacing="0.02em">AI</text>
+              <text x="170" y="141" text-anchor="middle" fill="rgba(245,124,0,0.80)" font-size="10" font-weight="600" font-family="'Manrope', sans-serif" letter-spacing="0.06em">Governance</text>
+              <text x="170" y="153" text-anchor="middle" fill="rgba(245,124,0,0.80)" font-size="10" font-weight="600" font-family="'Manrope', sans-serif" letter-spacing="0.06em">System</text>
+
+              <!-- ── Step labels ── -->
+              <!-- n0 top — centered above -->
+              <text x="170" y="28" text-anchor="middle" fill="rgba(255,255,255,0.78)" font-size="12" font-weight="500" font-family="'Inter', sans-serif">Quality Standards</text>
+              <!-- n1 top-right — orange only active stage -->
+              <text x="262" y="97" text-anchor="start" fill="rgba(245,124,0,0.92)" font-size="12" font-weight="600" font-family="'Inter', sans-serif">AI Review</text>
+              <!-- n2 bottom-right -->
+              <text x="262" y="187" text-anchor="start" fill="rgba(255,255,255,0.78)" font-size="12" font-weight="500" font-family="'Inter', sans-serif">Risk Signals</text>
+              <!-- n3 bottom -->
+              <text x="170" y="248" text-anchor="middle" fill="rgba(255,255,255,0.78)" font-size="12" font-weight="500" font-family="'Inter', sans-serif">Team Action</text>
+              <!-- n4 bottom-left — two lines -->
+              <text x="78" y="180" text-anchor="end" fill="rgba(255,255,255,0.78)" font-size="12" font-weight="500" font-family="'Inter', sans-serif">Evidence</text>
+              <text x="78" y="194" text-anchor="end" fill="rgba(255,255,255,0.78)" font-size="12" font-weight="500" font-family="'Inter', sans-serif">Capture</text>
+              <!-- n5 top-left — two lines -->
+              <text x="78" y="88" text-anchor="end" fill="rgba(255,255,255,0.78)" font-size="12" font-weight="500" font-family="'Inter', sans-serif">Learning</text>
+              <text x="78" y="102" text-anchor="end" fill="rgba(255,255,255,0.78)" font-size="12" font-weight="500" font-family="'Inter', sans-serif">Loop</text>
+
+            </svg>
+          </figure>
+
+        </div>
+      </article>
+
+      <!-- Section footer CTA -->
+      <div class="tip-footer">
+        <a href="/advisory/" class="sf-cta-link">
+          Explore advisory work
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="/case-studies/" class="sf-cta-link">
+          View transformation case studies
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 8. About Snapshot — Personal authority bridge ────────────────────── -->
+  <section
+    class="section-py bg-gray-950"
+    aria-labelledby="as-heading"
+  >
+    <div class="container-site">
+      <div class="as-layout reveal">
+
+        <!-- Left: portrait -->
+        <div class="as-portrait-col">
+          <div class="as-portrait-frame">
+            <img
+              src="/images/about/facundo-about-portrait-bw.webp"
+              alt="Facundo Gangemi — AI Strategy and Digital Transformation Advisor"
+              loading="lazy"
+              decoding="async"
+              class="as-portrait"
+            />
+          </div>
+        </div>
+
+        <!-- Right: content -->
+        <div class="as-content">
+          <span class="eyebrow">The Advisor</span>
+          <h2 id="as-heading" class="text-section font-heading font-semibold text-white mt-1 mb-4">
+            Executive advisory grounded<br class="hidden lg:block" />
+            in real transformation.
+          </h2>
+          <p class="as-body">
+            I advise leaders and organizations on how to connect AI strategy, digital transformation, operating models and execution. My work is grounded in enterprise transformation experience across banking, insurance, technology and operations, combining strategic clarity with practical delivery.
+          </p>
+          <ul class="as-cred-list" aria-label="Advisory background">
+            <li class="as-cred-item">
+              <span class="as-cred-marker" aria-hidden="true">→</span>
+              <span>Enterprise transformation and operating model experience</span>
+            </li>
+            <li class="as-cred-item">
+              <span class="as-cred-marker" aria-hidden="true">→</span>
+              <span>Banking, insurance, technology and operations background</span>
+            </li>
+            <li class="as-cred-item">
+              <span class="as-cred-marker" aria-hidden="true">→</span>
+              <span>AI Strategy · Digital Transformation · Delivery Governance</span>
+            </li>
+            <li class="as-cred-item">
+              <span class="as-cred-marker" aria-hidden="true">→</span>
+              <span>International transformation footprint</span>
+            </li>
+          </ul>
+          <a href="/about/" class="sf-cta-link">
+            Explore my background
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 9. Strategic Perspectives ─────────────────────────────────────────── -->
   <StrategicPerspectives />
 
+  <!-- ── 10. Final CTA ──────────────────────────────────────────────────────── -->
+  <section
+    class="cta-section section-py"
+    aria-labelledby="final-cta-heading"
+  >
+    <!-- Decorative background layer -->
+    <div class="cta-bg" aria-hidden="true">
+      <div class="cta-glow-left"></div>
+      <div class="cta-glow-right"></div>
+      <div class="cta-top-line"></div>
+    </div>
+
+    <div class="container-site cta-inner reveal">
+      <span class="eyebrow cta-eyebrow">Strategic advisory for execution-driven transformation</span>
+
+      <h2
+        id="final-cta-heading"
+        class="cta-headline font-heading font-bold text-white"
+      >
+        Ready to turn AI and digital transformation<br class="hidden lg:block" />
+        into measurable business impact?
+      </h2>
+
+      <p class="cta-body">
+        I help organizations connect strategy, operating models, governance and execution
+        so transformation initiatives move beyond ambition and generate visible outcomes.
+      </p>
+
+      <div class="cta-actions">
+        <a href="/contact/" class="btn-primary">
+          Book Advisory Call
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="/advisory/" class="btn-outline">
+          See Advisory Services
+        </a>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
+
+<style>
+  /* ── Advisory card icons ─────────────────────────────────────────────────── */
+  .adv-icon {
+    display: flex;
+    align-items: center;
+    color: rgba(245, 124, 0, 0.70);
+    margin-bottom: 1.25rem;
+    transition: color 240ms ease;
+  }
+
+  /* ── Advisory card interaction ───────────────────────────────────────────── */
+
+  /*
+   * .card-adv overrides the generic .card-dark hover (which uses cyan).
+   * Uses higher-specificity scoped selectors so these win without !important.
+   */
+  .card-adv {
+    position: relative;
+    overflow: hidden;
+    transition:
+      transform 240ms ease,
+      box-shadow 240ms ease,
+      border-color 240ms ease,
+      background-color 240ms ease;
+  }
+
+  /* Top accent line: fades in on interaction */
+  .card-adv::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(245, 124, 0, 0.50), transparent);
+    opacity: 0;
+    transition: opacity 240ms ease;
+  }
+
+  .card-adv:hover,
+  .card-adv:focus-visible {
+    transform: translateY(-3px);
+    border-color: rgba(245, 124, 0, 0.25);
+    background-color: rgba(245, 124, 0, 0.03);
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.52),
+      0 0 0 1px rgba(245, 124, 0, 0.08);
+  }
+
+  .card-adv:hover::before,
+  .card-adv:focus-visible::before {
+    opacity: 1;
+  }
+
+  .card-adv:hover .adv-icon,
+  .card-adv:focus-visible .adv-icon {
+    color: rgba(245, 124, 0, 0.95);
+  }
+
+  /* "Learn more" CTA — pinned to bottom, enhanced on card hover */
+  .adv-cta {
+    margin-top: auto;
+    padding-top: 1rem;
+    transition: color 240ms ease, gap 240ms ease;
+  }
+
+  .card-adv:hover .adv-cta,
+  .card-adv:focus-visible .adv-cta {
+    color: rgba(245, 124, 0, 0.90);
+    gap: 0.55rem;
+  }
+
+  .adv-cta-arrow {
+    transition: transform 240ms ease;
+  }
+
+  .card-adv:hover .adv-cta-arrow,
+  .card-adv:focus-visible .adv-cta-arrow {
+    transform: translateX(3px);
+  }
+
+  /* Reduced motion: remove transforms, keep color transitions */
+  @media (prefers-reduced-motion: reduce) {
+    .card-adv,
+    .card-adv::before,
+    .adv-icon,
+    .adv-cta,
+    .adv-cta-arrow {
+      transition: none;
+    }
+
+    .card-adv:hover,
+    .card-adv:focus-visible {
+      transform: none;
+    }
+
+    .card-adv:hover .adv-cta-arrow,
+    .card-adv:focus-visible .adv-cta-arrow {
+      transform: none;
+    }
+  }
+
+  /* ── Final CTA section ───────────────────────────────────────────────────── */
+  .cta-section {
+    position: relative;
+    overflow: hidden;
+    background: #05070D;
+  }
+
+  /* Decorative glows */
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .cta-top-line {
+    position: absolute;
+    top: 0;
+    inset-x: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(245, 124, 0, 0.25) 50%, transparent 100%);
+  }
+
+  .cta-glow-left {
+    position: absolute;
+    top: -40%;
+    left: -10%;
+    width: 55%;
+    height: 200%;
+    background: radial-gradient(ellipse at 20% 50%, rgba(245, 124, 0, 0.06) 0%, transparent 60%);
+  }
+
+  .cta-glow-right {
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 45%;
+    height: 200%;
+    background: radial-gradient(ellipse at 80% 50%, rgba(0, 217, 255, 0.04) 0%, transparent 60%);
+  }
+
+  /* Inner layout */
+  .cta-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 780px;
+    margin-inline: auto;
+  }
+
+  .cta-eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .cta-headline {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    line-height: 1.15;
+    margin: 0 0 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .cta-body {
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    max-width: 58ch;
+    margin: 0 0 2.5rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  /* Secondary ghost link */
+  .cta-secondary-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    transition: color 180ms ease, gap 180ms ease;
+  }
+
+  .cta-secondary-link:hover {
+    color: rgba(255, 255, 255, 0.90);
+    gap: 0.6rem;
+  }
+
+  .cta-secondary-arrow {
+    flex-shrink: 0;
+    transition: transform 180ms ease;
+  }
+
+  .cta-secondary-link:hover .cta-secondary-arrow {
+    transform: translateX(3px);
+  }
+
+  /* ── Signature Framework ─────────────────────────────────────────────────── */
+
+  .sf-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (min-width: 1024px) {
+    .sf-layout {
+      grid-template-columns: 38fr 62fr;
+      gap: 5rem;
+      align-items: start;
+    }
+  }
+
+  .sf-body {
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    max-width: 38ch;
+    margin: 0 0 2rem;
+  }
+
+  .sf-cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: rgba(245, 124, 0, 0.78);
+    text-decoration: none;
+    transition: color 180ms ease, gap 180ms ease;
+  }
+
+  .sf-cta-link:hover {
+    color: #F57C00;
+    gap: 0.6rem;
+  }
+
+  .sf-steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem 2.25rem;
+  }
+
+  @media (max-width: 639px) {
+    .sf-steps {
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+    }
+  }
+
+  .sf-step {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sf-step-num {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: rgba(245, 124, 0, 0.72);
+    margin-bottom: 0.625rem;
+  }
+
+  .sf-step-phase {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.36);
+    margin: 0 0 0.375rem;
+  }
+
+  .sf-step-title {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 0.625rem;
+  }
+
+  .sf-step-body {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.70;
+    margin: 0;
+  }
+
+  /* ── About Snapshot ──────────────────────────────────────────────────────── */
+
+  .as-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (min-width: 1024px) {
+    .as-layout {
+      grid-template-columns: 36fr 64fr;
+      gap: 5rem;
+      align-items: center;
+    }
+  }
+
+  .as-portrait-frame {
+    border-radius: 0.875rem;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    max-height: 460px;
+  }
+
+  .as-portrait {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .as-body {
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    max-width: 52ch;
+    margin: 0 0 1.75rem;
+  }
+
+  .as-cred-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .as-cred-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.68);
+    line-height: 1.5;
+  }
+
+  .as-cred-marker {
+    color: rgba(245, 124, 0, 0.85);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ── Transformation in Practice ─────────────────────────────────────────── */
+
+  .tip-card {
+    display: flex;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .tip-card:hover {
+    border-color: rgba(245, 124, 0, 0.28);
+    box-shadow: 0 0 28px rgba(245, 124, 0, 0.10), 0 8px 32px rgba(0, 0, 0, 0.28);
+  }
+
+  .tip-gi,
+  .tip-ga,
+  .tip-gn {
+    transition: fill 220ms ease-out, stroke 220ms ease-out;
+  }
+
+  .tip-gn-neutral {
+    transition: stroke 220ms ease-out;
+  }
+
+  .tip-card:hover .tip-gi {
+    fill: rgba(245, 124, 0, 0.15);
+    stroke: rgba(245, 124, 0, 0.55);
+  }
+
+  .tip-card:hover .tip-ga {
+    stroke: rgba(245, 124, 0, 0.85);
+  }
+
+  .tip-card:hover .tip-gn {
+    fill: rgba(245, 124, 0, 0.28);
+    stroke: rgba(245, 124, 0, 0.95);
+  }
+
+  .tip-card:hover .tip-gn-neutral {
+    stroke: rgba(255, 255, 255, 0.40);
+  }
+
+  .tip-bar {
+    flex-shrink: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, rgba(245, 124, 0, 0.90), rgba(245, 124, 0, 0.50));
+  }
+
+  .tip-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem 2.25rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .tip-body {
+      grid-template-columns: 1fr 300px;
+      align-items: center;
+      gap: 2.5rem;
+    }
+  }
+
+  .tip-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .tip-diagram-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    gap: 0.75rem;
+  }
+
+  .tip-diagram-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.78);
+    text-align: center;
+    margin: 0;
+  }
+
+  .tip-diagram-sub {
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.38);
+    text-align: center;
+    margin: 0.25rem 0 0;
+  }
+
+  .tip-svg {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    display: block;
+    margin-inline: auto;
+  }
+
+  @media (max-width: 1023px) {
+    .tip-svg {
+      max-width: 240px;
+    }
+  }
+
+  .tip-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: rgba(245, 124, 0, 0.78);
+    margin: 0 0 0.75rem;
+  }
+
+  .tip-headline {
+    font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .tip-detail {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .tip-detail {
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+  }
+
+  .tip-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.50);
+    margin: 0 0 0.5rem;
+  }
+
+  .tip-text {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.60);
+    line-height: 1.72;
+    margin: 0;
+  }
+
+  .tip-footer {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tip-card,
+    .tip-gi,
+    .tip-ga,
+    .tip-gn,
+    .tip-gn-neutral {
+      transition: none;
+    }
+  }
+</style>

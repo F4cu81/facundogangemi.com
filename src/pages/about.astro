@@ -1,0 +1,1002 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import AboutWorldMap from '@/components/sections/AboutWorldMap.astro';
+import {
+  VALUE_BLOCKS,
+  EXPERIENCE_ITEMS,
+  ENTERPRISE_CONTEXTS,
+  INTERNATIONAL_COUNTRIES,
+  APPROACH_STEPS,
+  ABOUT_PAGE_META,
+} from '@/data/aboutData';
+
+const icons = {
+  strategy: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+    <circle cx="14" cy="3.5" r="2.1" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="23.1" cy="19.6" r="2.1" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="4.9" cy="19.6" r="2.1" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="14" cy="14" r="2.6" stroke="currentColor" stroke-width="1.4"/>
+    <line x1="14" y1="5.6" x2="14" y2="11.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="21.4" y1="18.1" x2="16.3" y2="15.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="6.6" y1="18.1" x2="11.7" y2="15.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+  </svg>`,
+  transform: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+    <path d="M14 3L26 9L14 15L2 9Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+    <path d="M2 14L14 20L26 14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M2 19L14 25L26 19" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`,
+  ai: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+    <circle cx="14" cy="14" r="11.5" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="14" cy="14" r="6.5" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="14" cy="14" r="2.2" fill="currentColor"/>
+  </svg>`,
+  banking: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+    <path d="M3 10L14 4L25 10" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+    <path d="M3 10V20C3 22 8 24 14 24C20 24 25 22 25 20V10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="3" y1="14" x2="25" y2="14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+  </svg>`,
+};
+
+/* Marquee: all companies from both enterprise context categories */
+const MARQUEE_COMPANIES = ENTERPRISE_CONTEXTS.flatMap((c) => c.companies);
+
+/* World map: country keys (display name → data attribute value) */
+const COUNTRY_KEYS: Record<string, string> = {
+  Argentina: 'argentina',
+  Chile: 'chile',
+  'Dominican Republic': 'dominican-republic',
+  Ecuador: 'ecuador',
+  Mexico: 'mexico',
+  Peru: 'peru',
+  Spain: 'spain',
+  'United States': 'united-states',
+  Uruguay: 'uruguay',
+};
+
+/* Interactive marker positions — % relative to map image container
+   Reference cities: BCN, Miami, CDMX, Santo Domingo, Lima, Santiago, Buenos Aires, Montevideo */
+const MAP_MARKERS = [
+  { country: 'spain',              label: 'Highlight Spain',              left: 45.0, top: 40.3 },
+  { country: 'united-states',      label: 'Highlight United States',      left: 20.8, top: 41.2 },
+  { country: 'mexico',             label: 'Highlight Mexico',             left: 21.5, top: 50.8 },
+  { country: 'dominican-republic', label: 'Highlight Dominican Republic', left: 29.6, top: 50.5 },
+  { country: 'ecuador',            label: 'Highlight Ecuador',            left: 27.4, top: 62.3 },
+  { country: 'peru',               label: 'Highlight Peru',               left: 28.5, top: 68.4 },
+  { country: 'chile',              label: 'Highlight Chile',              left: 28.8, top: 80.4 },
+  { country: 'argentina',          label: 'Highlight Argentina',          left: 32.8, top: 79.6 },
+  { country: 'uruguay',            label: 'Highlight Uruguay',            left: 34.0, top: 78.8 },
+];
+---
+
+<BaseLayout
+  title={ABOUT_PAGE_META.title}
+  description={ABOUT_PAGE_META.description}
+  ogImage="/assets/og/og-about.webp"
+  ogImageAlt="Facundo Gangemi — AI Strategy and Transformation Advisor"
+  canonical="https://facundogangemi.com/about/"
+  structuredData={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Facundo Gangemi',
+      url: 'https://facundogangemi.com/about/',
+      jobTitle: 'AI Strategy & Enterprise Transformation Advisor',
+      description: ABOUT_PAGE_META.description,
+      image: 'https://facundogangemi.com/images/about/facundo-about-portrait-bw.webp',
+      knowsAbout: [
+        'AI Strategy',
+        'Digital Transformation',
+        'Enterprise Agility',
+        'Operating Models',
+        'Organizational Transformation',
+      ],
+      areaServed: ['ES', 'US', 'AR', 'CL', 'PE', 'DO', 'EC', 'MX', 'UY'],
+      worksFor: {
+        '@type': 'Organization',
+        name: 'Independent Advisory Practice',
+      },
+    },
+  ]}
+  preloadImage="/images/about/facundo-about-portrait-bw.webp"
+>
+
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- 1. ABOUT HERO                                                           -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+
+  <section class="about-hero section-py-lg bg-[#05070D]" aria-labelledby="about-main-heading">
+    <div class="container-site">
+      <div class="about-hero-grid">
+
+        <!-- Left: Text content -->
+        <div class="about-hero-content">
+          <span class="eyebrow">AI Strategy Advisor</span>
+
+          <h1
+            id="about-main-heading"
+            class="text-hero font-heading font-extrabold text-white mt-2 mb-6 max-w-[22ch]"
+          >
+            AI Strategy &amp; Transformation Leader
+          </h1>
+
+          <p class="text-white/65 text-lg leading-relaxed max-w-[56ch] mb-4">
+            I advise enterprise leadership teams on AI strategy, digital transformation and the
+            operating model changes needed to turn ambition into measurable business impact.
+          </p>
+
+          <p class="text-white/65 leading-relaxed max-w-[56ch] mb-6">
+            With more than two decades working across banking, financial services, technology and
+            consulting environments in Europe and Latin America, my advisory practice connects strategy
+            with execution — from AI governance and transformation roadmaps to OKR implementation,
+            portfolio management and operating model redesign at enterprise scale.
+          </p>
+
+          <div class="flex flex-wrap gap-3">
+            <a href="/contact/" class="btn-primary">
+              Book Advisory Call
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+            <a href="/advisory/" class="btn-outline">Explore Services</a>
+          </div>
+        </div>
+
+        <!-- Right: Portrait -->
+        <div class="about-hero-portrait">
+          <div class="portrait-container">
+            <img
+              src="/images/about/facundo-about-portrait-bw.webp"
+              alt="Facundo Gangemi, AI Strategy and Transformation Leader, in a black and white executive portrait."
+              width="400"
+              height="520"
+              class="portrait-image"
+              loading="eager"
+              decoding="async"
+            />
+            <div class="portrait-frame" aria-hidden="true"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- 2. STRATEGIC NARRATIVE — two-column editorial                          -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+
+  <section class="about-narrative section-py bg-gray-950" aria-labelledby="narrative-heading">
+    <div class="container-site">
+      <div class="narrative-grid">
+
+        <!-- Left: heading -->
+        <div class="narrative-heading-col">
+          <h2 id="narrative-heading" class="text-section font-heading font-bold text-white leading-tight">
+            AI Strategy Rooted in<br class="hidden lg:block" /> Enterprise Transformation
+          </h2>
+        </div>
+
+        <!-- Right: body copy -->
+        <div class="narrative-body-col space-y-5">
+          <p class="text-white/65 leading-relaxed">
+            My work in enterprise transformation began with helping organizations improve delivery flow,
+            decision-making and execution systems. Over time, it became clear that agility alone is not
+            enough. Organizations need alignment between business and technology, governance structures
+            that support clear priorities through OKRs and quarterly reviews, and operating models that
+            translate strategy into measurable execution.
+          </p>
+
+          <p class="text-white/65 leading-relaxed">
+            Digital transformation reinforced this insight. Technology is not the answer — strategy and
+            operating models are. Digital initiatives fail when organizations do not redesign how they
+            make decisions, how teams collaborate, how priorities are set and how value is measured.
+            That foundation remains critical today.
+          </p>
+
+          <p class="text-white/65 leading-relaxed">
+            Now, AI introduces both a technology opportunity and an operating model challenge. Most
+            organizations are experimenting with AI tools. Few are designing the governance, decision
+            systems, organizational readiness and execution discipline to convert that experimentation
+            into measurable business value. That gap is where the real transformation happens — and it
+            is the work I focus on.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- 3. WHAT I BRING — VALUE BLOCKS                                         -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+
+  <section class="about-value section-py bg-[#05070D]" aria-labelledby="value-heading">
+    <div class="container-site">
+      <span class="eyebrow">Advisory Capabilities</span>
+      <h2 id="value-heading" class="text-section font-heading font-bold text-white mt-2 mb-12 max-w-[40ch]">
+        Strategic Capabilities
+      </h2>
+
+      <div class="value-grid">
+        {
+          VALUE_BLOCKS.map((block, i) => {
+            const iconKeys = ['strategy', 'transform', 'ai', 'banking'] as const;
+            return (
+              <div class="value-card">
+                <div class="value-icon" set:html={icons[iconKeys[i]]} aria-hidden="true" />
+                <h3 class="value-title">{block.title}</h3>
+                <p class="value-description">{block.description}</p>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- 4. EXPERIENCE & EXPERTISE — two-column editorial                       -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+
+  <section class="about-experience section-py bg-gray-950" aria-labelledby="experience-heading">
+    <div class="container-site">
+      <div class="experience-editorial-grid">
+
+        <!-- Left: heading + intro -->
+        <div class="experience-heading-col">
+          <span class="eyebrow">Areas of Deep Practice</span>
+          <h2 id="experience-heading" class="text-section font-heading font-bold text-white mt-2 mb-4 leading-tight">
+            Domain Expertise
+          </h2>
+          <p class="text-white/65 leading-relaxed max-w-[36ch]">
+            Two decades spanning transformation, agility, product strategy and enterprise execution
+            across banking, technology and consulting environments.
+          </p>
+        </div>
+
+        <!-- Right: compact grouped lists -->
+        <div class="experience-lists-col">
+          {
+            EXPERIENCE_ITEMS.map((item) => (
+              <div class="experience-group">
+                <h3 class="experience-group-label">{item.category}</h3>
+                <ul class="experience-group-items">
+                  {item.items.map((exp) => (
+                    <li class="experience-item">{exp}</li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- 5. INTERNATIONAL TRANSFORMATION FOOTPRINT                              -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+
+  <section
+    class="about-international section-py bg-[#05070D]"
+    aria-labelledby="international-heading"
+  >
+    <div class="container-site">
+      <div class="international-intro mb-12">
+        <span class="eyebrow">Global Operating Contexts</span>
+        <h2 id="international-heading" class="text-section font-heading font-bold text-white mt-2 mb-4">
+          International Transformation Footprint
+        </h2>
+        <p class="text-white/65 max-w-2xl leading-relaxed">
+          Transformation work has taken me across Europe, North America and Latin America — from
+          financial services in Spain and Argentina to transformation, technology and consulting
+          environments across Chile, Peru, Dominican Republic, Ecuador, United States, Mexico and
+          Uruguay. This geographic breadth has shaped how I approach enterprise transformation
+          challenges across different market contexts, regulatory environments and organizational
+          maturity levels.
+        </p>
+      </div>
+
+      <!-- Map + Countries side-by-side on desktop -->
+      <div class="international-map-layout">
+        <!-- World Map (left) — image base + interactive marker overlay -->
+        <div class="international-map">
+          <div class="map-container">
+            <AboutWorldMap />
+            <!-- Orange dot markers — accessible buttons connected to country chips -->
+            <div class="map-markers">
+              {MAP_MARKERS.map((m) => (
+                <button
+                  type="button"
+                  class="map-marker"
+                  data-country={m.country}
+                  aria-label={m.label}
+                  style={`left:${m.left}%;top:${m.top}%`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Countries & Regions (right) -->
+        <div class="international-countries">
+          <h3 class="text-xs font-semibold text-white/55 uppercase tracking-widest mb-4">
+            Countries &amp; Regions
+          </h3>
+          <div class="countries-chips">
+            {INTERNATIONAL_COUNTRIES.map((country) => (
+              <span class="country-chip" data-country={COUNTRY_KEYS[country]}>{country}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- 6. SELECTED ENTERPRISE CONTEXTS — continuous marquee                   -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+
+  <section class="about-enterprise section-py bg-gray-950" aria-labelledby="enterprise-heading">
+    <div class="container-site">
+      <div class="enterprise-intro mb-7">
+        <span class="eyebrow">Enterprise Contexts</span>
+        <h2 id="enterprise-heading" class="enterprise-heading font-heading font-semibold text-white mt-2 mb-2">
+          Experience Across Enterprise Environments
+        </h2>
+        <p class="text-white/65 text-sm leading-relaxed max-w-[52ch]">
+          Transformation, AI adoption, digital strategy, agility and operational excellence engagements
+          across financial institutions, technology companies and enterprise organizations.
+        </p>
+      </div>
+    </div>
+
+    <!-- Marquee — full-width, no container constraint -->
+    <div class="marquee-wrapper" aria-hidden="true">
+      <div class="marquee-track">
+        <!-- Two copies for seamless looping -->
+        {[0, 1].map(() => (
+          <div class="marquee-set">
+            {MARQUEE_COMPANIES.map((company) => (
+              <span class="marquee-item">
+                <span class="marquee-dot" aria-hidden="true"></span>
+                {company}
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Screen-reader accessible list -->
+    <div class="container-site">
+      <ul class="sr-only">
+        {MARQUEE_COMPANIES.map((company) => (
+          <li>{company}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- 7. MY APPROACH                                                          -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+
+  <section class="about-approach section-py bg-[#05070D]" aria-labelledby="approach-heading">
+    <div class="container-site">
+      <span class="eyebrow">Advisory Practice</span>
+      <h2 id="approach-heading" class="text-section font-heading font-bold text-white mt-2 mb-12 max-w-[40ch]">
+        My Approach
+      </h2>
+
+      <div class="approach-grid">
+        {
+          APPROACH_STEPS.map((step) => (
+            <div class="approach-card">
+              <div class="approach-number">{step.number}</div>
+              <h3 class="approach-title">{step.title}</h3>
+              <p class="approach-description">{step.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- 8. WHY IT MATTERS NOW — two-column editorial (body left / title right) -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+
+  <section class="about-why-matters section-py bg-gray-950" aria-labelledby="why-matters-heading">
+    <div class="container-site">
+      <div class="why-grid">
+
+        <!-- DOM order: title first (mobile reads title → body) -->
+        <div class="why-title-col">
+          <h2
+            id="why-matters-heading"
+            class="text-section font-heading font-bold text-white leading-tight"
+          >
+            Why It Matters Now
+          </h2>
+        </div>
+
+        <!-- Body copy — displayed left on desktop via grid placement -->
+        <div class="why-body-col space-y-5">
+          <p class="text-white/65 leading-relaxed text-lg">
+            Many organizations are experimenting with AI, but few are redesigning how decisions, teams,
+            governance and execution systems need to evolve. The real challenge is not adopting AI tools.
+            The real challenge is transforming the organization so AI can create measurable impact.
+          </p>
+
+          <p class="text-white/65 leading-relaxed text-lg">
+            Organizations that succeed will be those that connect AI strategy with operating models,
+            governance structures, execution discipline and clear business outcomes. That requires
+            clarity, alignment, structure and measurement.
+          </p>
+
+          <a href="/insights/" class="about-cta-link">
+            Explore my thinking on AI strategy
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- 9. CLOSING CTA                                                          -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+
+  <section class="about-closing section-py bg-[#05070D]" aria-labelledby="closing-heading">
+    <div class="container-site max-w-3xl">
+      <div class="closing-content">
+        <span class="eyebrow">Execution-Driven Advisory</span>
+        <h2 id="closing-heading" class="text-section font-heading font-bold text-white mt-2 mb-6">
+          Let's connect strategy with operating reality.
+        </h2>
+
+        <p class="text-white/65 leading-relaxed mb-10">
+          If your organization is exploring AI, digital transformation or enterprise execution challenges,
+          I can help connect ambition with governance, operating models and measurable business impact.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="/contact/" class="btn-primary">
+            Book Advisory Call
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+          <a href="/advisory/" class="about-cta-link">
+            Explore Advisory Services
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="/case-studies/" class="about-cta-link">
+            Review transformation case studies
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* ────────────────────────────────────────────────────────────────────────── */
+  /* ABOUT HERO                                                                */
+  /* ────────────────────────────────────────────────────────────────────────── */
+
+  .about-hero-grid {
+    display: grid;
+    grid-template-columns: 58fr 42fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  @media (max-width: 1024px) {
+    .about-hero-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .about-hero-portrait { display: none; }
+  }
+
+  .portrait-container {
+    position: relative;
+    aspect-ratio: 1 / 1.3;
+    overflow: hidden;
+    border-radius: 0.875rem;
+  }
+
+  .portrait-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .portrait-frame {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.875rem;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+  }
+
+  /* ────────────────────────────────────────────────────────────────────────── */
+  /* NARRATIVE — two-column editorial                                          */
+  /* ────────────────────────────────────────────────────────────────────────── */
+
+  .narrative-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .narrative-grid {
+      grid-template-columns: 38fr 62fr;
+      gap: 6rem;
+      align-items: start;
+    }
+  }
+
+  /* Body text: left-aligned for readability on dark editorial layouts */
+
+  /* ────────────────────────────────────────────────────────────────────────── */
+  /* VALUE BLOCKS GRID                                                         */
+  /* ────────────────────────────────────────────────────────────────────────── */
+
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .value-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.2) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 2px solid rgba(245, 124, 0, 0.38);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    transition:
+      border-color 220ms ease,
+      background 220ms ease,
+      transform 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  .value-card:hover {
+    border-color: rgba(245, 124, 0, 0.3);
+    border-top-color: rgba(245, 124, 0, 0.65);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.1) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(245, 124, 0, 0.10);
+  }
+
+  .value-icon {
+    color: #f57c00;
+    margin-bottom: 1rem;
+  }
+
+  .value-title {
+    font-family: Manrope, system-ui, sans-serif;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .value-description {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+
+  /* ────────────────────────────────────────────────────────────────────────── */
+  /* EXPERIENCE — two-column editorial                                         */
+  /* ────────────────────────────────────────────────────────────────────────── */
+
+  .experience-editorial-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .experience-editorial-grid {
+      grid-template-columns: 36fr 64fr;
+      gap: 6rem;
+      align-items: start;
+    }
+  }
+
+  .experience-lists-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 3rem;
+  }
+
+  @media (max-width: 639px) {
+    .experience-lists-col {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+  }
+
+  .experience-group-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(245, 124, 0, 0.85);
+    margin-bottom: 0.75rem;
+  }
+
+  .experience-group-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .experience-item {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  /* ────────────────────────────────────────────────────────────────────────── */
+  /* INTERNATIONAL FOOTPRINT                                                   */
+  /* ────────────────────────────────────────────────────────────────────────── */
+
+  .international-intro {
+    max-width: 42rem;
+  }
+
+  /* Desktop: map left, countries right */
+  .international-map-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .international-map-layout {
+      grid-template-columns: 65fr 35fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+  }
+
+  .international-map {
+    overflow: hidden;
+  }
+
+  .international-countries {
+    padding-top: 0.25rem;
+  }
+
+  .countries-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+  }
+
+  .country-chip {
+    color: rgba(255, 255, 255, 0.70);
+    font-size: 0.8125rem;
+    padding: 0.4rem 0.75rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 9999px;
+    transition:
+      color 200ms ease,
+      background 200ms ease,
+      border-color 200ms ease,
+      box-shadow 200ms ease;
+    white-space: nowrap;
+  }
+
+  .country-chip:hover {
+    background: rgba(245, 124, 0, 0.08);
+    border-color: rgba(245, 124, 0, 0.28);
+    color: rgba(245, 124, 0, 0.9);
+  }
+
+  /* Active state — triggered by map marker hover/focus */
+  .country-chip.active {
+    color: #F57C00;
+    border-color: rgba(245, 124, 0, 0.70);
+    background: rgba(245, 124, 0, 0.14);
+    box-shadow: 0 0 18px rgba(245, 124, 0, 0.22);
+  }
+
+  /* ── Map interactive marker overlay ──────────────────────────────────────── */
+
+  .map-container {
+    position: relative;
+  }
+
+  .map-markers {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .map-marker {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #F57C00;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    box-shadow: 0 0 10px rgba(245, 124, 0, 0.55);
+    padding: 0;
+    cursor: pointer;
+    pointer-events: all;
+    transform: translate(-50%, -50%);
+    transition:
+      transform 220ms ease,
+      box-shadow 220ms ease;
+    z-index: 1;
+  }
+
+  .map-marker:hover,
+  .map-marker:focus-visible {
+    transform: translate(-50%, -50%) scale(1.45);
+    box-shadow: 0 0 20px rgba(245, 124, 0, 0.85);
+    outline: 2px solid rgba(245, 124, 0, 0.55);
+    outline-offset: 3px;
+    z-index: 2;
+  }
+
+  /* ────────────────────────────────────────────────────────────────────────── */
+  /* ENTERPRISE CONTEXTS — marquee                                             */
+  /* ────────────────────────────────────────────────────────────────────────── */
+
+  .enterprise-intro {
+    max-width: 56ch;
+  }
+
+  /* Smaller, more restrained heading for the enterprise marquee section */
+  .enterprise-heading {
+    font-size: 1.35rem;
+    line-height: 1.25;
+  }
+
+  @media (min-width: 1024px) {
+    .enterprise-heading {
+      font-size: 1.6rem;
+    }
+  }
+
+  .marquee-wrapper {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    /* Fade edges */
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 0, 0, 1) 8%,
+      rgba(0, 0, 0, 1) 92%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 0, 0, 1) 8%,
+      rgba(0, 0, 0, 1) 92%,
+      transparent 100%
+    );
+    padding: 0.25rem 0;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 28s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
+
+  .marquee-set {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 2.25rem;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.78);
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+  }
+
+  .marquee-dot {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(245, 124, 0, 0.55);
+    flex-shrink: 0;
+  }
+
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ────────────────────────────────────────────────────────────────────────── */
+  /* APPROACH SECTION                                                          */
+  /* ────────────────────────────────────────────────────────────────────────── */
+
+  .approach-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+  }
+
+  .approach-card {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.2) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 2px solid rgba(245, 124, 0, 0.38);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    transition:
+      border-color 220ms ease,
+      background 220ms ease,
+      transform 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  .approach-card:hover {
+    border-color: rgba(245, 124, 0, 0.3);
+    border-top-color: rgba(245, 124, 0, 0.65);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.1) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(245, 124, 0, 0.10);
+  }
+
+  .approach-number {
+    font-family: Manrope, system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
+    color: rgba(245, 124, 0, 0.85);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+  }
+
+  .approach-title {
+    font-family: Manrope, system-ui, sans-serif;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .approach-description {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+
+  /* ────────────────────────────────────────────────────────────────────────── */
+  /* WHY IT MATTERS NOW — two-column editorial                                 */
+  /* ────────────────────────────────────────────────────────────────────────── */
+
+  /* Why It Matters Now: title left, body right — natural DOM order */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .why-grid {
+      grid-template-columns: 38fr 62fr;
+      gap: 6rem;
+      align-items: start;
+    }
+  }
+
+  /* ────────────────────────────────────────────────────────────────────────── */
+  /* RESPONSIVE                                                                */
+  /* ────────────────────────────────────────────────────────────────────────── */
+
+  @media (max-width: 768px) {
+    .value-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .approach-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .countries-chips {
+      gap: 0.5rem;
+    }
+  }
+
+  /* ────────────────────────────────────────────────────────────────────────── */
+  /* CLOSING CTA — editorial text link                                         */
+  /* ────────────────────────────────────────────────────────────────────────── */
+
+  .about-cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: rgba(245, 124, 0, 0.78);
+    text-decoration: none;
+    border-radius: 0.25rem;
+    transition: color 180ms ease, gap 180ms ease;
+  }
+
+  .about-cta-link:hover {
+    color: #F57C00;
+    gap: 0.6rem;
+  }
+
+  .about-cta-link:focus-visible {
+    outline: 2px solid rgba(245, 124, 0, 0.55);
+    outline-offset: 4px;
+  }
+</style>
+
+<script>
+  /* Map marker ↔ country chip interaction */
+  const markers = document.querySelectorAll('.map-marker');
+
+  function setChipActive(country: string, active: boolean) {
+    const chip = document.querySelector<HTMLElement>(`.country-chip[data-country="${country}"]`);
+    if (chip) chip.classList.toggle('active', active);
+  }
+
+  markers.forEach((marker) => {
+    const country = (marker as HTMLElement).dataset.country ?? '';
+    marker.addEventListener('mouseenter', () => setChipActive(country, true));
+    marker.addEventListener('mouseleave', () => setChipActive(country, false));
+    marker.addEventListener('focus',      () => setChipActive(country, true));
+    marker.addEventListener('blur',       () => setChipActive(country, false));
+  });
+</script>

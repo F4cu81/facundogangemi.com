@@ -1,0 +1,177 @@
+---
+/**
+ * ProofLogoBanner — Authority & Proof Layer (Phase 8)
+ *
+ * Compact credibility band placed directly below the Hero section.
+ * Displays monochrome enterprise logos as proof of organizational reach.
+ * Visual treatment: light-gray logos on dark premium cards, no brand colors.
+ */
+
+const logos = [
+  { src: '/images/proof/logos/webp/bbva.webp',       alt: 'BBVA logo',              width: 110, height: 44 },
+  { src: '/images/proof/logos/webp/santander.webp',   alt: 'Santander logo',         width: 130, height: 44 },
+  { src: '/images/proof/logos/webp/caixa.webp',       alt: 'CaixaBank logo',         width: 120, height: 44 },
+  { src: '/images/proof/logos/webp/bnp.webp',         alt: 'BNP Paribas Cardif logo',width: 130, height: 44 },
+  { src: '/images/proof/logos/webp/chubb.webp',       alt: 'Chubb logo',             width: 110, height: 44 },
+  { src: '/images/proof/logos/webp/aig.webp',         alt: 'AIG logo',               width:  90, height: 44 },
+  { src: '/images/proof/logos/webp/enel.webp',        alt: 'Enel logo',              width: 100, height: 44 },
+  { src: '/images/proof/logos/webp/telefonica.webp',  alt: 'Telefónica logo',        width: 120, height: 44 },
+];
+---
+
+<section
+  class="proof-band"
+  aria-labelledby="proof-band-heading"
+  style="background: #05070D;"
+>
+  <!-- Subtle separator from Hero -->
+  <div class="proof-separator" aria-hidden="true"></div>
+
+  <div class="container-site">
+
+    <div class="proof-header">
+      <h2 id="proof-band-heading" class="proof-title">
+        Enterprise experience across leading organizations
+      </h2>
+      <p class="proof-subtitle">
+        Experience across enterprise environments in banking, insurance, energy, technology and digital transformation contexts.
+      </p>
+    </div>
+
+    <div class="proof-grid" role="list" aria-label="Organizations with enterprise experience">
+      {logos.map((logo) => (
+        <div class="proof-card" role="listitem">
+          <img
+            src={logo.src}
+            alt={logo.alt}
+            width={logo.width}
+            height={logo.height}
+            loading="lazy"
+            decoding="async"
+            class="proof-logo-img"
+          />
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* ── Section container ─────────────────────────────────────────────────── */
+  .proof-band {
+    position: relative;
+    padding: 1.75rem 0 3rem;
+  }
+
+  /* Feathered top line to separate from Hero */
+  .proof-separator {
+    position: absolute;
+    top: 0;
+    inset-x: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.07) 30%,
+      rgba(255, 255, 255, 0.07) 70%,
+      transparent 100%
+    );
+  }
+
+  /* ── Header ────────────────────────────────────────────────────────────── */
+  .proof-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .proof-title {
+    font-family: var(--font-heading, 'Manrope', sans-serif);
+    font-size: 0.6875rem;           /* 11px — very small, label-like */
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: rgba(245, 124, 0, 0.75); /* orange accent, subdued — eyebrow weight */
+    margin: 0 0 0.5rem;
+    line-height: 1.4;
+  }
+
+  .proof-subtitle {
+    font-size: 0.75rem;             /* 12px */
+    color: rgba(216, 220, 227, 0.78);
+    max-width: 60ch;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  /* ── Logo grid ─────────────────────────────────────────────────────────── */
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.625rem;                  /* 10px */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (min-width: 480px) {
+    .proof-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media (min-width: 900px) {
+    .proof-grid {
+      grid-template-columns: repeat(8, 1fr);
+    }
+  }
+
+  /* ── Logo card ─────────────────────────────────────────────────────────── */
+  .proof-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 72px;
+    padding: 10px 14px;
+    background: rgba(10, 15, 26, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    transition:
+      border-color 240ms ease,
+      background 240ms ease;
+  }
+
+  .proof-card:hover {
+    border-color: rgba(255, 255, 255, 0.10);
+    background: rgba(10, 15, 26, 0.85);
+  }
+
+  /* ── Logo image ────────────────────────────────────────────────────────── */
+  .proof-logo-img {
+    max-width: 120px;
+    max-height: 40px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    /*
+     * The WebP assets are already monochrome (#D8DCE3) with transparency.
+     * grayscale(1) is a safety net in case any original color survived processing.
+     * brightness(1.05) keeps the light gray crisp at low opacity.
+     */
+    filter: grayscale(1) brightness(1.1);
+    opacity: 0.70;
+    transition: opacity 240ms ease;
+  }
+
+  .proof-card:hover .proof-logo-img {
+    opacity: 0.95;
+  }
+
+  /* ── Reduced motion ────────────────────────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .proof-card,
+    .proof-logo-img {
+      transition: none;
+    }
+  }
+</style>

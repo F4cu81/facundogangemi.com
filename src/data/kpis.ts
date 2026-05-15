@@ -16,9 +16,9 @@ export const KPIS: KPI[] = [
     sublabel: 'Across technology, delivery, agile transformation and operating model evolution.',
   },
   {
-    value: '10+',
-    label: 'Teams Enabled',
-    sublabel: 'Supporting teams and leaders in agile, product-driven and data-informed ways of working.',
+    value: '9',
+    label: 'Countries',
+    sublabel: 'International transformation footprint across Europe and Latin America.',
   },
   {
     value: '20+',
@@ -26,8 +26,8 @@ export const KPIS: KPI[] = [
     sublabel: 'Across banking, insurance, technology services and large-scale transformation contexts.',
   },
   {
-    value: '€10M',
-    label: 'Estimated Portfolio Scope',
-    sublabel: 'Contributing to portfolio execution, financial governance, QBRs, OKRs and measurable business impact.',
+    value: '5+',
+    label: 'AI Opportunities Prioritized',
+    sublabel: 'Connecting business needs, governance requirements, operating model constraints and measurable business impact.',
   },
 ];

@@ -1,13 +1,4 @@
 ---
-/**
- * Navbar — stable corrective version
- *
- * Purpose:
- * - Restore a clean global desktop/mobile navigation.
- * - Avoid Tailwind @apply and scoped utility dependencies.
- * - Keep static Astro compatibility.
- */
-
 import { NAV_ITEMS, NAV_CTA } from '@/data/navigation';
 
 interface Props {
@@ -16,37 +7,50 @@ interface Props {
 }
 
 const { currentPath = '/', locale = 'en' } = Astro.props;
-const isAdvisoryOpen = currentPath?.startsWith('/advisory');
+const isAdvisoryActive = currentPath?.startsWith('/advisory');
 ---
 
 <nav class="navbar-root" aria-label="Primary navigation">
   <div class="navbar-container container-site">
+
+    <!-- Left: logo -->
     <a href="/" class="navbar-logo" aria-label="Facundo Gangemi home">
       <img src="/favicon/favicon.svg" alt="" aria-hidden="true" width="24" height="24" class="navbar-logo-icon" />
       Facundo Gangemi
     </a>
 
-    <div class="navbar-desktop">
+    <!--
+      Right cluster (desktop only): nav links + lang selector + CTA in one cohesive group.
+      margin-left: auto on the cluster pushes it right as a unit, keeping internal
+      spacing controlled so About → EN/ES has a moderate gap, not an auto-expanded void.
+    -->
+    <div class="navbar-cluster">
+
+      <!-- Main nav links -->
       <ul class="navbar-menu">
         {NAV_ITEMS.map((item) => (
           <li class={`navbar-item ${item.hasDropdown ? 'has-dropdown' : ''}`}>
             <a
               href={item.href}
-              class={`navbar-link ${currentPath === item.href ? 'active' : ''}`}
+              class={`navbar-link ${item.hasDropdown ? (isAdvisoryActive ? 'active' : '') : (currentPath === item.href ? 'active' : '')}`}
               aria-current={currentPath === item.href ? 'page' : undefined}
-              aria-expanded={item.hasDropdown ? isAdvisoryOpen : undefined}
             >
               {item.label}
-              {item.hasDropdown && <span class="navbar-arrow" aria-hidden="true">▾</span>}
+              {item.hasDropdown && (
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true" class="navbar-chevron">
+                  <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              )}
             </a>
 
             {item.hasDropdown && item.children && (
-              <ul class="navbar-dropdown" aria-label={`${item.label} submenu`}>
+              <ul class="navbar-dropdown" role="menu" aria-label={`${item.label} submenu`}>
                 {item.children.map((child) => (
-                  <li>
+                  <li role="none">
                     <a
                       href={child.href}
                       class={`navbar-dropdown-link ${currentPath === child.href ? 'active' : ''}`}
+                      role="menuitem"
                       aria-current={currentPath === child.href ? 'page' : undefined}
                     >
                       {child.label}
@@ -59,21 +63,22 @@ const isAdvisoryOpen = currentPath?.startsWith('/advisory');
         ))}
       </ul>
 
+      <!-- Utility: language selector + CTA -->
       <div class="navbar-actions">
         <div class="language-switcher" aria-label="Language selector">
           <span class={`lang-option ${locale === 'en' ? 'active' : ''}`}>EN</span>
-          <span class="lang-separator">/</span>
-          <span class={`lang-option ${locale === 'es' ? 'active' : ''}`}>
-            ES <span class="coming-soon">Soon</span>
-          </span>
+          <span class="lang-separator" aria-hidden="true">/</span>
+          <span class="lang-option lang-es" aria-disabled="true" title="Spanish version coming soon">ES</span>
         </div>
 
         <a href={NAV_CTA.href} class="navbar-cta">
           {NAV_CTA.label}
         </a>
       </div>
+
     </div>
 
+    <!-- Mobile hamburger -->
     <button
       id="mobile-menu-toggle"
       class="navbar-mobile-toggle"
@@ -86,42 +91,46 @@ const isAdvisoryOpen = currentPath?.startsWith('/advisory');
       <span></span>
       <span></span>
     </button>
+
   </div>
 </nav>
 
 <style>
+  /* ── Shell ───────────────────────────────────────────────────────────────── */
   .navbar-root {
     position: sticky;
     top: 0;
     z-index: 100;
     width: 100%;
-    background: rgba(7, 11, 20, 0.96);
+    background: rgba(3, 4, 9, 0.98);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
   }
 
+  /* ── Container: logo left, cluster right ─────────────────────────────────── */
   .navbar-container {
     height: 72px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
   }
 
+  /* ── Logo ────────────────────────────────────────────────────────────────── */
   .navbar-logo {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    flex-shrink: 0;
     color: #ffffff;
     font-family: Manrope, Inter, system-ui, sans-serif;
     font-size: 1.125rem;
     font-weight: 800;
     letter-spacing: -0.02em;
     text-decoration: none;
+    transition: color 180ms ease;
   }
 
-  .navbar-logo:hover {
-    color: #F57C00;
-  }
+  .navbar-logo:hover { color: #F57C00; }
 
   .navbar-logo-icon {
     display: block;
@@ -130,16 +139,19 @@ const isAdvisoryOpen = currentPath?.startsWith('/advisory');
     flex-shrink: 0;
   }
 
-  .navbar-desktop {
+  /* ── Cluster: one cohesive right-side group (desktop only) ───────────────── */
+  .navbar-cluster {
     display: none;
     align-items: center;
-    gap: 2rem;
+    gap: 1.75rem;   /* gap between nav-menu group and utility group */
+    margin-left: auto;
   }
 
+  /* ── Main nav menu ───────────────────────────────────────────────────────── */
   .navbar-menu {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 0.25rem;
     padding: 0;
     margin: 0;
     list-style: none;
@@ -152,43 +164,70 @@ const isAdvisoryOpen = currentPath?.startsWith('/advisory');
   .navbar-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    color: rgba(255, 255, 255, 0.86);
+    gap: 0.3rem;
+    padding: 0.4rem 0.65rem;
+    color: rgba(255, 255, 255, 0.80);
     font-family: Inter, system-ui, sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 500;
     text-decoration: none;
-    transition: color 180ms ease;
+    border-radius: 0.5rem;
+    transition: color 180ms ease, background 180ms ease;
     white-space: nowrap;
   }
 
   .navbar-link:hover,
   .navbar-link.active {
     color: #F57C00;
+    background: rgba(245, 124, 0, 0.06);
   }
 
-  .navbar-arrow {
-    font-size: 0.72rem;
-    line-height: 1;
+  .navbar-chevron {
+    flex-shrink: 0;
+    transition: transform 180ms ease;
+  }
+
+  .navbar-item.has-dropdown:hover .navbar-chevron,
+  .navbar-item.has-dropdown:focus-within .navbar-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* ── Dropdown ────────────────────────────────────────────────────────────── */
+
+  /*
+   * ::after bridges the visual gap between the nav link and the dropdown panel.
+   * Without it the cursor briefly leaves the .navbar-item hover zone while
+   * crossing the gap, collapsing the dropdown before it can be entered.
+   */
+  .navbar-item.has-dropdown::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: -12px;
+    right: -12px;
+    height: 0.85rem;
   }
 
   .navbar-dropdown {
     position: absolute;
-    top: calc(100% + 0.85rem);
+    top: calc(100% + 0.6rem);
     left: 0;
-    min-width: 240px;
-    padding: 0.5rem;
+    min-width: 205px;
+    padding: 0.4rem;
     margin: 0;
     list-style: none;
-    background: #001B35;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(5, 7, 13, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: 0.85rem;
-    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.28);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55), 0 4px 16px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(8px);
+    transform: translateY(6px);
     pointer-events: none;
     transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
+    z-index: 10;
   }
 
   .navbar-item.has-dropdown:hover .navbar-dropdown,
@@ -201,31 +240,35 @@ const isAdvisoryOpen = currentPath?.startsWith('/advisory');
 
   .navbar-dropdown-link {
     display: block;
-    padding: 0.7rem 0.85rem;
-    color: rgba(255, 255, 255, 0.82);
-    font-size: 0.9rem;
+    padding: 0.6rem 0.85rem;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.875rem;
+    font-weight: 500;
     text-decoration: none;
     border-radius: 0.55rem;
     transition: background 160ms ease, color 160ms ease;
+    white-space: nowrap;
   }
 
   .navbar-dropdown-link:hover,
   .navbar-dropdown-link.active {
     color: #F57C00;
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(245, 124, 0, 0.08);
   }
 
+  /* ── Utility actions ─────────────────────────────────────────────────────── */
   .navbar-actions {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.875rem;
+    flex-shrink: 0;
   }
 
   .language-switcher {
     display: flex;
     align-items: center;
-    gap: 0.35rem;
-    color: rgba(255, 255, 255, 0.62);
+    gap: 0.3rem;
+    color: rgba(255, 255, 255, 0.55);
     font-size: 0.75rem;
     white-space: nowrap;
   }
@@ -235,37 +278,38 @@ const isAdvisoryOpen = currentPath?.startsWith('/advisory');
     font-weight: 700;
   }
 
-  .lang-separator {
-    opacity: 0.5;
-  }
+  .lang-separator { opacity: 0.5; }
 
-  .coming-soon {
-    font-size: 0.65rem;
-    opacity: 0.6;
+  .lang-es {
+    opacity: 0.40;
+    cursor: default;
   }
 
   .navbar-cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 42px;
-    padding: 0 1.15rem;
+    min-height: 40px;
+    padding: 0 1.1rem;
     color: #ffffff;
     background: #F57C00;
     border-radius: 999px;
     font-family: Manrope, Inter, system-ui, sans-serif;
-    font-size: 0.88rem;
+    font-size: 0.86rem;
     font-weight: 800;
     text-decoration: none;
-    box-shadow: 0 8px 24px rgba(245, 124, 0, 0.28);
-    transition: transform 180ms ease, background 180ms ease;
+    white-space: nowrap;
+    box-shadow: 0 6px 20px rgba(245, 124, 0, 0.28);
+    transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
   }
 
   .navbar-cta:hover {
     background: #EF6C00;
     transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(245, 124, 0, 0.38);
   }
 
+  /* ── Mobile hamburger ────────────────────────────────────────────────────── */
   .navbar-mobile-toggle {
     display: inline-flex;
     width: 42px;
@@ -275,11 +319,16 @@ const isAdvisoryOpen = currentPath?.startsWith('/advisory');
     flex-direction: column;
     gap: 5px;
     padding: 0;
+    margin-left: auto;
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 999px;
     cursor: pointer;
+    flex-shrink: 0;
+    transition: border-color 180ms ease;
   }
+
+  .navbar-mobile-toggle:hover { border-color: rgba(255, 255, 255, 0.38); }
 
   .navbar-mobile-toggle span {
     display: block;
@@ -289,14 +338,10 @@ const isAdvisoryOpen = currentPath?.startsWith('/advisory');
     border-radius: 999px;
   }
 
-  @media (min-width: 768px) {
-    .navbar-desktop {
-      display: flex;
-    }
-
-    .navbar-mobile-toggle {
-      display: none;
-    }
+  /* ── Desktop breakpoint ──────────────────────────────────────────────────── */
+  @media (min-width: 1024px) {
+    .navbar-cluster       { display: flex; }
+    .navbar-mobile-toggle { display: none; }
   }
 </style>
 

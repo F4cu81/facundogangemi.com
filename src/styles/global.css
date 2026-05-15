@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -110,6 +108,7 @@ select {
   margin-inline: auto;
 }
 
+/* Section spacing tiers — full rules and usage guidelines in branding/SPACING_SYSTEM.md */
 .section-py {
   padding-block: 96px;
 }
@@ -122,11 +121,16 @@ select {
   padding-block: 64px;
 }
 
+.section-py-xs {
+  padding-block: 48px;
+}
+
 /* Tablet */
 @media (max-width: 1023px) {
   .section-py    { padding-block: 80px; }
   .section-py-lg { padding-block: 96px; }
   .section-py-sm { padding-block: 56px; }
+  .section-py-xs { padding-block: 40px; }
 }
 
 /* Mobile */
@@ -134,6 +138,7 @@ select {
   .section-py    { padding-block: 64px; }
   .section-py-lg { padding-block: 80px; }
   .section-py-sm { padding-block: 48px; }
+  .section-py-xs { padding-block: 32px; }
 }
 
 /* Container width — kept in its own breakpoint, separate from section spacing */
@@ -172,7 +177,8 @@ select {
 
 .btn-primary,
 .btn-secondary,
-.btn-ghost {
+.btn-ghost,
+.btn-outline {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -219,14 +225,15 @@ select {
 
 /* Outline button for dark backgrounds (hero, dark sections) */
 .btn-outline {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.04);
   color: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .btn-outline:hover {
   transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.50);
   color: #ffffff;
 }
 
@@ -437,7 +444,7 @@ select {
    ========================================================= */
 
 .kpi-cell {
-  background: rgba(13, 24, 41, 0.55);
+  background: rgba(8, 11, 16, 0.50);
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: var(--radius-card);
   transition: border-color var(--transition-base);

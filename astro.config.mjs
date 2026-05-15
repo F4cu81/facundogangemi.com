@@ -29,7 +29,7 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     mdx(),
-    sitemap({ i18n: { defaultLocale: 'en', locales: { en: 'en-US', es: 'es-ES' } } }),
+    sitemap(),
   ],
 
   vite: {
@@ -42,15 +42,6 @@ export default defineConfig({
         '@styles': fileURLToPath(new URL('./src/styles', import.meta.url)),
         '@content': fileURLToPath(new URL('./src/content', import.meta.url)),
       },
-    },
-  },
-
-  // i18n routing — English primary, Spanish future
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'es'],
-    routing: {
-      prefixDefaultLocale: false,
     },
   },
 

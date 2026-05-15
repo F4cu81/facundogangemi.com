@@ -1,29 +1,33 @@
----
+﻿---
 /**
  * 404 Not Found page
+ *
+ * Note: BaseLayout provides <main>, <Navbar> and <Footer>.
+ * Do not add a second <main> or custom <header> here.
  */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
   title="Page Not Found"
-  description="The page you're looking for doesn't exist."
+  description="The page you are looking for does not exist or has been moved."
   noIndex={true}
 >
-  <header class="bg-navy-800 border-b border-white/[0.06]">
-    <div class="container-site flex items-center h-[68px]">
-      <a href="/" class="font-heading font-semibold text-xl text-white">Facundo Gangemi</a>
-    </div>
-  </header>
 
-  <main id="main-content" class="min-h-screen bg-navy-800 flex items-center">
+  <section class="min-h-[70vh] bg-[#05070D] flex items-center">
     <div class="container-site text-center py-24">
       <span class="eyebrow mb-4 block">404</span>
-      <h1 class="font-heading text-white text-5xl font-bold mb-6">Page not found.</h1>
+      <h1 class="font-heading text-white text-5xl font-bold mb-6 leading-tight">Page not found.</h1>
       <p class="text-white/70 text-lg leading-relaxed max-w-[44ch] mx-auto mb-8">
-        The page you're looking for doesn't exist or has been moved.
+        The page you are looking for does not exist or has been moved.
       </p>
-      <a href="/" class="btn-primary">Return Home →</a>
+      <a href="/" class="btn-primary">
+        Return Home
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
-  </main>
+  </section>
+
 </BaseLayout>

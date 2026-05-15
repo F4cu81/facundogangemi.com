@@ -1,0 +1,882 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { SITE } from '@/data/site';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('insights', ({ data }) => !data.draft);
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+type Props = { article: CollectionEntry<'insights'> };
+
+const { article } = Astro.props;
+const { Content } = await article.render();
+
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  category,
+  categorySlug,
+  tags,
+  image,
+  imageAlt,
+  author,
+} = article.data;
+
+const dateFormatted = pubDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const dateIso = pubDate.toISOString().slice(0, 10);
+const dateModifiedIso = (updatedDate ?? pubDate).toISOString().slice(0, 10);
+const canonicalPath = `/insights/${article.slug}/`;
+const canonicalUrl = new URL(canonicalPath, SITE.url).href;
+const categoryHref = `/insights/${categorySlug}/`;
+
+// SEO: BaseLayout appends " | Facundo Gangemi" (18 chars). Keep article titles
+// ≤42 chars in frontmatter so the full <title> stays within the 60-char target.
+
+// Category-aware footer CTA
+const CTA_MAP: Record<string, { label: string; href: string }> = {
+  'ai-strategy':           { label: 'Explore AI Strategy Advisory',           href: '/advisory/#ai-strategy' },
+  'digital-transformation':{ label: 'Explore Digital Transformation Advisory', href: '/advisory/#digital-transformation' },
+  'operational-excellence':{ label: 'Explore Operational Excellence Advisory', href: '/advisory/#operational-excellence' },
+  'ai-adoption':           { label: 'Explore AI Adoption Advisory',            href: '/advisory/#ai-adoption' },
+};
+const cta = CTA_MAP[categorySlug] ?? { label: 'Book a strategic conversation', href: '/contact/' };
+
+// Hero image alt: never silently decorative — fall back to article title
+const heroAlt = imageAlt || title;
+
+// Reading time — computed from raw markdown body at build time (220 wpm, min 1 min)
+const wordCount = article.body.trim().split(/\s+/).filter(Boolean).length;
+const readingTimeMin = Math.max(1, Math.round(wordCount / 220));
+const readingTimeLabel = `${readingTimeMin} min read`;
+
+// TOC — extract H2 headings from raw markdown body at build time
+function tocSlug(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+const tocHeadings = [...article.body.matchAll(/^## (.+)$/gm)].map(m => ({
+  text: m[1].trim().replace(/\*\*/g, ''),
+  id: tocSlug(m[1].trim()),
+}));
+const hasToc = tocHeadings.length > 0;
+
+// Related articles sidebar — up to 3 latest articles excluding the current one
+const allArticles = await getCollection('insights', ({ data }) => !data.draft);
+const relatedArticles = allArticles
+  .filter(a => a.slug !== article.slug)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+
+const articleSchema: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  datePublished: dateIso,
+  dateModified: dateModifiedIso,
+  author: {
+    '@type': 'Person',
+    name: author,
+    url: SITE.url,
+  },
+  publisher: {
+    '@type': 'Person',
+    name: SITE.name,
+    url: SITE.url,
+  },
+  mainEntityOfPage: canonicalUrl,
+};
+
+if (image) {
+  articleSchema.image = image.startsWith('http') ? image : new URL(image, SITE.url).href;
+}
+
+articleSchema.timeRequired = `PT${readingTimeMin}M`;
+articleSchema.articleSection = category;
+articleSchema.keywords = [title, category, ...tags].join(', ');
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: SITE.url,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Insights',
+      item: new URL('/insights/', SITE.url).href,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: category,
+      item: new URL(categoryHref, SITE.url).href,
+    },
+    {
+      '@type': 'ListItem',
+      position: 4,
+      name: title,
+      item: canonicalUrl,
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  ogImage={image || SITE.ogImage}
+  canonical={canonicalPath}
+  structuredData={[articleSchema, breadcrumbSchema]}
+>
+
+  <!-- ── Article Header ──────────────────────────────────────────────────── -->
+  <section class="article-header" aria-label="Article header">
+    <div class="container-site">
+
+      <!-- Back nav -->
+      <nav class="article-breadcrumb" aria-label="Breadcrumb">
+        <a href="/insights/" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M12 7H2M6 3L2 7l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          All Insights
+        </a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <a href={categoryHref} class="breadcrumb-category">{category}</a>
+      </nav>
+
+      <!-- Title -->
+      <h1 class="article-title">{title}</h1>
+
+      <!-- Meta -->
+      <div class="article-meta" aria-label="Article metadata">
+        <span class="meta-category">{category}</span>
+        <span class="meta-sep" aria-hidden="true">·</span>
+        <time datetime={dateIso} class="meta-date">{dateFormatted}</time>
+        <span class="meta-sep" aria-hidden="true">·</span>
+        <span class="meta-author">{author}</span>
+        <span class="meta-sep" aria-hidden="true">·</span>
+        <span class="meta-reading-time">{readingTimeLabel}</span>
+      </div>
+
+      <!-- Tags -->
+      {tags.length > 0 && (
+        <ul class="article-tags" aria-label="Article tags">
+          {tags.map((tag) => (
+            <li class="tag-pill">{tag}</li>
+          ))}
+        </ul>
+      )}
+
+    </div>
+  </section>
+
+  <!-- ── Optional Hero Image ──────────────────────────────────────────────── -->
+  {image && (
+    <div class="article-image-wrapper">
+      <div class="container-site">
+        <img
+          src={image}
+          alt={heroAlt}
+          width="1200"
+          height="630"
+          class="article-hero-image"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+  )}
+
+  <!-- ── Article Body ─────────────────────────────────────────────────────── -->
+  <section class="article-body-section" aria-label="Article content">
+    <div class="article-body-wrap">
+
+      <!-- Mobile/tablet TOC disclosure (hidden at ≥1280px via CSS) -->
+      {hasToc && (
+        <details class="toc-mobile">
+          <summary class="toc-mobile-summary">Contents</summary>
+          <ol class="toc-mobile-list">
+            {tocHeadings.map(h => (
+              <li><a href={`#${h.id}`}>{h.text}</a></li>
+            ))}
+          </ol>
+        </details>
+      )}
+
+      <!-- 3-column grid: TOC | body | sidebar (right column always reserved on desktop) -->
+      <div class="article-layout-grid">
+
+        <!-- Left: sticky TOC (desktop only, hidden at <1280px via CSS) -->
+        <aside class="article-toc-sidebar" aria-label="Table of contents">
+          {hasToc && (
+            <nav class="article-toc">
+              <p class="toc-label">Contents</p>
+              <ol class="toc-list">
+                {tocHeadings.map(h => (
+                  <li>
+                    <a href={`#${h.id}`} class="toc-link">{h.text}</a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )}
+        </aside>
+
+        <!-- Center: article prose -->
+        <div class="article-body">
+          <Content />
+        </div>
+
+        <!-- Right: sidebar column always present on desktop; heading always visible; cards only when articles exist -->
+        <aside class="article-sidebar" aria-label="Latest insights">
+          <p class="sidebar-heading">Latest Insights</p>
+          {relatedArticles.length > 0 && (
+            <div class="sidebar-cards">
+              {relatedArticles.map((a) => {
+                const relDate = a.data.pubDate.toLocaleDateString('en-US', {
+                  year: 'numeric', month: 'short', day: 'numeric',
+                });
+                const articleHref = `/insights/${a.slug}/`;
+                return (
+                  <article class="sidebar-card">
+                    {a.data.image && (
+                      <div class="sidebar-card-img-wrap">
+                        <img
+                          src={a.data.image}
+                          alt={a.data.imageAlt || a.data.title}
+                          width="300"
+                          height="169"
+                          class="sidebar-card-img"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                    )}
+                    <div class="sidebar-card-body">
+                      <span class="sidebar-card-category">{a.data.category}</span>
+                      <h3 class="sidebar-card-title">
+                        <a href={articleHref}>{a.data.title}</a>
+                      </h3>
+                      <p class="sidebar-card-excerpt">{a.data.description}</p>
+                      <div class="sidebar-card-footer">
+                        <time
+                          datetime={a.data.pubDate.toISOString().slice(0, 10)}
+                          class="sidebar-card-date"
+                        >
+                          {relDate}
+                        </time>
+                        <a
+                          href={articleHref}
+                          class="sidebar-card-readmore"
+                          aria-label={`Read more: ${a.data.title}`}
+                        >
+                          Read more →
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          )}
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Article Footer ──────────────────────────────────────────────────── -->
+  <section class="article-footer-section" aria-label="Article navigation">
+    <div class="container-site">
+      <div class="article-footer">
+        <a href="/insights/" class="back-link-footer">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M12 7H2M6 3L2 7l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to Insights
+        </a>
+        <a href={cta.href} class="btn-primary">
+          {cta.label}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* ── Header ─────────────────────────────────────────────────────────────── */
+  .article-header {
+    background: #05070D;
+    padding-block: 80px 64px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .article-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.45);
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+
+  .back-link:hover { color: rgba(255, 255, 255, 0.8); }
+
+  .breadcrumb-sep { color: rgba(255, 255, 255, 0.2); font-size: 0.84rem; }
+
+  .breadcrumb-category {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: rgba(245, 124, 0, 0.75);
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+
+  .breadcrumb-category:hover { color: #F57C00; }
+
+  .article-title {
+    font-family: Manrope, system-ui, sans-serif;
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.12;
+    margin: 0 0 1.25rem;
+    max-width: 820px;
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .meta-category {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #F57C00;
+  }
+
+  .meta-sep { color: rgba(255, 255, 255, 0.2); }
+
+  .meta-date,
+  .meta-author,
+  .meta-reading-time {
+    font-size: 0.84rem;
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  .article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tag-pill {
+    padding: 0.25rem 0.7rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  /* ── Hero Image ──────────────────────────────────────────────────────────── */
+  .article-image-wrapper {
+    background: #05070D;
+    padding-block: 0 48px;
+  }
+
+  .article-hero-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  /* ── Body Section ───────────────────────────────────────────────────────── */
+  .article-body-section {
+    background: #05070D;
+    padding-block: 64px 80px;
+  }
+
+  /* Wider than container-site (1280px) to give sidebars room */
+  .article-body-wrap {
+    width: min(100% - 2.5rem, 1420px);
+    margin-inline: auto;
+  }
+
+  /* ── Mobile/tablet TOC disclosure ───────────────────────────────────────── */
+  .toc-mobile {
+    margin-bottom: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.625rem;
+    background: rgba(255, 255, 255, 0.02);
+    overflow: hidden;
+  }
+
+  .toc-mobile-summary {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.60);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    user-select: none;
+  }
+
+  .toc-mobile-summary::-webkit-details-marker { display: none; }
+
+  .toc-mobile-summary::after {
+    content: '▾';
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.35);
+    margin-left: auto;
+    transition: transform 200ms ease;
+  }
+
+  .toc-mobile[open] .toc-mobile-summary::after {
+    transform: rotate(180deg);
+  }
+
+  .toc-mobile-list {
+    list-style: none;
+    padding: 0 1.25rem 1rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .toc-mobile-list li a {
+    display: block;
+    padding: 0.35rem 0 0.35rem 0.75rem;
+    font-size: 0.84rem;
+    color: rgba(255, 255, 255, 0.50);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: color 160ms ease, border-color 160ms ease;
+  }
+
+  .toc-mobile-list li a:hover,
+  .toc-mobile-list li a:focus-visible {
+    color: #F57C00;
+    border-left-color: rgba(245, 124, 0, 0.60);
+    outline: none;
+  }
+
+  /* ── 3-Column Layout Grid ────────────────────────────────────────────────── */
+  .article-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  /* Single column: center the prose */
+  .article-body {
+    max-width: 68ch;
+    margin-inline: auto;
+  }
+
+  /* Desktop 3-column layout */
+  @media (min-width: 1280px) {
+    .toc-mobile { display: none; }
+
+    .article-layout-grid {
+      grid-template-columns: 240px 1fr 300px;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    /* In grid context, body fills its column (grid handles sizing) */
+    .article-layout-grid .article-body {
+      max-width: none;
+      margin-inline: 0;
+    }
+  }
+
+  /* ── Desktop TOC sidebar ─────────────────────────────────────────────────── */
+  .article-toc-sidebar {
+    display: none;
+  }
+
+  @media (min-width: 1280px) {
+    .article-toc-sidebar {
+      display: block;
+      position: sticky;
+      top: 5rem;
+    }
+  }
+
+  .article-toc {
+    border-left: 1px solid rgba(255, 255, 255, 0.07);
+    padding-left: 1rem;
+  }
+
+  .toc-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #F57C00;
+    margin: 0 0 0.875rem;
+  }
+
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .toc-link {
+    display: block;
+    padding: 0.3rem 0 0.3rem calc(1rem - 2px);
+    font-size: 0.8rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.65);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1rem;
+    transition: color 160ms ease, border-color 160ms ease;
+  }
+
+  .toc-link:hover,
+  .toc-link:focus-visible {
+    color: #F57C00;
+    border-left-color: rgba(245, 124, 0, 0.70);
+    outline: none;
+  }
+
+  /* ── Article prose ───────────────────────────────────────────────────────── */
+  .article-body :global(h2) {
+    font-family: Manrope, system-ui, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    margin: 2.75rem 0 1rem;
+  }
+
+  .article-body :global(h3) {
+    font-family: Manrope, system-ui, sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.25;
+    margin: 2rem 0 0.75rem;
+  }
+
+  .article-body :global(h4) {
+    font-family: Manrope, system-ui, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.3;
+    margin: 1.75rem 0 0.6rem;
+  }
+
+  .article-body :global(h5) {
+    font-family: Manrope, system-ui, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.35;
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  .article-body :global(h6) {
+    font-family: Manrope, system-ui, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.4;
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  .article-body :global(p) {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin: 0 0 1.4rem;
+    text-align: justify;
+  }
+
+  .article-body :global(ul),
+  .article-body :global(ol) {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin: 0 0 1.4rem;
+    padding-left: 1.5rem;
+  }
+
+  .article-body :global(li) {
+    margin-bottom: 0.4rem;
+  }
+
+  .article-body :global(blockquote) {
+    border-left: 2px solid rgba(245, 124, 0, 0.5);
+    padding-left: 1.25rem;
+    margin: 1.75rem 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+  }
+
+  .article-body :global(strong) {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 700;
+  }
+
+  .article-body :global(a) {
+    color: rgba(245, 124, 0, 0.85);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 160ms ease;
+  }
+
+  .article-body :global(a:hover) {
+    color: #F57C00;
+  }
+
+  .article-body :global(code) {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    padding: 0.15em 0.4em;
+    font-size: 0.88em;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .article-body :global(pre) {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    overflow-x: auto;
+    margin: 0 0 1.5rem;
+  }
+
+  .article-body :global(pre code) {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    font-size: 0.88rem;
+  }
+
+  .article-body :global(hr) {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 2.5rem 0;
+  }
+
+  /* ── Right sidebar ───────────────────────────────────────────────────────── */
+  .article-sidebar {
+    display: none;
+  }
+
+  @media (min-width: 1280px) {
+    .article-sidebar {
+      display: block;
+      position: sticky;
+      top: 5rem;
+    }
+  }
+
+  .sidebar-heading {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #F57C00;
+    margin: 0 0 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .sidebar-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .sidebar-card {
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.02);
+    overflow: hidden;
+    transition: border-color 200ms ease, background 200ms ease;
+  }
+
+  .sidebar-card:hover {
+    border-color: rgba(255, 255, 255, 0.13);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  /* Image */
+  .sidebar-card-img-wrap {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .sidebar-card-img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Text body */
+  .sidebar-card-body {
+    padding: 0.875rem 1rem 1rem;
+  }
+
+  .sidebar-card-category {
+    display: block;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #F57C00;
+    margin-bottom: 0.4rem;
+  }
+
+  .sidebar-card-title {
+    font-family: Manrope, system-ui, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 0.5rem;
+  }
+
+  .sidebar-card-title a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: color 160ms ease;
+  }
+
+  .sidebar-card-title a:hover {
+    color: #ffffff;
+  }
+
+  .sidebar-card-excerpt {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.42);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* Footer row: date + read more */
+  .sidebar-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .sidebar-card-date {
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.26);
+  }
+
+  .sidebar-card-readmore {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: rgba(245, 124, 0, 0.70);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 160ms ease;
+  }
+
+  .sidebar-card-readmore:hover,
+  .sidebar-card-readmore:focus-visible {
+    color: #F57C00;
+    outline: none;
+  }
+
+  .sidebar-card-readmore:focus-visible {
+    outline: 2px solid rgba(245, 124, 0, 0.5);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* ── Footer ─────────────────────────────────────────────────────────────── */
+  .article-footer-section {
+    background: #05070D;
+    padding-block: 0 80px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .article-footer {
+    padding-top: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .back-link-footer {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.45);
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+
+  .back-link-footer:hover { color: rgba(255, 255, 255, 0.8); }
+</style>

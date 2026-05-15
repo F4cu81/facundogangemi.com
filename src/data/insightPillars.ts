@@ -36,11 +36,11 @@ export const INSIGHT_PILLARS: InsightPillar[] = [
     href: '/insights/operational-excellence/',
   },
   {
-    title: 'Strategy Execution',
-    categorySlug: 'strategy-execution',
+    title: 'AI Adoption',
+    categorySlug: 'ai-adoption',
     description:
-      'Perspectives on connecting strategy, OKRs, QBRs and portfolio decisions to execution routines that create measurable business outcomes.',
-    cta: 'Explore Execution',
-    href: '/insights/strategy-execution/',
+      'Perspectives on moving from AI awareness to embedded adoption, prioritized use cases, capability building and sustained behavior change.',
+    cta: 'Explore AI Adoption',
+    href: '/insights/ai-adoption/',
   },
 ];

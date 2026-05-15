@@ -1,214 +1,850 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { INSIGHT_PILLARS } from '@/data/insightPillars';
 
 const articles = (await getCollection('insights', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
 const hasArticles = articles.length > 0;
+const featuredArticle = articles.find(a => a.data.featured) ?? null;
 
-const description =
-  'Strategic perspectives on AI strategy, digital transformation, operational excellence and execution discipline for enterprise leaders.';
+const featuredDate = featuredArticle
+  ? featuredArticle.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+  : '';
+const featuredLabel = featuredArticle
+  ? [
+      featuredArticle.data.category,
+      ...(featuredArticle.data.tags.length > 0 ? [featuredArticle.data.tags[0]] : []),
+    ].join(' · ')
+  : '';
+
+/* Visible filter chips — slugs match categorySlug in content collection */
+const FILTER_CHIPS = [
+  { label: 'All',                    slug: 'all' },
+  { label: 'AI Strategy',            slug: 'ai-strategy' },
+  { label: 'Digital Transformation', slug: 'digital-transformation' },
+  { label: 'Operational Excellence', slug: 'operational-excellence' },
+  { label: 'AI Adoption',            slug: 'ai-adoption' },
+];
+
+const SEO_TITLE = 'Insights | AI Strategy & Transformation';
+const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operating models and execution for leaders driving measurable business impact.';
 ---
 
 <BaseLayout
-  title="Insights"
-  description={description}
+  title={SEO_TITLE}
+  description={SEO_DESCRIPTION}
   canonical="/insights/"
+  ogImage="/assets/og/og-insights.webp"
+  ogImageAlt="Strategic insights on AI, transformation and execution"
+  structuredData={[{
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Strategic Insights — Facundo Gangemi',
+    description: SEO_DESCRIPTION,
+    url: 'https://facundogangemi.com/insights/',
+    author: {
+      '@type': 'Person',
+      name: 'Facundo Gangemi',
+      url: 'https://facundogangemi.com',
+    },
+  }]}
 >
 
-  <!-- ── Page Header ──────────────────────────────────────────────────────── -->
-  <section class="section-py bg-[#070B14]" aria-labelledby="insights-heading">
+  <!-- INSIGHTS_SECTION_01_HERO ─────────────────────────────────────────────── -->
+  <section
+    id="insights-hero"
+    class="section-py"
+    style="background: #05070D;"
+    aria-labelledby="insights-h1"
+  >
     <div class="container-site">
-      <span class="eyebrow">Editorial</span>
-      <h1
-        id="insights-heading"
-        class="text-section font-heading font-semibold text-white mt-2 mb-4"
-      >
-        Insights
-      </h1>
-      <p class="text-white/60 leading-relaxed max-w-[52ch] text-lg">
-        Strategic perspectives on AI strategy, digital transformation, operational
-        excellence and execution discipline.
-      </p>
-    </div>
-  </section>
+      <div class="insights-hero-layout">
 
-  <!-- ── Four Pillars ─────────────────────────────────────────────────────── -->
-  <section class="section-py bg-[#070B14]" aria-labelledby="pillars-heading">
-    <div class="container-site">
-      <h2 id="pillars-heading" class="sr-only">Editorial categories</h2>
-      <div class="insights-pillar-grid">
-        {INSIGHT_PILLARS.map((pillar, i) => (
-          <a
-            href={pillar.href}
-            class={`insights-pillar-card reveal delay-${i * 100}`}
-            aria-label={`${pillar.title} — explore category`}
+        <!-- Left: editorial text -->
+        <div class="insights-hero-text">
+          <span class="eyebrow">Insights</span>
+          <h1
+            id="insights-h1"
+            class="insights-h1 font-heading font-bold text-white reveal"
           >
-            <h3 class="insights-pillar-title">{pillar.title}</h3>
-            <p class="insights-pillar-desc">{pillar.description}</p>
-            <span class="insights-pillar-cta">
-              {pillar.cta}
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            Strategic Perspectives on AI, Transformation and Execution
+          </h1>
+          <p class="insights-hero-lead reveal delay-100">
+            Explore selected perspectives on AI strategy, digital transformation,
+            operational excellence, enterprise agility and measurable business impact.
+          </p>
+          <p class="insights-hero-sub reveal delay-200">
+            Selected insights designed to connect strategy, operating models, governance
+            and execution discipline.
+          </p>
+          <div class="insights-hero-cta reveal delay-300">
+            <a href="#latest-insights" class="btn-primary">
+              Read Latest Insights
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </span>
-          </a>
-        ))}
+            </a>
+          </div>
+          <p class="insights-hero-topics reveal delay-300" aria-label="Topics: AI Strategy, Operating Models, Governance, Execution">
+            AI Strategy · Operating Models · Governance · Execution
+          </p>
+        </div>
+
+        <!-- Right: editorial hero image -->
+        <div class="insights-hero-visual reveal delay-200">
+          <div class="insights-hero-image-wrap">
+            <img
+              src="/images/insights/insights-hero-editorial.webp"
+              alt="Editorial visual representing AI strategy, transformation insights and executive decision-making"
+              width="760"
+              height="570"
+              loading="eager"
+              decoding="async"
+              class="insights-hero-img"
+            />
+            <div class="insights-hero-fade-left" aria-hidden="true"></div>
+            <div class="insights-hero-fade-bottom" aria-hidden="true"></div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ── Article Listing ──────────────────────────────────────────────────── -->
-  <section class="section-py bg-[#070B14]" aria-labelledby="articles-heading">
+  <!-- INSIGHTS_SECTION_03_FILTERS_AND_SEARCH ──────────────────────────────── -->
+  <section
+    id="insights-filters"
+      class="section-py-sm bg-gray-950"
+      aria-labelledby="filters-section-heading"
+    >
+      <div class="container-site">
+        <span class="eyebrow">Explore Insights</span>
+        <h2 id="filters-section-heading" class="sr-only">Filter and search insights by topic</h2>
+        <p class="filters-sub reveal">Find perspectives by topic, discipline or strategic priority.</p>
+
+        <!-- Search input -->
+        <div class="search-row reveal">
+          <div class="search-wrap">
+            <svg class="search-icon-svg" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <circle cx="7.5" cy="7.5" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M12 12l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <label for="insights-search" class="sr-only">Search insights</label>
+            <input
+              id="insights-search"
+              type="search"
+              name="q"
+              placeholder="Search insights..."
+              class="search-input"
+              autocomplete="off"
+              aria-label="Search insights by title, topic or keyword"
+            />
+          </div>
+        </div>
+
+        <!-- Category filter chips -->
+        <div
+          class="filter-chips reveal delay-100"
+          role="group"
+          aria-label="Filter insights by topic"
+        >
+          {FILTER_CHIPS.map((chip, i) => (
+            <button
+              type="button"
+              class={`filter-chip${i === 0 ? ' filter-chip--active' : ''}`}
+              aria-pressed={i === 0 ? 'true' : 'false'}
+              data-filter-chip={chip.slug}
+            >
+              {chip.label}
+            </button>
+          ))}
+        </div>
+
+        <!-- Category hub navigation — crawlable <a href> links to category index pages -->
+        <nav
+          class="topic-nav reveal delay-200"
+          aria-label="Browse insights by category"
+        >
+          <span class="topic-nav-label">Topics</span>
+          <ul class="topic-nav-list" role="list">
+            <li><a href="/insights/ai-strategy/" class="topic-nav-link">AI Strategy</a></li>
+            <li><a href="/insights/digital-transformation/" class="topic-nav-link">Digital Transformation</a></li>
+            <li><a href="/insights/operational-excellence/" class="topic-nav-link">Operational Excellence</a></li>
+            <li><a href="/insights/ai-adoption/" class="topic-nav-link">AI Adoption</a></li>
+          </ul>
+        </nav>
+
+      </div>
+  </section>
+
+  <!-- INSIGHTS_SEARCH_RESULTS — shown when search/filter is active ────────── -->
+  <section
+    id="search-results-section"
+    class="section-py"
+    style="background: #05070D;"
+    aria-label="Search results"
+    hidden
+  >
     <div class="container-site">
-      <h2
-        id="articles-heading"
-        class="font-heading font-semibold text-white text-2xl mb-8"
-      >
-        {hasArticles ? 'Latest Insights' : 'Coming Soon'}
-      </h2>
+      <div class="search-results-header">
+        <span class="search-results-label">Search Results</span>
+        <span id="search-results-count" class="search-results-count"></span>
+      </div>
+      <div class="latest-grid" id="search-results-grid"></div>
+      <p id="search-no-results" hidden class="no-results-msg" aria-live="polite">
+        No insights match your search yet.
+      </p>
+    </div>
+  </section>
+
+  <!-- INSIGHTS_SECTION_02_FEATURED_INSIGHT — only shown when a featured article exists ── -->
+  {featuredArticle && (
+    <section
+      id="featured-insight"
+      class="section-py-sm"
+      style="background: #05070D;"
+      aria-labelledby="featured-insight-heading"
+    >
+      <div class="container-site">
+        <span class="eyebrow">Featured Insight</span>
+        <div class="featured-card reveal">
+
+          <!-- Left: content -->
+          <div class="featured-content">
+            <div class="featured-category-badge">{featuredArticle.data.category}</div>
+            <h2
+              id="featured-insight-heading"
+              class="featured-title font-heading font-bold text-white"
+            >
+              <a href={`/insights/${featuredArticle.slug}/`} class="featured-title-link">
+                {featuredArticle.data.title}
+              </a>
+            </h2>
+            <p class="featured-summary">{featuredArticle.data.description}</p>
+            <div class="featured-meta">
+              <time
+                datetime={featuredArticle.data.pubDate.toISOString().slice(0, 10)}
+                class="featured-date"
+              >
+                {featuredDate}
+              </time>
+            </div>
+            <a href={`/insights/${featuredArticle.slug}/`} class="btn-primary featured-cta-btn">
+              Read Insight
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Right: article image if available, else abstract decorative visual -->
+          {featuredArticle.data.image ? (
+            <div class="featured-visual">
+              <img
+                src={featuredArticle.data.image}
+                alt={featuredArticle.data.imageAlt || featuredArticle.data.title}
+                width="560"
+                height="370"
+                loading="eager"
+                decoding="async"
+                class="featured-article-img"
+              />
+            </div>
+          ) : (
+            <div class="featured-visual" aria-hidden="true">
+              <div class="featured-visual-inner">
+                <div class="fv-accent"></div>
+                {featuredLabel && <div class="fv-label">{featuredLabel}</div>}
+                <div class="fv-grid">
+                  <div class="fv-cell fv-cell-orange"></div>
+                  <div class="fv-cell"></div>
+                  <div class="fv-cell fv-cell-dim"></div>
+                  <div class="fv-cell fv-cell-orange fv-cell-short"></div>
+                </div>
+                <div class="fv-lines">
+                  <div class="fv-line fv-line-long"></div>
+                  <div class="fv-line fv-line-med"></div>
+                </div>
+              </div>
+            </div>
+          )}
+
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- INSIGHTS_SECTION_05_LATEST_INSIGHTS ─────────────────────────────────── -->
+  <section
+    id="latest-insights"
+    class="section-py"
+    style="background: #05070D;"
+    aria-label="Latest insights"
+  >
+    <div class="container-site">
+      <span class="eyebrow">Latest Insights</span>
+      <p class="latest-sub reveal delay-100">
+        Recent perspectives on AI strategy, operating models, governance and transformation execution.
+      </p>
 
       {hasArticles ? (
-        <div class="articles-grid">
-          {articles.map((article) => {
-            const date = article.data.pubDate.toLocaleDateString('en-US', {
-              year: 'numeric', month: 'long', day: 'numeric',
-            });
-            return (
-              <a
-                href={`/insights/${article.slug}/`}
-                class="article-card reveal"
-                aria-label={`Read: ${article.data.title}`}
-              >
-                <div class="article-card-meta">
-                  <span class="article-category">{article.data.category}</span>
-                  <time datetime={article.data.pubDate.toISOString().slice(0, 10)} class="article-date">
-                    {date}
-                  </time>
-                </div>
-                <h3 class="article-title">{article.data.title}</h3>
-                <p class="article-desc">{article.data.description}</p>
-                <span class="article-cta">
-                  Read article
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                    <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </a>
-            );
-          })}
-        </div>
+        <Fragment>
+          <div class="latest-grid" id="insights-grid">
+            {articles.map((article) => {
+              const date = article.data.pubDate.toLocaleDateString('en-US', {
+                year: 'numeric', month: 'long', day: 'numeric',
+              });
+              return (
+                <a
+                  href={`/insights/${article.slug}/`}
+                  class="insight-card reveal"
+                  aria-label={`Read: ${article.data.title}`}
+                  data-category={article.data.categorySlug}
+                  data-title={article.data.title}
+                  data-description={article.data.description}
+                  data-tags={article.data.tags.join(',')}
+                >
+                  {article.data.image && (
+                    <div class="insight-card-image">
+                      <img
+                        src={article.data.image}
+                        alt={article.data.imageAlt || article.data.title}
+                        width="400"
+                        height="210"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  )}
+                  <div class="insight-card-meta">
+                    <span class="insight-category">{article.data.category.toUpperCase()}</span>
+                    <time
+                      datetime={article.data.pubDate.toISOString().slice(0, 10)}
+                      class="insight-date"
+                    >
+                      {date}
+                    </time>
+                  </div>
+                  <h3 class="insight-title">{article.data.title}</h3>
+                  <p class="insight-excerpt">{article.data.description}</p>
+                  <span class="insight-cta">
+                    Read insight
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                      <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </a>
+              );
+            })}
+          </div>
+        </Fragment>
       ) : (
-        <p class="text-white/45 text-base leading-relaxed">
-          New strategic insights will be published soon.
+        <p class="insights-empty-state">
+          Insights are being prepared. New perspectives on AI strategy, digital transformation,
+          operational excellence and AI adoption will be published soon.
         </p>
       )}
+
+    </div>
+  </section>
+
+  <!-- INSIGHTS_SECTION_06_FINAL_CTA ───────────────────────────────────────── -->
+  <section
+    id="insights-final-cta"
+    class="section-py-sm bg-gray-950"
+    aria-labelledby="insights-cta-heading"
+  >
+    <div class="container-site">
+      <div class="insights-cta-card reveal">
+        <div class="insights-cta-inner">
+          <span class="eyebrow">Strategic Advisory</span>
+          <h2
+            id="insights-cta-heading"
+            class="insights-cta-heading font-heading font-bold text-white"
+          >
+            Need to turn AI strategy into measurable execution?
+          </h2>
+          <p class="insights-cta-body">
+            Explore advisory support designed for leaders working on governance,
+            operating models and measurable business impact.
+          </p>
+          <p class="insights-cta-about">
+            Explore the strategic background behind these perspectives on the <a href="/about/">About page</a>, or see how they translate into execution in the <a href="/case-studies/">transformation case studies</a>.
+          </p>
+          <div class="insights-cta-actions">
+            <a href="/contact/" class="btn-primary">
+              Book Advisory Call
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="/advisory/" class="btn-outline">
+              Explore Advisory
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
 </BaseLayout>
 
 <style>
-  .insights-pillar-grid {
+  /* ── SECTION 01: Hero ──────────────────────────────────────────────────── */
+
+  .insights-hero-layout {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-
-  @media (min-width: 640px) {
-    .insights-pillar-grid { grid-template-columns: 1fr 1fr; }
+    gap: 3rem;
+    align-items: center;
   }
 
   @media (min-width: 1024px) {
-    .insights-pillar-grid { grid-template-columns: repeat(4, 1fr); }
+    .insights-hero-layout {
+      grid-template-columns: 55fr 45fr;
+      gap: 4.5rem;
+    }
   }
 
-  .insights-pillar-card {
+  .insights-h1 {
+    font-size: clamp(1.875rem, 4vw, 2.875rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0.75rem 0 1.5rem;
+  }
+
+  .insights-hero-lead {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.68);
+    line-height: 1.65;
+    max-width: 50ch;
+    margin-bottom: 0.85rem;
+  }
+
+  .insights-hero-sub {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.40);
+    line-height: 1.65;
+    max-width: 48ch;
+    margin-bottom: 2rem;
+  }
+
+  .insights-hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.875rem;
+    align-items: center;
+  }
+
+  .insights-hero-topics {
+    margin-top: 1.5rem;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.28);
+    letter-spacing: 0.06em;
+  }
+
+  /* Hero right: editorial image */
+  .insights-hero-visual {
+    display: block;
+  }
+
+  @media (max-width: 1023px) {
+    .insights-hero-visual { display: none; }
+  }
+
+  .insights-hero-image-wrap {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+  }
+
+  @media (min-width: 1024px) {
+    .insights-hero-image-wrap {
+      aspect-ratio: 4 / 3;
+      border-radius: 1.25rem;
+    }
+  }
+
+  .insights-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .insights-hero-fade-left {
+    position: absolute;
+    inset-y: 0;
+    left: 0;
+    width: 22%;
+    background: linear-gradient(to right, #05070D, transparent);
+    pointer-events: none;
+  }
+
+  .insights-hero-fade-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25%;
+    background: linear-gradient(to top, #05070D, transparent);
+    pointer-events: none;
+  }
+
+  /* ── SECTION 02: Featured Insight ─────────────────────────────────────── */
+
+  .featured-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-top: 1.75rem;
+    padding: 2.25rem;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 2px solid rgba(245, 124, 0, 0.50);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  @media (min-width: 1024px) {
+    .featured-card {
+      grid-template-columns: 58fr 42fr;
+      gap: 4rem;
+      align-items: center;
+      padding: 3rem 3.5rem;
+    }
+  }
+
+  .featured-category-badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #F57C00;
+    border: 1px solid rgba(245, 124, 0, 0.35);
+    border-radius: 2rem;
+    padding: 0.25rem 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .featured-title {
+    font-size: clamp(1.5rem, 2.75vw, 2rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0 0 1.25rem;
+  }
+
+  .featured-title-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .featured-title-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .featured-summary {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.60);
+    line-height: 1.70;
+    max-width: 52ch;
+    margin-bottom: 1.5rem;
+  }
+
+  .featured-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .featured-date {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.36);
+  }
+
+  .featured-cta-btn {
+    align-self: flex-start;
+  }
+
+  .featured-article-img {
+    width: 100%;
+    border-radius: 0.875rem;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    display: block;
+  }
+
+  /* Featured right: abstract visual */
+  .featured-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .featured-visual-inner {
+    width: 100%;
+    min-height: 220px;
+    padding: 1.75rem;
+    border-radius: 0.875rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(0, 0, 0, 0.30);
     display: flex;
     flex-direction: column;
-    padding: 1.75rem;
-    border-radius: 1rem;
+    gap: 1.25rem;
+  }
+
+  .fv-accent {
+    width: 2.5rem;
+    height: 2px;
+    background: rgba(245, 124, 0, 0.60);
+    border-radius: 2px;
+  }
+
+  .fv-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.27);
+  }
+
+  .fv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.55rem;
+  }
+
+  .fv-cell {
+    height: 44px;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.045);
     border: 1px solid rgba(255, 255, 255, 0.07);
-    border-top: 2px solid rgba(245, 124, 0, 0.35);
-    background: rgba(255, 255, 255, 0.03);
-    text-decoration: none;
-    transition: background 240ms ease, border-top-color 240ms ease, transform 240ms ease, box-shadow 240ms ease;
   }
 
-  .insights-pillar-card:hover {
-    background: rgba(255, 255, 255, 0.055);
-    border-top-color: rgba(245, 124, 0, 0.8);
-    transform: translateY(-3px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  .fv-cell-orange {
+    background: rgba(245, 124, 0, 0.07);
+    border-color: rgba(245, 124, 0, 0.22);
   }
 
-  .insights-pillar-title {
-    font-family: Manrope, system-ui, sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0 0 0.75rem;
-  }
+  .fv-cell-dim { opacity: 0.55; }
 
-  .insights-pillar-desc {
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.52);
-    line-height: 1.65;
-    margin: 0 0 auto;
-    padding-bottom: 1.25rem;
-  }
+  .fv-cell-short { height: 28px; }
 
-  .insights-pillar-cta {
-    display: inline-flex;
-    align-items: center;
+  .fv-lines {
+    display: flex;
+    flex-direction: column;
     gap: 0.4rem;
+    margin-top: auto;
+  }
+
+  .fv-line {
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+  .fv-line-long { width: 82%; }
+  .fv-line-med  { width: 57%; }
+
+  /* ── SECTION 03: Filters ──────────────────────────────────────────────── */
+
+  .filters-sub {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.42);
+    line-height: 1.6;
+    margin: 0.5rem 0 0;
+  }
+
+  .search-row {
+    margin: 1.5rem 0 1.25rem;
+  }
+
+  .search-wrap {
+    position: relative;
+    max-width: 460px;
+  }
+
+  .search-icon-svg {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.32);
+    pointer-events: none;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.75rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 0.625rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.9375rem;
+    outline: none;
+    transition: border-color 180ms ease, background 180ms ease;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .search-input::placeholder {
+    color: rgba(255, 255, 255, 0.28);
+  }
+
+  .search-input:focus {
+    border-color: rgba(245, 124, 0, 0.55);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .filter-chip {
+    padding: 0.375rem 0.9rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    background: rgba(255, 255, 255, 0.025);
+    color: rgba(255, 255, 255, 0.52);
     font-size: 0.82rem;
-    font-weight: 700;
-    color: rgba(245, 124, 0, 0.75);
-    transition: color 180ms ease, gap 180ms ease;
+    font-weight: 500;
+    cursor: pointer;
+    line-height: 1;
+    transition: border-color 180ms ease, color 180ms ease, background 180ms ease;
   }
 
-  .insights-pillar-card:hover .insights-pillar-cta {
+  .filter-chip:hover {
+    border-color: rgba(245, 124, 0, 0.45);
+    color: rgba(255, 255, 255, 0.80);
+  }
+
+  .filter-chip:focus-visible {
+    outline: 2px solid rgba(245, 124, 0, 0.70);
+    outline-offset: 2px;
+  }
+
+  .filter-chip--active {
+    border-color: rgba(245, 124, 0, 0.70);
+    background: rgba(245, 124, 0, 0.10);
     color: #F57C00;
-    gap: 0.6rem;
+    font-weight: 600;
   }
 
-  /* Article grid */
-  .articles-grid {
+  .filter-chip--active:hover {
+    border-color: rgba(245, 124, 0, 0.90);
+    background: rgba(245, 124, 0, 0.16);
+  }
+
+  /* ── Topic hub navigation ──────────────────────────────────────────────── */
+
+  .topic-nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .topic-nav-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.26);
+    flex-shrink: 0;
+  }
+
+  .topic-nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .topic-nav-link {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.42);
+    text-decoration: none;
+    transition: color 160ms ease;
+  }
+
+  .topic-nav-link:hover {
+    color: #F57C00;
+  }
+
+  .topic-nav-link:focus-visible {
+    outline: 2px solid rgba(245, 124, 0, 0.70);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* ── SECTION 05: Latest Insights ──────────────────────────────────────── */
+
+  .latest-sub {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.46);
+    line-height: 1.65;
+    margin: 0.5rem 0 2rem;
+  }
+
+  .latest-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
 
   @media (min-width: 768px) {
-    .articles-grid { grid-template-columns: 1fr 1fr; }
+    .latest-grid { grid-template-columns: 1fr 1fr; }
   }
 
   @media (min-width: 1280px) {
-    .articles-grid { grid-template-columns: repeat(3, 1fr); }
+    .latest-grid { grid-template-columns: repeat(3, 1fr); }
   }
 
-  .article-card {
+  .insight-card {
     display: flex;
     flex-direction: column;
     padding: 1.75rem;
     border-radius: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.025);
     text-decoration: none;
     transition: background 240ms ease, border-color 240ms ease, transform 240ms ease, box-shadow 240ms ease;
   }
 
-  .article-card:hover {
-    background: rgba(255, 255, 255, 0.055);
+  a.insight-card:hover {
+    background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.14);
     transform: translateY(-3px);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.40);
   }
 
-  .article-card-meta {
+  .insight-card-image {
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .insight-card-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .insight-card-meta {
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -216,48 +852,251 @@ const description =
     flex-wrap: wrap;
   }
 
-  .article-category {
-    font-size: 0.7rem;
+  .insight-category {
+    font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #F57C00;
   }
 
-  .article-date {
+  .insight-date {
     font-size: 0.78rem;
-    color: rgba(255, 255, 255, 0.38);
+    color: rgba(255, 255, 255, 0.34);
   }
 
-  .article-title {
+  .insight-title {
     font-family: Manrope, system-ui, sans-serif;
-    font-size: 1.05rem;
+    font-size: 1.025rem;
     font-weight: 700;
     color: #ffffff;
     line-height: 1.3;
     margin: 0 0 0.75rem;
   }
 
-  .article-desc {
+  .insight-excerpt {
     font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.52);
+    color: rgba(255, 255, 255, 0.50);
     line-height: 1.65;
     margin: 0 0 auto;
     padding-bottom: 1.25rem;
   }
 
-  .article-cta {
+  .insight-cta {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
     font-size: 0.82rem;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.40);
     transition: color 180ms ease, gap 180ms ease;
   }
 
-  .article-card:hover .article-cta {
-    color: rgba(245, 124, 0, 0.9);
+  a.insight-card:hover .insight-cta {
+    color: rgba(245, 124, 0, 0.90);
     gap: 0.6rem;
   }
+
+  /* No-results message — shown by JS when filter+search return zero cards */
+  .no-results-msg {
+    margin-top: 2rem;
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.42);
+    line-height: 1.6;
+  }
+
+  /* Empty state — shown server-side when no articles are published yet */
+  .insights-empty-state {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.46);
+    line-height: 1.75;
+    max-width: 56ch;
+  }
+
+  /* ── SECTION 06: Final CTA ─────────────────────────────────────────────── */
+
+  .insights-cta-card {
+    border-radius: 1.25rem;
+    padding: 3rem 2.5rem;
+    background: #121212;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-top: 2px solid rgba(245, 124, 0, 0.35);
+  }
+
+  @media (min-width: 1024px) {
+    .insights-cta-card { padding: 4rem; }
+  }
+
+  .insights-cta-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .insights-cta-heading {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin: 0.75rem 0 1.25rem;
+  }
+
+  .insights-cta-body {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.56);
+    line-height: 1.70;
+    margin-bottom: 1rem;
+  }
+
+  .insights-cta-about {
+    font-size: 0.825rem;
+    color: rgba(255, 255, 255, 0.32);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .insights-cta-about a {
+    color: rgba(255, 255, 255, 0.48);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 160ms ease;
+  }
+
+  .insights-cta-about a:hover { color: rgba(255, 255, 255, 0.75); }
+
+  .insights-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.875rem;
+    justify-content: center;
+  }
+
+  /* ── Search input clear button ─────────────────────────────────────────── */
+  .search-input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M2 2l10 10M12 2L2 12' stroke='%23F57C00' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    opacity: 0.75;
+    transition: opacity 160ms ease;
+  }
+
+  .search-input::-webkit-search-cancel-button:hover {
+    opacity: 1;
+  }
+
+  /* ── Search Results Section ────────────────────────────────────────────── */
+  .search-results-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.875rem;
+    margin-bottom: 1.75rem;
+    flex-wrap: wrap;
+  }
+
+  .search-results-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #F57C00;
+  }
+
+  .search-results-count {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.36);
+  }
 </style>
+
+<script>
+  (function () {
+    var searchInput   = document.getElementById('insights-search') as HTMLInputElement | null;
+    var chips         = document.querySelectorAll('[data-filter-chip]');
+    var latestGrid    = document.getElementById('insights-grid');
+    var cards         = latestGrid
+      ? (Array.from(latestGrid.querySelectorAll('a[data-category]')) as HTMLElement[])
+      : [] as HTMLElement[];
+
+    var searchSection   = document.getElementById('search-results-section') as HTMLElement | null;
+    var searchGrid      = document.getElementById('search-results-grid') as HTMLElement | null;
+    var searchCount     = document.getElementById('search-results-count') as HTMLElement | null;
+    var searchNoResults = document.getElementById('search-no-results') as HTMLElement | null;
+
+    if (!cards.length) return;
+
+    var activeCategory = 'all';
+
+    function isActive(): boolean {
+      var q = searchInput ? searchInput.value.trim() : '';
+      return q.length > 0 || activeCategory !== 'all';
+    }
+
+    function getMatching(): HTMLElement[] {
+      var q = searchInput ? searchInput.value.trim().toLowerCase() : '';
+      return cards.filter(function (card) {
+        var catMatch = activeCategory === 'all' || card.getAttribute('data-category') === activeCategory;
+        var searchable = [
+          card.getAttribute('data-title') || '',
+          card.getAttribute('data-description') || '',
+          card.getAttribute('data-category') || '',
+          card.getAttribute('data-tags') || '',
+        ].join(' ').toLowerCase();
+        var searchMatch = !q || searchable.includes(q);
+        return catMatch && searchMatch;
+      });
+    }
+
+    function applyFilter() {
+      if (isActive()) {
+        if (searchSection) searchSection.removeAttribute('hidden');
+
+        var matching = getMatching();
+
+        if (searchGrid) {
+          searchGrid.innerHTML = '';
+          matching.forEach(function (card) {
+            var clone = card.cloneNode(true) as HTMLElement;
+            clone.removeAttribute('hidden');
+            // Remove scroll-reveal class so cloned cards are immediately visible
+            clone.classList.remove('reveal');
+            searchGrid!.appendChild(clone);
+          });
+        }
+
+        if (searchCount) {
+          var n = matching.length;
+          searchCount.textContent = n === 1 ? '1 result' : n + ' results';
+        }
+
+        if (searchNoResults) {
+          if (matching.length > 0) {
+            searchNoResults.setAttribute('hidden', '');
+          } else {
+            searchNoResults.removeAttribute('hidden');
+          }
+        }
+      } else {
+        if (searchSection) searchSection.setAttribute('hidden', '');
+      }
+    }
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        activeCategory = chip.getAttribute('data-filter-chip') || 'all';
+        chips.forEach(function (c) {
+          var on = c === chip;
+          c.setAttribute('aria-pressed', on ? 'true' : 'false');
+          c.classList.toggle('filter-chip--active', on);
+        });
+        applyFilter();
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', applyFilter);
+    }
+  }());
+</script>

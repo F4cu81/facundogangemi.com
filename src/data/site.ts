@@ -7,21 +7,17 @@ export const SITE = {
   name: 'Facundo Gangemi',
   title: 'Facundo Gangemi — AI Strategy & Enterprise Transformation Advisor',
   description:
-    'Executive advisory for AI Strategy, Digital Transformation and Intelligent Operating Models. Helping organizations transform with clarity, structure and measurable results.',
+    'Executive advisory for AI Strategy, Digital Transformation and Operating Models. Helping enterprise leaders build clarity and measurable business impact.',
   url: 'https://facundogangemi.com',
   locale: 'en',
   twitterHandle: '@facundogangemi',
 
   // Contact — replace with real values before launch
-  email: 'REPLACE_WITH_FACUNDO_EMAIL',
+  email: 'facundo.gangemi@facundogangemi.com',
   linkedin: 'https://linkedin.com/in/facundogangemi',
 
-  // Lead capture webhooks — configure in production
-  makeContactWebhook: 'REPLACE_WITH_MAKE_WEBHOOK_URL',
-  makeNewsletterWebhook: 'REPLACE_WITH_NEWSLETTER_WEBHOOK_URL',
-
-  // Open Graph defaults
-  ogImage: '/assets/og/og-home.webp',
+  // Open Graph defaults — used as fallback when a page does not set its own ogImage
+  ogImage: '/assets/og/og-default.webp',
 
   // i18n
   languages: ['en', 'es'] as const,

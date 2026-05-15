@@ -76,7 +76,7 @@ const { locale = 'en', currentPath = '/' } = Astro.props;
         <div class="mobile-menu-lang">
           <span class={locale === 'en' ? 'active' : ''}>EN</span>
           <span>/</span>
-          <span class={locale === 'es' ? 'active' : ''}>ES <small>Soon</small></span>
+          <span class={`${locale === 'es' ? 'active' : ''} lang-es-mobile`}>ES</span>
         </div>
 
         <a href={NAV_CTA.href} class="mobile-menu-cta" data-mobile-link>
@@ -113,9 +113,9 @@ const { locale = 'en', currentPath = '/' } = Astro.props;
     width: min(88vw, 380px);
     height: 100%;
     padding: 1.25rem;
-    background: #00274C;
+    background: #080C17;
     color: #ffffff;
-    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.3);
+    box-shadow: -20px 0 80px rgba(0, 0, 0, 0.55);
     overflow-y: auto;
   }
 
@@ -223,8 +223,8 @@ const { locale = 'en', currentPath = '/' } = Astro.props;
     font-weight: 800;
   }
 
-  .mobile-menu-lang small {
-    opacity: 0.6;
+  .lang-es-mobile {
+    opacity: 0.45;
   }
 
   .mobile-menu-cta {
@@ -241,7 +241,7 @@ const { locale = 'en', currentPath = '/' } = Astro.props;
     text-decoration: none;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .mobile-menu {
       display: none !important;
     }

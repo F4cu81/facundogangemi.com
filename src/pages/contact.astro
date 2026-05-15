@@ -1,0 +1,996 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const SEO_TITLE = 'Contact | AI Strategy & Advisory';
+const SEO_DESCRIPTION =
+  'Start a strategic conversation on AI strategy, digital transformation, operating models, enterprise agility and measurable business impact.';
+
+/* Conversation area cards */
+interface ConvoCard {
+  icon: string;
+  title: string;
+  desc: string;
+}
+
+const CONVO_CARDS: ConvoCard[] = [
+  {
+    icon: `<svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+      <circle cx="13" cy="3.5" r="2" stroke="currentColor" stroke-width="1.4"/>
+      <circle cx="22" cy="19" r="2" stroke="currentColor" stroke-width="1.4"/>
+      <circle cx="4"  cy="19" r="2" stroke="currentColor" stroke-width="1.4"/>
+      <circle cx="13" cy="13" r="2.5" stroke="currentColor" stroke-width="1.4"/>
+      <line x1="13" y1="5.5" x2="13" y2="10.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="20.2" y1="17.5" x2="15.2" y2="14.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="5.8"  y1="17.5" x2="10.8" y2="14.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>`,
+    title: 'AI Strategy & Operating Models',
+    desc: 'Discuss how AI can move from isolated initiatives to scalable operating models, governance and measurable business outcomes.',
+  },
+  {
+    icon: `<svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+      <path d="M13 2L24 8L13 14L2 8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      <path d="M2 13L13 19L24 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M2 18L13 24L24 18" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`,
+    title: 'Digital Transformation Execution',
+    desc: 'Explore transformation challenges related to execution, adoption, organizational alignment and business impact.',
+  },
+  {
+    icon: `<svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+      <circle cx="5"  cy="13" r="2.5" stroke="currentColor" stroke-width="1.4"/>
+      <circle cx="13" cy="13" r="2.5" stroke="currentColor" stroke-width="1.4"/>
+      <circle cx="21" cy="13" r="2.5" stroke="currentColor" stroke-width="1.4"/>
+      <line x1="7.5"  y1="13" x2="10.5" y2="13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="15.5" y1="13" x2="18.5" y2="13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M5 8.5c3-2 6-2 8 0s5 2 8 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.45"/>
+    </svg>`,
+    title: 'Enterprise Agility & Product Operating Models',
+    desc: 'Connect agile ways of working with product thinking, leadership alignment and enterprise-level delivery.',
+  },
+  {
+    icon: `<svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+      <circle cx="13" cy="13" r="10" stroke="currentColor" stroke-width="1.4"/>
+      <circle cx="13" cy="13" r="6"  stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+      <circle cx="13" cy="13" r="2"  stroke="currentColor" stroke-width="1.4"/>
+      <line x1="13" y1="3" x2="13" y2="5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="23" y1="13" x2="21" y2="13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>`,
+    title: 'OKRs, QBRs & Governance',
+    desc: 'Discuss how objectives, quarterly business reviews and governance systems can improve strategic execution.',
+  },
+  {
+    icon: `<svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+      <rect x="3" y="18" width="20" height="2.5" rx="1" stroke="currentColor" stroke-width="1.4"/>
+      <rect x="3" y="22" width="20" height="1.5" rx="0.5" stroke="currentColor" stroke-width="1.2" opacity="0.4"/>
+      <rect x="5"  y="8" width="3" height="10" rx="0.5" stroke="currentColor" stroke-width="1.3"/>
+      <rect x="11.5" y="5" width="3" height="13" rx="0.5" stroke="currentColor" stroke-width="1.3"/>
+      <rect x="18" y="8" width="3" height="10" rx="0.5" stroke="currentColor" stroke-width="1.3"/>
+      <path d="M7 5L13 2L19 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`,
+    title: 'Banking & Financial Services Transformation',
+    desc: 'Explore transformation contexts in regulated, complex and enterprise financial environments.',
+  },
+  {
+    icon: `<svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+      <rect x="10" y="2" width="6" height="12" rx="3" stroke="currentColor" stroke-width="1.4"/>
+      <path d="M6 11c0 3.866 3.134 7 7 7s7-3.134 7-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="13" y1="18" x2="13" y2="22" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="9" y1="22" x2="17" y2="22" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>`,
+    title: 'Speaking, Workshops & Executive Sessions',
+    desc: 'Discuss selected talks, leadership sessions or executive workshops on AI, transformation and execution.',
+  },
+];
+---
+
+<BaseLayout
+  title={SEO_TITLE}
+  description={SEO_DESCRIPTION}
+  canonical="/contact/"
+  ogImage="/assets/og/og-contact.webp"
+  ogImageAlt="Contact Facundo Gangemi for a strategic advisory conversation"
+  structuredData={[{
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contact Facundo Gangemi — AI Strategy & Advisory',
+    description: SEO_DESCRIPTION,
+    url: 'https://facundogangemi.com/contact/',
+    author: {
+      '@type': 'Person',
+      name: 'Facundo Gangemi',
+      url: 'https://facundogangemi.com',
+    },
+  }]}
+>
+
+  <!-- Calendly popup widget CSS — injected into <head> only on this page -->
+  <Fragment slot="head">
+    <link
+      href="https://assets.calendly.com/assets/external/widget.css"
+      rel="stylesheet"
+    />
+  </Fragment>
+
+  <!-- CONTACT_SECTION_01_HERO ─────────────────────────────────────────────── -->
+  <section
+    id="contact-hero"
+    class="section-py-lg"
+    style="background: #05070D;"
+    aria-labelledby="contact-h1"
+  >
+    <div class="container-site">
+      <div class="contact-hero-layout">
+        
+        <!-- Left: editorial text -->
+        <div class="contact-hero-text">
+          <span class="eyebrow">Contact</span>
+          <h1
+            id="contact-h1"
+            class="contact-h1 font-heading font-bold text-white reveal"
+          >
+            Let's shape your next transformation
+          </h1>
+          <p class="contact-hero-lead reveal delay-100">
+            Whether you're exploring AI strategy, rethinking operating models, navigating a
+            digital transformation programme or aligning enterprise agility with measurable
+            business outcomes — I'm open to strategic conversations.
+          </p>
+          <p class="contact-hero-sub reveal delay-200">
+            For strategic roles, advisory conversations, enterprise transformation initiatives,
+            speaking opportunities or selected collaborations.
+          </p>
+          <div class="contact-hero-cta reveal delay-300">
+            <a
+              id="calendly-cta"
+              href="https://calendly.com/facundo_gangemi/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary"
+              aria-label="Book a 30-minute strategic conversation — opens scheduling calendar"
+            >
+              Book a strategic conversation
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+          <p class="contact-hero-topics reveal delay-300" aria-label="Topics: AI Strategy, Operating Models, Governance, Execution">
+            AI Strategy · Operating Models · Governance · Execution
+          </p>
+        </div>
+        
+        <!-- Right: editorial hero image -->
+        <div class="contact-hero-visual reveal delay-200">
+          <div class="contact-hero-image-wrap">
+            <img
+              src="/images/contact/contact-hero-executive-ai-strategy.webp"
+              alt="Executive AI strategy and digital transformation conversation visual"
+              width="760"
+              height="570"
+              loading="eager"
+              decoding="async"
+              class="contact-hero-img"
+            />
+            <div class="contact-hero-fade-left" aria-hidden="true"></div>
+            <div class="contact-hero-fade-bottom" aria-hidden="true"></div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT_SECTION_02_CONVERSATION_AREAS ───────────────────────────────── -->
+  <section
+    class="section-py bg-gray-950"
+    aria-labelledby="convo-heading"
+  >
+    <div class="container-site">
+
+      <div class="convo-header reveal">
+        <span class="eyebrow">What we can discuss</span>
+        <h2
+          id="convo-heading"
+          class="convo-heading font-heading font-bold text-white"
+        >
+          Strategic conversations I engage with
+        </h2>
+        <p class="convo-sub">
+          Focused on AI strategy, transformation and execution contexts relevant to
+          enterprise leaders and decision-makers.
+        </p>
+      </div>
+
+      <div class="convo-grid">
+        {CONVO_CARDS.map((card, i) => (
+          <div class={`convo-card reveal delay-${(i % 3) * 100}`}>
+            <div class="convo-card-icon" set:html={card.icon} />
+            <h3 class="convo-card-title">{card.title}</h3>
+            <p class="convo-card-desc">{card.desc}</p>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT_SECTION_03_FORM ─────────────────────────────────────────────── -->
+  <section
+    id="contact-form"
+    class="section-py"
+    style="background: #05070D;"
+    aria-labelledby="form-heading"
+  >
+    <div class="container-site">
+      <div class="form-layout">
+
+        <!-- Left: form -->
+        <div class="form-col reveal">
+          <h2
+            id="form-heading"
+            class="form-heading font-heading font-bold text-white"
+          >
+            Send a detailed message
+          </h2>
+          <p class="form-intro">
+            Prefer to explain your context in writing? Describe the challenge,
+            opportunity or initiative you want to discuss and I will follow up directly.
+          </p>
+
+          <form
+            id="contact-form-el"
+            action="https://formspree.io/f/xrejjrgj"
+            method="POST"
+            class="contact-form"
+            novalidate
+          >
+            <input
+              type="hidden"
+              name="subject"
+              value="New strategic contact from facundogangemi.com"
+            />
+
+            <div class="form-row form-row-2">
+              <div class="form-field">
+                <label for="name" class="form-label">
+                  Name <span class="form-required" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  autocomplete="name"
+                  placeholder="Your name"
+                  class="form-input"
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="email" class="form-label">
+                  Email <span class="form-required" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  placeholder="your.email@company.com"
+                  class="form-input"
+                />
+              </div>
+            </div>
+
+            <div class="form-row form-row-2">
+              <div class="form-field">
+                <label for="company" class="form-label">
+                  Company / Organization
+                </label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  autocomplete="organization"
+                  placeholder="Company name"
+                  class="form-input"
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="conversation_type" class="form-label">
+                  Conversation type <span class="form-required" aria-hidden="true">*</span>
+                </label>
+                <div class="form-select-wrap">
+                  <select
+                    id="conversation_type"
+                    name="conversation_type"
+                    required
+                    class="form-select"
+                  >
+                    <option value="" disabled selected>Select one option</option>
+                    <option value="AI Strategy">AI Strategy</option>
+                    <option value="Digital Transformation">Digital Transformation</option>
+                    <option value="Operating Model">Operating Model</option>
+                    <option value="Enterprise Agility">Enterprise Agility</option>
+                    <option value="Leadership Role">Leadership Role</option>
+                    <option value="Speaking / Workshop">Speaking / Workshop</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <svg
+                    class="form-select-arrow"
+                    width="12"
+                    height="8"
+                    viewBox="0 0 12 8"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path d="M1 1l5 5 5-5" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="message" class="form-label">
+                Message <span class="form-required" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                required
+                placeholder="Briefly describe the challenge, opportunity, role or collaboration you want to discuss."
+                class="form-textarea"
+              ></textarea>
+            </div>
+
+            <p class="form-required-note">
+              <span aria-hidden="true">*</span> Required fields
+            </p>
+
+            <button type="submit" class="btn-primary form-submit">
+              Start a strategic conversation
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+
+            <!-- Inline status — populated by JS; aria-live ensures screen readers announce changes -->
+            <div
+              id="form-status"
+              class="form-status"
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+            ></div>
+
+          </form>
+        </div>
+
+        <!-- Right: sidebar -->
+        <aside class="form-sidebar reveal delay-200" aria-label="Message guidance">
+
+          <div class="sidebar-block">
+            <h3 class="sidebar-heading">What to include in your message</h3>
+            <ul class="sidebar-list">
+              <li>The transformation challenge or opportunity you are working on.</li>
+              <li>The business context, industry or type of organization.</li>
+              <li>Whether the conversation is about a role, advisory work, speaking or collaboration.</li>
+              <li>Any timing, scope or decision criteria already defined.</li>
+            </ul>
+          </div>
+
+          <div class="sidebar-divider" aria-hidden="true"></div>
+
+          <div class="sidebar-block">
+            <p class="sidebar-trust">
+              Facundo works at the intersection of AI strategy, digital transformation,
+              enterprise agility, operating models and execution — with experience across
+              financial services, technology and enterprise transformation environments.
+            </p>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT_SECTION_04_FINAL_NAV ────────────────────────────────────────── -->
+  <section
+    class="section-py-sm bg-gray-950"
+    aria-labelledby="final-nav-heading"
+  >
+    <div class="container-site">
+      <div class="final-nav reveal">
+        <p class="final-nav-copy">
+          Before reaching out, you can also explore the strategic background behind this
+          work or read recent perspectives on AI strategy and transformation.
+        </p>
+        <nav class="final-nav-links" aria-label="Related pages">
+          <a href="/about/" class="text-link-light">
+            About Facundo Gangemi
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="/insights/" class="text-link-light">
+            Strategic Insights
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="/advisory/" class="text-link-light">
+            Advisory Services
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact form: async fetch submission — user stays on page; fallback to normal POST if JS is disabled -->
+  <script is:inline>
+  (function () {
+    var CALENDLY_URL = 'https://calendly.com/facundo_gangemi/30min';
+
+    function initContactForm() {
+      var form = document.getElementById('contact-form-el');
+      if (!form) return;
+
+      var submitBtn = form.querySelector('[type="submit"]');
+      var statusEl  = document.getElementById('form-status');
+      if (!submitBtn || !statusEl) return;
+
+      var originalBtnHTML = submitBtn.innerHTML;
+
+      function showStatus(state, html) {
+        statusEl.setAttribute('data-state', state);
+        statusEl.innerHTML = html;
+      }
+
+      function clearStatus() {
+        statusEl.removeAttribute('data-state');
+        statusEl.innerHTML = '';
+      }
+
+      function setLoading(on) {
+        if (on) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending…';
+        } else {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHTML;
+        }
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+
+        clearStatus();
+        setLoading(true);
+
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        })
+          .then(function (res) {
+            if (res.ok) {
+              showStatus('success', "Thank you. Your message has been sent successfully. I'll get back to you soon.");
+              form.reset();
+            } else {
+              showStatus('error', 'Something went wrong while sending your message. Please try again or <a href="' + CALENDLY_URL + '" target="_blank" rel="noopener noreferrer" class="status-link">book a strategic conversation</a>.');
+            }
+          })
+          .catch(function () {
+            showStatus('error', 'Something went wrong while sending your message. Please try again or <a href="' + CALENDLY_URL + '" target="_blank" rel="noopener noreferrer" class="status-link">book a strategic conversation</a>.');
+          })
+          .finally(function () {
+            setLoading(false);
+          });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initContactForm);
+    } else {
+      initContactForm();
+    }
+  }());
+  </script>
+
+  <!-- Calendly: popup trigger — intercepts click when library is ready; href fallback opens in new tab if JS is unavailable -->
+  <script is:inline>
+  (function () {
+    function initCalendlyCta() {
+      var btn = document.getElementById('calendly-cta');
+      if (!btn) return;
+      btn.addEventListener('click', function (e) {
+        if (window.Calendly) {
+          e.preventDefault();
+          window.Calendly.initPopupWidget({
+            url: 'https://calendly.com/facundo_gangemi/30min',
+          });
+        }
+        // If Calendly has not loaded yet, the default href opens the page in a new tab
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCalendlyCta);
+    } else {
+      initCalendlyCta();
+    }
+  }());
+  </script>
+
+  <!-- Calendly: popup widget JS — loaded async, does not block page render -->
+  <script
+    src="https://assets.calendly.com/assets/external/widget.js"
+    type="text/javascript"
+    async
+    is:inline
+  ></script>
+
+</BaseLayout>
+
+<style>
+  /* ── Section 01: Hero ────────────────────────────────────────────────────── */
+
+  .contact-hero-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .contact-hero-layout {
+      grid-template-columns: 55fr 45fr;
+      gap: 4.5rem;
+    }
+  }
+
+  .contact-h1 {
+    font-size: clamp(1.875rem, 4vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 1.25rem 0 1.5rem;
+  }
+
+  .contact-hero-lead {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.68);
+    line-height: 1.7;
+    max-width: 50ch;
+    margin-bottom: 0.85rem;
+  }
+
+  .contact-hero-sub {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.40);
+    line-height: 1.7;
+    max-width: 48ch;
+    margin-bottom: 2rem;
+  }
+
+  .contact-hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.875rem;
+    align-items: center;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(245, 124, 0, 0.10);
+  }
+
+  .contact-hero-topics {
+    margin-top: 1.5rem;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.28);
+    letter-spacing: 0.06em;
+  }
+
+  /* Hero right: editorial image */
+  .contact-hero-visual {
+    display: block;
+  }
+
+  @media (max-width: 1023px) {
+    .contact-hero-visual { display: none; }
+  }
+
+  .contact-hero-image-wrap {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+  }
+
+  @media (min-width: 1024px) {
+    .contact-hero-image-wrap {
+      aspect-ratio: 4 / 3;
+      border-radius: 1.25rem;
+    }
+  }
+
+  .contact-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    filter: brightness(1.15) contrast(1.02);
+  }
+
+  .contact-hero-fade-left {
+    position: absolute;
+    inset-y: 0;
+    left: 0;
+    width: 16%;
+    background: linear-gradient(to right, #05070D, transparent);
+    pointer-events: none;
+  }
+
+  .contact-hero-fade-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20%;
+    background: linear-gradient(to top, #05070D, transparent);
+    pointer-events: none;
+  }
+
+  /* ── Section 02: Conversation cards ─────────────────────────────────────── */
+
+  .convo-header {
+    margin-bottom: 3rem;
+  }
+
+  .convo-heading {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.2;
+    margin: 0.5rem 0 0.875rem;
+  }
+
+  .convo-sub {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.65;
+    max-width: 54ch;
+    margin: 0;
+  }
+
+  .convo-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .convo-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (min-width: 1024px) {
+    .convo-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .convo-card {
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-top: 2px solid rgba(245, 124, 0, 0.38);
+    background: rgba(255, 255, 255, 0.025);
+    transition: background 220ms ease, border-color 220ms ease, transform 220ms ease;
+  }
+
+  .convo-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.11);
+    border-top-color: rgba(245, 124, 0, 0.65);
+    transform: translateY(-3px);
+  }
+
+  .convo-card-icon {
+    color: #F57C00;
+    margin-bottom: 1.25rem;
+  }
+
+  .convo-card-title {
+    font-family: Manrope, system-ui, sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.35;
+    margin: 0 0 0.875rem;
+  }
+
+  .convo-card-desc {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.48);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ── Section 03: Form ────────────────────────────────────────────────────── */
+
+  .form-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  @media (min-width: 1024px) {
+    .form-layout { grid-template-columns: 60fr 40fr; gap: 5rem; }
+  }
+
+  .form-heading {
+    font-size: clamp(1.5rem, 3vw, 2.125rem);
+    line-height: 1.15;
+    margin: 0 0 1rem;
+  }
+
+  .form-intro {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.7;
+    margin: 0 0 2.25rem;
+    max-width: 52ch;
+  }
+
+  /* Form fields */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-row {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .form-row-2 { grid-template-columns: 1fr 1fr; }
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .form-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.68);
+    letter-spacing: 0.02em;
+  }
+
+  .form-required {
+    color: #F57C00;
+    margin-left: 0.15em;
+  }
+
+  .form-input,
+  .form-textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.625rem;
+    padding: 0.8rem 1rem;
+    color: #ffffff;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.28);
+  }
+
+  .form-input:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: rgba(245, 124, 0, 0.55);
+    box-shadow: 0 0 0 3px rgba(245, 124, 0, 0.1);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 9rem;
+  }
+
+  /* Select */
+  .form-select-wrap {
+    position: relative;
+  }
+
+  .form-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.625rem;
+    padding: 0.8rem 2.75rem 0.8rem 1rem;
+    color: #ffffff;
+    font-size: 0.9375rem;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .form-select option {
+    background-color: #05070D;
+    color: #ffffff;
+  }
+
+  .form-select:focus {
+    outline: none;
+    border-color: rgba(245, 124, 0, 0.55);
+    box-shadow: 0 0 0 3px rgba(245, 124, 0, 0.1);
+  }
+
+  .form-select-arrow {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .form-required-note {
+    font-size: 0.775rem;
+    color: rgba(255, 255, 255, 0.3);
+    margin: 0;
+  }
+
+  .form-submit {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+    font-size: 0.9375rem;
+  }
+
+  /* Sidebar */
+  .form-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .sidebar-block {
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .sidebar-divider {
+    height: 1.25rem;
+  }
+
+  .sidebar-heading {
+    font-family: Manrope, system-ui, sans-serif;
+    font-size: 0.8875rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.75);
+    letter-spacing: 0.01em;
+    margin: 0 0 1.25rem;
+  }
+
+  .sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .sidebar-list li {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.50);
+    line-height: 1.7;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .sidebar-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(245, 124, 0, 0.7);
+  }
+
+  .sidebar-trust {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.42);
+    line-height: 1.75;
+    margin: 0;
+    font-style: italic;
+  }
+
+  /* Form inline status message */
+  .form-status {
+    border-radius: 0.625rem;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  .form-status[data-state] {
+    margin-top: 1.25rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .form-status[data-state="success"] {
+    color: rgba(255, 255, 255, 0.88);
+    background: rgba(34, 197, 94, 0.07);
+    border: 1px solid rgba(34, 197, 94, 0.22);
+  }
+
+  .form-status[data-state="error"] {
+    color: rgba(255, 255, 255, 0.88);
+    background: rgba(245, 124, 0, 0.07);
+    border: 1px solid rgba(245, 124, 0, 0.28);
+  }
+
+  .status-link {
+    color: rgba(245, 124, 0, 0.85);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .status-link:hover {
+    color: #F57C00;
+  }
+
+  /* ── Section 04: Final nav ───────────────────────────────────────────────── */
+
+  .final-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  @media (min-width: 768px) {
+    .final-nav {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+  }
+
+  .final-nav-copy {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.42);
+    line-height: 1.65;
+    margin: 0;
+    max-width: 52ch;
+  }
+
+  .final-nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .final-nav-links .text-link-light {
+    font-size: 0.845rem;
+    white-space: nowrap;
+  }
+</style>

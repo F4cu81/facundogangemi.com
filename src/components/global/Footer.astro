@@ -32,7 +32,7 @@ const { currentYear = new Date().getFullYear() } = Astro.props;
     <div class="footer-grid">
       {/* Column 1: Advisory */}
       <div class="footer-column">
-        <h3 class="footer-column-title">Advisory</h3>
+        <p class="footer-column-title">Advisory</p>
         <ul class="footer-links">
           {FOOTER_NAV.advisory.map(link => (
             <li>
@@ -46,7 +46,7 @@ const { currentYear = new Date().getFullYear() } = Astro.props;
 
       {/* Column 2: Resources */}
       <div class="footer-column">
-        <h3 class="footer-column-title">Resources</h3>
+        <p class="footer-column-title">Resources</p>
         <ul class="footer-links">
           {FOOTER_NAV.resources.map(link => (
             <li>
@@ -60,7 +60,7 @@ const { currentYear = new Date().getFullYear() } = Astro.props;
 
       {/* Column 3: About */}
       <div class="footer-column">
-        <h3 class="footer-column-title">About</h3>
+        <p class="footer-column-title">About</p>
         <ul class="footer-links">
           {FOOTER_NAV.about.map(link => (
             <li>
@@ -74,7 +74,7 @@ const { currentYear = new Date().getFullYear() } = Astro.props;
 
       {/* Column 4: Connect */}
       <div class="footer-column">
-        <h3 class="footer-column-title">Connect</h3>
+        <p class="footer-column-title">Connect</p>
         <div class="footer-connect">
           <p class="footer-description">
             Let's explore how AI and strategic thinking can transform your organization.
@@ -131,7 +131,7 @@ const { currentYear = new Date().getFullYear() } = Astro.props;
 <style>
   /* Footer Root */
   :global(footer.footer) {
-    background: #070B14;
+    background: #02030A;
     color: #ffffff;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
   }

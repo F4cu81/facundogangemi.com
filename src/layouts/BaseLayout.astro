@@ -1,4 +1,4 @@
----
+﻿---
 /**
  * BaseLayout — facundogangemi.com
  *
@@ -14,6 +14,7 @@ import { SITE } from '@/data/site';
 import Navbar from '@/components/global/Navbar.astro';
 import MobileMenu from '@/components/global/MobileMenu.astro';
 import Footer from '@/components/global/Footer.astro';
+import BackToTop from '@/components/global/BackToTop.astro';
 
 interface Props {
   /** Page <title> — will be appended with " | Facundo Gangemi" if not full */
@@ -22,6 +23,8 @@ interface Props {
   description?: string;
   /** Open Graph image path (absolute URL or /assets/og/...) */
   ogImage?: string;
+  /** Open Graph image alt text */
+  ogImageAlt?: string;
   /** Canonical URL — defaults to current page URL */
   canonical?: string;
   /** Page locale — for hreflang, defaults to 'en' */
@@ -34,17 +37,21 @@ interface Props {
   structuredData?: Record<string, unknown>[];
   /** Adds no-index for draft/private pages */
   noIndex?: boolean;
+  /** Above-the-fold image to preload for LCP optimisation */
+  preloadImage?: string;
 }
 
 const {
   title,
   description = SITE.description,
   ogImage = SITE.ogImage,
+  ogImageAlt = 'Facundo Gangemi — AI Strategy & Transformation Advisory',
   canonical,
   locale = 'en',
   alternateUrl,
   structuredData,
   noIndex = false,
+  preloadImage,
 } = Astro.props;
 
 const pageTitle = title
@@ -75,9 +82,8 @@ const ogImageURL = ogImage.startsWith('http')
   <link rel="canonical" href={canonicalURL} />
   {noIndex && <meta name="robots" content="noindex, nofollow" />}
 
-  <!-- hreflang — i18n readiness -->
-  <link rel="alternate" hreflang="en" href={locale === 'en' ? canonicalURL : new URL('/', SITE.url).href} />
-  <link rel="alternate" hreflang="es" href={locale === 'es' ? canonicalURL : new URL('/es/', SITE.url).href} />
+  <!-- hreflang — English only until /es/ routes are implemented -->
+  <link rel="alternate" hreflang="en" href={canonicalURL} />
   <link rel="alternate" hreflang="x-default" href={new URL('/', SITE.url).href} />
 
   <!-- Open Graph -->
@@ -88,6 +94,8 @@ const ogImageURL = ogImage.startsWith('http')
   <meta property="og:image" content={ogImageURL} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/webp" />
+  <meta property="og:image:alt" content={ogImageAlt} />
   <meta property="og:locale" content={locale === 'en' ? 'en_US' : 'es_ES'} />
   <meta property="og:site_name" content={SITE.name} />
 
@@ -107,12 +115,16 @@ const ogImageURL = ogImage.startsWith('http')
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
   <link rel="manifest" href="/favicon/site.webmanifest" />
 
-  <!-- Preconnect for Google Fonts -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" />
+
+  <!-- LCP preload for above-the-fold images -->
+  {preloadImage && <link rel="preload" as="image" href={preloadImage} type="image/webp" />}
 
   <!-- Theme color for mobile browsers -->
-  <meta name="theme-color" content="#00274C" />
+  <meta name="theme-color" content="#05070D" />
 
   <!-- Critical accessibility fallback.
        This protects the skip link even if Tailwind fails to compile during local debugging. -->
@@ -152,10 +164,14 @@ const ogImageURL = ogImage.startsWith('http')
     '@type': 'Person',
     name: 'Facundo Gangemi',
     url: SITE.url,
+    image: 'https://facundogangemi.com/assets/portraits/facundo-hero-executive.webp',
     jobTitle: 'AI Strategy & Enterprise Transformation Advisor',
     description: SITE.description,
     sameAs: [SITE.linkedin],
   })} />
+
+  <!-- Per-page head injections (fonts, third-party widgets, etc.) -->
+  <slot name="head" />
 </head>
 
 <body class="bg-white text-gray-900 antialiased">
@@ -178,6 +194,9 @@ const ogImageURL = ogImage.startsWith('http')
 
   <!-- Global Footer -->
   <Footer />
+
+  <!-- Back to Top -->
+  <BackToTop />
 
   <!-- Reveal animation script — lightweight IntersectionObserver -->
   <script>

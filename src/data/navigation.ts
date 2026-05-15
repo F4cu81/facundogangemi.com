@@ -17,16 +17,16 @@ export const NAV_ITEMS: NavItem[] = [
     href: '/advisory',
     hasDropdown: true,
     children: [
-      { label: 'AI Strategy',            href: '/advisory/ai-strategy' },
-      { label: 'Digital Transformation', href: '/advisory/digital-transformation' },
-      { label: 'Enterprise Agility',     href: '/advisory/enterprise-agility' },
-      { label: 'AI Adoption',            href: '/advisory/ai-adoption' },
+      { label: 'AI Strategy',            href: '/advisory/#ai-strategy' },
+      { label: 'Digital Transformation', href: '/advisory/#digital-transformation' },
+      { label: 'Operational Excellence', href: '/advisory/#operational-excellence' },
+      { label: 'AI Adoption',            href: '/advisory/#ai-adoption' },
     ],
   },
   { label: 'Case Studies', href: '/case-studies' },
   { label: 'Insights',     href: '/insights' },
-  { label: 'Speaking',     href: '/speaking' },
   { label: 'About',        href: '/about' },
+  { label: 'Contact',      href: '/contact' },
 ];
 
 export const NAV_CTA = {
@@ -36,11 +36,11 @@ export const NAV_CTA = {
 
 export const FOOTER_NAV = {
   advisory: [
-    { label: 'AI Strategy Advisory',      href: '/advisory/ai-strategy' },
-    { label: 'Digital Transformation',     href: '/advisory/digital-transformation' },
-    { label: 'Enterprise Agility',         href: '/advisory/enterprise-agility' },
-    { label: 'AI Adoption & Enablement',   href: '/advisory/ai-adoption' },
-    { label: 'Executive Advisory Hub',     href: '/advisory' },
+    { label: 'AI Strategy Advisory',      href: '/advisory/#ai-strategy' },
+    { label: 'Digital Transformation',     href: '/advisory/#digital-transformation' },
+    { label: 'Operational Excellence',     href: '/advisory/#operational-excellence' },
+    { label: 'AI Adoption & Enablement',   href: '/advisory/#ai-adoption' },
+    { label: 'Executive Advisory Hub',     href: '/advisory/' },
   ],
   resources: [
     { label: 'Insights',        href: '/insights' },

@@ -212,14 +212,29 @@ Avoid:
 
 # 9. Brand Colors
 
-Primary Color:
-- #00274C
+Primary visual background (approved):
+- #05070D — premium near-black (all dark section backgrounds)
+
+Footer background:
+- #02030A — slightly darker than page body for visual separation
+
+Elevated surface:
+- #0A0F1A — cards, modals, secondary surfaces on dark backgrounds
+
+Brand navy (secondary atmospheric tone only):
+- #00274C — used sparingly for depth; must not dominate the interface
 
 Secondary Color:
 - #F2F2F2
 
 Accent Color:
 - #F57C00
+
+Approved visual direction:
+- Premium black executive aesthetic
+- Dark navy (#00274C) may be used as secondary atmospheric tone only
+- Orange (#F57C00) remains the accent color
+- Avoid making the entire interface a blue/dark navy surface
 
 ---
 
@@ -482,3 +497,63 @@ The long-term vision is to position Facundo Gangemi as a global authority in:
 - Intelligent Organizations
 - Enterprise Transformation
 - AI-enabled Operating Models
+
+---
+
+# 20. Relationship With CEREBRO.md
+
+This project maintains a living memory file called `CEREBRO.md` in the project root.
+
+`CEREBRO.md` is the practical session memory of the project. It records:
+- Approved design and layout decisions
+- Validated visual patterns and component structures
+- Protected choices that must not be reversed without explicit approval
+- Known issues and pending improvements
+
+**How these files relate:**
+
+| File | Role |
+|---|---|
+| `MASTER_CONTEXT.md` | Strategic source of truth — brand identity, positioning, business goals, audience, visual direction |
+| `CLAUDE.md` | Technical source of truth — coding rules, SEO standards, deployment constraints, quality gates |
+| `CEREBRO.md` | Practical session memory — what has been built, approved and learned across sessions |
+| `strategy/EXECUTIVE_DIGITAL_BRAND_STRATEGY.md` | Executive brand strategy — web strategy, conversion architecture, offer design, thought leadership direction |
+
+`CEREBRO.md` does not override `MASTER_CONTEXT.md` or `CLAUDE.md`. It operates within them — translating strategy and rules into concrete, accumulated, session-to-session knowledge.
+
+At the start of every development session:
+1. Read `CEREBRO.md` before reading source files.
+2. Verify that recorded decisions still match the current state of the code.
+3. Update `CEREBRO.md` at the end of the session if new decisions were made or approved.
+
+---
+
+# 21. Executive Digital Brand Strategy
+
+The project includes a strategic capability named **Executive Digital Brand Strategy**, documented in:
+
+`strategy/EXECUTIVE_DIGITAL_BRAND_STRATEGY.md`
+
+This document combines Web Strategy, Strategic Positioning, Executive Personal Brand, Conversion Strategy, Offer Architecture and Thought Leadership Strategy.
+
+Claude Code should use this file as a strategic reference when working on:
+- Website architecture and page structure
+- Advisory positioning and service narratives
+- Homepage messaging and hero copy
+- About page narrative and executive credibility framing
+- Insights strategy and thought leadership direction
+- Conversion flows and CTA design
+- LinkedIn/web alignment and executive brand consistency
+- Offer architecture and advisory packaging
+
+This document is an internal strategic reference. It should not be exposed as a public website page unless explicitly requested.
+
+**Relationship to other strategic files:**
+
+| File | Role |
+|---|---|
+| `MASTER_CONTEXT.md` | Strategic identity, positioning and business goals |
+| `CLAUDE.md` | Technical rules, coding standards and deployment constraints |
+| `docs/seo/google-positioning-guardrails.md` | Google SEO positioning and content strategy |
+| `strategy/EXECUTIVE_DIGITAL_BRAND_STRATEGY.md` | Executive brand strategy, conversion architecture and thought leadership direction |
+| `CEREBRO.md` | Practical session memory — approved decisions and validated patterns |

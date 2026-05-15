@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://facundogangemi.com/sitemap.xml
+Sitemap: https://facundogangemi.com/sitemap-index.xml
