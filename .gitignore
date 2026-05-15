@@ -1,4 +1,4 @@
-# Dependencies
+# Dependencies 
 node_modules/
 
 # Build output
@@ -25,7 +25,21 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Astro
-.astro/
-
+# Claude local settings
 .claude/settings.local.json
+
+# Local Claude Code / private project context
+CLAUDE.md
+CEREBRO.md
+PROJECT_CONTEXT_INDEX.md
+MASTER_CONTEXT.md
+CLAUDE_RESPONSE_STYLE.md
+
+strategy/
+references/
+coworkers/
+docs/
+branding/
+prompts/
+ux/
+legal/legal-context.md
