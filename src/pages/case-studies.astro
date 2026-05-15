@@ -16,6 +16,21 @@ const SEO_DESCRIPTION =
 
 const HERO_IMAGE = '/images/case-studies/case-studies-hero.webp';
 
+const CASE_GROUPS = [
+  {
+    label: 'Financial Services & Regulated Industries',
+    slugs: ['financial-services-agile-transformation', 'insurance-process-digitization'],
+  },
+  {
+    label: 'Enterprise Execution & Governance',
+    slugs: ['operational-excellence-delivery-governance', 'strategic-alignment-okrs-qbrs-portfolio'],
+  },
+  {
+    label: 'AI Strategy & Digital Platform',
+    slugs: ['ai-ready-digital-platform-enablement', 'devops-microservices-platform-modernization'],
+  },
+];
+
 const METHOD_STEPS = [
   {
     num: '01',
@@ -144,59 +159,77 @@ const METHOD_STEPS = [
 
       <h2 id="cs-grid-heading" class="cs-grid-h2 font-heading font-semibold text-white reveal">Selected transformation case studies</h2>
 
-      <div class="cs-grid">
-        {caseStudies.map((cs) => (
-          <article class="cs-card reveal" aria-label={cs.data.title}>
-
-            <!-- Header: eyebrow · title · summary -->
-            <header class="cs-card-header">
-              <p class="cs-card-eyebrow">CASE STUDY · {cs.data.sector.toUpperCase()}</p>
-              <h3 class="cs-card-title font-heading">{cs.data.title}</h3>
-              <p class="cs-card-summary">{cs.data.summary}</p>
-            </header>
-
-            <!-- Strategic proof block -->
-            <div class="cs-proof-block">
-              <p class="cs-proof-label">Strategic proof</p>
-              <p class="cs-proof-text">{cs.data.strategicProof}</p>
-            </div>
-
-            <!-- Challenge · Intervention · Impact -->
-            <div class="cs-detail">
-              <div class="cs-detail-col">
-                <p class="cs-detail-num font-heading" aria-hidden="true">01</p>
-                <p class="cs-detail-label">Challenge</p>
-                <p class="cs-detail-text">{cs.data.challenge}</p>
+      <div class="cs-groups">
+        {CASE_GROUPS.map((group, gi) => {
+          const groupCases = caseStudies.filter((cs) =>
+            group.slugs.some((s) => cs.id.endsWith(`${s}.md`))
+          );
+          if (groupCases.length === 0) return null;
+          const groupNum = String(gi + 1).padStart(2, '0');
+          return (
+            <div class="cs-group">
+              <div class="cs-group-header reveal">
+                <span class="cs-group-num font-heading" aria-hidden="true">{groupNum}</span>
+                <h3 class="cs-group-label font-heading">{group.label}</h3>
+                <div class="cs-group-rule" aria-hidden="true"></div>
               </div>
-              <div class="cs-detail-col">
-                <p class="cs-detail-num font-heading" aria-hidden="true">02</p>
-                <p class="cs-detail-label">Intervention</p>
-                <p class="cs-detail-text">{cs.data.intervention}</p>
-              </div>
-              <div class="cs-detail-col">
-                <p class="cs-detail-num font-heading" aria-hidden="true">03</p>
-                <p class="cs-detail-label">Impact</p>
-                <p class="cs-detail-text">{cs.data.impact}</p>
-              </div>
-            </div>
+              <div class="cs-grid">
+                {groupCases.map((cs) => (
+                  <article class="cs-card reveal" aria-label={cs.data.title}>
 
-            <!-- Footer: tags · CTA -->
-            <footer class="cs-card-footer">
-              <ul class="cs-tags" aria-label="Topics" role="list">
-                {cs.data.tags.map((tag) => (
-                  <li class="cs-tag">{tag}</li>
+                    <!-- Header: eyebrow · title · summary -->
+                    <header class="cs-card-header">
+                      <p class="cs-card-eyebrow">CASE STUDY · {cs.data.sector.toUpperCase()}</p>
+                      <h3 class="cs-card-title font-heading">{cs.data.title}</h3>
+                      <p class="cs-card-summary">{cs.data.summary}</p>
+                    </header>
+
+                    <!-- Strategic proof block -->
+                    <div class="cs-proof-block">
+                      <p class="cs-proof-label">Strategic proof</p>
+                      <p class="cs-proof-text">{cs.data.strategicProof}</p>
+                    </div>
+
+                    <!-- Challenge · Intervention · Impact -->
+                    <div class="cs-detail">
+                      <div class="cs-detail-col">
+                        <p class="cs-detail-num font-heading" aria-hidden="true">01</p>
+                        <p class="cs-detail-label">Challenge</p>
+                        <p class="cs-detail-text">{cs.data.challenge}</p>
+                      </div>
+                      <div class="cs-detail-col">
+                        <p class="cs-detail-num font-heading" aria-hidden="true">02</p>
+                        <p class="cs-detail-label">Intervention</p>
+                        <p class="cs-detail-text">{cs.data.intervention}</p>
+                      </div>
+                      <div class="cs-detail-col">
+                        <p class="cs-detail-num font-heading" aria-hidden="true">03</p>
+                        <p class="cs-detail-label">Impact</p>
+                        <p class="cs-detail-text">{cs.data.impact}</p>
+                      </div>
+                    </div>
+
+                    <!-- Footer: tags · CTA -->
+                    <footer class="cs-card-footer">
+                      <ul class="cs-tags" aria-label="Topics" role="list">
+                        {cs.data.tags.map((tag) => (
+                          <li class="cs-tag">{tag}</li>
+                        ))}
+                      </ul>
+                      <a href={cs.data.ctaHref} class="cs-cta-link">
+                        {cs.data.ctaLabel}
+                        <svg class="cs-cta-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                          <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </a>
+                    </footer>
+
+                  </article>
                 ))}
-              </ul>
-              <a href={cs.data.ctaHref} class="cs-cta-link">
-                {cs.data.ctaLabel}
-                <svg class="cs-cta-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </footer>
-
-          </article>
-        ))}
+              </div>
+            </div>
+          );
+        })}
       </div>
 
     </div>
@@ -756,7 +789,59 @@ const METHOD_STEPS = [
     font-size: clamp(1.5rem, 3vw, 2.125rem);
     line-height: 1.22;
     letter-spacing: -0.015em;
-    margin: 0 0 2.5rem;
+    margin: 0 0 3rem;
+  }
+
+  /* ── Thematic groups ─────────────────────────────────────────────────────── */
+
+  .cs-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .cs-groups { gap: 4.5rem; }
+  }
+
+  .cs-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .cs-group-header {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+  }
+
+  .cs-group-num {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: rgba(245, 124, 0, 0.70);
+    flex-shrink: 0;
+  }
+
+  .cs-group-label {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.72);
+    letter-spacing: 0.01em;
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 639px) {
+    .cs-group-label { font-size: 0.875rem; }
+  }
+
+  .cs-group-rule {
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.07);
+    min-width: 1rem;
   }
 
   /* ── Inline contextual links ─────────────────────────────────────────────── */
