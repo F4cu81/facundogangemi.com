@@ -211,24 +211,27 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Property | Value |
 |---|---|
 | Route | `/case-studies/` |
-| Page type | Content hub — live (Phase 9B complete) |
+| Page type | Content hub — live (Phase A SEO fixes applied 2026-05-15) |
 | Language | `en` |
 | Status | **Live** — 6 anonymized case studies loaded via Astro Content Collection (`case-studies`) |
-| SEO title | `Case Studies \| AI Transformation \| Facundo Gangemi` (52 chars) |
-| Meta description | `Explore selected transformation case studies on AI strategy, operating models, operational excellence and measurable business impact.` (133 chars) |
+| SEO title | `Case Studies \| Digital Transformation \| Facundo Gangemi` (55 chars) |
+| Meta description | `Selected case studies in AI strategy, digital transformation and operational excellence. Real enterprise transformation outcomes, anonymized by design.` (151 chars) |
 | Canonical URL | `https://facundogangemi.com/case-studies/` |
-| H1 | `Proof of transformation impact across strategy, operating models and execution` |
+| H1 | `Digital Transformation Case Studies in Enterprise Execution` (59 chars) |
+| Grid section H2 | `Selected transformation case studies` — **visible** (was sr-only; made visible Phase A, 2026-05-15) |
 | Primary search intent | AI strategy and digital transformation case studies |
 | Primary keyword | Digital Transformation Case Studies |
 | Secondary keywords | AI strategy case study, operating model transformation, operational excellence, enterprise agility |
 | Indexable | Yes |
 | Structured data | `CollectionPage` (page-level) + `Person` (inherited from BaseLayout) |
-| Key internal links | `/contact/` (hero CTA + final CTA), `/advisory/` (hero secondary + final secondary) |
+| Key internal links | `/contact/` (hero CTA + final CTA), `/advisory/` (hero secondary + final secondary), `/about/` (Advisory Method section — "Facundo's advisory background"), `/insights/` (Final CTA body — "strategic insights") |
 | Inbound links | `/` (TiP section footer), `/advisory/` (final CTA proof text), `/insights/` (final CTA proof text) — Phase 9 internal linking complete (2026-05-14) |
 | Content source | Astro Content Collection `case-studies` — 6 Markdown files in `src/content/case-studies/**/*.md` |
 | Confidentiality filter | `confidentiality !== 'internal'` — all 6 current cases are `anonymized` |
 | Sections | Hero · Confidentiality note · Case cards (6) · Advisory method (5 steps) · Final CTA |
-| Phase | Phase 9B — visual and experience upgrade complete (2026-05-14) |
+| Phase | Phase A SEO fixes — 2026-05-15 |
+| Phase A changes | (1) SEO title changed from `Case Studies \| AI Transformation` to `Case Studies \| Digital Transformation`. (2) Meta description updated to 151 chars — leads with "Selected case studies", closes with "anonymized by design". (3) H1 updated to include primary keyphrase "Digital Transformation Case Studies". (4) Grid section H2 made visible with `cs-grid-h2` style (was `sr-only`). (5) Internal link to `/about/` added in Advisory Method lead. (6) Internal link to `/insights/` added in Final CTA body. (7) Case #1 tags updated: "Scrum" and "SAFe" replaced with "Operating Model", "Delivery Governance", "Transformation Governance". |
+| Deferred items | (a) Thematic grouping of case cards — not yet implemented. (b) Dedicated OG image for `/case-studies/` — using default `og-home.webp` fallback. (c) `CollectionPage` `hasPart` JSON-LD linking to individual case study items. (d) Individual case study detail pages. (e) `BreadcrumbList` JSON-LD. |
 
 ---
 

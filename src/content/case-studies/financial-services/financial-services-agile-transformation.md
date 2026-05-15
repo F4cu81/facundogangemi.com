@@ -17,9 +17,9 @@ relatedPractices:
 tags:
   - "Financial Services"
   - "Agile Transformation"
-  - "Scrum"
-  - "SAFe"
-  - "Delivery Model"
+  - "Operating Model"
+  - "Delivery Governance"
+  - "Transformation Governance"
 confidentiality: "anonymized"
 evidenceStatus: "qualitative"
 featured: true

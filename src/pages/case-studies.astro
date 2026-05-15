@@ -10,9 +10,9 @@ const caseStudies = allCaseStudies
 
 const count = caseStudies.length;
 
-const SEO_TITLE = 'Case Studies | AI Transformation | Facundo Gangemi';
+const SEO_TITLE = 'Case Studies | Digital Transformation | Facundo Gangemi';
 const SEO_DESCRIPTION =
-  'Explore selected transformation case studies on AI strategy, operating models, operational excellence and measurable business impact.';
+  'Selected case studies in AI strategy, digital transformation and operational excellence. Real enterprise transformation outcomes, anonymized by design.';
 
 const HERO_IMAGE = '/images/case-studies/case-studies-hero.webp';
 
@@ -74,7 +74,7 @@ const METHOD_STEPS = [
           <span class="eyebrow">Case Studies</span>
 
           <h1 id="cs-h1" class="cs-h1 font-heading font-bold text-white mt-2 reveal">
-            Proof of transformation impact across strategy, operating models and execution
+            Digital Transformation Case Studies in Enterprise Execution
           </h1>
 
           <p class="cs-hero-lead reveal delay-100">
@@ -142,7 +142,7 @@ const METHOD_STEPS = [
   <section class="section-py bg-[#05070D]" aria-labelledby="cs-grid-heading">
     <div class="container-site">
 
-      <h2 id="cs-grid-heading" class="sr-only">Selected transformation case studies</h2>
+      <h2 id="cs-grid-heading" class="cs-grid-h2 font-heading font-semibold text-white reveal">Selected transformation case studies</h2>
 
       <div class="cs-grid">
         {caseStudies.map((cs) => (
@@ -212,7 +212,7 @@ const METHOD_STEPS = [
           How transformation work becomes measurable impact
         </h2>
         <p class="cs-method-lead">
-          Each case follows the same advisory logic: understand the business challenge,
+          Each case follows the same advisory logic, grounded in <a href="/about/" class="cs-inline-link">Facundo's advisory background</a>: understand the business challenge,
           design the right operating model, align stakeholders, support execution and
           measure progress through business-relevant signals.
         </p>
@@ -241,7 +241,7 @@ const METHOD_STEPS = [
             Facing a similar transformation challenge?
           </h2>
           <p class="cs-final-body">
-            These cases reflect real enterprise transformation contexts. Discuss your
+            These cases reflect real enterprise transformation contexts. Explore <a href="/insights/" class="cs-inline-link">strategic insights</a> or discuss your
             specific challenge to explore whether there is a relevant advisory approach.
           </p>
           <div class="cs-final-actions">
@@ -748,6 +748,30 @@ const METHOD_STEPS = [
     flex-wrap: wrap;
     gap: 0.875rem;
     justify-content: center;
+  }
+
+  /* ── Case grid heading ───────────────────────────────────────────────────── */
+
+  .cs-grid-h2 {
+    font-size: clamp(1.5rem, 3vw, 2.125rem);
+    line-height: 1.22;
+    letter-spacing: -0.015em;
+    margin: 0 0 2.5rem;
+  }
+
+  /* ── Inline contextual links ─────────────────────────────────────────────── */
+
+  .cs-inline-link {
+    color: rgba(245, 124, 0, 0.80);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-color: rgba(245, 124, 0, 0.30);
+    transition: color 180ms ease, text-decoration-color 180ms ease;
+  }
+
+  .cs-inline-link:hover {
+    color: #F57C00;
+    text-decoration-color: rgba(245, 124, 0, 0.60);
   }
 
   /* ── Reduced motion ──────────────────────────────────────────────────────── */
