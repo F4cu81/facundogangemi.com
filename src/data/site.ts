@@ -20,8 +20,8 @@ export const SITE = {
   makeContactWebhook: 'REPLACE_WITH_MAKE_WEBHOOK_URL',
   makeNewsletterWebhook: 'REPLACE_WITH_NEWSLETTER_WEBHOOK_URL',
 
-  // Open Graph defaults
-  ogImage: '/assets/og/og-home.webp',
+  // Open Graph defaults — used as fallback when a page does not set its own ogImage
+  ogImage: '/assets/og/og-default.webp',
 
   // i18n
   languages: ['en', 'es'] as const,

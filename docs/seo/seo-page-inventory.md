@@ -33,10 +33,11 @@ This inventory documents the current SEO configuration of every page on `facundo
 | Default title (no page title supplied) | `Facundo Gangemi — AI Strategy & Enterprise Transformation Advisor` |
 | Title suffix pattern | `{Page Title} \| Facundo Gangemi` |
 | Default meta description | `Executive advisory for AI Strategy, Digital Transformation and Operating Models. Helping enterprise leaders build clarity and measurable business impact.` (153 chars) |
-| Default OG image | `/assets/og/og-home.webp` |
+| Default OG image | `/assets/og/og-default.webp` — generic fallback; main pages use page-specific images |
 | OG image dimensions | 1200 × 630 px |
-| OG image format | WebP (converted from SVG source via `sharp`; SVG retained as editable source) |
-| `og:image:alt` | `Facundo Gangemi — AI Strategy & Transformation Advisory` |
+| OG image format | WebP |
+| `og:image:type` | `image/webp` |
+| `og:image:alt` | `Facundo Gangemi — AI Strategy & Transformation Advisory` (default; overridden per page) |
 | Twitter card type | `summary_large_image` |
 | Twitter handle | `@facundogangemi` |
 | `theme-color` | `#05070D` |
@@ -81,7 +82,7 @@ No structured data is emitted on interior pages beyond what is inherited through
 | Secondary keywords | Enterprise Transformation, Operating Models, Business Impact, Banking & Financial Services, Signature Framework, Discover Design Deploy Evolve |
 | OG title | Same as SEO title |
 | OG description | Same as meta description |
-| OG image | `https://facundogangemi.com/assets/og/og-home.webp` |
+| OG image | `/assets/og/og-home.webp` — explicit prop; `ogImageAlt`: "Facundo Gangemi AI Strategy and Digital Transformation Advisor" |
 | Indexable | Yes |
 | Structured data | Person (with `image` field added — Phase 10), WebSite, ProfessionalService (with `@id` added — Phase 10) |
 | Key internal links | `/advisory/` (Signature Framework CTA + Final CTA secondary), `/advisory/#ai-strategy`, `/advisory/#digital-transformation`, `/advisory/#operational-excellence`, `/advisory/#ai-adoption`, `/about/` (About Snapshot CTA), `/insights`, `/contact/`, `/case-studies/` (TiP section footer — Phase 9 internal linking) |
@@ -157,6 +158,7 @@ No structured data is emitted on interior pages beyond what is inherited through
 | Primary keyword | AI Strategy & Digital Transformation Advisory |
 | Secondary keywords | Enterprise Transformation, Operating Models, Operational Excellence, AI Adoption |
 | Indexable | Yes |
+| OG image | `/assets/og/og-advisory.webp` — `ogImageAlt`: "Strategic advisory services for intelligent transformation" |
 | Structured data | Person (BaseLayout), Service (page-level — name, provider, description, url, serviceType \[4 values\], areaServed) |
 | Key internal links | `/advisory/#ai-strategy` (anchor), `/advisory/#digital-transformation` (anchor), `/advisory/#operational-excellence` (anchor), `/advisory/#ai-adoption` (anchor), `/contact/`, `/insights/`, `/case-studies/` (final CTA proof text — Phase 9 internal linking) |
 | Improvement notes | Phase 7: complete rebuild as a single-page advisory hub. Navigation and footer links use anchor-format URLs. Phase 8 (2026-05-13): orphaned and deprecated advisory sub-pages deleted — `/advisory/` is now the only advisory route. Service JSON-LD (serviceType: AI Strategy Advisory, Digital Transformation Advisory, Operational Excellence Advisory, AI Adoption Advisory). Hero image: `/images/Advisory/Advisory-hero-client-delivery.webp`. Phase 8.2 (2026-05-13): added Signature Framework section (`#advisory-framework`) between Hero and practice sections — editorial left column + vertical 5-step transformation timeline + 3 supporting statements. Background `#080A10`. |
@@ -195,6 +197,7 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Primary keyword | AI Strategy & Advisory |
 | Secondary keywords | Digital Transformation Advisor, Operating Models, Enterprise Agility, OKRs and QBRs, Banking & Financial Services |
 | Indexable | Yes |
+| OG image | `/assets/og/og-contact.webp` — `ogImageAlt`: "Contact Facundo Gangemi for a strategic advisory conversation" |
 | Structured data | Person (BaseLayout), ContactPage (page-level — name, description, url, author) |
 | Primary conversion path | Calendly popup — 30-min strategic conversation (`https://calendly.com/facundo_gangemi/30min`) |
 | Secondary conversion path | Formspree contact form with inline AJAX confirmation (user stays on page when JS is enabled; falls back to normal POST if JS is disabled) |
@@ -321,6 +324,7 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Primary keyword | AI Strategy & Transformation Insights |
 | Secondary keywords | Digital transformation insights, Operating models, Operational excellence, AI adoption, Enterprise agility |
 | Indexable | Yes |
+| OG image | `/assets/og/og-insights.webp` — `ogImageAlt`: "Strategic insights on AI, transformation and execution" |
 | Structured data | Person (BaseLayout), CollectionPage (page-level — name, description, url, author) |
 | Key internal links | `/insights/ai-strategy/`, `/insights/digital-transformation/`, `/insights/operational-excellence/`, `/insights/ai-adoption/` (topic nav row — crawlable `<a href>` links added O-1 closure, 2026-05-14), article cards (dynamic `<a href="/insights/{slug}/">`), `/contact/` (Final CTA primary), `/advisory/` (Final CTA secondary), `/about/` (Final CTA proof text), `/case-studies/` (Final CTA proof text — Phase 9 internal linking) |
 | Improvement notes | Phase 6a: hero with editorial image, filter chips, featured insight card, topic cards, article grid. Title fixed from 87-char overage to 57 chars. Meta description trimmed to 127 chars. Internal /about link added to Final CTA section. CollectionPage JSON-LD added. Phase 10 (2026-05-14): Strategy Execution category replaced with AI Adoption; Strategic Perspectives topic cards section removed; filter section always visible; article cards carry data attributes for client-side filtering. Phase 10D/10E (2026-05-14): first production article published in AI Strategy hub; article image support in Featured card and Latest grid; 3-column desktop article layout (sticky TOC, article body, Latest Insights sidebar); search results section added below filters; article template renamed from `[slug].astro` to `[...slug].astro` to support nested slugs. **O-1 closure (2026-05-14):** Topic hub navigation row added below the JS filter chips in the filters section — four crawlable `<a href>` links pointing to the four category hub routes. Existing `<button data-filter-chip>` controls preserved and unchanged. |
