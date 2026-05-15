@@ -391,7 +391,7 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Route | `/insights/digital-transformation/` |
 | Page type | Content hub — category index |
 | Language | `en` |
-| Status | **Hub** — no articles yet |
+| Status | **Active hub** — 2 articles published (2026-05-15) |
 | SEO title | `Digital Transformation Insights \| Facundo Gangemi` (49 chars) |
 | Meta description | `Insights on digital transformation program design, operating model evolution, execution discipline and measurable business impact for enterprise leaders.` (153 chars) |
 | Canonical URL | `https://facundogangemi.com/insights/digital-transformation/` |
@@ -400,6 +400,52 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Indexable | Yes |
 | Structured data | Person (inherited) |
 | Improvement notes | Meta description expanded in Phase 4d — 153 chars, within the 145–155 target range. Aligned to digital transformation, operating model evolution, execution discipline and measurable business impact. |
+| Key internal links | `/insights/digital-transformation/digital-transformation-execution-system/`, `/insights/digital-transformation/measuring-digital-transformation-success/` |
+
+---
+
+### /insights/digital-transformation/digital-transformation-execution-system/
+
+| Property | Value |
+|---|---|
+| Route | `/insights/digital-transformation/digital-transformation-execution-system/` |
+| Page type | Insight article |
+| Language | `en` |
+| Status | **Published** |
+| SEO title | `Digital Transformation Is an Execution System \| Facundo Gangemi` |
+| Meta description | `Digital transformation fails without execution discipline. Leaders who connect strategy, governance, technology delivery and adoption through a system drive business outcomes.` |
+| Category | Digital Transformation (`digital-transformation`) |
+| `pubDate` | 2026-04-30 |
+| Indexable | Yes |
+| OG image | Falls back to `og-default.webp` (no article image) |
+| Key internal links | `/advisory/`, `/contact/`, `/insights/digital-transformation/` |
+
+---
+
+### /insights/digital-transformation/measuring-digital-transformation-success/
+
+| Property | Value |
+|---|---|
+| Route | `/insights/digital-transformation/measuring-digital-transformation-success/` |
+| Page type | Insight article |
+| Language | `en` |
+| Status | **Published** — migrated and rewritten from Spanish source (2026-05-15) |
+| SEO title | `How to Measure Digital Transformation Success \| Facundo Gangemi` (63 chars with suffix) |
+| Meta description | `Learn how leaders measure digital transformation success through KPIs, adoption metrics, business outcomes and executive governance rhythms.` (141 chars) |
+| Canonical URL | `https://facundogangemi.com/insights/digital-transformation/measuring-digital-transformation-success/` |
+| H1 | `How to Measure Digital Transformation Success` |
+| Main H2s | Why Digital Transformation Is So Difficult to Measure · A Three-Layer Measurement Architecture · KPIs That Signal Real Progress · Governance Rhythms That Keep Measurement Honest · Where to Start · Conclusion and Recommendations |
+| Primary search intent | Informational: how to define and track KPIs and business outcomes for a digital transformation program |
+| Primary keyword | measure digital transformation success |
+| Category | Digital Transformation (`digital-transformation`) |
+| Tags | Digital Transformation, Business Outcomes, Portfolio Governance, Strategy Execution, Operating Models |
+| `pubDate` | 2025-02-20 (original legacy publication date) |
+| `updatedDate` | 2026-05-15 (Astro migration date) |
+| Indexable | Yes |
+| OG image | `/assets/insights/digital-transformation/measuring-digital-transformation-success.webp` |
+| Structured data | Article JSON-LD + BreadcrumbList (via `[...slug].astro` template) |
+| Key internal links | `/advisory/`, `/insights/digital-transformation/`, `/insights/digital-transformation/digital-transformation-execution-system/`, `/case-studies/`, `/contact/` |
+| Source | Rewritten from Spanish legacy article — not a translation |
 
 ---
 
@@ -429,7 +475,7 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Route | `/insights/ai-adoption/` |
 | Page type | Content hub — category index |
 | Language | `en` |
-| Status | **Active hub** — added Phase 10 (2026-05-14); no articles yet |
+| Status | **Active hub** — 2 articles published (2026-05-15) |
 | SEO title | `AI Adoption Insights \| Facundo Gangemi` (38 chars) |
 | Meta description | `Perspectives on moving from AI awareness to embedded adoption, prioritized use cases, capability building and sustained behavior change.` (135 chars) |
 | Canonical URL | `https://facundogangemi.com/insights/ai-adoption/` |
@@ -438,7 +484,53 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Indexable | **Conditional** — `noIndex={!hasArticles}` — will be indexed once first article published in this category |
 | Structured data | Person (inherited) |
 | Key internal links | `/insights/`, `/advisory/#ai-adoption` |
-| Improvement notes | New category page replacing Strategy Execution as the fourth editorial pillar. Matches `/advisory/#ai-adoption` anchor. `noIndex={!hasArticles}` prevents premature indexing of empty hub. |
+| Improvement notes | New category page replacing Strategy Execution as the fourth editorial pillar. Matches `/advisory/#ai-adoption` anchor. `noIndex={!hasArticles}` — now indexable as articles are published. |
+| Key internal links | `/insights/ai-adoption/ai-adoption-operating-rhythms/`, `/insights/ai-adoption/ai-adoption-digital-transformation/` |
+
+---
+
+### /insights/ai-adoption/ai-adoption-operating-rhythms/
+
+| Property | Value |
+|---|---|
+| Route | `/insights/ai-adoption/ai-adoption-operating-rhythms/` |
+| Page type | Insight article |
+| Language | `en` |
+| Status | **Published** |
+| SEO title | `AI Adoption Needs Operating Rhythms \| Facundo Gangemi` |
+| Meta description | `AI adoption fails without operating rhythms. Leaders who embed AI into decision-making routines and workflow redesign see sustained, measurable business outcomes.` |
+| Category | AI Adoption (`ai-adoption`) |
+| `pubDate` | 2026-05-07 |
+| Indexable | Yes |
+| OG image | `/assets/insights/ai-adoption/ai-adoption-operating-rhythms.webp` |
+| Key internal links | `/advisory/`, `/insights/ai-adoption/`, `/contact/` |
+
+---
+
+### /insights/ai-adoption/ai-adoption-digital-transformation/
+
+| Property | Value |
+|---|---|
+| Route | `/insights/ai-adoption/ai-adoption-digital-transformation/` |
+| Page type | Insight article |
+| Language | `en` |
+| Status | **Published** — migrated and rewritten from Spanish source (2026-05-15) |
+| SEO title | `How AI Adoption Accelerates Digital Transformation \| Facundo Gangemi` (69 chars with suffix) |
+| Meta description | `AI adoption accelerates digital transformation when it reshapes operating models, decision-making and workflows — not just automates isolated tasks.` (149 chars) |
+| Canonical URL | `https://facundogangemi.com/insights/ai-adoption/ai-adoption-digital-transformation/` |
+| H1 | `How AI Adoption Accelerates Digital Transformation` |
+| Main H2s | Why AI Adoption and Digital Transformation Must Be Designed Together · What AI Changes in a Transformation Program · Where Governance Determines the Outcome · Building for Business Impact, Not Activity · Where to Start · Conclusion and Recommendations |
+| Primary search intent | Informational: how AI adoption drives digital transformation through operating model and governance design |
+| Primary keyword | AI adoption digital transformation |
+| Category | AI Adoption (`ai-adoption`) |
+| Tags | AI Adoption, Digital Transformation, Operating Models, AI Governance, Business Outcomes |
+| `pubDate` | 2025-02-13 (original legacy publication date) |
+| `updatedDate` | 2026-05-15 (Astro migration date) |
+| Indexable | Yes |
+| OG image | `/assets/insights/ai-adoption/ai-adoption-digital-transformation.webp` |
+| Structured data | Article JSON-LD + BreadcrumbList (via `[...slug].astro` template) |
+| Key internal links | `/advisory/`, `/insights/ai-adoption/`, `/insights/ai-strategy/ai-strategy-operating-model/`, `/contact/` |
+| Source | Rewritten from Spanish legacy article — not a translation |
 
 ---
 
