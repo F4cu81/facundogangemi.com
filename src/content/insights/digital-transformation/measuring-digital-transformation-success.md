@@ -1,5 +1,5 @@
 ---
-title: "How to Measure Digital Transformation Success"
+title: "Measuring Digital Transformation Success"
 description: "Learn how leaders measure digital transformation success through KPIs, adoption metrics, business outcomes and executive governance rhythms."
 pubDate: "2025-02-20"
 updatedDate: "2026-05-15"

@@ -1,5 +1,5 @@
 ---
-title: "How AI Adoption Accelerates Digital Transformation"
+title: "AI Adoption in Digital Transformation"
 description: "AI adoption accelerates digital transformation when it reshapes operating models, decision-making and workflows — not just automates isolated tasks."
 pubDate: "2025-02-13"
 updatedDate: "2026-05-15"

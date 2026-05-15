@@ -16,10 +16,6 @@ export const SITE = {
   email: 'facundo.gangemi@facundogangemi.com',
   linkedin: 'https://linkedin.com/in/facundogangemi',
 
-  // Lead capture webhooks — configure in production
-  makeContactWebhook: 'REPLACE_WITH_MAKE_WEBHOOK_URL',
-  makeNewsletterWebhook: 'REPLACE_WITH_NEWSLETTER_WEBHOOK_URL',
-
   // Open Graph defaults — used as fallback when a page does not set its own ogImage
   ogImage: '/assets/og/og-default.webp',
 

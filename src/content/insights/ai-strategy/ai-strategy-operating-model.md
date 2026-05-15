@@ -1,6 +1,6 @@
 ---
 title: "AI Strategy Needs an Operating Model"
-description: "An AI strategy needs an operating model to deliver impact. Leaders who connect ambition with governance, operating model design and adoption discipline see measurable results."
+description: "AI strategy needs operating models, governance and adoption rhythms to turn ambition into measurable enterprise impact at scale."
 pubDate: "2026-05-14"
 updatedDate: "2026-05-14"
 category: "AI Strategy"

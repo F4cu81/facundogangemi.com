@@ -1,6 +1,6 @@
 ---
-title: "Operational Excellence Starts With Flow Discipline"
-description: "Operational excellence starts with flow. Leaders who understand how work moves across teams, decisions and constraints build the discipline to improve execution sustainably."
+title: "Operational Excellence Through Flow"
+description: "Operational excellence starts with flow discipline: identifying bottlenecks, dependencies and constraints across end-to-end work."
 pubDate: "2026-04-23"
 updatedDate: "2026-04-23"
 category: "Operational Excellence"
@@ -14,7 +14,7 @@ featured: false
 draft: false
 author: "Facundo Gangemi"
 language: "en"
-image: "/assets/insights/operational-excellence/Operational%20Excellence%20Starts%20With%20Flow%20Discipline.webp"
+image: "/assets/insights/operational-excellence/operational-excellence-flow-discipline.webp"
 imageAlt: "End-to-end operational flow showing bottlenecks, dependencies, decision points and continuous improvement loops"
 ---
 

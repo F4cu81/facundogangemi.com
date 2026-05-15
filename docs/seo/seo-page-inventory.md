@@ -361,7 +361,7 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Language | `en` |
 | Status | **Published** — Phase 10D (2026-05-14) |
 | SEO title | `AI Strategy Needs an Operating Model \| Facundo Gangemi` (54 chars) |
-| Meta description | `An AI strategy needs an operating model to deliver impact. Leaders who connect ambition with governance, operating model design and adoption discipline see measurable results.` (172 chars — within 120–155 guardrail range) |
+| Meta description | `AI strategy needs operating models, governance and adoption rhythms to turn ambition into measurable enterprise impact at scale.` (126 chars) |
 | Canonical URL | `https://facundogangemi.com/insights/ai-strategy/ai-strategy-operating-model/` |
 | H1 | `AI Strategy Needs an Operating Model` — unique, matches `headline` in Article JSON-LD |
 | Main H2s | Why AI Initiatives Stall · The Symptoms Worth Recognizing · What an AI Operating Model Actually Requires · Why the Operating Model Is the Differentiator · Where to Start |
@@ -412,12 +412,12 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Page type | Insight article |
 | Language | `en` |
 | Status | **Published** |
-| SEO title | `Digital Transformation Is an Execution System \| Facundo Gangemi` |
-| Meta description | `Digital transformation fails without execution discipline. Leaders who connect strategy, governance, technology delivery and adoption through a system drive business outcomes.` |
+| SEO title | `Digital Transformation Execution System \| Facundo Gangemi` (56 chars) |
+| Meta description | `Digital transformation succeeds when strategy, governance, execution rhythms and measurable outcomes work as one operating system.` (130 chars) |
 | Category | Digital Transformation (`digital-transformation`) |
 | `pubDate` | 2026-04-30 |
 | Indexable | Yes |
-| OG image | Falls back to `og-default.webp` (no article image) |
+| OG image | `/assets/insights/digital-transformation/digital-transformation-execution-system.webp` |
 | Key internal links | `/advisory/`, `/contact/`, `/insights/digital-transformation/` |
 
 ---
@@ -430,10 +430,10 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Page type | Insight article |
 | Language | `en` |
 | Status | **Published** — migrated and rewritten from Spanish source (2026-05-15) |
-| SEO title | `How to Measure Digital Transformation Success \| Facundo Gangemi` (63 chars with suffix) |
+| SEO title | `Measuring Digital Transformation Success \| Facundo Gangemi` (58 chars) |
 | Meta description | `Learn how leaders measure digital transformation success through KPIs, adoption metrics, business outcomes and executive governance rhythms.` (141 chars) |
 | Canonical URL | `https://facundogangemi.com/insights/digital-transformation/measuring-digital-transformation-success/` |
-| H1 | `How to Measure Digital Transformation Success` |
+| H1 | `Measuring Digital Transformation Success` |
 | Main H2s | Why Digital Transformation Is So Difficult to Measure · A Three-Layer Measurement Architecture · KPIs That Signal Real Progress · Governance Rhythms That Keep Measurement Honest · Where to Start · Conclusion and Recommendations |
 | Primary search intent | Informational: how to define and track KPIs and business outcomes for a digital transformation program |
 | Primary keyword | measure digital transformation success |
@@ -456,7 +456,7 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Route | `/insights/operational-excellence/` |
 | Page type | Content hub — category index |
 | Language | `en` |
-| Status | **Hub** — no articles yet |
+| Status | **Active hub** — 1 article published (2026-04-23) |
 | SEO title | `Operational Excellence Insights \| Facundo Gangemi` (49 chars) |
 | Meta description | `Ideas on how organizations improve execution, reduce friction and create operating discipline through better processes, metrics and management systems.` (149 chars) |
 | Canonical URL | `https://facundogangemi.com/insights/operational-excellence/` |
@@ -464,7 +464,25 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Primary keyword | Operational Excellence |
 | Indexable | Yes |
 | Structured data | Person (inherited) |
-| Improvement notes | No articles yet. Hub page complies with guardrails for category structure. |
+| Key internal links | `/insights/operational-excellence/operational-excellence-flow-discipline/` |
+
+---
+
+### /insights/operational-excellence/operational-excellence-flow-discipline/
+
+| Property | Value |
+|---|---|
+| Route | `/insights/operational-excellence/operational-excellence-flow-discipline/` |
+| Page type | Insight article |
+| Language | `en` |
+| Status | **Published** |
+| SEO title | `Operational Excellence Through Flow \| Facundo Gangemi` (53 chars) |
+| Meta description | `Operational excellence starts with flow discipline: identifying bottlenecks, dependencies and constraints across end-to-end work.` (129 chars) |
+| Category | Operational Excellence (`operational-excellence`) |
+| Tags | Operational Excellence, Flow Discipline, Execution Governance, Continuous Improvement |
+| `pubDate` | 2026-04-23 |
+| Indexable | Yes |
+| OG image | `/assets/insights/operational-excellence/operational-excellence-flow-discipline.webp` (renamed 2026-05-15 — was "Operational Excellence Starts With Flow Discipline.webp") |
 
 ---
 
@@ -497,8 +515,8 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Page type | Insight article |
 | Language | `en` |
 | Status | **Published** |
-| SEO title | `AI Adoption Needs Operating Rhythms \| Facundo Gangemi` |
-| Meta description | `AI adoption fails without operating rhythms. Leaders who embed AI into decision-making routines and workflow redesign see sustained, measurable business outcomes.` |
+| SEO title | `AI Adoption Needs Operating Rhythms \| Facundo Gangemi` (53 chars) |
+| Meta description | `AI adoption succeeds when leaders define operating rhythms, decision rights and governance that turn pilots into business outcomes.` (130 chars) |
 | Category | AI Adoption (`ai-adoption`) |
 | `pubDate` | 2026-05-07 |
 | Indexable | Yes |
@@ -515,10 +533,10 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Page type | Insight article |
 | Language | `en` |
 | Status | **Published** — migrated and rewritten from Spanish source (2026-05-15) |
-| SEO title | `How AI Adoption Accelerates Digital Transformation \| Facundo Gangemi` (69 chars with suffix) |
+| SEO title | `AI Adoption in Digital Transformation \| Facundo Gangemi` (55 chars) |
 | Meta description | `AI adoption accelerates digital transformation when it reshapes operating models, decision-making and workflows — not just automates isolated tasks.` (149 chars) |
 | Canonical URL | `https://facundogangemi.com/insights/ai-adoption/ai-adoption-digital-transformation/` |
-| H1 | `How AI Adoption Accelerates Digital Transformation` |
+| H1 | `AI Adoption in Digital Transformation` |
 | Main H2s | Why AI Adoption and Digital Transformation Must Be Designed Together · What AI Changes in a Transformation Program · Where Governance Determines the Outcome · Building for Business Impact, Not Activity · Where to Start · Conclusion and Recommendations |
 | Primary search intent | Informational: how AI adoption drives digital transformation through operating model and governance design |
 | Primary keyword | AI adoption digital transformation |
@@ -527,7 +545,7 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | `pubDate` | 2025-02-13 (original legacy publication date) |
 | `updatedDate` | 2026-05-15 (Astro migration date) |
 | Indexable | Yes |
-| OG image | `/assets/insights/ai-adoption/ai-adoption-digital-transformation.webp` |
+| OG image | `/assets/insights/ai-adoption/ai-adoption-digital-transformation.webp` (128 KB — recompressed 2026-05-15; 1200×675 px) |
 | Structured data | Article JSON-LD + BreadcrumbList (via `[...slug].astro` template) |
 | Key internal links | `/advisory/`, `/insights/ai-adoption/`, `/insights/ai-strategy/ai-strategy-operating-model/`, `/contact/` |
 | Source | Rewritten from Spanish legacy article — not a translation |
@@ -591,7 +609,7 @@ The following pages were created during Phase 4a as structural placeholders. Eac
 | ~~`/about/`~~ | ~~Executive profile and background~~ | **Complete — Phase 8b** | — | — | Full About page with UX/UI + SEO alignment validated (2026-05-13). H1, H2s, H3s, internal links, structured data, OG image and metadata finalized. See `/about/` entry above. |
 | `/case-studies/` | Case studies hub | Library of real transformation experiences | Digital Transformation Case Studies | Yes — when real content available | Populate with documented transformation experiences; do not invent client names or metrics |
 | `/speaking/` | Speaking enquiry page | Full speaking page with topics, formats and past engagements | AI Strategy Speaker | Yes | Add real speaking topics, formats (keynote, panel, workshop), event contexts once available |
-| `/newsletter/` | Newsletter landing page | Newsletter signup with subscription mechanism | AI Strategy Newsletter | Yes — when platform ready | Integrate newsletter platform (configured in `SITE.makeNewsletterWebhook`); add subscription form |
+| `/newsletter/` | Newsletter landing page | Newsletter signup with subscription mechanism | AI Strategy Newsletter | Yes — when platform ready | Integrate newsletter platform when ready; add subscription form and configure webhook endpoint |
 | `/ai-assessment/` | AI Readiness Assessment entry point | Full assessment description page | AI Readiness Assessment | Yes | Expand with methodology, scope, what is assessed, outcomes format, timeline, and how to engage |
 | `/es/` | Spanish language placeholder | Full Spanish version of the site | Estrategia de IA | Yes — when Spanish content is ready | Either translate the full site or noindex this page until translation is complete |
 
