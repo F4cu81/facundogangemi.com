@@ -223,16 +223,18 @@ All four practices remain fully accessible through `/advisory/` anchor sections.
 | Primary keyword | Digital Transformation Case Studies |
 | Secondary keywords | AI strategy case study, operating model transformation, operational excellence, enterprise agility |
 | Indexable | Yes |
+| OG image | `/assets/og/og-case-studies.webp` — dedicated Case Studies OG image, confirmed at `public/assets/og/og-case-studies.webp` (wired Phase B2, 2026-05-15) |
 | Structured data | `CollectionPage` (page-level) + `Person` (inherited from BaseLayout) |
 | Key internal links | `/contact/` (hero CTA + final CTA), `/advisory/` (hero secondary + final secondary), `/about/` (Advisory Method section — "Facundo's advisory background"), `/insights/` (Final CTA body — "strategic insights") |
 | Inbound links | `/` (TiP section footer), `/advisory/` (final CTA proof text), `/insights/` (final CTA proof text) — Phase 9 internal linking complete (2026-05-14) |
 | Content source | Astro Content Collection `case-studies` — 6 Markdown files in `src/content/case-studies/**/*.md` |
 | Confidentiality filter | `confidentiality !== 'internal'` — all 6 current cases are `anonymized` |
 | Sections | Hero · Confidentiality note · Case cards grouped (3 clusters × 2 cases) · Advisory method (5 steps) · Final CTA |
-| Phase | Phase B1 thematic grouping — 2026-05-15 |
+| Phase | Phase B2 dedicated OG image — 2026-05-15 |
 | Phase A changes | (1) SEO title changed from `Case Studies \| AI Transformation` to `Case Studies \| Digital Transformation`. (2) Meta description updated to 151 chars — leads with "Selected case studies", closes with "anonymized by design". (3) H1 updated to include primary keyphrase "Digital Transformation Case Studies". (4) Grid section H2 made visible with `cs-grid-h2` style (was `sr-only`). (5) Internal link to `/about/` added in Advisory Method lead. (6) Internal link to `/insights/` added in Final CTA body. (7) Case #1 tags updated: "Scrum" and "SAFe" replaced with "Operating Model", "Delivery Governance", "Transformation Governance". |
 | Phase B1 changes | Six case study cards regrouped into three visible thematic clusters under `H3` group headings: (1) "Financial Services & Regulated Industries" — Financial Services Agile Transformation + Insurance Process Digitization; (2) "Enterprise Execution & Governance" — Operational Excellence & Delivery Governance + Strategic Alignment through OKRs, QBRs and Portfolio Governance; (3) "AI Strategy & Digital Platform" — AI-Ready Digital Platform Enablement + Technology Modernization, DevOps and Microservices. Grouping logic uses `cs.id.endsWith()` on filename stem. Group header pattern: numbered orange label (`01–03`) + group name (`H3`) + extending horizontal rule. Card visual design, tags, CTAs and existing CSS preserved unchanged. |
-| Deferred items | (a) Dedicated OG image for `/case-studies/` — using default `og-home.webp` fallback. (b) `CollectionPage` `hasPart` JSON-LD linking to individual case study items. (c) Individual case study detail pages. (d) `BreadcrumbList` JSON-LD. |
+| Phase B2 changes | Dedicated OG image wired: `ogImage="/assets/og/og-case-studies.webp"` added to `BaseLayout` prop in `src/pages/case-studies.astro`. Social sharing no longer falls back to `og-home.webp`. |
+| Deferred items | (b) `CollectionPage` `hasPart` JSON-LD linking to individual case study items. (c) Individual case study detail pages. (d) `BreadcrumbList` JSON-LD. |
 
 ---
 
