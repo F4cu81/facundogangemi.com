@@ -99,7 +99,7 @@ In well-run transformation programs, this cadence typically includes:
 
 **Adoption reviews** (monthly) that surface where Layer 2 adoption metrics are lagging and what the structural causes are — whether workflow redesign is incomplete, whether leadership reinforcement is absent, or whether technology integration has created friction.
 
-**Leadership operating reviews** that include transformation metrics alongside standard operating metrics, so that transformation progress is visible in the same rhythm where business performance is governed — not in a separate program-management process that leaders attend only when required.
+**Leadership operating reviews** that include transformation metrics alongside standard operating metrics, so that transformation progress is visible in the same rhythm where business performance is governed — not in a separate program-management process that leaders treat as overhead.
 
 The [OECD digital transformation guidance](https://www.oecd.org/en/topics/digital-transformation.html) frames governance and accountability as foundational requirements for digital transformation to deliver on its objectives. The same principle applies in enterprise contexts: measurement that is not connected to an accountability structure produces information without consequences, and information without consequences does not drive change.
 

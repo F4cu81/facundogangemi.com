@@ -28,7 +28,7 @@ Digital transformation does not fail because organizations set the wrong targets
 
 ## Why Digital Transformation Loses Momentum
 
-The pattern is consistent across industries. A transformation program is launched with executive commitment and strategic clarity. Early initiatives show promising results. Teams feel the energy of genuine organizational change.
+The pattern is consistent across industries. A transformation program is launched with executive commitment and strategic clarity. Early initiatives show promising results. Momentum builds.
 
 Then the organization hits the integration layer. The strategy was designed by one team. Technology delivery is owned by another. Business adoption sits with HR or change management. Outcome measurement was not specified clearly at the start. Nobody owns the question of whether the program is actually delivering what it promised.
 

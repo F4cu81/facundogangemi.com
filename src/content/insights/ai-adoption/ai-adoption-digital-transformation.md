@@ -81,7 +81,7 @@ Activity without outcome measurement is not transformation. It is organized spen
 
 ## Where to Start
 
-For most organizations, the highest-leverage starting point is a clear answer to a simple question: in the transformation program we are running, where should AI change how the organization will work — and is that reflected in how we have designed the program?
+The right starting question is concrete: in the transformation we are running, where should AI change how the organization actually works — and is that visible in how the program was designed?
 
 If AI is currently managed as a separate initiative running alongside the transformation, the integration work begins with aligning governance, sequencing use cases against transformation milestones, and establishing shared outcome metrics.
 

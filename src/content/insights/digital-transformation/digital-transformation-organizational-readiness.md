@@ -43,7 +43,7 @@ If these conditions are not in place before execution investments begin, the tra
 
 ## The Leader as Architect of Change
 
-The most consequential misconception in transformation leadership is the idea that the leader's job is to champion or sell the transformation — to communicate the vision, build enthusiasm, and demonstrate personal commitment. This is not wrong, but it is incomplete in ways that explain why many transformation programs with visible and committed sponsors still fail to deliver.
+The most consequential misconception in transformation leadership is that the leader's job is to champion the transformation — to communicate the vision, build enthusiasm, and demonstrate personal commitment. This is not wrong. But it is incomplete in ways that explain why transformation programs with visible and committed sponsors still fail to deliver.
 
 The leader's primary structural function in a transformation program is not to advocate for change. It is to design the conditions in which change can happen. This is an architectural role, not a communications role.
 

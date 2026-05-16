@@ -76,7 +76,7 @@ Together, these elements form the connective tissue between AI ambition and busi
 
 ## Why the Operating Model Is the Differentiator
 
-Organizations that generate durable value from AI share a common characteristic: they designed their operating model alongside their AI strategy, not after it.
+The organizations generating durable value from AI made one consistent design decision: they built the operating model alongside the strategy, not after it was set.
 
 They made deliberate choices about governance before launching initiatives. They defined outcome metrics before declaring success. They built adoption into the design rather than treating it as a deployment problem. And they created the organizational capacity to learn, iterate, and scale — not just experiment.
 

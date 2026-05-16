@@ -72,7 +72,7 @@ Flow discipline is the organizational capacity to understand, manage, and contin
 
 ## How Leaders Should Improve Execution
 
-Operational improvement programs fail most often not because the techniques are wrong but because the organizational conditions for sustained improvement are absent. Leaders commission Lean or Six Sigma programs, invest in process redesign, and appoint improvement leads. But without the structural conditions that allow improvement to embed and compound, gains dissipate when the program ends.
+Operational improvement programs fail most often because the organizational conditions for sustained improvement are absent — not because the techniques are wrong. Leaders commission Lean or Six Sigma programs, invest in process redesign, and appoint improvement leads. But without the structural conditions that allow improvement to embed and compound, gains dissipate when the program ends.
 
 The structural conditions for sustained operational improvement include:
 
