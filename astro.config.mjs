@@ -29,7 +29,15 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     mdx(),
-    sitemap(),
+    sitemap({
+      filter: (page) =>
+        ![
+          'https://facundogangemi.com/speaking/',
+          'https://facundogangemi.com/newsletter/',
+          'https://facundogangemi.com/ai-assessment/',
+          'https://facundogangemi.com/es/',
+        ].includes(page),
+    }),
   ],
 
   vite: {
