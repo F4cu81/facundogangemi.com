@@ -11,6 +11,8 @@ tags:
   - Business Outcomes
   - Operating Models
   - Transformation Governance
+image: "/assets/insights/digital-transformation/digital-transformation-digital-transformation-strategy-design.webp"
+imageAlt: "Executive team reviewing and adjusting a strategic digital transformation roadmap on a dark premium planning table."
 featured: false
 draft: false
 author: "Facundo Gangemi"

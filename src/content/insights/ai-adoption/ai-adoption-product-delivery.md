@@ -11,6 +11,8 @@ tags:
   - Operating Models
   - Digital Transformation
   - AI Strategy
+image: "/assets/insights/ai-adoption/ai-adoption-for-product-delivery.webp"
+imageAlt: "Product leader and development team redesigning an AI-augmented product delivery operating model."
 featured: false
 draft: false
 author: "Facundo Gangemi"

@@ -11,6 +11,8 @@ tags:
   - Leadership
   - Organizational Design
   - Transformation Execution
+image: "/assets/insights/digital-transformation/digital-transformation-digital-transformation-readiness.webp"
+imageAlt: "Executive team facing organizational readiness barriers and governance conditions for digital transformation."
 featured: false
 draft: false
 author: "Facundo Gangemi"
