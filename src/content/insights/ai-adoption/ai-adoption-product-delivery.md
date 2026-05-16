@@ -35,6 +35,8 @@ This changes what prioritization means. When the signal is richer and more curre
 
 Product organizations that redesign discovery and prioritization workflows around AI-augmented signal processing build a compounding advantage: their understanding of customer behavior and market dynamics improves continuously, without requiring proportional increases in research capacity.
 
+[MIT Sloan research on AI maturity](https://mitsloan.mit.edu/ideas-made-to-matter/how-to-boost-your-organizations-ai-maturity-level) consistently identifies organizations that integrate AI into core decision workflows — rather than deploying it as a standalone tool — as those that build durable performance advantages over time.
+
 ---
 
 ## AI and the Discipline of Outcome Specification
@@ -64,6 +66,8 @@ This role requires different capabilities than traditional product management. P
 ## Why AI Adoption in Product Delivery Requires Operating Model Design
 
 The most common failure mode in AI adoption for product delivery is treating it as a tooling decision. A platform is selected. Licenses are procured. PMs are trained. And then — after a period of individual experimentation — the productivity gains that were projected fail to appear at the program or portfolio level. The tools are being used, but the delivery operating model has not changed.
+
+[McKinsey's State of AI research](https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai) consistently shows that organizations capturing sustained value from AI are those that redesign workflows and operating structures around AI capabilities — not those that add AI to existing processes at the task level.
 
 The reason is that AI tools change the economics of individual tasks, but they do not automatically redesign the workflows, governance structures, and accountability patterns that determine how value flows through a product organization. If discovery is still conducted in the same cycles, with the same review mechanisms, the same prioritization forums, and the same definition-of-done standards — just with AI-assisted drafting at the edges — the structural constraints have not moved.
 
@@ -105,4 +109,4 @@ For product leaders and transformation sponsors evaluating or advancing AI adopt
 
 ---
 
-*Explore more perspectives in the [AI Adoption insights hub](/insights/ai-adoption/) or browse all [strategic insights](/insights/). For related thinking on how AI adoption connects to broader transformation strategy, see [AI Adoption in Digital Transformation](/insights/ai-adoption/ai-adoption-digital-transformation/). If you are ready to discuss what operating model redesign for AI-augmented product delivery looks like in your organization, [start a conversation](/contact/).*
+*Explore more perspectives in the [AI Adoption insights hub](/insights/ai-adoption/) or browse all [strategic insights](/insights/). For related thinking on how AI adoption connects to broader transformation strategy, see [AI Adoption in Digital Transformation](/insights/ai-adoption/ai-adoption-digital-transformation/). For the operating model design principles that apply at the enterprise AI strategy level, see [AI Strategy Needs an Operating Model](/insights/ai-strategy/ai-strategy-operating-model/). If you are ready to discuss what operating model redesign for AI-augmented product delivery looks like in your organization, [start a conversation](/contact/).*

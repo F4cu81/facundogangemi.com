@@ -1,6 +1,6 @@
 ---
-title: "Operational Excellence Through Flow"
-description: "Operational excellence starts with flow discipline: identifying bottlenecks, dependencies and constraints across end-to-end work."
+title: "Operational Excellence and Flow Discipline"
+description: "Operational excellence starts with flow discipline — mapping constraints, bottlenecks and decision delays that prevent sustained execution performance."
 pubDate: "2026-04-23"
 updatedDate: "2026-04-23"
 category: "Operational Excellence"
@@ -35,6 +35,8 @@ In this environment, local efficiency improvements produce surprisingly little v
 [Research on organizational performance improvement](https://hbr.org/topic/subject/operations-management) consistently shows that the highest-leverage interventions are almost never in individual task efficiency. They are in the system-level constraints that govern how work moves: handoff quality, decision latency, priority clarity, and the feedback loops that allow the system to self-correct.
 
 Understanding flow means mapping work as a system — identifying where it moves cleanly, where it accumulates, where decisions stall it, and where organizational structure creates the friction that teams absorb daily without being able to name.
+
+In banking and financial services — where regulatory approval chains, compliance workflows and risk governance requirements are part of the operating structure — distinguishing between necessary oversight and avoidable coordination friction is often where the most consequential flow improvement work begins.
 
 ---
 

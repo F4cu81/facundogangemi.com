@@ -83,6 +83,8 @@ The structural interventions that consistently shape organizational behavior in 
 
 **Capability investment before adoption requirements.** Requiring new behaviors without building the capability to execute them produces compliance theater rather than genuine adoption. Technical training, operating model enablement, and decision-making support must precede the point at which adoption is measured and held to account.
 
+[Research on what distinguishes successful digital transformations](https://mitsloan.mit.edu/ideas-made-to-matter/what-successful-digital-transformations-have-in-common) consistently identifies these structural interventions — behavioral clarity, capability investment and removal of structural barriers — rather than communication campaigns, as the primary drivers of sustained behavioral adoption.
+
 ---
 
 ## Change Leadership as a Governance Function
@@ -108,6 +110,8 @@ For transformation sponsors who want to assess whether organizational readiness 
 **Third: Does the transformation governance structure include regular reviews of adoption data that connect directly to program design decisions?** If adoption metrics are tracked in a separate change management report that feeds into program reviews as an informational item, the feedback loop is broken. If adoption data influences sequencing decisions, triggers structural redesign, and surfaces in portfolio governance as a leading indicator of program health, the loop is functional.
 
 These three questions surface whether organizational readiness has been designed in as a structural property of the program — or treated as a condition that communication and engagement will produce.
+
+If these questions reveal that the foundational strategic decisions — scope, operating model intent, capability investment sequence and governance authority — were not made explicitly before the program began, the companion work is ensuring those decisions are addressed as quickly as possible. See [Digital Transformation Strategy Design](/insights/digital-transformation/digital-transformation-strategy-design/) for a structured approach to making those foundational decisions — and the diagnostic signals that indicate when the strategy design is ready for execution.
 
 [Advisory engagements](/advisory/#digital-transformation) focused on digital transformation readiness help organizations establish the structural conditions, governance accountability, and adoption architecture that make transformation investment productive — before execution begins, or when a program in progress is encountering sustained resistance. If the diagnostic questions above reveal design gaps in your program, [start a conversation](/contact/).
 
