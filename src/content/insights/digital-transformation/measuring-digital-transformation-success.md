@@ -115,7 +115,7 @@ Each gap calls for a different intervention. And in most programs, the most cons
 
 The right time to define outcome metrics is before the transformation starts. The second-best time is now.
 
-[Advisory engagements](/advisory/) focused on digital transformation governance help organizations establish the measurement architecture, outcome metrics, and governance rhythms that allow leaders to manage transformation as a business investment rather than a program of activity. For context on the execution disciplines that make transformation measurement actionable, see the [Digital Transformation insights hub](/insights/digital-transformation/) and [Digital Transformation Is an Execution System](/insights/digital-transformation/digital-transformation-execution-system/). If you are ready to establish what success looks like in your program, [start a conversation](/contact/).
+[Advisory engagements](/advisory/#digital-transformation) focused on digital transformation governance help organizations establish the measurement architecture, outcome metrics, and governance rhythms that allow leaders to manage transformation as a business investment rather than a program of activity. For context on the execution disciplines that make transformation measurement actionable, see the [Digital Transformation insights hub](/insights/digital-transformation/) and [Digital Transformation Is an Execution System](/insights/digital-transformation/digital-transformation-execution-system/). If you are ready to establish what success looks like in your program, [start a conversation](/contact/).
 
 ---
 

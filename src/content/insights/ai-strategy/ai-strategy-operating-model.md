@@ -94,7 +94,7 @@ The right starting point is a clear-eyed assessment of the current state: where 
 
 If your organization is investing in AI and not yet seeing the business impact you expected, the question worth asking is not what the technology should do differently. It is how your operating model needs to change to make AI work.
 
-That is the conversation [advisory engagements](/advisory/) are designed to support — and where the most valuable work in AI transformation actually happens.
+That is the conversation [advisory engagements](/advisory/#ai-strategy) are designed to support — and where the most valuable work in AI transformation actually happens.
 
 ---
 

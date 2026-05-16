@@ -82,7 +82,7 @@ The structural conditions for sustained operational improvement include:
 
 **Leadership engagement with the work level.** Flow problems are often visible at the work level long before they appear in management reports. Leaders who engage with teams where work actually happens — in operating reviews, stand-ups, or structured walkthroughs of active work — build a much more accurate picture of where the system is under stress.
 
-The [Operational Excellence insights hub](/insights/operational-excellence/) offers additional perspectives on execution governance, flow management, and the organizational disciplines that sustain improvement. For organizations building or resetting their operational improvement capability, [advisory engagements](/advisory/) offer structured support for exactly this kind of diagnostic and design work.
+The [Operational Excellence insights hub](/insights/operational-excellence/) offers additional perspectives on execution governance, flow management, and the organizational disciplines that sustain improvement. For organizations building or resetting their operational improvement capability, [advisory engagements](/advisory/#operational-excellence) offer structured support for exactly this kind of diagnostic and design work.
 
 ---
 
@@ -120,4 +120,4 @@ These are not methodological prescriptions. They are the structural conditions t
 
 ---
 
-*Explore more perspectives in the [Operational Excellence insights hub](/insights/operational-excellence/) or browse all [strategic insights](/insights/). For related thinking on how execution discipline connects to broader transformation strategy, see [Digital Transformation Is an Execution System](/insights/digital-transformation/digital-transformation-execution-system/). To discuss what operational improvement looks like in your organization, [advisory engagements](/advisory/) are the right starting point.*
+*Explore more perspectives in the [Operational Excellence insights hub](/insights/operational-excellence/) or browse all [strategic insights](/insights/). For related thinking on how execution discipline connects to broader transformation strategy, see [Digital Transformation Is an Execution System](/insights/digital-transformation/digital-transformation-execution-system/). To discuss what operational improvement looks like in your organization, [advisory engagements](/advisory/#operational-excellence) are the right starting point.*

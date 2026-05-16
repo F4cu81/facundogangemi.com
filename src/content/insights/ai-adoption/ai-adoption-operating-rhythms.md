@@ -88,7 +88,7 @@ This means identifying the specific workflows and decision points where AI shoul
 
 If the answer to most of those questions is no, the adoption program needs structural redesign, not a new enablement campaign.
 
-[Advisory engagements](/advisory/) focused on AI adoption begin with exactly this kind of diagnostic — mapping the gap between technology availability and behavioral change, and building the operating design that bridges it. For context on how this work connects to broader transformation, the [AI Adoption insights hub](/insights/ai-adoption/) offers additional perspectives. If you are ready to explore what this looks like in your organization, [start a conversation](/contact/).
+[Advisory engagements](/advisory/#ai-adoption) focused on AI adoption begin with exactly this kind of diagnostic — mapping the gap between technology availability and behavioral change, and building the operating design that bridges it. For context on how this work connects to broader transformation, the [AI Adoption insights hub](/insights/ai-adoption/) offers additional perspectives. If you are ready to explore what this looks like in your organization, [start a conversation](/contact/).
 
 ---
 
@@ -112,4 +112,4 @@ These are not technology recommendations. They are the organizational design pri
 
 ---
 
-*Explore more perspectives in the [AI Adoption insights hub](/insights/ai-adoption/) or browse all [strategic insights](/insights/). For related thinking on how operating model design shapes AI strategy outcomes, see [AI Strategy Needs an Operating Model](/insights/ai-strategy/ai-strategy-operating-model/). For organizations ready to act on transformation, [advisory engagements](/advisory/) are designed to support exactly this kind of structural work.*
+*Explore more perspectives in the [AI Adoption insights hub](/insights/ai-adoption/) or browse all [strategic insights](/insights/). For related thinking on how operating model design shapes AI strategy outcomes, see [AI Strategy Needs an Operating Model](/insights/ai-strategy/ai-strategy-operating-model/). For organizations ready to act on transformation, [advisory engagements](/advisory/#ai-adoption) are designed to support exactly this kind of structural work.*

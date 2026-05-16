@@ -87,7 +87,7 @@ If AI is currently managed as a separate initiative running alongside the transf
 
 If AI is already part of the transformation design but not generating the expected leverage, the diagnostic question shifts to operating model fit: are the AI use cases changing decision-making and workflows in ways that the operating model actually requires?
 
-[Advisory engagements](/advisory/) focused on AI adoption within transformation programs begin with exactly this diagnostic — locating the gap between AI investment and transformation design, and building the structural bridges that close it. For a broader view of how operating model design connects AI adoption to business outcomes, the [AI Adoption insights hub](/insights/ai-adoption/) offers additional perspectives. If you are ready to explore what this looks like in your program, [start a conversation](/contact/).
+[Advisory engagements](/advisory/#ai-adoption) focused on AI adoption within transformation programs begin with exactly this diagnostic — locating the gap between AI investment and transformation design, and building the structural bridges that close it. For a broader view of how operating model design connects AI adoption to business outcomes, the [AI Adoption insights hub](/insights/ai-adoption/) offers additional perspectives. If you are ready to explore what this looks like in your program, [start a conversation](/contact/).
 
 ---
 

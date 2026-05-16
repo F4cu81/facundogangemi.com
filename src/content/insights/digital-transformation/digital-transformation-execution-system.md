@@ -78,7 +78,7 @@ Effective governance for transformation finds the operating point between accoun
 
 **Creating explicit decision rights.** Who decides when to scale an initiative? Who decides when to stop one? Who owns the question of whether the portfolio is generating business value? Without explicit decision rights, transformation programs accumulate ambiguity that erodes accountability and slows progress.
 
-For leaders working through these design questions, [advisory engagements](/advisory/) offer structured support for building the governance architecture that transformation programs require. Related case studies illustrating how execution system design has shaped transformation outcomes are available in the [case studies hub](/case-studies/).
+For leaders working through these design questions, [advisory engagements](/advisory/#digital-transformation) offer structured support for building the governance architecture that transformation programs require. Related case studies illustrating how execution system design has shaped transformation outcomes are available in the [case studies hub](/case-studies/).
 
 ---
 
@@ -116,4 +116,4 @@ These recommendations apply whether the organization is launching a new transfor
 
 ---
 
-*Explore more perspectives in the [Digital Transformation insights hub](/insights/digital-transformation/) or browse all [strategic insights](/insights/). For related thinking on AI operating model design, see [AI Strategy Needs an Operating Model](/insights/ai-strategy/ai-strategy-operating-model/). For structured support in designing the execution architecture your program requires, [advisory engagements](/advisory/) are the right starting point.*
+*Explore more perspectives in the [Digital Transformation insights hub](/insights/digital-transformation/) or browse all [strategic insights](/insights/). For related thinking on AI operating model design, see [AI Strategy Needs an Operating Model](/insights/ai-strategy/ai-strategy-operating-model/). For structured support in designing the execution architecture your program requires, [advisory engagements](/advisory/#digital-transformation) are the right starting point.*
