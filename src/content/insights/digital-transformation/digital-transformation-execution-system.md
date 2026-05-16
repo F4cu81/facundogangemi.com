@@ -1,6 +1,6 @@
 ---
 title: "Digital Transformation Execution System"
-description: "Digital transformation succeeds when strategy, governance, execution rhythms and measurable outcomes work as one operating system."
+description: "A digital transformation execution system links strategy, governance and delivery cadence into one coherent operating model with measurable outcomes."
 pubDate: "2026-04-30"
 updatedDate: "2026-04-30"
 category: "Digital Transformation"

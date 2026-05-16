@@ -1,6 +1,6 @@
 ---
 title: "Measuring Digital Transformation Success"
-description: "Learn how leaders measure digital transformation success through KPIs, adoption metrics, business outcomes and executive governance rhythms."
+description: "Measuring digital transformation success demands a structured approach: KPIs, adoption metrics and governance rhythms aligned to real business impact."
 pubDate: "2025-02-20"
 updatedDate: "2026-05-15"
 category: "Digital Transformation"

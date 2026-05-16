@@ -1,6 +1,6 @@
 ---
 title: "AI Adoption Needs Operating Rhythms"
-description: "AI adoption succeeds when leaders define operating rhythms, decision rights and governance that turn pilots into business outcomes."
+description: "Enterprise AI adoption stalls when operating rhythms, governance and decision rights are absent — pilots scale only when the operating system is in place."
 pubDate: "2026-05-07"
 updatedDate: "2026-05-07"
 category: "AI Adoption"
