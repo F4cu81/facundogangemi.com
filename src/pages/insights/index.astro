@@ -195,6 +195,40 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
       <p id="search-no-results" hidden class="no-results-msg" aria-live="polite">
         No insights match your search yet.
       </p>
+      <nav
+        class="pagination-controls"
+        id="search-pagination-controls"
+        aria-label="Search results pagination"
+        hidden
+      >
+        <button
+          type="button"
+          id="search-pagination-prev"
+          class="pagination-btn"
+          aria-label="Previous page of search results"
+          disabled
+        >
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M11 4l-6 5 6 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <span
+          id="search-pagination-indicator"
+          class="pagination-indicator"
+          aria-live="polite"
+          aria-atomic="true"
+        ></span>
+        <button
+          type="button"
+          id="search-pagination-next"
+          class="pagination-btn"
+          aria-label="Next page of search results"
+        >
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M7 4l6 5-6 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </nav>
     </div>
   </section>
 
@@ -291,14 +325,14 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
       {hasArticles ? (
         <Fragment>
           <div class="latest-grid" id="insights-grid">
-            {articles.map((article) => {
+            {articles.map((article, index) => {
               const date = article.data.pubDate.toLocaleDateString('en-US', {
                 year: 'numeric', month: 'long', day: 'numeric',
               });
               return (
                 <a
                   href={`/insights/${article.slug}/`}
-                  class="insight-card reveal"
+                  class={`insight-card reveal${index < 6 ? ' pg-visible' : ''}`}
                   aria-label={`Read: ${article.data.title}`}
                   data-category={article.data.categorySlug}
                   data-title={article.data.title}
@@ -338,6 +372,44 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
               );
             })}
           </div>
+
+          {articles.length > 6 && (
+            <nav
+              class="pagination-controls"
+              id="pagination-controls"
+              aria-label="Insights pagination"
+            >
+              <button
+                type="button"
+                id="pagination-prev"
+                class="pagination-btn"
+                aria-label="Previous page of insights"
+                disabled
+              >
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M11 4l-6 5 6 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <span
+                id="pagination-indicator"
+                class="pagination-indicator"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                1 of {Math.ceil(articles.length / 6)}
+              </span>
+              <button
+                type="button"
+                id="pagination-next"
+                class="pagination-btn"
+                aria-label="Next page of insights"
+              >
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M7 4l6 5-6 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </nav>
+          )}
         </Fragment>
       ) : (
         <p class="insights-empty-state">
@@ -791,6 +863,12 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
     border-radius: 2px;
   }
 
+  /* ── Pagination visibility ────────────────────────────────────────────── */
+  /* Cards without pg-visible are hidden from first paint; JS manages the class. */
+  #insights-grid > a:not(.pg-visible) {
+    display: none;
+  }
+
   /* ── SECTION 05: Latest Insights ──────────────────────────────────────── */
 
   .latest-sub {
@@ -1009,6 +1087,56 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
     font-size: 0.82rem;
     color: rgba(255, 255, 255, 0.36);
   }
+
+  /* ── Pagination Controls ──────────────────────────────────────────────── */
+
+  .pagination-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+
+  .pagination-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.65);
+    cursor: pointer;
+    transition: border-color 180ms ease, color 180ms ease, background 180ms ease;
+    flex-shrink: 0;
+  }
+
+  .pagination-btn:hover:not(:disabled) {
+    border-color: rgba(245, 124, 0, 0.55);
+    background: rgba(245, 124, 0, 0.08);
+    color: #F57C00;
+  }
+
+  .pagination-btn:focus-visible {
+    outline: 2px solid rgba(245, 124, 0, 0.70);
+    outline-offset: 2px;
+  }
+
+  .pagination-btn:disabled {
+    opacity: 0.28;
+    cursor: not-allowed;
+  }
+
+  .pagination-indicator {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.40);
+    letter-spacing: 0.04em;
+    min-width: 4.5rem;
+    text-align: center;
+  }
 </style>
 
 <script>
@@ -1020,13 +1148,127 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
       ? (Array.from(latestGrid.querySelectorAll('a[data-category]')) as HTMLElement[])
       : [] as HTMLElement[];
 
-    var searchSection   = document.getElementById('search-results-section') as HTMLElement | null;
-    var searchGrid      = document.getElementById('search-results-grid') as HTMLElement | null;
-    var searchCount     = document.getElementById('search-results-count') as HTMLElement | null;
-    var searchNoResults = document.getElementById('search-no-results') as HTMLElement | null;
+    var searchSection             = document.getElementById('search-results-section') as HTMLElement | null;
+    var searchGrid                = document.getElementById('search-results-grid') as HTMLElement | null;
+    var searchCount               = document.getElementById('search-results-count') as HTMLElement | null;
+    var searchNoResults           = document.getElementById('search-no-results') as HTMLElement | null;
+    var searchPaginationControls  = document.getElementById('search-pagination-controls') as HTMLElement | null;
+    var searchPaginationPrev      = document.getElementById('search-pagination-prev') as HTMLButtonElement | null;
+    var searchPaginationNext      = document.getElementById('search-pagination-next') as HTMLButtonElement | null;
+    var searchPaginationIndicator = document.getElementById('search-pagination-indicator') as HTMLElement | null;
 
     if (!cards.length) return;
 
+    /* ── Latest Insights Pagination ─────────────────────────────────────── */
+    var ITEMS_PER_PAGE = 6;
+    var currentPage    = 0;
+    var totalPages     = Math.ceil(cards.length / ITEMS_PER_PAGE);
+
+    var paginationPrev      = document.getElementById('pagination-prev') as HTMLButtonElement | null;
+    var paginationNext      = document.getElementById('pagination-next') as HTMLButtonElement | null;
+    var paginationIndicator = document.getElementById('pagination-indicator') as HTMLElement | null;
+
+    function updatePagination() {
+      var start = currentPage * ITEMS_PER_PAGE;
+      var end   = start + ITEMS_PER_PAGE;
+
+      cards.forEach(function (card, i) {
+        card.classList.toggle('pg-visible', i >= start && i < end);
+      });
+
+      if (paginationIndicator) {
+        paginationIndicator.textContent = (currentPage + 1) + ' of ' + totalPages;
+      }
+      if (paginationPrev) {
+        paginationPrev.disabled = currentPage === 0;
+      }
+      if (paginationNext) {
+        paginationNext.disabled = currentPage >= totalPages - 1;
+      }
+    }
+
+    updatePagination();
+
+    if (paginationPrev) {
+      paginationPrev.addEventListener('click', function () {
+        if (currentPage > 0) {
+          currentPage--;
+          updatePagination();
+          var section = document.getElementById('latest-insights');
+          if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+
+    if (paginationNext) {
+      paginationNext.addEventListener('click', function () {
+        if (currentPage < totalPages - 1) {
+          currentPage++;
+          updatePagination();
+          var section = document.getElementById('latest-insights');
+          if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+
+    /* ── Search Results Pagination ──────────────────────────────────────── */
+    var searchCurrentPage: number = 0;
+    var searchTotalPages: number  = 0;
+    var allMatchingCards: HTMLElement[] = [];
+
+    function renderSearchPage() {
+      if (!searchGrid) return;
+      var start     = searchCurrentPage * ITEMS_PER_PAGE;
+      var end       = start + ITEMS_PER_PAGE;
+      var pageSlice = allMatchingCards.slice(start, end);
+
+      searchGrid.innerHTML = '';
+      pageSlice.forEach(function (card) {
+        var clone = card.cloneNode(true) as HTMLElement;
+        clone.removeAttribute('hidden');
+        clone.classList.remove('reveal');
+        searchGrid!.appendChild(clone);
+      });
+
+      if (searchPaginationIndicator) {
+        searchPaginationIndicator.textContent = (searchCurrentPage + 1) + ' of ' + searchTotalPages;
+      }
+      if (searchPaginationPrev) {
+        searchPaginationPrev.disabled = searchCurrentPage === 0;
+      }
+      if (searchPaginationNext) {
+        searchPaginationNext.disabled = searchCurrentPage >= searchTotalPages - 1;
+      }
+      if (searchPaginationControls) {
+        if (searchTotalPages > 1) {
+          searchPaginationControls.removeAttribute('hidden');
+        } else {
+          searchPaginationControls.setAttribute('hidden', '');
+        }
+      }
+    }
+
+    if (searchPaginationPrev) {
+      searchPaginationPrev.addEventListener('click', function () {
+        if (searchCurrentPage > 0) {
+          searchCurrentPage--;
+          renderSearchPage();
+          if (searchSection) searchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+
+    if (searchPaginationNext) {
+      searchPaginationNext.addEventListener('click', function () {
+        if (searchCurrentPage < searchTotalPages - 1) {
+          searchCurrentPage++;
+          renderSearchPage();
+          if (searchSection) searchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+
+    /* ── Filter / Search ────────────────────────────────────────────────── */
     var activeCategory = 'all';
 
     function isActive(): boolean {
@@ -1050,33 +1292,29 @@ const SEO_DESCRIPTION = 'Insights on AI strategy, digital transformation, operat
     }
 
     function applyFilter() {
+      /* Reset latest-grid to page 1 whenever filter/search changes */
+      currentPage = 0;
+      updatePagination();
+
       if (isActive()) {
         if (searchSection) searchSection.removeAttribute('hidden');
 
-        var matching = getMatching();
-
-        if (searchGrid) {
-          searchGrid.innerHTML = '';
-          matching.forEach(function (card) {
-            var clone = card.cloneNode(true) as HTMLElement;
-            clone.removeAttribute('hidden');
-            // Remove scroll-reveal class so cloned cards are immediately visible
-            clone.classList.remove('reveal');
-            searchGrid!.appendChild(clone);
-          });
-        }
+        allMatchingCards  = getMatching();
+        searchCurrentPage = 0;
+        searchTotalPages  = Math.ceil(allMatchingCards.length / ITEMS_PER_PAGE);
 
         if (searchCount) {
-          var n = matching.length;
+          var n = allMatchingCards.length;
           searchCount.textContent = n === 1 ? '1 result' : n + ' results';
         }
 
-        if (searchNoResults) {
-          if (matching.length > 0) {
-            searchNoResults.setAttribute('hidden', '');
-          } else {
-            searchNoResults.removeAttribute('hidden');
-          }
+        if (allMatchingCards.length > 0) {
+          if (searchNoResults) searchNoResults.setAttribute('hidden', '');
+          renderSearchPage();
+        } else {
+          if (searchGrid) searchGrid.innerHTML = '';
+          if (searchPaginationControls) searchPaginationControls.setAttribute('hidden', '');
+          if (searchNoResults) searchNoResults.removeAttribute('hidden');
         }
       } else {
         if (searchSection) searchSection.setAttribute('hidden', '');
